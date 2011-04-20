@@ -840,8 +840,17 @@
                             <groupId>org.jahia.server</groupId>
                             <artifactId>jahia-war</artifactId>
 				            <classifier>${jahia.war.classifier}</classifier>
+                            <excludes>
+                            </excludes>
                         </overlay>
                     </overlays>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <!--classpathPrefix>lib/</classpathPrefix-->
+                            <!--addExtensions>true</addExtensions-->
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
 
@@ -862,6 +871,7 @@
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
 
         <resources>
