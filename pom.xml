@@ -62,7 +62,7 @@
         <war.plugin.version>2.1-beta-1-jahia</war.plugin.version>
         <enforcer.plugin.version>1.0</enforcer.plugin.version>
         <compiler.plugin.version>2.3.2</compiler.plugin.version>
-        <buildnumber.plugin.version>1.0-beta-4</buildnumber.plugin.version>
+        <buildnumber.plugin.version>1.0</buildnumber.plugin.version>
         <source.plugin.version>2.1.2</source.plugin.version>
         <release.plugin.version>2.1</release.plugin.version>
         <eclipse.plugin.version>2.8</eclipse.plugin.version>
@@ -275,6 +275,59 @@
             <modules>
                 <module>package</module>
             </modules>
+        </profile>
+        <profile>
+            <id>do-attach-sources</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>${source.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>do-attach-javadocs</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>${javadoc.plugin.version}</version>
+                        <configuration>
+                            <detectOfflineLinks>false</detectOfflineLinks>
+                            <minmemory>128m</minmemory>
+                            <maxmemory>1g</maxmemory>
+                            <failOnError>false</failOnError>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
         <profile>
             <id>maven-3</id>
