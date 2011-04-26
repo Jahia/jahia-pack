@@ -251,7 +251,7 @@
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.jahia.server</groupId>
-                                    <artifactId>jahia-war</artifactId>
+                                    <artifactId>jahia-pack-war</artifactId>
                                     <version>${project.version}</version>
                                     <classifier>${jahia.war.classifier}</classifier>
                                     <type>war</type>
