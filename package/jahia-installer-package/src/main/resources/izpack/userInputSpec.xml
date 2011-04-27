@@ -25,6 +25,7 @@
     <panel order="1" topBuffer="0">
         <field type="title" txt="Database connection settings" id="dbSettings.title"/>
         <field type="space" />
+        <field type="space"/>
         <field type="radio" variable="dbSettings.mode">
             <description align="left" txt="Choose your preferred database connection type" id="dbSettings.chooseMode"/>
             <spec>
@@ -36,6 +37,7 @@
     
     <panel order="2" topBuffer="0">
         <field type="title" txt="Database connection settings" id="dbSettings.title"/>
+        <field type="space" />
         <field type="space" />
         <field type="radio" variable="dbSettings.dbms.type" align="left" conditionid="cnd.db.mode.standalone">
             <description align="left" txt="Choose your DBMS type" id="dbSettings.dbms.type"/>
@@ -206,9 +208,12 @@
         <field type="staticText" txt="See http://jira.jahia.org/browse/JKB-20 for Mail server configuration options in Jahia 6.5" id="mailSettings.link" align="right"/>
     </panel>
 
-    <panel order="7">
+    <panel order="7" topBuffer="0">
         <field type="title" txt="Installation" id="afterInstall.title"/>
+        <field type="space"/>
         <field type="staticText" txt="Installation successful" id="afterInstall.description"/>
+        <field type="space"/>
+        <field type="space"/>
         <field type="check" variable="afterInstall.viewHowToInstall" align="left" conditionid="!cnd.pack.tomcat">
             <spec txt="Open How To Install file" id="afterInstall.viewHowToInstall" true="true" false="false" set="true"/>
         </field>
@@ -216,9 +221,9 @@
             <spec txt="Open README file" id="afterInstall.viewReadme" true="true" false="false" set="true"/>
         </field>
         <field type="check" variable="afterInstall.startTomcat" align="left" conditionid="cnd.pack.tomcat">
-            <spec txt="Start Apache Tomcat server" id="afterInstall.startTomcat" true="true" false="false" set="true"/>
+            <spec txt="Start Apache Tomcat server" id="afterInstall.startTomcat" true="true" false="false" revalidate="yes"/>
         </field>
-        <field type="check" variable="afterInstall.launchJahia" align="left" conditionid="cnd.pack.tomcat">
+        <field type="check" variable="afterInstall.launchJahia" align="left" conditionid="cnd.pack.tomcat+cnd.start.tomcat">
             <spec txt="Wait for server startup and launch Jahia" id="afterInstall.launchJahia" true="true" false="false" set="false"/>
         </field>
     </panel>
