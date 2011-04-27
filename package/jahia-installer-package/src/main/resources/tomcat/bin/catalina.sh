@@ -83,7 +83,7 @@
 #
 # $Id: catalina.sh 1040547 2010-11-30 14:47:49Z markt $
 # -----------------------------------------------------------------------------
-CATALINA_OPTS="$CATALINA_OPTS -Xms1024m -Xmx1024m -Djava.awt.headless=true -XX:MaxPermSize=256m -server -Dhibernate.jdbc.use_streams_for_binary=true -verbose:gc"
+CATALINA_OPTS="$CATALINA_OPTS -Xms1024m -Xmx1024m -Djava.awt.headless=true -XX:MaxPermSize=256m -server -Dhibernate.jdbc.use_streams_for_binary=true -verbose:gc -XX:+HeapDumpOnOutOfMemoryError"
 export CATALINA_OPTS
 export CATALINA_PID=/tmp/jahia-6.5.pid
 
