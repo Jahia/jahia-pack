@@ -146,7 +146,7 @@
 		<li>Adjust the JVM, connector and servlet container options appropriately (see next sections).</li>
     </ol>
     
-    <h2>JVM tuning options:</h2>
+    <h2>JVM tuning options</h2>
 	<p>The default JVM options in the Tomcat's startup script (<tt>&lt;tomcat&gt;/bin/catalina.bat</tt> or <tt>&lt;tomcat&gt;/bin/catalina.sh</tt>)
 			should be adjusted to use server JVM ("<tt>-server</tt>" option), have at least 1 GB<sup>[<a href="#ftn.2">2</a>]</sup> heap size (<tt>-Xms1024m -Xmx1024m</tt>)
         	and at least 256 MB<sup>[<a href="#ftn.2">2</a>]</sup> as a limit for the permanent generation heap size (<tt>-XX:MaxPermSize=256m</tt>), if applicable,
@@ -156,7 +156,7 @@
     <p>or to the <tt>&lt;tomcat&gt;/bin/catalina.sh</tt> file (non Windows OS):</p>
     <blockquote><p><tt>CATALINA_OPTS="$CATALINA_OPTS -Xms1024m -Xmx1024m -Djava.awt.headless=true -XX:MaxPermSize=256m -server -Dhibernate.jdbc.use_streams_for_binary=true -verbose:gc -XX:+HeapDumpOnOutOfMemoryError"</tt></p></blockquote>
     
-    <h2>HTTP/AJP connector tuning options:</h2>
+    <h2>HTTP/AJP connector tuning options</h2>
     <p>The following configuration for the HTTP and AJP connectors (configured in the <tt>&lt;tomcat&gt;/conf/server.xml</tt> file) is recommended<sup>[<a href="#ftn.3">3</a>]</sup>,
     which includes UTF-8 URI encoding, compression of the response content etc.:</p>
     <blockquote>
@@ -179,7 +179,7 @@
     </p>
     </blockquote>
     
-    <h2>JSP Compiler/Servlet tuning options:</h2>
+    <h2>JSP Compiler/Servlet tuning options</h2>
     <p>JSP Servlet parameters (configured in the <tt>&lt;tomcat&gt;/conf/web.xml</tt> file) can be optimized in the following way:</p>
     <pre>
     &lt;servlet&gt;
