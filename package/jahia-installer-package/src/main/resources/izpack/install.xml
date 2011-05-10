@@ -38,6 +38,7 @@
 
         <variable name="afterInstall.startTomcat" value="true"/>
         <variable name="jahia.war.contextName" value=""/>
+        <variable name="developmentMode" value="true"/>
     </variables>
     <dynamicvariables>
         <variable name="jahia.war.contextPath" value="" condition="cnd.installation.type.express|cnd.contextPath.root"/>
@@ -49,6 +50,9 @@
         <variable name="jahia.tomcat.pack.selected" value="true" condition="cnd.pack.tomcat"/>
         <variable name="jahia.tomcat.pack.selected" value="false" condition="!cnd.pack.tomcat"/>
         
+        <variable name="operatingMode" value="development" condition="cnd.operatingMode.development"/>
+        <variable name="operatingMode" value="production" condition="!cnd.operatingMode.development"/>
+        
         <variable name="server.type" value="tomcat"/>
         
         <variable name="tomcat.httpPort" value="8080" condition="cnd.installation.type.express|!cnd.pack.tomcat"/>
@@ -59,8 +63,6 @@
         <variable name="jahiaManager.username" value="jahia" condition="cnd.installation.type.express"/>
         <variable name="jahiaManager.password" value="password" condition="cnd.installation.type.express"/>
         
-        <variable name="developmentMode" value="true" condition="cnd.installation.type.express"/>
-
         <!-- embedded Derby defaults -->
         <variable name="dbSettings.dbms.type" value="derby_embedded" condition="cnd.installation.type.express|cnd.db.dbms.derby_embedded"/>
         <variable name="dbSettings.dbms.createTables" value="true" condition="cnd.installation.type.express|cnd.db.dbms.derby_embedded"/>
@@ -145,6 +147,10 @@
         </condition>
         <condition type="com.izforge.izpack.rules.EmptyVariableCondition" id="cnd.contextPath.root">
             <variable>jahia.war.contextName</variable>
+        </condition>
+        <condition type="variable" id="cnd.operatingMode.development">
+            <name>developmentMode</name>
+            <value>true</value>
         </condition>
     </conditions>
     <guiprefs height="480" resizable="yes" width="640">
