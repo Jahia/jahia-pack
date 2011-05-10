@@ -15,13 +15,14 @@
         <product.name>Jahia xCM Community Edition</product.name>
         <staging.dir>${project.build.directory}/izpack</staging.dir>
         <jahia.installers.version>2.0</jahia.installers.version>
+        <izpack.version>4.3.4.jahia1</izpack.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.codehaus.izpack</groupId>
             <artifactId>izpack-standalone-compiler</artifactId>
-            <version>4.3.4.jahia1</version>
+            <version>${izpack.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jahia.configuration</groupId>
@@ -78,7 +79,7 @@
                             <dependency>
                                 <groupId>org.codehaus.izpack</groupId>
                                 <artifactId>izpack-standalone-compiler</artifactId>
-                                <version>4.3.4.jahia1</version>
+                                <version>${izpack.version}</version>
                             </dependency>
                         </dependencies>
                         <executions>
@@ -365,7 +366,7 @@
                     <dependency>
                         <groupId>org.codehaus.izpack</groupId>
                         <artifactId>izpack-standalone-compiler</artifactId>
-                        <version>4.3.4.jahia1</version>
+                        <version>${izpack.version}</version>
                     </dependency>
                 </dependencies>
                 <executions>
