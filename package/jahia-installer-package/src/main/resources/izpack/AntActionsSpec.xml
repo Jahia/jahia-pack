@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <antactions>
 
-	<pack name="Jahia xCM Platform">
+	<pack name="jahia">
 		<antcall order="beforepacks" buildresource="AntBuildFile" verbose="true" messageid="jahia.cleanup" logfile="$INSTALL_PATH/logs/install.log">
 			<property name="INSTALL_PATH" value="${INSTALL_PATH}"/>
 			<target name="jahia-cleanup-install-dir" />

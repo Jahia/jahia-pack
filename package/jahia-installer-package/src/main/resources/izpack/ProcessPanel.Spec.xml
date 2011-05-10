@@ -2,7 +2,7 @@
 <processing>
 	<logfiledir>$INSTALL_PATH/logs</logfiledir>
     <job name="Start Apache Tomcat" condition="cnd.start.tomcat">
-        <executeForPack name="Apache Tomcat"/>
+        <executeForPack name="tomcat"/>
         <os family="windows" />
         <executefile name="cmd">
             <arg>/c</arg>
@@ -12,7 +12,7 @@
     </job>
     <!--
     <job name="Start Apache Tomcat" condition="cnd.launch.jahia">
-        <executeForPack name="Apache Tomcat"/>
+        <executeForPack name="tomcat"/>
         <os family="unix" />
         <os family="mac" />
         <executefile name="echo">
@@ -41,14 +41,14 @@
         </executefile>
     </job>
     <job name="Wait for Apache Tomcat startup" condition="cnd.launch.jahia">
-        <executeForPack name="Apache Tomcat"/>
+        <executeForPack name="tomcat"/>
         <executeclass name="org.jahia.init.TomcatWait">
             <arg>http://localhost:${tomcat.httpPort}${jahia.war.contextPath}/ping.jsp</arg>
             <arg>300000</arg>
         </executeclass>
     </job>
     <job name="Launch Jahia" condition="cnd.launch.jahia">
-        <executeForPack name="Apache Tomcat"/>
+        <executeForPack name="tomcat"/>
         <os family="windows" />
         <executefile name="cmd">
             <arg>/c</arg>

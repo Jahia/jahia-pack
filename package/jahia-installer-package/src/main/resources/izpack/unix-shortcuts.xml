@@ -21,7 +21,7 @@
         terminal="true"
         type="Application"
         encoding="UTF-8">
-        <createForPack name="Apache Tomcat"/>
+        <createForPack name="tomcat"/>
     </shortcut>
     <shortcut
         name="Stop Jahia"
@@ -40,7 +40,7 @@
         startup="no"
         type="Application"
         encoding="UTF-8">
-        <createForPack name="Apache Tomcat"/>
+        <createForPack name="tomcat"/>
     </shortcut>
 
 <!-- Uninstaller -->    
@@ -82,7 +82,7 @@
      initialState="normal"
      categories=""
      createForAll="false">
-     <createForPack name="Apache Tomcat"/>
+     <createForPack name="tomcat"/>
     </shortcut>
      
     <shortcut
@@ -106,7 +106,7 @@
      initialState="normal"
      categories=""
      createForAll="false">
-     <createForPack name="Apache Tomcat"/>
+     <createForPack name="tomcat"/>
     </shortcut>
 
 <!-- Documentation -->
@@ -131,7 +131,7 @@
      initialState="normal"
      categories=""
      createForAll="false">
-     <createForPack name="Apache Tomcat"/>
+     <createForPack name="tomcat"/>
     </shortcut>
     <shortcut
      name="Jahia Community Web Site"
@@ -154,7 +154,7 @@
      initialState="normal"
      categories=""
      createForAll="false">
-     <createForPack name="Apache Tomcat"/>
+     <createForPack name="tomcat"/>
     </shortcut>
     <shortcut
      name="Jahia Company Web Site"
@@ -177,7 +177,7 @@
      initialState="normal"
      categories=""
      createForAll="false">
-     <createForPack name="Apache Tomcat"/>
+     <createForPack name="tomcat"/>
     </shortcut>
     <shortcut
      name="Jahiapedia"
@@ -200,7 +200,7 @@
      initialState="normal"
      categories=""
      createForAll="false">
-     <createForPack name="Apache Tomcat"/>
+     <createForPack name="tomcat"/>
     </shortcut>
     <shortcut
      name="Issue Tracking"
@@ -223,7 +223,7 @@
      initialState="normal"
      categories=""
      createForAll="false">
-     <createForPack name="Apache Tomcat"/>
+     <createForPack name="tomcat"/>
     </shortcut>
      
 </shortcuts>

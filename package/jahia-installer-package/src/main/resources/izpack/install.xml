@@ -262,7 +262,7 @@
     </listeners>
 
     <packs>
-        <pack name="Jahia xCM Platform" id="core" preselected="yes" required="yes">
+        <pack name="jahia" id="core" preselected="yes" required="yes">
             <description/>
             <fileset dir="../licenses" targetdir="$INSTALL_PATH/licenses" override="true" />
             <fileset dir="../links" targetdir="$INSTALL_PATH/docs" override="true">
@@ -291,7 +291,7 @@
             <parsable targetfile="$INSTALL_PATH/docs/HowToInstall.URL" condition="!cnd.pack.tomcat"/>
             <executable targetfile="$INSTALL_PATH/bin/openUrl.sh" os="unix"/>
         </pack>
-        <pack name="Apache Tomcat" id="tomcat" preselected="yes" required="no">
+        <pack name="tomcat" id="tomcat" preselected="yes" required="no">
             <description/>
             <fileset dir="../links" targetdir="$INSTALL_PATH" override="true">
                 <include name="OpenJahia*"/>
