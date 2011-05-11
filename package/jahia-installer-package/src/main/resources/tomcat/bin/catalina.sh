@@ -85,7 +85,6 @@
 # -----------------------------------------------------------------------------
 CATALINA_OPTS="$CATALINA_OPTS -Xms1024m -Xmx1024m -Djava.awt.headless=true -XX:MaxPermSize=256m -server -Dhibernate.jdbc.use_streams_for_binary=true -verbose:gc -XX:+HeapDumpOnOutOfMemoryError"
 export CATALINA_OPTS
-export CATALINA_PID=/tmp/jahia-6.5.pid
 
 # OS specific support.  $var _must_ be set to either true or false.
 cygwin=false
@@ -118,6 +117,7 @@ PRGDIR=`dirname "$PRG"`
 
 CATALINA_OPTS="$CATALINA_OPTS -Dderby.system.home=$CATALINA_HOME/webapps/%{jahia.war.target.dir.name}/WEB-INF/var/dbdata"
 export CATALINA_OPTS
+export CATALINA_PID=$CATALINA_HOME/bin/tomcat.pid
 
 # Ensure that any user defined CLASSPATH variables are not used on startup,
 # but allow them to be specified in setenv.sh, in rare case when it is needed.
