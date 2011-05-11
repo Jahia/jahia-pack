@@ -20,11 +20,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.codehaus.izpack</groupId>
-            <artifactId>izpack-standalone-compiler</artifactId>
-            <version>${izpack.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.jahia.configuration</groupId>
             <artifactId>archivers</artifactId>
             <version>${jahia.archivers.version}</version>
@@ -37,11 +32,6 @@
             <version>${jahia.configurators.version}</version>
             <classifier>standalone</classifier>
             <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>2.6</version>
         </dependency>
         <dependency>
             <groupId>org.jahia.configuration</groupId>
@@ -63,6 +53,17 @@
             <groupId>postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${driver.postgresql.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.izpack</groupId>
+            <artifactId>izpack-standalone-compiler</artifactId>
+            <version>${izpack.version}</version>
         </dependency>
     </dependencies>
 
@@ -252,11 +253,18 @@
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.jahia.server</groupId>
-                                    <artifactId>jahia-pack-war</artifactId>
+                                    <artifactId>jahia-war</artifactId>
                                     <version>${project.version}</version>
-                                    <classifier>${jahia.war.classifier}</classifier>
                                     <type>war</type>
                                     <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/artifacts/jahia-war</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.jahia.server</groupId>
+                                    <artifactId>jahia-pack-war</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>war</type>
+                                    <overWrite>true</overWrite>
                                     <outputDirectory>${project.build.directory}/artifacts/jahia-war</outputDirectory>
                                 </artifactItem>
                             </artifactItems>

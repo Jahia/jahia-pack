@@ -4,7 +4,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jahia-pack-root</artifactId>
-    <name>Jahia Project Root</name>
+    <name>Jahia Package Project Root</name>
     <groupId>org.jahia.server</groupId>
     <version>6.5-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -38,8 +38,6 @@
         <jahia.archivers.version>2.2</jahia.archivers.version>
         <jahia.configurators.version>2.19</jahia.configurators.version>
         <jahia.deployers.version>2.1</jahia.deployers.version>
-
-        <jahia.war.classifier/>
 
         <pluto.version>2.0.2</pluto.version>
         <clover.version>2.6.3</clover.version>
@@ -319,6 +317,12 @@
                     </plugin>
                 </plugins>
             </build>
+        </profile>
+        <profile>
+            <id>module-forge</id>
+            <modules>
+                <module>module-forge</module>
+            </modules>
         </profile>
     </profiles>
 
