@@ -24,6 +24,7 @@
     </pluginRepositories>
 
     <dependencies>
+        <!--
         <dependency>
             <groupId>org.jahia.server</groupId>
             <artifactId>jahia-module-forge</artifactId>
@@ -31,6 +32,7 @@
             <type>pom</type>
             <scope>runtime</scope>
         </dependency>
+        -->
         
         <!-- Default Jahia Forge Modules -->
         <dependency>

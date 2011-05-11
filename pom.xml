@@ -318,12 +318,14 @@
                 </plugins>
             </build>
         </profile>
+        <!--
         <profile>
             <id>module-forge</id>
             <modules>
                 <module>module-forge</module>
             </modules>
         </profile>
+        -->
     </profiles>
 
     <modules>
