@@ -164,9 +164,11 @@
         <langpack iso3="eng"/>
         <langpack iso3="fra"/>
         <langpack iso3="deu"/>
+        <!--
         <langpack iso3="ita"/>
         <langpack iso3="por"/>
         <langpack iso3="spa"/>
+        -->
     </locale>
     <resources>
         <res id="installer.langsel.img" src="../images/language-selection.png"/>
@@ -185,30 +187,38 @@
         <res id="userInputLang.xml_eng" src="i18n/userInputLang.eng.xml" />
         <res id="userInputLang.xml_fra" src="i18n/userInputLang.fra.xml" />
         <res id="userInputLang.xml_deu" src="i18n/userInputLang.deu.xml" />
+        <!--
         <res id="userInputLang.xml_ita" src="i18n/userInputLang.ita.xml" />
         <res id="userInputLang.xml_por" src="i18n/userInputLang.por.xml" />
         <res id="userInputLang.xml_spa" src="i18n/userInputLang.spa.xml" />
+        -->
 
         <res id="packsLang.xml_eng" src="i18n/packsLang.eng.xml"/>
         <res id="packsLang.xml_fra" src="i18n/packsLang.fra.xml"/>
         <res id="packsLang.xml_deu" src="i18n/packsLang.deu.xml"/>
+        <!--
         <res id="packsLang.xml_ita" src="i18n/packsLang.ita.xml"/>
         <res id="packsLang.xml_por" src="i18n/packsLang.por.xml"/>
         <res id="packsLang.xml_spa" src="i18n/packsLang.spa.xml"/>
+        -->
 
         <res id="CustomLangpack.xml_eng" src="i18n/customLang.eng.xml"/>
         <res id="CustomLangpack.xml_fra" src="i18n/customLang.fra.xml"/>
         <res id="CustomLangpack.xml_deu" src="i18n/customLang.deu.xml"/>
+        <!--
         <res id="CustomLangpack.xml_ita" src="i18n/customLang.ita.xml"/>
         <res id="CustomLangpack.xml_por" src="i18n/customLang.por.xml"/>
         <res id="CustomLangpack.xml_spa" src="i18n/customLang.spa.xml"/>
+        -->
         
         <res id="CustomActionsLang.xml_eng" src="i18n/customLang.eng.xml"/>
         <res id="CustomActionsLang.xml_fra" src="i18n/customLang.fra.xml"/>
         <res id="CustomActionsLang.xml_deu" src="i18n/customLang.deu.xml"/>
+        <!--
         <res id="CustomActionsLang.xml_ita" src="i18n/customLang.ita.xml"/>
         <res id="CustomActionsLang.xml_por" src="i18n/customLang.por.xml"/>
         <res id="CustomActionsLang.xml_spa" src="i18n/customLang.spa.xml"/>
+        -->
         
     </resources>
     <panels>
