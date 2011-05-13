@@ -22,7 +22,7 @@
         
     </panel>
     
-    <panel order="1" topBuffer="0">
+    <panel order="1">
         <field type="title" txt="Database connection settings" id="dbSettings.title"/>
         <field type="space" />
         <field type="space"/>
@@ -35,7 +35,7 @@
         </field>
     </panel>
     
-    <panel order="2" topBuffer="0">
+    <panel order="2">
         <field type="title" txt="Database connection settings" id="dbSettings.title"/>
         <field type="space" />
         <field type="space" />
