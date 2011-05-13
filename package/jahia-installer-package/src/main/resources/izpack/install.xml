@@ -243,7 +243,7 @@
         		<action stage="preactivate" classname="org.jahia.izpack.LockPrevButtonPanelAction"/>
         	</actions>
         </panel>
-        <panel classname="ProcessPanel" condition="cnd.view.readme|cnd.start.tomcat|cnd.launch.jahia|cnd.view.howtoinstall"/>
+        <panel classname="ProcessPanel" condition="cnd.view.howtoinstall|cnd.view.readme|cnd.start.tomcat|cnd.launch.jahia"/>
         <panel classname="FinishPanel"/>
     </panels>
     
