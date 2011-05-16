@@ -204,8 +204,6 @@
         <field type="text" align="left" variable="mailSettings.from">
             <spec txt="Mail from - sender" id="mailSettings.from" size="20"/>
         </field>
-        <field type="space"/>
-        <field type="staticText" txt="See http://jira.jahia.org/browse/JKB-20 for Mail server configuration options in Jahia 6.5" id="mailSettings.link" align="right"/>
     </panel>
 
     <panel order="7" topBuffer="0">
