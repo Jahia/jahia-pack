@@ -17,7 +17,12 @@
             <groupId>org.jahia.server</groupId>
             <artifactId>jahia-war</artifactId>
             <version>6.5-SNAPSHOT</version>
-            <classifier>${jahia.war.classifier}</classifier>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>org.jahia.server</groupId>
+            <artifactId>jahia-pack-war</artifactId>
+            <version>6.5-SNAPSHOT</version>
             <type>war</type>
         </dependency>
         <dependency>
