@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>org.jahia.server</groupId>
         <artifactId>jahia-package</artifactId>
-        <version>6.5-SNAPSHOT</version>
+        <version>6.5.0.0-RC1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jahia-installer-package</artifactId>
@@ -198,10 +197,8 @@
                         </goals>
                         <configuration>
                             <tasks>
-                                <loadfile property="buildNumber-ce"
-                                          srcFile="${project.build.directory}/marker/META-INF/jahia-impl-marker.txt"/>
-                                <echo message="installer.filename=Jahia_xCM_CE_v${project.version}_r${buildNumber-ce}"
-                                      file="${project.build.directory}/version.properties"/>
+                                <loadfile property="buildNumber-ce" srcFile="${project.build.directory}/marker/META-INF/jahia-impl-marker.txt" />
+                                <echo message="installer.filename=Jahia_xCM_CE_v${project.version}_r${buildNumber-ce}" file="${project.build.directory}/version.properties" />
                             </tasks>
                         </configuration>
                     </execution>
@@ -332,39 +329,36 @@
                         <configuration>
                             <tasks>
                                 <java classname="org.jahia.izpack.ResourcesConverter">
-                                    <arg value="izpack.i18n.packsLang"/>
+                                    <arg value="izpack.i18n.packsLang" />
                                     <!--
-                                    <arg value="en,fr,de,it,pt,es"/>
+                                    <arg value="en,fr,de,it,pt,es" />
                                     -->
-                                    <arg value="en,fr,de"/>
-                                    <arg
-                                            value="${project.build.directory}/izpack/i18n"/>
+                                    <arg value="en,fr,de" />
+                                    <arg value="${project.build.directory}/izpack/i18n" />
                                     <classpath>
-                                        <path refid="maven.dependency.classpath"/>
+                                        <path refid="maven.dependency.classpath" />
                                     </classpath>
                                 </java>
                                 <java classname="org.jahia.izpack.ResourcesConverter">
-                                    <arg value="izpack.i18n.userInputLang"/>
+                                    <arg value="izpack.i18n.userInputLang" />
                                     <!--
-                                    <arg value="en,fr,de,it,pt,es"/>
+                                    <arg value="en,fr,de,it,pt,es" />
                                     -->
-                                    <arg value="en,fr,de"/>
-                                    <arg
-                                            value="${project.build.directory}/izpack/i18n"/>
+                                    <arg value="en,fr,de" />
+                                    <arg value="${project.build.directory}/izpack/i18n" />
                                     <classpath>
-                                        <path refid="maven.dependency.classpath"/>
+                                        <path refid="maven.dependency.classpath" />
                                     </classpath>
                                 </java>
                                 <java classname="org.jahia.izpack.ResourcesConverter">
-                                    <arg value="izpack.i18n.customLang"/>
+                                    <arg value="izpack.i18n.customLang" />
                                     <!--
-                                    <arg value="en,fr,de,it,pt,es"/>
+                                    <arg value="en,fr,de,it,pt,es" />
                                     -->
-                                    <arg value="en,fr,de"/>
-                                    <arg
-                                            value="${project.build.directory}/izpack/i18n"/>
+                                    <arg value="en,fr,de" />
+                                    <arg value="${project.build.directory}/izpack/i18n" />
                                     <classpath>
-                                        <path refid="maven.dependency.classpath"/>
+                                        <path refid="maven.dependency.classpath" />
                                     </classpath>
                                 </java>
                             </tasks>
