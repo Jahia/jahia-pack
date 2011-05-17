@@ -38,210 +38,210 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>article</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>bookmarks</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>calendar</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>contact</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>docConverter</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>event</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>faq</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>formbuilder</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>googleAnalytics</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>job</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>location</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>news</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>person</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>poll</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>press</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>publication</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>rating</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>rss</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>seo</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>sitemap</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>socialsharing</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>staticHTML</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>summary</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>teasers</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>topstories</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>translateworkflow</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>twitter</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>userregistration</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>videostreaming</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>webClipping</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
@@ -251,7 +251,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>ldap</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
@@ -260,35 +260,35 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>templates-intranet</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>templates-web</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>templates-web-blue</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.prepackagedsites</groupId>
             <artifactId>acme</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>zip</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.prepackagedsites</groupId>
             <artifactId>webtemplates</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>zip</type>
             <scope>runtime</scope>
         </dependency>
@@ -297,42 +297,42 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>blog</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>forum</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>newsletter</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>portal</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>social</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>wiki</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.0-RC2-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
