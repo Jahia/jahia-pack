@@ -6,7 +6,7 @@
         <authors>
             <author email="${jahia.manifest.vendor.email}" name="${jahia.manifest.vendor.name}"/>
         </authors>
-        <url>${jahia.manifest.vendor.url}</url>
+        <url>http://www.jahia.com</url>
         <uninstaller name="uninstaller.jar" write="yes" path="$INSTALL_PATH/uninstaller"/>
         <javaversion>1.5</javaversion>
         <requiresjdk>no</requiresjdk>
