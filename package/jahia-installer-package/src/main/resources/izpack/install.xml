@@ -92,6 +92,8 @@
         <variable name="mailSettings.administrator" value="" condition="cnd.installation.type.express"/>
         <variable name="mailSettings.from" value="" condition="cnd.installation.type.express"/>
         <variable name="mailSettings.server" value="" condition="cnd.installation.type.express"/>
+        
+        <variable name="afterInstall.startTomcat" value="false" condition="!cnd.pack.tomcat"/>
     </dynamicvariables>
     
     <conditions>
