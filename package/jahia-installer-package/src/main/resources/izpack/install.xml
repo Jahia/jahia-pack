@@ -93,7 +93,7 @@
         <variable name="mailSettings.from" value="" condition="cnd.installation.type.express"/>
         <variable name="mailSettings.server" value="" condition="cnd.installation.type.express"/>
         
-        <variable name="afterInstall.startTomcat" value="false" condition="!izpack.windowsinstall|!cnd.pack.tomcat"/>
+        <variable name="afterInstall.startTomcat" value="false" condition="!cnd.pack.tomcat"/>
     </dynamicvariables>
     
     <conditions>
@@ -153,6 +153,15 @@
         <condition type="variable" id="cnd.operatingMode.development">
             <name>developmentMode</name>
             <value>true</value>
+        </condition>
+
+        <condition type="or" id="cnd.show.docs">
+            <condition type="ref" refid="cnd.view.readme"/>
+            <condition type="ref" refid="cnd.view.howtoinstall"/>
+        </condition>
+        <condition type="or" id="cnd.show.process.panel">
+            <condition type="ref" refid="cnd.start.tomcat"/>
+            <condition type="ref" refid="cnd.show.docs"/>
         </condition>
     </conditions>
     <guiprefs height="480" resizable="yes" width="640">
@@ -255,7 +264,7 @@
         		<action stage="preactivate" classname="org.jahia.izpack.LockPrevButtonPanelAction"/>
         	</actions>
         </panel>
-        <panel classname="ProcessPanel" condition="cnd.view.howtoinstall|cnd.view.readme|cnd.start.tomcat|cnd.launch.jahia"/>
+        <panel classname="ProcessPanel" condition="izpack.windowsinstall+cnd.show.process.panel"/>
         <panel classname="FinishPanel"/>
     </panels>
     
