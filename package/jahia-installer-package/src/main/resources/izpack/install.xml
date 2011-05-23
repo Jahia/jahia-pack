@@ -36,7 +36,7 @@
         <variable name="TargetPanel.dir.unix" value="/usr/local/Jahia_xCM_v${project.version}"/>
         <variable name="TargetPanel.dir.windows" value="C:\Jahia_xCM_v${project.version}"/>
 
-        <variable name="afterInstall.startTomcat" value="true"/>
+        <variable name="afterInstall.startTomcat" value="true" condition="izpack.windowsinstall"/>
         <variable name="jahia.war.contextName" value=""/>
         <variable name="developmentMode" value="true"/>
     </variables>
