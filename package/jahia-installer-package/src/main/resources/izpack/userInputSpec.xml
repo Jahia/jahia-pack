@@ -145,7 +145,7 @@
         </field>
         <field type="password" align="left" variable="jahiaManager.password">
             <spec>
-                <pwd set="password" size="10" txt="Jahia tool manager password (*)" id="appServer.password"/>
+                <pwd set="" size="10" txt="Jahia tool manager password (*)" id="appServer.password"/>
             </spec>
             <validator class="com.izforge.izpack.util.NotEmptyValidator" txt="Jahia tool manager password is a mandatory field" id="appServer.password.mandatory"/>
         </field>
