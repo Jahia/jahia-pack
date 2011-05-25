@@ -65,6 +65,10 @@
         <eclipse.plugin.version>2.8</eclipse.plugin.version>
         <antrun.plugin.version>1.6</antrun.plugin.version>
         <assembly.plugin.version>2.2</assembly.plugin.version>
+	    <project.info.reports.plugin.version>2.2</project.info.reports.plugin.version>
+        <jxr.plugin.version>2.2</jxr.plugin.version>
+        <jar.plugin.version>2.3.1</jar.plugin.version>
+        <surefire.plugin.version>2.7.2</surefire.plugin.version>
 
 
         <!-- Jahia Maven plugin version and default settings -->
