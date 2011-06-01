@@ -55,6 +55,7 @@
         <maven3.site.plugin.version>3.0-beta-3</maven3.site.plugin.version>
         <site.plugin.version>2.2</site.plugin.version>
 
+        <license.plugin.version>1.8.0</license.plugin.version>
         <javadoc.plugin.version>2.7</javadoc.plugin.version>
         <war.plugin.version>2.1-beta-1-jahia</war.plugin.version>
         <enforcer.plugin.version>1.0</enforcer.plugin.version>
@@ -335,6 +336,61 @@
             	<modules>
                 	<module>test</module>
             	</modules>
+        </profile>
+        <profile>
+            <id>license</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.mycila.maven-license-plugin</groupId>
+                        <artifactId>maven-license-plugin</artifactId>
+                        <version>${license.plugin.version}</version>
+                        <configuration>
+                            <basedir>${basedir}</basedir>
+                            <header>header.txt</header>
+                            <quiet>false</quiet>
+                            <failIfMissing>true</failIfMissing>
+                            <aggregate>true</aggregate>
+                            <includes>
+                                <include>src/**/*.java</include>
+                                <include>src/**/*.tag</include>
+                                <include>src/**/*.jsp</include>
+                                <include>src/**/*.jspf</include>
+                                <include>src/**/*.inc</include>
+                                <include>src/main/webapp/WEB-INF/web.xml</include>
+                            </includes>
+                            <excludes>
+                                <exclude>src/main/java/compressionFilters/**</exclude>
+                                <exclude>src/main/java/name/fraser/**</exclude>
+                                <exclude>src/main/java/org/apache/**</exclude>
+                                <exclude>src/main/java/EDU/oswego/**</exclude>
+                            </excludes>
+                            <useDefaultExcludes>true</useDefaultExcludes>
+                            <mapping>
+                                <tag>DYNASCRIPT_STYLE</tag>
+                                <inc>DYNASCRIPT_STYLE</inc>
+                                <jspf>DYNASCRIPT_STYLE</jspf>
+                            </mapping>
+                            <useDefaultMapping>true</useDefaultMapping>
+                            <properties>
+                                <year>2010</year>
+                            </properties>
+                            <encoding>UTF-8</encoding>
+                            <headerDefinitions>
+                                <headerDefinition>style.xml</headerDefinition>
+                            </headerDefinitions>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>format</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
 
         <!--
