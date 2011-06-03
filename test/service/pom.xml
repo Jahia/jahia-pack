@@ -43,7 +43,7 @@
     <parent>
         <artifactId>jahia-pack-test-parent</artifactId>
         <groupId>org.jahia.server</groupId>
-        <version>6.5.0.0</version>
+        <version>6.5.1.0-SNAPSHOT</version>
     </parent>
     <groupId>org.jahia.server</groupId>
     <artifactId>jahia-pack-test-service</artifactId>
