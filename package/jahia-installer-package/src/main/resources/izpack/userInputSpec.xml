@@ -215,9 +215,6 @@
         <field type="check" variable="afterInstall.viewHowToInstall" align="left" conditionid="!cnd.pack.tomcat">
             <spec txt="Open How To Install file" id="afterInstall.viewHowToInstall" true="true" false="false" set="true"/>
         </field>
-        <field type="check" variable="afterInstall.viewReadme" align="left" conditionid="cnd.pack.tomcat">
-            <spec txt="Open README file" id="afterInstall.viewReadme" true="true" false="false" set="true"/>
-        </field>
         <field type="check" variable="afterInstall.startTomcat" align="left" conditionid="cnd.pack.tomcat">
             <spec txt="Start Apache Tomcat server" id="afterInstall.startTomcat" true="true" false="false" revalidate="yes"/>
         </field>
