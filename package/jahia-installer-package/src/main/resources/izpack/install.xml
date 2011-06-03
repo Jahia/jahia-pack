@@ -139,10 +139,6 @@
             <name>afterInstall.launchJahia</name>
             <value>true</value>
         </condition>
-        <condition type="variable" id="cnd.view.readme">
-            <name>afterInstall.viewReadme</name>
-            <value>true</value>
-        </condition>
         <condition type="variable" id="cnd.view.howtoinstall">
             <name>afterInstall.viewHowToInstall</name>
             <value>true</value>
@@ -155,13 +151,9 @@
             <value>true</value>
         </condition>
 
-        <condition type="or" id="cnd.show.docs">
-            <condition type="ref" refid="cnd.view.readme"/>
-            <condition type="ref" refid="cnd.view.howtoinstall"/>
-        </condition>
         <condition type="or" id="cnd.show.process.panel">
             <condition type="ref" refid="cnd.start.tomcat"/>
-            <condition type="ref" refid="cnd.show.docs"/>
+            <condition type="ref" refid="cnd.view.howtoinstall"/>
         </condition>
     </conditions>
     <guiprefs height="480" resizable="yes" width="640">
@@ -295,7 +287,6 @@
             <fileset dir="../links" targetdir="$INSTALL_PATH/docs" override="true">
                 <exclude name="HowToInstall.URL"/>
                 <exclude name="OpenJahia*"/>
-                <exclude name="Readme.URL"/>
             </fileset>
             <fileset dir="../links" targetdir="$INSTALL_PATH/docs" override="true" condition="!cnd.pack.tomcat">
                 <include name="HowToInstall.URL"/>
@@ -317,7 +308,6 @@
             <singlefile override="true" src="../scripts/deployModule.sh" target="$INSTALL_PATH/deployModule.sh" os="unix"/>
             <singlefile override="true" src="../scripts/deployModule.sh" target="$INSTALL_PATH/deployModule.sh" os="mac"/>
             <parsable targetfile="$INSTALL_PATH/logs/install.properties" type="javaprop"/>
-            <parsable targetfile="$INSTALL_PATH/docs/Readme.URL" condition="cnd.pack.tomcat"/>
             <parsable targetfile="$INSTALL_PATH/docs/HowToInstall.URL" condition="!cnd.pack.tomcat"/>
             <executable targetfile="$INSTALL_PATH/bin/openUrl.sh" os="unix"/>
             <executable targetfile="$INSTALL_PATH/deployModule.sh" />
@@ -326,9 +316,6 @@
             <description/>
             <fileset dir="../links" targetdir="$INSTALL_PATH" override="true">
                 <include name="OpenJahia*"/>
-            </fileset>
-            <fileset dir="../links" targetdir="$INSTALL_PATH/docs" overrride="true">
-                <include name="Readme.URL"/>
             </fileset>
             <fileset dir="../artifacts/apache-tomcat-${jahia.tomcat.version}" targetdir="$INSTALL_PATH/tomcat" override="true" />
             <file override="true" src="../artifacts/shared-libraries-all.zip" targetdir="$INSTALL_PATH/tomcat/lib" unpack="true"/>

@@ -111,29 +111,6 @@
 
 <!-- Documentation -->
     <shortcut
-     name="Jahia Readme"
-     description="Open the Jahia README file"
-     programGroup="yes"
-     desktop="no"
-     applications="no"
-     startMenu="no"
-     startup="no"
-     target="$INSTALL_PATH/bin/openUrl.sh"
-     iconFile="$INSTALL_PATH/icons/jahia.png"
-     iconIndex="0"
-     commandLine="${jahia.war.target.path}/html/startup/readme.html"
-     workingDirectory="$INSTALL_PATH/docs"
-     type="Application"
-     encoding="UTF-8"
-     terminal="false"
-     url="file://$INSTALL_PATH/docs"
-     KdeSubstUID="false"
-     initialState="normal"
-     categories=""
-     createForAll="false">
-     <createForPack name="tomcat"/>
-    </shortcut>
-    <shortcut
      name="Jahia Community Web Site"
      description="Opens the Jahia Community Web site"
      programGroup="yes"

@@ -26,13 +26,6 @@
         </executefile>
     </job>
     -->
-    <job name="Show Readme" condition="cnd.view.readme">
-        <os family="windows" />
-        <executefile name="cmd">
-            <arg>/c</arg>
-            <arg>$INSTALL_PATH\docs\Readme.URL</arg>
-        </executefile>
-    </job>
     <job name="Show How-To-Install" condition="cnd.view.howtoinstall">
         <os family="windows" />
         <executefile name="cmd">
