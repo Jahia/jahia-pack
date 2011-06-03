@@ -5,15 +5,6 @@
     
 <!-- Documentation -->
     <shortcut
-        name="Jahia Readme"
-        subgroup="\Documentation"
-        description="Open the Jahia README file"
-        target="${jahia.war.target.path}\html\startup\readme.html"
-        programGroup="yes"
-        encoding="UTF-8">
-        <createForPack name="tomcat"/>
-    </shortcut>
-    <shortcut
         name="Jahia Community Web Site"
         subgroup="\Documentation"
         description="Opens the Jahia Community Web site"
