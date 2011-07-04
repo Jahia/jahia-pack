@@ -154,7 +154,7 @@
         </field>
         <field type="space"/>
         <field type="dir" align="left" variable="externalizedConfigTargetPath">
-          <spec txt="Externalized configuration location" size="25" set="" mustExist="false" />
+          <spec txt="Externalized configuration location" size="10" set="" mustExist="true" create="true"/>
         </field>
         <field type="divider" align="bottom"/>
         <field type="staticText" align="left" txt="(*) - this field is required" id="common.requiredFieldHint"/>
