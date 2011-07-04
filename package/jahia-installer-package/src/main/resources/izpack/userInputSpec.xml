@@ -153,6 +153,9 @@
             <spec txt="Use development mode for templates?" id="appServer.developmentMode" true="true" false="false" set="true"/>
         </field>
         <field type="space"/>
+        <field type="dir" align="left" variable="externalizedConfigTargetPath">
+          <spec txt="Externalized configuration location" size="25" set="" mustExist="false" />
+        </field>
         <field type="divider" align="bottom"/>
         <field type="staticText" align="left" txt="(*) - this field is required" id="common.requiredFieldHint"/>
     </panel>

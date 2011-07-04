@@ -39,6 +39,7 @@
         <variable name="afterInstall.startTomcat" value="true"/>
         <variable name="jahia.war.contextName" value=""/>
         <variable name="developmentMode" value="true"/>
+        <variable name="externalizedConfigTargetPath" value=""/>
     </variables>
     <dynamicvariables>
         <variable name="jahia.war.contextPath" value="" condition="cnd.installation.type.express|cnd.contextPath.root"/>
