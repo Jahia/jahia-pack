@@ -40,6 +40,7 @@
         <variable name="jahia.war.contextName" value=""/>
         <variable name="developmentMode" value="true"/>
         <variable name="externalizedConfigTargetPath" value=""/>
+        <variable name="externalizedConfigActivated" value="false" />
     </variables>
     <dynamicvariables>
         <variable name="jahia.war.contextPath" value="" condition="cnd.installation.type.express|cnd.contextPath.root"/>
@@ -95,6 +96,10 @@
         <variable name="mailSettings.server" value="" condition="cnd.installation.type.express"/>
         
         <variable name="afterInstall.startTomcat" value="false" condition="!cnd.pack.tomcat"/>
+
+        <variable name="dynExternalizedConfigTargetPath" value="${jahia.war.target.path}/WEB-INF/lib" condition="cnd.pack.tomcat" />
+        <variable name="dynExternalizedConfigTargetPath" value="${jahia.war.target.path}" condition="!cnd.pack.tomcat" />
+
     </dynamicvariables>
     
     <conditions>
@@ -149,6 +154,10 @@
         </condition>
         <condition type="variable" id="cnd.operatingMode.development">
             <name>developmentMode</name>
+            <value>true</value>
+        </condition>
+        <condition type="variable" id="cnd.externalizedConfig.activated">
+            <name>externalizedConfigActivated</name>
             <value>true</value>
         </condition>
 
@@ -241,6 +250,7 @@
         <panel classname="UserInputPanel" id="appServer" condition="cnd.installation.type.advanced"/>
         <panel classname="UserInputPanel" id="superUser"/>
         <panel classname="UserInputPanel" condition="cnd.installation.type.advanced" id="mailSettings"/>
+        <panel classname="UserInputPanel" id="externalizedConfig" condition="cnd.installation.type.advanced" />
         <panel classname="SummaryPanel"/>
         <panel classname="ExtendedInstallPanel">
         	<actions>

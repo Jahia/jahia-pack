@@ -153,9 +153,6 @@
             <spec txt="Use development mode for templates?" id="appServer.developmentMode" true="true" false="false" set="true"/>
         </field>
         <field type="space"/>
-        <field type="dir" align="left" variable="externalizedConfigTargetPath">
-          <spec txt="Externalized configuration location" size="10" set="" mustExist="true" create="true"/>
-        </field>
         <field type="divider" align="bottom"/>
         <field type="staticText" align="left" txt="(*) - this field is required" id="common.requiredFieldHint"/>
     </panel>
@@ -209,7 +206,22 @@
         </field>
     </panel>
 
-    <panel order="7" topBuffer="0">
+    <panel order="7">
+        <field type="title" txt="Externalized configuration" id="externalizedConfig.title" />
+        <field type="staticText" txt="Jahia supports externalized configurations stored in JAR files. This is optional and deactivated by default" id="externalizedConfig.description" />
+        <field type="space" />
+        <field type="check" variable="externalizedConfigActivated" align="left">
+            <spec txt="Externalize configuration" id="externalizedConfig.activate" true="true" false="false" revalidate="yes"/>
+        </field>
+        <field type="space" conditionid="!cnd.externalizedConfig.activated"/>
+        <field type="space" conditionid="!cnd.externalizedConfig.activated"/>
+
+        <field type="dir" align="left" variable="externalizedConfigTargetPath" conditionid="cnd.externalizedConfig.activated">
+          <spec txt="Configuration path" size="15" set="${dynExternalizedConfigTargetPath}" id="externalizedConfig.path" mustExist="false"/>
+        </field>
+    </panel>
+
+    <panel order="8" topBuffer="0">
         <field type="title" txt="Installation" id="afterInstall.title"/>
         <field type="space"/>
         <field type="staticText" txt="Installation successful" id="afterInstall.description"/>
