@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <userInput>
     <panel order="0">
-        <field type="title" txt="Installation type" id="installation.title"/>
-        
         <field type="staticText" align="left"
                txt="Here you can choose your preferred installation type."
                id="installation.type1"/>
@@ -23,7 +21,6 @@
     </panel>
     
     <panel order="1">
-        <field type="title" txt="Database connection settings" id="dbSettings.title"/>
         <field type="space" />
         <field type="space"/>
         <field type="radio" variable="dbSettings.mode">
@@ -36,7 +33,6 @@
     </panel>
     
     <panel order="2">
-        <field type="title" txt="Database connection settings" id="dbSettings.title"/>
         <field type="space" />
         <field type="space" />
         <field type="radio" variable="dbSettings.dbms.type" align="left" conditionid="cnd.db.mode.standalone">
@@ -50,7 +46,6 @@
     </panel>
     
     <panel order="3">
-        <field type="title" txt="Database connection settings" id="dbSettings.dbms.title"/>
         <!-- DB driver and URL fields are for each DB type due to value initialization problem (if the DB type is changed) -->
 
         <!-- MySQL -->
@@ -102,7 +97,6 @@
     </panel>
     
     <panel order="4">
-        <field type="title" txt="Application and server settings" id="appServer.title"/>
         <field type="staticText" align="left" id="appServer.tomcat.description" txt="Apache Tomcat configuration" conditionid="cnd.pack.tomcat"/>
         <field type="divider" align="top" conditionid="cnd.pack.tomcat"/>
         <field type="text" align="left" variable="tomcat.httpPort" conditionid="cnd.pack.tomcat">
@@ -158,7 +152,6 @@
     </panel>
     
     <panel order="5">
-        <field type="title" txt="System administrator (root) settings" id="superUser.title"/>
         <!-- Allow changing the root username when we will support it
         <field type="text" align="left" variable="superUser.username">
             <spec txt="Username" id="superUser.username" size="15" set="root"/>
@@ -192,7 +185,6 @@
     </panel>
     
     <panel order="6">
-        <field type="title" txt="Mail settings (optional)" id="mailSettings.title"/>
         <field type="staticText" txt="The settings below are optional. Leave them empty to disable E-Mail notification. Specifying them will enable the E-Mail notification feature." id="mailSettings.description"/>
         <field type="space"/>
         <field type="text" align="left" variable="mailSettings.server">
@@ -207,7 +199,6 @@
     </panel>
 
     <panel order="7">
-        <field type="title" txt="Externalized configuration" id="externalizedConfig.title" />
         <field type="staticText" txt="Jahia supports externalized configurations stored in JAR files. This is optional and deactivated by default" id="externalizedConfig.description" />
         <field type="space" />
         <field type="check" variable="externalizedConfigActivated" align="left">
@@ -222,7 +213,6 @@
     </panel>
 
     <panel order="8" topBuffer="0">
-        <field type="title" txt="Installation" id="afterInstall.title"/>
         <field type="space"/>
         <field type="staticText" txt="Installation successful" id="afterInstall.description"/>
         <field type="space"/>

@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <project name="jahia" default="jahia-configure" basedir="${install.path}">
 
 	<available file="${install.path}" type="dir" property="cnd.install.dir.exists"/>

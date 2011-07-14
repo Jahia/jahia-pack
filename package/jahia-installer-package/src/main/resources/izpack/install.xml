@@ -6,7 +6,7 @@
         <authors>
             <author email="${jahia.manifest.vendor.email}" name="${jahia.manifest.vendor.name}"/>
         </authors>
-        <url>http://www.jahia.com</url>
+        <url>${jahia.manifest.vendor.url}</url>
         <uninstaller name="uninstaller.jar" write="yes" path="$INSTALL_PATH/uninstaller"/>
         <javaversion>1.5</javaversion>
         <requiresjdk>no</requiresjdk>
@@ -41,6 +41,7 @@
         <variable name="developmentMode" value="true"/>
         <variable name="externalizedConfigTargetPath" value=""/>
         <variable name="externalizedConfigActivated" value="false" />
+        <variable name="externalizedConfigClassifier" value="" />
     </variables>
     <dynamicvariables>
         <variable name="jahia.war.contextPath" value="" condition="cnd.installation.type.express|cnd.contextPath.root"/>
@@ -97,8 +98,8 @@
         
         <variable name="afterInstall.startTomcat" value="false" condition="!cnd.pack.tomcat"/>
 
-        <variable name="dynExternalizedConfigTargetPath" value="${jahia.war.target.path}/WEB-INF/lib" condition="cnd.pack.tomcat" />
-        <variable name="dynExternalizedConfigTargetPath" value="${jahia.war.target.path}" condition="!cnd.pack.tomcat" />
+        <variable name="dynExternalizedConfigTargetPath" value="$INSTALL_PATH/tomcat/lib" condition="cnd.pack.tomcat" />
+        <variable name="dynExternalizedConfigTargetPath" value="$INSTALL_PATH" condition="!cnd.pack.tomcat" />
 
     </dynamicvariables>
     
@@ -167,8 +168,14 @@
         </condition>
     </conditions>
     <guiprefs height="480" resizable="yes" width="640">
+        <modifier key="labelGap" value="2"/>
         <modifier key="useFlags" value="no"/>
         <modifier key="langDisplayType" value="native"/>
+        <modifier key="useHeadingPanel" value="yes"/>
+        <modifier key="headingImageOnLeft" value="no"/>
+        <modifier key="headingLineCount" value="1"/>
+        <modifier key="headingFontSize" value="1.5"/>
+        <modifier key="headingBackgroundColor" value="0x00ffffff"/>
         <modifier key="headingPanelCounter" value="progressbar"/>
         <modifier key="headingPanelCounterPos" value="inNavigationPanel"/>
         <modifier key="showDebugWindow" value="true"/>
@@ -195,6 +202,8 @@
 
         <res id="shortcutSpec.xml" src="windows-shortcuts.xml"/>
         <res id="Unix_shortcutSpec.xml" src="unix-shortcuts.xml"/>
+
+        <res id="Heading.image" src="../images/jahia64x64.png" />
 
         <res id="userInputSpec.xml" src="userInputSpec.xml"/>
         <res id="userInputLang.xml_eng" src="i18n/userInputLang.eng.xml" />
@@ -232,7 +241,6 @@
         <res id="CustomActionsLang.xml_por" src="i18n/customLang.por.xml"/>
         <res id="CustomActionsLang.xml_spa" src="i18n/customLang.spa.xml"/>
         -->
-        
     </resources>
     <panels>
         <panel classname="HelloPanel"/>

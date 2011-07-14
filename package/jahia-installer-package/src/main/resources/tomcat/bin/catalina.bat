@@ -83,7 +83,7 @@ rem
 rem
 rem $Id: catalina.bat 1040547 2010-11-30 14:47:49Z markt $
 rem ---------------------------------------------------------------------------
-set CATALINA_OPTS=%CATALINA_OPTS% -Dsun.io.useCanonCaches=false -Xms1024m -Xmx1024m -XX:MaxPermSize=256m -server -Dhibernate.jdbc.use_streams_for_binary=true -verbose:gc -XX:+HeapDumpOnOutOfMemoryError
+set CATALINA_OPTS=%CATALINA_OPTS% -Dsun.io.useCanonCaches=false -Xms1024m -Xmx1024m -XX:MaxPermSize=256m -server -Dhibernate.jdbc.use_streams_for_binary=true -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -Djava.net.preferIPv4Stack=true
 
 rem Guess CATALINA_HOME if not defined
 set "CURRENT_DIR=%cd%"

@@ -53,7 +53,7 @@
         <product.name>Jahia xCM</product.name>
         <staging.dir>${project.build.directory}/izpack</staging.dir>
         <jahia.installers.version>2.4</jahia.installers.version>
-        <izpack.version>4.3.4.jahia4</izpack.version>
+        <izpack.version>4.3.4.jahia5</izpack.version>
     </properties>
 
     <dependencies>
@@ -192,6 +192,12 @@
     </profiles>
 
     <build>
+        <outputDirectory>${basedir}/target</outputDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
         <plugins>
             <!-- Tries to get the version number from the CE -->
             <plugin>
@@ -445,11 +451,5 @@
                 </executions>
             </plugin>
         </plugins>
-        <outputDirectory>${basedir}/target</outputDirectory>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
     </build>
 </project>
