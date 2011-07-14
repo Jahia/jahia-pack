@@ -133,7 +133,8 @@
         <li>Follow the next steps of the installer</li>
     </ol>
     <p>Once the installer is finished in your install directory you should find a file named <tt>ROOT.war</tt>
-    <sup>[<a href="#ftn.1">1</a>]</sup> and a file named <tt>shared-libraries.zip</tt>.</p>
+    <sup>[<a href="#ftn.1">1</a>]</sup>, a file named <tt>shared-libraries.zip</tt> and if you chose to externalize
+    the configuration you will also have a <tt>jahia-config.jar</tt> file.</p>
     
     <h2>Deployment</h2>
     <p>Further it is assumed that the Apache Tomcat server is installed in the <tt>&lt;tomcat&gt;</tt> folder.</p>
@@ -143,6 +144,8 @@
         at <tt>&lt;tomcat&gt;/webapps/ROOT</tt>, if it exists, to e.g. <tt>tomcat</tt>.</li>
         <li>Copy the <tt>ROOT.war</tt><sup>[<a href="#ftn.1">1</a>]</sup> file to the <tt>&lt;tomcat&gt;/webapps</tt> directory
         or, in case your server does not automatically unpack WAR files, do it yourself.</li>
+        <li>If you chose to externalize the configuration into a JAR file, either copy the <tt>jahia-config.jar</tt> file into the
+        <tt>&lt;tomcat&gt;/lib</tt> directory, or modify the catalina.sh/bat files to add it to the classpath.</li>
 		<li>Adjust the JVM, connector and servlet container options appropriately (see next sections).</li>
     </ol>
     
