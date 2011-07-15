@@ -132,9 +132,9 @@
     </properties>
 
     <scm>
-        <connection>scm:svn:http://10.8.37.111/svn/jahia_pack/trunk/</connection>
-        <developerConnection>scm:svn:http://10.8.37.111/svn/jahia_pack/trunk/</developerConnection>
-        <url>http://10.8.37.111/svn/jahia_pack/trunk</url>
+        <connection>scm:svn:https://devtools.jahia.com/svn/jahia_pack/trunk/</connection>
+        <developerConnection>scm:svn:https://devtools.jahia.com/svn/jahia_pack/trunk/</developerConnection>
+        <url>https://devtools.jahia.com/svn/jahia_pack/trunk</url>
     </scm>
     <developers>
         <developer>
