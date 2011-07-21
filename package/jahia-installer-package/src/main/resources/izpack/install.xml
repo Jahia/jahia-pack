@@ -150,7 +150,7 @@
             <name>afterInstall.viewHowToInstall</name>
             <value>true</value>
         </condition>
-        <condition type="com.izforge.izpack.rules.EmptyVariableCondition" id="cnd.contextPath.root">
+        <condition type="org.jahia.izpack.EmptyVariableCondition" id="cnd.contextPath.root">
             <variable>jahia.war.contextName</variable>
         </condition>
         <condition type="variable" id="cnd.operatingMode.development">
@@ -167,7 +167,7 @@
             <condition type="ref" refid="cnd.view.howtoinstall"/>
         </condition>
     </conditions>
-    <guiprefs height="480" resizable="yes" width="640">
+    <guiprefs height="520" resizable="yes" width="640">
         <modifier key="labelGap" value="2"/>
         <modifier key="useFlags" value="no"/>
         <modifier key="langDisplayType" value="native"/>
@@ -191,8 +191,12 @@
         -->
     </locale>
     <resources>
+        <res id="installer.langsel.icon" src="../images/jahia.png"/>
         <res id="installer.langsel.img" src="../images/language-selection.png"/>
         <res id="Installer.image" src="../images/left-side.png"/>
+        <res id="customicons.xml" src="customicons.xml"/>
+        <res id="installer.window.icon" src="../images/jahia.png"/>
+
         <res id="LicencePanel.licence" parse="no" src="../licenses/license.txt"/>
 
 		<res id="AntActionsSpec.xml" src="AntActionsSpec.xml" />
@@ -251,9 +255,7 @@
         <panel classname="UserInputPanel" condition="cnd.installation.type.advanced" id="dbMode"/>
         <panel classname="UserInputPanel" condition="cnd.installation.type.advanced+cnd.db.mode.standalone" id="dbType"/>
         <panel classname="UserInputPanel" condition="cnd.installation.type.advanced+cnd.db.mode.standalone" id="dbSettings">
-        	<actions>
-        		<action stage="postvalidate" classname="org.jahia.izpack.DbConnectionValidationPanelAction"/>
-        	</actions>
+            <validator classname="org.jahia.izpack.DbConnectionValidator" />
         </panel>
         <panel classname="UserInputPanel" id="appServer" condition="cnd.installation.type.advanced"/>
         <panel classname="UserInputPanel" id="superUser"/>
