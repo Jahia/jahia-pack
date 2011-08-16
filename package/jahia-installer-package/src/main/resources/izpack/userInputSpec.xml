@@ -39,7 +39,7 @@
             <description align="left" txt="Choose your DBMS type" id="dbSettings.dbms.type"/>
             <spec>
                 <choice txt="MySQL 5.x" id="dbSettings.dbms.type.mysql" value="mysql" set="true"/>
-                <choice txt="PostgreSQL 8.x" id="dbSettings.dbms.type.postgresql" value="postgresql"/>
+                <choice txt="PostgreSQL 8.x / 9.x" id="dbSettings.dbms.type.postgresql" value="postgresql"/>
                 <choice txt="Sun Java DB / Apache Derby (standalone)" id="dbSettings.dbms.type.derby" value="derby"/>
             </spec>
         </field>
