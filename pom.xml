@@ -132,9 +132,9 @@
     </properties>
 
     <scm>
-        <connection>scm:svn:https://devtools.jahia.com/svn/jahia_pack/trunk/</connection>
-        <developerConnection>scm:svn:https://devtools.jahia.com/svn/jahia_pack/trunk/</developerConnection>
-        <url>https://devtools.jahia.com/svn/jahia_pack/trunk</url>
+        <connection>scm:svn:https://devtools.jahia.com/svn/jahia_pack/branches/JAHIA-6-5-X-X-BRANCH</connection>
+        <developerConnection>scm:svn:https://devtools.jahia.com/svn/jahia_pack/branches/JAHIA-6-5-X-X-BRANCH</developerConnection>
+        <url>https://devtools.jahia.com/svn/jahia_pack/branches/JAHIA-6-5-X-X-BRANCH</url>
     </scm>
     <developers>
         <developer>
