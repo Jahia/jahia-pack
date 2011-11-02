@@ -301,35 +301,6 @@
 
     <profiles>
         <profile>
-            <id>do-attach-javadocs</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>${javadoc.plugin.version}</version>
-                        <configuration>
-                            <detectOfflineLinks>false</detectOfflineLinks>
-                            <minmemory>128m</minmemory>
-                            <maxmemory>1g</maxmemory>
-                            <failOnError>false</failOnError>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>attach-javadocs</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
             <id>maven-3</id>
             <activation>
                 <file>
@@ -553,7 +524,7 @@
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <goals>deploy</goals>
                     <preparationGoals>clean install</preparationGoals>
-                    <releaseProfiles>installer,windows-installer,qa-build,do-attach-javadocs</releaseProfiles>
+                    <releaseProfiles>installer,qa-build</releaseProfiles>
                 </configuration>
             </plugin>
 
