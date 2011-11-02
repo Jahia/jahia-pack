@@ -524,7 +524,7 @@
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <goals>deploy</goals>
                     <preparationGoals>clean install</preparationGoals>
-                    <releaseProfiles>installer,qa-build</releaseProfiles>
+                    <releaseProfiles>installer,windows-installer,qa-build</releaseProfiles>
                 </configuration>
             </plugin>
 
