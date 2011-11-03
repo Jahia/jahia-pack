@@ -101,7 +101,7 @@
         <compiler.plugin.version>2.3.2</compiler.plugin.version>
         <buildnumber.plugin.version>1.0</buildnumber.plugin.version>
         <source.plugin.version>2.1.2</source.plugin.version>
-        <release.plugin.version>2.1</release.plugin.version>
+        <release.plugin.version>2.2.1.jahia1</release.plugin.version>
         <eclipse.plugin.version>2.8</eclipse.plugin.version>
         <antrun.plugin.version>1.6</antrun.plugin.version>
         <assembly.plugin.version>2.2</assembly.plugin.version>
