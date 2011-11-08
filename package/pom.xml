@@ -49,15 +49,9 @@
     <name>Jahia Install</name>
     <packaging>pom</packaging>
     <properties>
-        <jahia.tomcat.version>6.0.32</jahia.tomcat.version>
+        <jahia.tomcat.version>6.0.33</jahia.tomcat.version>
     </properties>
     <profiles>
-        <profile>
-              <id>qa-build</id>
-              <modules>
-                  <module>jahia-qa-package</module>
-              </modules>
-        </profile>
         <profile>
             <id>installer</id>
             <modules>

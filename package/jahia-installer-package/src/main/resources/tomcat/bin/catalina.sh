@@ -81,7 +81,7 @@
 #                   Example (all one line)
 #                   LOGGING_MANAGER="-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager"
 #
-# $Id: catalina.sh 1040547 2010-11-30 14:47:49Z markt $
+# $Id: catalina.sh 1146097 2011-07-13 15:25:05Z markt $
 # -----------------------------------------------------------------------------
 CATALINA_OPTS="$CATALINA_OPTS -Xms1024m -Xmx1024m -Djava.awt.headless=true -XX:MaxPermSize=256m -server -Dhibernate.jdbc.use_streams_for_binary=true -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -Djava.net.preferIPv4Stack=true"
 export CATALINA_OPTS
@@ -117,16 +117,19 @@ PRGDIR=`dirname "$PRG"`
 
 CATALINA_OPTS="$CATALINA_OPTS -Dderby.system.home=$CATALINA_HOME/webapps/%{jahia.war.target.dir.name}/WEB-INF/var/dbdata"
 export CATALINA_OPTS
-export CATALINA_PID=$CATALINA_HOME/bin/tomcat.pid
+export CATALINA_PID=$CATALINA_HOME/temp/tomcat.pid
+
+# Copy CATALINA_BASE from CATALINA_HOME if not already set
+[ -z "$CATALINA_BASE" ] && CATALINA_BASE="$CATALINA_HOME"
 
 # Ensure that any user defined CLASSPATH variables are not used on startup,
 # but allow them to be specified in setenv.sh, in rare case when it is needed.
 CLASSPATH=
 
-if [ -r "$CATALINA_BASE"/bin/setenv.sh ]; then
-  . "$CATALINA_BASE"/bin/setenv.sh
-elif [ -r "$CATALINA_HOME"/bin/setenv.sh ]; then
-  . "$CATALINA_HOME"/bin/setenv.sh
+if [ -r "$CATALINA_BASE/bin/setenv.sh" ]; then
+  . "$CATALINA_BASE/bin/setenv.sh"
+elif [ -r "$CATALINA_HOME/bin/setenv.sh" ]; then
+  . "$CATALINA_HOME/bin/setenv.sh"
 fi
 
 # For Cygwin, ensure paths are in UNIX format before anything is touched
@@ -409,19 +412,19 @@ elif [ "$1" = "stop" ] ; then
   fi
 
   if [ ! -z "$CATALINA_PID" ]; then
-    if [ -s "$CATALINA_PID" ]; then
-      if [ -f "$CATALINA_PID" ]; then
+    if [ -f "$CATALINA_PID" ]; then
+      if [ -s "$CATALINA_PID" ]; then
         kill -0 `cat "$CATALINA_PID"` >/dev/null 2>&1
         if [ $? -gt 0 ]; then
           echo "PID file found but no matching process was found. Stop aborted."
           exit 1
         fi
       else
-        echo "\$CATALINA_PID was set but the specified file does not exist. Is Tomcat running? Stop aborted."
-        exit 1
+        echo "PID file is empty and has been ignored."
       fi
     else
-      echo "PID file is empty and has been ignored."
+      echo "\$CATALINA_PID was set but the specified file does not exist. Is Tomcat running? Stop aborted."
+      exit 1
     fi
   fi
   

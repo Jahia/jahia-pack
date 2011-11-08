@@ -81,7 +81,7 @@ rem                   set TITLE=Tomcat.Cluster#1.Server#1 [%DATE% %TIME%]
 rem
 rem
 rem
-rem $Id: catalina.bat 1040547 2010-11-30 14:47:49Z markt $
+rem $Id: catalina.bat 1146097 2011-07-13 15:25:05Z markt $
 rem ---------------------------------------------------------------------------
 set CATALINA_OPTS=%CATALINA_OPTS% -Dsun.io.useCanonCaches=false -Xms1024m -Xmx1024m -XX:MaxPermSize=256m -server -Dhibernate.jdbc.use_streams_for_binary=true -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -Djava.net.preferIPv4Stack=true
 
@@ -100,6 +100,11 @@ echo This environment variable is needed to run this program
 goto end
 :okHome
 
+rem Copy CATALINA_BASE from CATALINA_HOME if not defined
+if not "%CATALINA_BASE%" == "" goto gotBase
+set "CATALINA_BASE=%CATALINA_HOME%"
+:gotBase
+
 set CATALINA_OPTS=%CATALINA_OPTS% -Dderby.system.home=%CATALINA_HOME%\webapps\%{jahia.war.target.dir.name}\WEB-INF\var\dbdata
 
 rem Ensure that any user defined CLASSPATH variables are not used on startup,
@@ -107,12 +112,12 @@ rem but allow them to be specified in setenv.bat, in rare case when it is needed
 set CLASSPATH=
 
 rem Get standard environment variables
-if "%CATALINA_BASE%" == "" goto gotSetenvHome
-if exist "%CATALINA_BASE%\bin\setenv.bat" call "%CATALINA_BASE%\bin\setenv.bat"
-goto gotSetenvBase
-:gotSetenvHome
+if not exist "%CATALINA_BASE%\bin\setenv.bat" goto checkSetenvHome
+call "%CATALINA_BASE%\bin\setenv.bat"
+goto setenvDone
+:checkSetenvHome
 if exist "%CATALINA_HOME%\bin\setenv.bat" call "%CATALINA_HOME%\bin\setenv.bat"
-:gotSetenvBase
+:setenvDone
 
 rem Get standard Java environment variables
 if exist "%CATALINA_HOME%\bin\setclasspath.bat" goto okSetclasspath
@@ -123,10 +128,6 @@ goto end
 set "BASEDIR=%CATALINA_HOME%"
 call "%CATALINA_HOME%\bin\setclasspath.bat" %1
 if errorlevel 1 goto end
-
-if not "%CATALINA_BASE%" == "" goto gotBase
-set "CATALINA_BASE=%CATALINA_HOME%"
-:gotBase
 
 if not "%CATALINA_TMPDIR%" == "" goto gotTmpdir
 set "CATALINA_TMPDIR=%CATALINA_BASE%\temp"
