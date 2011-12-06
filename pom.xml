@@ -59,11 +59,11 @@
     -->
     <organization>
         <name>Jahia Solutions Group SA</name>
-        <url>http://www.jahia.org</url>
+        <url>http://www.jahia.com</url>
     </organization>
     <!--logo>/images/jahia.gif</logo-->
     <description>Jahia CE Full Package</description>
-    <url>http://www.jahia.org</url>
+    <url>http://www.jahia.com</url>
     <properties>
         <!-- general encoding -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -88,7 +88,7 @@
         <!-- MANIFEST.MF information -->
         <jahia.manifest.vendor.name>Jahia Solutions Group SA</jahia.manifest.vendor.name>
         <jahia.manifest.vendor.id>org.jahia</jahia.manifest.vendor.id>
-        <jahia.manifest.vendor.url>http://www.jahia.org</jahia.manifest.vendor.url>
+        <jahia.manifest.vendor.url>http://www.jahia.com</jahia.manifest.vendor.url>
         <jahia.manifest.vendor.email>info@jahia.com</jahia.manifest.vendor.email>
 
         <maven3.site.plugin.version>3.0-beta-3</maven3.site.plugin.version>
@@ -142,49 +142,49 @@
             <name>Anna Afshar</name>
             <email>anna.afshar@jahia.com</email>
             <organization>Jahia Solutions Group SA</organization>
-            <organizationUrl>http://www.jahia.org/</organizationUrl>
+            <organizationUrl>http://www.jahia.com/</organizationUrl>
         </developer>
         <developer>
             <name>Benjamin Papež</name>
             <email>benjamin.papez@jahia.com</email>
             <organization>Jahia Solutions GmbH</organization>
-            <organizationUrl>http://www.jahia.org/</organizationUrl>
+            <organizationUrl>http://www.jahia.com/</organizationUrl>
         </developer>
         <developer>
             <name>Cédric Mailleux</name>
             <email>cedric.mailleux@jahia.com</email>
             <organization>Jahia Solutions Group SA</organization>
-            <organizationUrl>http://www.jahia.org/</organizationUrl>
+            <organizationUrl>http://www.jahia.com/</organizationUrl>
         </developer>
         <developer>
             <name>Charles Flond</name>
             <email>charles.flond@jahia.com</email>
             <organization>Jahia Solutions Group SA</organization>
-            <organizationUrl>http://www.jahia.org/</organizationUrl>
+            <organizationUrl>http://www.jahia.com/</organizationUrl>
         </developer>
         <developer>
             <name>Clément Egger</name>
             <email>clement.egger@jahia.com</email>
             <organization>Jahia Solutions Group SA</organization>
-            <organizationUrl>http://www.jahia.org/</organizationUrl>
+            <organizationUrl>http://www.jahia.com/</organizationUrl>
         </developer>
         <developer>
             <name>Damien Saulnier</name>
             <email>damien.saulnier@jahia.com</email>
             <organization>Jahia Solutions Group SA</organization>
-            <organizationUrl>http://www.jahia.org/</organizationUrl>
+            <organizationUrl>http://www.jahia.com/</organizationUrl>
         </developer>
         <developer>
             <name>David Griffon</name>
             <email>david.griffon@jahia.com</email>
             <organization>Jahia Solutions Group SA</organization>
-            <organizationUrl>http://www.jahia.org/</organizationUrl>
+            <organizationUrl>http://www.jahia.com/</organizationUrl>
         </developer>
         <developer>
             <name>Fabrice Cantegrel</name>
             <email>fabrice.cantegrel@jahia.com</email>
             <organization>Jahia Solutions Group SA</organization>
-            <organizationUrl>http://www.jahia.org/</organizationUrl>
+            <organizationUrl>http://www.jahia.com/</organizationUrl>
         </developer>
         <developer>
             <name>Islam El-Sayed</name>
@@ -195,7 +195,7 @@
             <name>Kevan Jahanshahi</name>
             <email>kevan.jahanshahi@jahia.com</email>
             <organization>Jahia Solutions Group SA</organization>
-            <organizationUrl>http://www.jahia.org/</organizationUrl>
+            <organizationUrl>http://www.jahia.com/</organizationUrl>
         </developer>
         <developer>
             <name>Khaled Tlili</name>
@@ -207,13 +207,13 @@
             <name>Philippe Vollenweider</name>
             <email>philippe.vollenweider@jahia.com</email>
             <organization>Jahia Solutions Group SA</organization>
-            <organizationUrl>http://www.jahia.org/</organizationUrl>
+            <organizationUrl>http://www.jahia.com/</organizationUrl>
         </developer>
         <developer>
             <name>Régis Mora</name>
             <email>regis.mora@jahia.com</email>
             <organization>Jahia Solutions Group SA</organization>
-            <organizationUrl>http://www.jahia.org/</organizationUrl>
+            <organizationUrl>http://www.jahia.com/</organizationUrl>
         </developer>
         <developer>
             <name>Romain Felden</name>
@@ -224,31 +224,31 @@
             <name>Serge Huber</name>
             <email>serge.huber@jahia.com</email>
             <organization>Jahia Solutions Group SA</organization>
-            <organizationUrl>http://www.jahia.org/</organizationUrl>
+            <organizationUrl>http://www.jahia.com/</organizationUrl>
         </developer>
         <developer>
             <name>Sergiy Shyrkov</name>
             <email>sergiy.shyrkov@jahia.com</email>
             <organization>Jahia Solutions GmbH</organization>
-            <organizationUrl>http://www.jahia.org/</organizationUrl>
+            <organizationUrl>http://www.jahia.com/</organizationUrl>
         </developer>
         <developer>
             <name>Sophia Batata</name>
             <email>sophia.batata@jahia.com</email>
             <organization>Jahia Solutions Group SA</organization>
-            <organizationUrl>http://www.jahia.org/</organizationUrl>
+            <organizationUrl>http://www.jahia.com/</organizationUrl>
         </developer>
         <developer>
             <name>Stéphanie Rouaud</name>
             <email>stephanie.rouaud@jahia.com</email>
             <organization>Jahia Solutions Group SA</organization>
-            <organizationUrl>http://www.jahia.org/</organizationUrl>
+            <organizationUrl>http://www.jahia.com/</organizationUrl>
         </developer>
         <developer>
             <name>Thomas Draier</name>
             <email>thomas.draier@jahia.com</email>
             <organization>Jahia Solutions Group SA</organization>
-            <organizationUrl>http://www.jahia.org/</organizationUrl>
+            <organizationUrl>http://www.jahia.com/</organizationUrl>
         </developer>
         <developer>
             <name>Xavier Lawrence</name>
