@@ -142,8 +142,8 @@
         <li>Unzip the content of the <tt>shared-libraries.zip</tt> file into your <tt>&lt;tomcat&gt;/lib</tt> directory.</li>
         <li>In case ROOT was configured as the Web application context name, please, remove or rename the default Tomcat ROOT Web application
         at <tt>&lt;tomcat&gt;/webapps/ROOT</tt>, if it exists, to e.g. <tt>tomcat</tt>.</li>
-        <li>Copy the <tt>ROOT.war</tt><sup>[<a href="#ftn.1">1</a>]</sup> file to the <tt>&lt;tomcat&gt;/webapps</tt> directory
-        or, in case your server does not automatically unpack WAR files, do it yourself.</li>
+        <li>Unzip the content of the <tt>ROOT.war</tt><sup>[<a href="#ftn.1">1</a>]</sup> file to the <tt>&lt;tomcat&gt;/webapps/ROOT</tt><sup>[<a href="#ftn.1">1</a>]</sup> directory.</li>
+        <li>Adjust the <tt>serverHome</tt> veriable value in the <tt>&lt;tomcat&gt;/webapps/ROOT/WEB-INF/etc/config/jahia.properties</tt> file to point to your <tt>&lt;tomcat&gt;</tt> folder path.</li>
         <li>If you chose to externalize the configuration into a JAR file, either copy the <tt>jahia-config.jar</tt> file into the
         <tt>&lt;tomcat&gt;/lib</tt> directory, or modify the catalina.sh/bat files to add it to the classpath.</li>
 		<li>Adjust the JVM, connector and servlet container options appropriately (see next sections).</li>
