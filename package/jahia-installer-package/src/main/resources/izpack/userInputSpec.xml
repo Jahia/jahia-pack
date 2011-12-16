@@ -87,10 +87,6 @@
             </spec>
         </field>
         <field type="space"/>
-        <field type="check" variable="dbSettings.dbms.useDataStore" align="left">
-            <spec txt="Use Data Store?" id="dbSettings.dbms.useDataStore" true="true" false="false" set="true"/>
-        </field>
-        <field type="space"/>
         <field type="check" variable="dbSettings.dbms.storeFilesInDB" align="left">
             <spec txt="Store binary data in the database?" id="dbSettings.dbms.storeFilesInDB" true="true" false="false" set="false"/>
         </field>
