@@ -74,7 +74,7 @@
         <jahia.project.structure.version>2</jahia.project.structure.version>
 
         <jahia.archivers.version>2.3</jahia.archivers.version>
-        <jahia.configurators.version>2.41</jahia.configurators.version>
+        <jahia.configurators.version>2.42</jahia.configurators.version>
         <jahia.deployers.version>2.2</jahia.deployers.version>
 
         <pluto.version>2.0.2</pluto.version>
@@ -112,7 +112,7 @@
 
 
         <!-- Jahia Maven plugin version and default settings -->
-        <jahia.plugin.version>2.59</jahia.plugin.version>
+        <jahia.plugin.version>2.60</jahia.plugin.version>
         <!-- common settings -->
         <jahia.configure.useDataStore>true</jahia.configure.useDataStore>
         <jahia.configure.storeFilesInDB>false</jahia.configure.storeFilesInDB>
