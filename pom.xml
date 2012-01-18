@@ -91,7 +91,7 @@
         <jahia.manifest.vendor.url>http://www.jahia.com</jahia.manifest.vendor.url>
         <jahia.manifest.vendor.email>info@jahia.com</jahia.manifest.vendor.email>
 
-        <maven3.site.plugin.version>3.0-beta-3</maven3.site.plugin.version>
+        <maven3.site.plugin.version>3.0</maven3.site.plugin.version>
         <site.plugin.version>2.2</site.plugin.version>
 
         <license.plugin.version>1.8.0</license.plugin.version>
