@@ -52,7 +52,7 @@
     <properties>
         <product.name>Jahia xCM</product.name>
         <staging.dir>${project.build.directory}/izpack</staging.dir>
-        <jahia.installers.version>2.7</jahia.installers.version>
+        <jahia.installers.version>2.8</jahia.installers.version>
         <izpack.version>4.3.5-jahia-beta1</izpack.version>
     </properties>
 
@@ -226,53 +226,6 @@
                             </artifactItems>
                         </configuration>
                     </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>${antrun.plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>store-build-number</id>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <tasks>
-                                <loadfile property="buildNumber-ce" srcFile="${project.build.directory}/marker/META-INF/jahia-impl-marker.txt" />
-                                <echo message="installer.filename=Jahia_xCM_v${project.version}_r${buildNumber-ce}" file="${project.build.directory}/version.properties" />
-                            </tasks>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>properties-maven-plugin</artifactId>
-                <version>1.0-alpha-2</version>
-                <executions>
-                    <execution>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>read-project-properties</goal>
-                        </goals>
-                        <configuration>
-                            <files>
-                                <file>${project.build.directory}/version.properties</file>
-                            </files>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.1</version>
-                <executions>
                     <execution>
                         <id>unpack-artifacts</id>
                         <phase>process-resources</phase>
@@ -368,6 +321,19 @@
                 <version>${antrun.plugin.version}</version>
                 <executions>
                     <execution>
+                        <id>store-build-number</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <loadfile property="buildNumber-ce" srcFile="${project.build.directory}/marker/META-INF/jahia-impl-marker.txt" />
+                                <echo message="installer.filename=Jahia_xCM_v${project.version}_r${buildNumber-ce}" file="${project.build.directory}/version.properties" />
+                            </tasks>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>i18n-resources</id>
                         <phase>compile</phase>
                         <configuration>
@@ -413,6 +379,26 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.0-alpha-2</version>
+                <executions>
+                    <execution>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>read-project-properties</goal>
+                        </goals>
+                        <configuration>
+                            <files>
+                                <file>${project.build.directory}/version.properties</file>
+                            </files>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.codehaus.izpack</groupId>
                 <artifactId>izpack-maven-plugin</artifactId>
