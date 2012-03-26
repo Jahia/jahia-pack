@@ -126,14 +126,14 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>formbuilder</artifactId>
-            <version>1.2</version>
+            <version>1.2.1-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>googleAnalytics</artifactId>
-            <version>1.2</version>
+            <version>1.2.1-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
@@ -189,7 +189,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>rating</artifactId>
-            <version>1.2</version>
+            <version>1.2.1-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
