@@ -306,21 +306,21 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>templates-web</artifactId>
-            <version>1.2</version>
+            <version>1.2.1-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>templates-web-blue</artifactId>
-            <version>1.2</version>
+            <version>1.2.1-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>templates-web-space</artifactId>
-            <version>1.2</version>
+            <version>1.2.1-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
