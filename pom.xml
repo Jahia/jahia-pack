@@ -403,6 +403,7 @@
 
     <modules>
         <module>war</module>
+        <module>dm-war</module>
         <module>package</module>
     </modules>
 
