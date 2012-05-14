@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<installation version="1.0">
+<installation version="1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
     <info>
         <appname>${product.name}</appname>
-        <appversion>${project.version}</appversion>
+        <appversion>${product.version}</appversion>
         <authors>
             <author email="${jahia.manifest.vendor.email}" name="${jahia.manifest.vendor.name}"/>
         </authors>
@@ -16,7 +16,7 @@
     </info>
     <variables>
         <variable name="product.name" value="${product.name}"/>
-        <variable name="product.version" value="${project.version}"/>
+        <variable name="product.version" value="${product.version}"/>
         
         <!-- default values for DB driver -->
         <variable name="def.db.driver.mysql" value="com.mysql.jdbc.Driver"/>
@@ -31,10 +31,10 @@
         
         <variable name="TargetPanel.noWhitespaces" value="true"/>
         
-        <variable name="TargetPanel.dir.mac" value="$APPLICATIONS_DEFAULT_ROOT/Jahia_xCM_v${project.version}"/>
-        <variable name="TargetPanel.dir.macosx" value="$APPLICATIONS_DEFAULT_ROOT/Jahia_xCM_v${project.version}"/>
-        <variable name="TargetPanel.dir.unix" value="/usr/local/Jahia_xCM_v${project.version}"/>
-        <variable name="TargetPanel.dir.windows" value="C:\Jahia_xCM_v${project.version}"/>
+        <variable name="TargetPanel.dir.mac" value="$APPLICATIONS_DEFAULT_ROOT/${product.fullname}"/>
+        <variable name="TargetPanel.dir.macosx" value="$APPLICATIONS_DEFAULT_ROOT/${product.fullname}"/>
+        <variable name="TargetPanel.dir.unix" value="/usr/local/${product.fullname}"/>
+        <variable name="TargetPanel.dir.windows" value="C:\${product.fullname}"/>
 
         <variable name="afterInstall.startTomcat" value="true"/>
         <variable name="jahia.war.contextName" value=""/>
@@ -42,6 +42,13 @@
         <variable name="externalizedConfigTargetPath" value=""/>
         <variable name="externalizedConfigActivated" value="false" />
         <variable name="externalizedConfigClassifier" value="" />
+        
+        <!-- DM -->
+        <variable name="dmConfig.officePath" value=""/>
+        <variable name="dmConfig.pdf2swfPath" value=""/>
+        <variable name="dmConfig.imagemagickPath" value=""/>
+        <variable name="dmConfig.imageService" value="ImageJAndJava2DImageService"/>
+        <variable name="dmConfig.ffmpegPath" value=""/>
     </variables>
     <dynamicvariables>
         <variable name="jahia.war.contextPath" value="" condition="cnd.installation.type.express|cnd.contextPath.root"/>
@@ -101,7 +108,16 @@
 
         <variable name="dynExternalizedConfigTargetPath" value="$INSTALL_PATH/tomcat/lib" condition="cnd.pack.tomcat" />
         <variable name="dynExternalizedConfigTargetPath" value="$INSTALL_PATH" condition="!cnd.pack.tomcat" />
-
+        
+        <!-- DM -->
+        <variable name="dmConfig.officePath.provided" value="true" condition="!cnd.dm.officePath.empty"/>
+        <variable name="dmConfig.officePath.provided" value="false" condition="cnd.dm.officePath.empty"/>
+        <variable name="dmConfig.pdf2swfPath.provided" value="true" condition="!cnd.dm.pdf2swfPath.empty"/>
+        <variable name="dmConfig.pdf2swfPath.provided" value="false" condition="cnd.dm.pdf2swfPath.empty"/>
+        <variable name="dmConfig.imageService" value="ImageMagickImageService" condition="!cnd.dm.imagemagickPath.empty"/>
+        <variable name="dmConfig.imageService" value="ImageJAndJava2DImageService" condition="cnd.dm.imagemagickPath.empty"/>
+        <variable name="dmConfig.ffmpegPath.provided" value="true" condition="!cnd.dm.ffmpegPath.empty"/>
+        <variable name="dmConfig.ffmpegPath.provided" value="false" condition="cnd.dm.ffmpegPath.empty"/>
     </dynamicvariables>
     
     <conditions>
@@ -116,6 +132,10 @@
         
         <condition type="packselection" id="cnd.pack.tomcat">
             <packid>tomcat</packid>
+        </condition>
+
+        <condition type="packselection" id="cnd.pack.vibes">
+            <packid>vibes</packid>
         </condition>
         
         <condition type="variable" id="cnd.db.mode.standalone">
@@ -167,6 +187,19 @@
             <condition type="ref" refid="cnd.start.tomcat"/>
             <condition type="ref" refid="cnd.view.howtoinstall"/>
         </condition>
+        
+        <condition type="org.jahia.izpack.EmptyVariableCondition" id="cnd.dm.officePath.empty">
+            <variable>dmConfig.officePath</variable>
+        </condition>
+        <condition type="org.jahia.izpack.EmptyVariableCondition" id="cnd.dm.pdf2swfPath.empty">
+            <variable>dmConfig.pdf2swfPath</variable>
+        </condition>
+        <condition type="org.jahia.izpack.EmptyVariableCondition" id="cnd.dm.imagemagickPath.empty">
+            <variable>dmConfig.imagemagickPath</variable>
+        </condition>
+        <condition type="org.jahia.izpack.EmptyVariableCondition" id="cnd.dm.ffmpegPath.empty">
+            <variable>dmConfig.ffmpegPath</variable>
+        </condition>
     </conditions>
     <guiprefs height="520" resizable="yes" width="640">
         <modifier key="labelGap" value="2"/>
@@ -185,11 +218,6 @@
         <langpack iso3="eng"/>
         <langpack iso3="fra"/>
         <langpack iso3="deu"/>
-        <!--
-        <langpack iso3="ita"/>
-        <langpack iso3="por"/>
-        <langpack iso3="spa"/>
-        -->
     </locale>
     <resources>
         <res id="installer.langsel.icon" src="../images/jahia.png"/>
@@ -214,38 +242,18 @@
         <res id="userInputLang.xml_eng" src="i18n/userInputLang.eng.xml" />
         <res id="userInputLang.xml_fra" src="i18n/userInputLang.fra.xml" />
         <res id="userInputLang.xml_deu" src="i18n/userInputLang.deu.xml" />
-        <!--
-        <res id="userInputLang.xml_ita" src="i18n/userInputLang.ita.xml" />
-        <res id="userInputLang.xml_por" src="i18n/userInputLang.por.xml" />
-        <res id="userInputLang.xml_spa" src="i18n/userInputLang.spa.xml" />
-        -->
 
         <res id="packsLang.xml_eng" src="i18n/packsLang.eng.xml"/>
         <res id="packsLang.xml_fra" src="i18n/packsLang.fra.xml"/>
         <res id="packsLang.xml_deu" src="i18n/packsLang.deu.xml"/>
-        <!--
-        <res id="packsLang.xml_ita" src="i18n/packsLang.ita.xml"/>
-        <res id="packsLang.xml_por" src="i18n/packsLang.por.xml"/>
-        <res id="packsLang.xml_spa" src="i18n/packsLang.spa.xml"/>
-        -->
 
         <res id="CustomLangpack.xml_eng" src="i18n/customLang.eng.xml"/>
         <res id="CustomLangpack.xml_fra" src="i18n/customLang.fra.xml"/>
         <res id="CustomLangpack.xml_deu" src="i18n/customLang.deu.xml"/>
-        <!--
-        <res id="CustomLangpack.xml_ita" src="i18n/customLang.ita.xml"/>
-        <res id="CustomLangpack.xml_por" src="i18n/customLang.por.xml"/>
-        <res id="CustomLangpack.xml_spa" src="i18n/customLang.spa.xml"/>
-        -->
         
         <res id="CustomActionsLang.xml_eng" src="i18n/customLang.eng.xml"/>
         <res id="CustomActionsLang.xml_fra" src="i18n/customLang.fra.xml"/>
         <res id="CustomActionsLang.xml_deu" src="i18n/customLang.deu.xml"/>
-        <!--
-        <res id="CustomActionsLang.xml_ita" src="i18n/customLang.ita.xml"/>
-        <res id="CustomActionsLang.xml_por" src="i18n/customLang.por.xml"/>
-        <res id="CustomActionsLang.xml_spa" src="i18n/customLang.spa.xml"/>
-        -->
     </resources>
     <panels>
         <panel classname="HelloPanel"/>
@@ -261,6 +269,11 @@
         <panel classname="UserInputPanel" id="appServer" condition="cnd.installation.type.advanced"/>
         <panel classname="UserInputPanel" id="superUser"/>
         <panel classname="UserInputPanel" condition="cnd.installation.type.advanced" id="mailSettings"/>
+        <panel classname="UserInputPanel" id="externalToolSettings">
+            <actions>
+                <action stage="preconstruct" classname="org.jahia.izpack.ExternalToolsPanelAction"/>
+            </actions>
+        </panel>
         <panel classname="UserInputPanel" id="externalizedConfig" condition="cnd.installation.type.advanced" />
         <panel classname="SummaryPanel"/>
         <panel classname="ExtendedInstallPanel">
@@ -303,37 +316,8 @@
     </listeners>
 
     <packs>
-        <pack name="jahia" id="core" preselected="yes" required="yes">
-            <description/>
-            <fileset dir="../licenses" targetdir="$INSTALL_PATH/licenses" override="true" />
-            <fileset dir="../links" targetdir="$INSTALL_PATH/docs" override="true">
-                <exclude name="HowToInstall.URL"/>
-                <exclude name="OpenJahia*"/>
-            </fileset>
-            <fileset dir="../links" targetdir="$INSTALL_PATH/docs" override="true" condition="!cnd.pack.tomcat">
-                <include name="HowToInstall.URL"/>
-            </fileset>
-            <fileset dir="../artifacts/jahia-war" targetdir="${jahia.war.target.path}" override="true">
-                <exclude name="WEB-INF/lib/juel-api-*.jar"/>
-            </fileset>
-            <fileset dir="../images" targetdir="$INSTALL_PATH/icons" override="true">
-                <include name="jahia.ico"/>
-                <include name="jahia.png"/>
-            </fileset>
-            <singlefile override="true" src="../scripts/openUrl.sh" target="$INSTALL_PATH/bin/openUrl.sh" os="unix"/>
-            <singlefile override="true" src="install.properties" target="$INSTALL_PATH/logs/install.properties"/>
-            <singlefile override="true" src="../dependency/configurators-standalone.jar" target="$INSTALL_PATH/tools/configurators.jar"/>
-            <singlefile override="true" src="../dependency/archivers-standalone.jar" target="$INSTALL_PATH/tools/archivers.jar"/>
-            <singlefile override="true" src="../artifacts/shared-libraries-all.zip" target="$INSTALL_PATH/shared-libraries.zip" condition="!cnd.pack.tomcat"/>
-            <singlefile overrride="true" src="../docs/How-to-install-tomcat.html" target="$INSTALL_PATH/How-to-install.html" condition="!cnd.pack.tomcat"/>
-            <singlefile override="true" src="../scripts/deployModule.bat" target="$INSTALL_PATH/deployModule.bat" os="windows"/>
-            <singlefile override="true" src="../scripts/deployModule.sh" target="$INSTALL_PATH/deployModule.sh" os="unix"/>
-            <singlefile override="true" src="../scripts/deployModule.sh" target="$INSTALL_PATH/deployModule.sh" os="mac"/>
-            <parsable targetfile="$INSTALL_PATH/logs/install.properties" type="javaprop"/>
-            <parsable targetfile="$INSTALL_PATH/docs/HowToInstall.URL" condition="!cnd.pack.tomcat"/>
-            <executable targetfile="$INSTALL_PATH/bin/openUrl.sh" os="unix"/>
-            <executable targetfile="$INSTALL_PATH/deployModule.sh" />
-        </pack>
+        <xi:include href="pack-jahia.xml"/>
+
         <pack name="tomcat" id="tomcat" preselected="yes" required="no">
             <description/>
             <fileset dir="../links" targetdir="$INSTALL_PATH" override="true">
@@ -378,14 +362,6 @@
             <executable targetfile="$INSTALL_PATH/startJahia.sh" />
             <executable targetfile="$INSTALL_PATH/stopJahia.sh" />
         </pack>
-        <!-- 
-        <pack name="TODO: Jahia Unified Content Hub" id="juch" preselected="no" required="no">
-            <description/>
-        </pack>
-        <pack name="TODO: Jahia Documentation" id="docs" preselected="no" required="no">
-            <description/>
-        </pack>
-         -->
     </packs>
 
 	<jar src="../artifacts/ant.jar" />

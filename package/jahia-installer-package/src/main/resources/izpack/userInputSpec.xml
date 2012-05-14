@@ -199,6 +199,53 @@
     </panel>
 
     <panel order="7">
+        <field type="staticText" txt="Document Management experience can be smoother if you have those external tools installed." id="dmConfig.description"/>
+        <field type="space"/>
+        <!-- Skip validation e.g. in case customer creates package for another machine -->
+        <field type="check" align="left" variable="dmConfig.validate">
+          <spec txt="Validate settings" id="dmConfig.validate.settings" size="25" true="true" false="false" set="true"/>
+        </field>
+        <field type="space"/>
+        <field type="staticText" txt="Select the path for your LibreOffice or OpenOffice install" id="dmConfig.office.description"/>
+        <field type="dir" variable="dmConfig.officePath" align="left">
+            <spec mustExist="false" allowEmptyValue="true" size="20" txt=""/>
+            <validator class="org.jahia.izpack.ToolInstalledValidator" txt="LibreOffice or OpenOffice is not installed (correctly) at the given location" id="externalTool.office.notInstalled">
+                <param name="validate" value="${dmConfig.validate}"/>
+                <param name="directory" value="true"/>
+                <param name="fileName" value="program/soffice.bin,MacOS/soffice.bin"/>
+            </validator>
+        </field>        
+        <field type="space"/>        
+        <field type="staticText" txt="Select the path for your imagemagick install" id="dmConfig.imagemagick.description"/>
+        <field type="dir" variable="dmConfig.imagemagickPath" align="left">
+            <spec mustExist="false" allowEmptyValue="true" size="20" txt=""/>
+            <validator class="org.jahia.izpack.ToolInstalledValidator" txt="ImageMagick is not installed (correctly) at the given location" id="externalTool.imagemagick.notInstalled">
+                <param name="validate" value="${dmConfig.validate}"/>
+                <param name="directory" value="true"/>
+                <param name="fileName" value="convert,bin/convert"/>
+            </validator>
+        </field>
+        <field type="divider"/>
+        <field type="staticText" txt="Select the pdf2swf executable file" id="dmConfig.pdf2swf.description"/>
+        <field type="file" variable="dmConfig.pdf2swfPath" align="left">
+            <spec mustExist="false" allowEmptyValue="true" size="20" txt=""/>
+            <validator class="org.jahia.izpack.ToolInstalledValidator" txt="pdf2swf is not installed (correctly) at the given location" id="externalTool.pdf2swf.notInstalled">
+                <param name="validate" value="${dmConfig.validate}"/>
+                <param name="fileName" value="pdf2swf"/>
+            </validator>
+        </field>
+        <field type="space"/>
+        <field type="staticText" txt="Select the ffmpeg executable file" id="dmConfig.ffmpeg.description"/>
+        <field type="file" variable="dmConfig.ffmpegPath" align="left">
+            <spec mustExist="false" allowEmptyValue="true" size="20" txt=""/>
+            <validator class="org.jahia.izpack.ToolInstalledValidator" txt="ffmpeg is not installed (correctly) at the given location" id="externalTool.ffmpeg.notInstalled">
+                <param name="validate" value="${dmConfig.validate}"/>
+                <param name="fileName" value="ffmpeg"/>
+            </validator>
+        </field>
+    </panel>
+
+    <panel order="8">
         <field type="staticText" txt="Jahia supports externalized configurations stored in JAR files. This is optional and deactivated by default" id="externalizedConfig.description" />
         <field type="space" />
         <field type="check" variable="externalizedConfigActivated" align="left">
@@ -212,7 +259,7 @@
         </field>
     </panel>
 
-    <panel order="8" topBuffer="0">
+    <panel order="9" topBuffer="0">
         <field type="space"/>
         <field type="staticText" txt="Installation successful" id="afterInstall.description"/>
         <field type="space"/>
