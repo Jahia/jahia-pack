@@ -222,7 +222,7 @@
             <validator class="org.jahia.izpack.ToolInstalledValidator" txt="ImageMagick is not installed (correctly) at the given location" id="externalTool.imagemagick.notInstalled">
                 <param name="validate" value="${dmConfig.validate}"/>
                 <param name="directory" value="true"/>
-                <param name="fileName" value="convert,bin/convert"/>
+                <param name="fileName" value="convert"/>
             </validator>
         </field>
         <field type="divider"/>
