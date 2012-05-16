@@ -38,6 +38,7 @@
             </fileset>
             <fileset dir="../artifacts" targetdir="${jahia.war.target.path}/WEB-INF/var/shared_modules" override="true">
                 <include name="templates-docspace-*.war"/>
+                <include name="docspace-management-*.war"/>
             </fileset>
         </pack>
 </xfragment>
