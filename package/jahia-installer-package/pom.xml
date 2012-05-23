@@ -293,6 +293,22 @@
                                     </resources>
                                 </configuration>
                             </execution>
+                            <execution>
+                                <id>copy-images</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${project.build.directory}/images</outputDirectory>
+                                    <overwrite>true</overwrite>
+                                    <resources>
+                                        <resource>
+                                            <directory>src/main/resources/images/docspace</directory>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
                         </executions>
                     </plugin>
                 </plugins>
