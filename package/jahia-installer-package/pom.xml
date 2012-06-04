@@ -224,7 +224,7 @@
                                         </artifactItem>
                                         <artifactItem>
                                             <groupId>org.jahia.modules</groupId>
-                                            <artifactId>docspace-management</artifactId>
+                                            <artifactId>templates-docspace-management</artifactId>
                                             <version>${docspace.version}</version>
                                             <type>war</type>
                                             <overWrite>false</overWrite>
