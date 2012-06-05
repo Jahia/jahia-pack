@@ -36,6 +36,9 @@
             <fileset dir="../artifacts/docspace" targetdir="${jahia.war.target.path}" override="true">
                 <include name="WEB-INF/lib/*.jar"/>
             </fileset>
+            <fileset dir="../artifacts/docspace-management" targetdir="${jahia.war.target.path}" override="true">
+                <include name="WEB-INF/lib/*.jar"/>
+            </fileset>
             <fileset dir="../artifacts" targetdir="${jahia.war.target.path}/WEB-INF/var/shared_modules" override="true">
                 <include name="templates-docspace-*.war"/>
                 <include name="docspace-management-*.war"/>

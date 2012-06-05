@@ -249,6 +249,14 @@
                                             <overWrite>false</overWrite>
                                             <outputDirectory>${project.build.directory}/artifacts/docspace</outputDirectory>
                                         </artifactItem>
+                                        <artifactItem>
+                                            <groupId>org.jahia.modules</groupId>
+                                            <artifactId>templates-docspace-management</artifactId>
+                                            <version>${docspace.version}</version>
+                                            <type>war</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.directory}/artifacts/docspace-management</outputDirectory>
+                                        </artifactItem>
                                     </artifactItems>
                                 </configuration>
                             </execution>
