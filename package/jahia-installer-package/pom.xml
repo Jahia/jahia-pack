@@ -195,9 +195,9 @@
         <profile>
             <id>docspace</id>
             <properties>
-                <product.name>Jahia Vibes</product.name>
+                <product.name>Jahia Wise</product.name>
                 <product.version>${docspace.version}</product.version>
-                <product.fullname>Jahia_Vibes_v${product.version}</product.fullname>
+                <product.fullname>Jahia_Wise_v${product.version}</product.fullname>
             </properties>
             <build>
                 <plugins>
@@ -276,7 +276,7 @@
                                 <configuration>
                                     <tasks>
                                         <loadfile property="buildNumber-ce" srcFile="${project.build.directory}/marker/META-INF/jahia-impl-marker.txt" />
-                                        <echo message="installer.filename=Jahia_Vibes_v${docspace.version}_r${buildNumber-ce}" file="${project.build.directory}/version.properties" />
+                                        <echo message="installer.filename=Jahia_Wise_v${docspace.version}_r${buildNumber-ce}" file="${project.build.directory}/version.properties" />
                                     </tasks>
                                 </configuration>
                             </execution>

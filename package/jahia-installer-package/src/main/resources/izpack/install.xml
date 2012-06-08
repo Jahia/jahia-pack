@@ -134,8 +134,8 @@
             <packid>tomcat</packid>
         </condition>
 
-        <condition type="packselection" id="cnd.pack.vibes">
-            <packid>vibes</packid>
+        <condition type="packselection" id="cnd.pack.wise">
+            <packid>wise</packid>
         </condition>
         
         <condition type="variable" id="cnd.db.mode.standalone">

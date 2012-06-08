@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xfragment>
-        <pack name="jahia" id="vibes" preselected="yes" required="yes">
+        <pack name="jahia" id="wise" preselected="yes" required="yes">
             <description/>
             <!-- Jahia xCM -->
             <fileset dir="../licenses" targetdir="$INSTALL_PATH/licenses" override="true" />
