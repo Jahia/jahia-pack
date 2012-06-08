@@ -391,7 +391,7 @@
                                     <version>${project.version}</version>
                                     <type>war</type>
                                     <overWrite>true</overWrite>
-                                    <outputDirectory>${project.build.directory}/artifacts/jahia-war</outputDirectory>
+                                    <outputDirectory>${project.build.directory}/artifacts/jahia-pack-war</outputDirectory>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.jahia.server</groupId>
