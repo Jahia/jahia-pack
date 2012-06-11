@@ -980,20 +980,17 @@
                 </plugins>
             </build>
         </profile>
-
-        <!--
         <profile>
-            <id>module-forge</id>
+            <id>docspace</id>
             <modules>
-                <module>module-forge</module>
+            <module>docspace-package</module>
             </modules>
         </profile>
-        -->
     </profiles>
 
     <modules>
         <module>war</module>
-        <module>dm-war</module>
+        <module>dm-package</module>
         <module>package</module>
     </modules>
 
