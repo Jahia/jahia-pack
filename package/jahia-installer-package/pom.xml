@@ -217,7 +217,7 @@
                                         <artifactItem>
                                             <groupId>org.jahia.server</groupId>
                                             <artifactId>jahia-docspace-package</artifactId>
-                                            <version>1.0-SNAPSHOT</version>
+                                            <version>${docspace.version}</version>
                                             <type>war</type>
                                             <overWrite>false</overWrite>
                                             <outputDirectory>${project.build.directory}/artifacts/docspace</outputDirectory>
