@@ -6,7 +6,7 @@
                id="installation.type1"/>
         
         <field type="staticText" align="left"
-               txt="Express installation completes the common Jahia setup using pre-packaged Apache Tomcat 6.0 server and embedded Sun Java DB / Apache Derby DBMS, whereas the Custom install allows advanced configuration of the target application server, DBMS and addition options:"
+               txt="Express installation completes the common Jahia setup using pre-packaged Apache Tomcat 7.0 server and embedded Sun Java DB / Apache Derby DBMS, whereas the Custom install allows advanced configuration of the target application server, DBMS and addition options:"
                id="installation.type2"/>
         
         <field type="space" />

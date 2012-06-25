@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>How to install Jahia xCM 6.6 on Apache Tomcat 6.0.x server</title>
+    <title>How to install Jahia xCM 6.6 on Apache Tomcat 7.0.x server</title>
     <style type="text/css">
 		body {
 		    font: 75% Arial, Helvetica, sans-serif;
@@ -121,15 +121,15 @@
 <body>
 <div id="container">
   <div id="mainContent">
-	<h1>How to install Jahia xCM 6.6 on Apache Tomcat 6.0.x server</h1>
+	<h1>How to install Jahia xCM 6.6 on Apache Tomcat 7.0.x server</h1>
 	
 	<h2>Installation</h2>
-	<p>The installation procedure for Apache Tomcat 6 is as follows:</p>
+	<p>The installation procedure for Apache Tomcat 7 is as follows:</p>
     <ol>
         <li>Launch the installer</li>
         <li>Choose <em>Custom install (advanced)</em> installation type</li>
         <li>Select only <em>Jahia xCM Platform</em> pack</li>
-        <li>Choose <em>Apache Tomcat 6.0.x</em> as the target application server type</li>
+        <li>Choose <em>Apache Tomcat 7.0.x</em> as the target application server type</li>
         <li>Follow the next steps of the installer</li>
     </ol>
     <p>Once the installer is finished in your install directory you should find a file named <tt>ROOT.war</tt>
@@ -149,15 +149,18 @@
 		<li>Adjust the JVM, connector and servlet container options appropriately (see next sections).</li>
     </ol>
     
-    <h2>JVM tuning options</h2>
-	<p>The default JVM options in the Tomcat's startup script (<tt>&lt;tomcat&gt;/bin/catalina.bat</tt> or <tt>&lt;tomcat&gt;/bin/catalina.sh</tt>)
-			should be adjusted to use server JVM ("<tt>-server</tt>" option), have at least 1 GB<sup>[<a href="#ftn.2">2</a>]</sup> heap size (<tt>-Xms1024m -Xmx1024m</tt>)
-        	and at least 256 MB<sup>[<a href="#ftn.2">2</a>]</sup> as a limit for the permanent generation heap size (<tt>-XX:MaxPermSize=256m</tt>), if applicable,
-        	also adding another tuning options.</p>
-    <p>This can be done by adding the following line to your <tt>&lt;tomcat&gt;/bin/catalina.bat</tt> (Windows OS):</p>
-    <blockquote><p><tt>set CATALINA_OPTS=%CATALINA_OPTS% -Dsun.io.useCanonCaches=false -Xms1024m -Xmx1024m -XX:MaxPermSize=256m -server -Dhibernate.jdbc.use_streams_for_binary=true -verbose:gc -XX:+HeapDumpOnOutOfMemoryError</tt></p></blockquote>
-    <p>or to the <tt>&lt;tomcat&gt;/bin/catalina.sh</tt> file (non Windows OS):</p>
-    <blockquote><p><tt>CATALINA_OPTS="$CATALINA_OPTS -Xms1024m -Xmx1024m -Djava.awt.headless=true -XX:MaxPermSize=256m -server -Dhibernate.jdbc.use_streams_for_binary=true -verbose:gc -XX:+HeapDumpOnOutOfMemoryError"</tt></p></blockquote>
+    <h2>Session cookie configuration for portlet container</h2>
+	<p>Add the <tt>sessionCookiePath="/"</tt> attribute to the <tt>&lt;Context/&gt;</tt> element
+        in the <tt>&lt;tomcat&gt;/conf/context.xml</tt> file:</p>
+    <blockquote>
+    <p>
+    <tt>&lt;Context sessionCookiePath="/"&gt;<br/>
+        &nbsp;&nbsp;&nbsp;...<br/>
+        &lt;/Context&gt;
+    </tt>
+    </p>
+    </blockquote>
+    <p>This attribute is required for portlet container.</p>
     
     <h2>HTTP/AJP connector tuning options</h2>
     <p>The following configuration for the HTTP and AJP connectors (configured in the <tt>&lt;tomcat&gt;/conf/server.xml</tt> file) is recommended<sup>[<a href="#ftn.3">3</a>]</sup>,
@@ -169,7 +172,29 @@
         &nbsp;&nbsp;&nbsp;redirectPort="8443"<br/>
         &nbsp;&nbsp;&nbsp;maxThreads="300" acceptCount="100"<br/>
         &nbsp;&nbsp;&nbsp;enableLookups="false"<br/>
-        &nbsp;&nbsp;&nbsp;emptySessionPath="true" URIEncoding="UTF-8"<br/>
+        &nbsp;&nbsp;&nbsp;URIEncoding="UTF-8"<br/>
+        &nbsp;&nbsp;&nbsp;compression="on"<br/>
+        &nbsp;&nbsp;&nbsp;compressableMimeType="text/plain,text/html,text/xml,text/css,text/javascript,application/x-javascript,application/javascript" /&gt;</tt>
+    </p>
+    </blockquote>
+    <blockquote>
+    <p>
+    <tt>&lt;Connector port="8009" protocol="AJP/1.3" redirectPort="8443"<br/>
+    &nbsp;&nbsp;&nbsp;enableLookups="false" URIEncoding="UTF-8" maxThreads="300" /&gt;</tt>
+    </p>
+    </blockquote>
+    
+    <h2>HTTP/AJP connector tuning options</h2>
+    <p>The following configuration for the HTTP and AJP connectors (configured in the <tt>&lt;tomcat&gt;/conf/server.xml</tt> file) is recommended<sup>[<a href="#ftn.3">3</a>]</sup>,
+    which includes UTF-8 URI encoding, compression of the response content etc.:</p>
+    <blockquote>
+    <p>
+    <tt>&lt;Connector port="8080" protocol="HTTP/1.1"<br/>
+        &nbsp;&nbsp;&nbsp;connectionTimeout="20000"<br/>
+        &nbsp;&nbsp;&nbsp;redirectPort="8443"<br/>
+        &nbsp;&nbsp;&nbsp;maxThreads="300" acceptCount="100"<br/>
+        &nbsp;&nbsp;&nbsp;enableLookups="false"<br/>
+        &nbsp;&nbsp;&nbsp;URIEncoding="UTF-8"<br/>
         &nbsp;&nbsp;&nbsp;compression="on"<br/>
         &nbsp;&nbsp;&nbsp;compressableMimeType="text/plain,text/html,text/xml,text/css,text/javascript,application/x-javascript,application/javascript" /&gt;</tt>
 	</p>
@@ -177,8 +202,7 @@
     <blockquote>
     <p>
     <tt>&lt;Connector port="8009" protocol="AJP/1.3" redirectPort="8443"<br/>
-    &nbsp;&nbsp;&nbsp;enableLookups="false" emptySessionPath="true"<br/>
-    &nbsp;&nbsp;&nbsp;URIEncoding="UTF-8" maxThreads="300" /&gt;</tt>
+    &nbsp;&nbsp;&nbsp;enableLookups="false" URIEncoding="UTF-8" maxThreads="300" /&gt;</tt>
     </p>
     </blockquote>
     
