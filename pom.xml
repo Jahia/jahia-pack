@@ -73,14 +73,14 @@
         <jahia-ce.package.version>${project.version}</jahia-ce.package.version>
         <jahia.project.structure.version>2</jahia.project.structure.version>
 
-        <jahia.archivers.version>2.5</jahia.archivers.version>
-        <jahia.configurators.version>2.48</jahia.configurators.version>
-        <jahia.deployers.version>2.4</jahia.deployers.version>
+        <jahia.archivers.version>2.7</jahia.archivers.version>
+        <jahia.configurators.version>2.50</jahia.configurators.version>
+        <jahia.deployers.version>2.5</jahia.deployers.version>
 
         <pluto.version>2.0.2</pluto.version>
         <ant.version>1.8.2</ant.version>
 
-        <driver.derby.version>10.9.1.0</driver.derby.version>
+        <driver.derby.version>10.8.2.2</driver.derby.version>
         <driver.mysql.version>5.1.19</driver.mysql.version>
         <driver.postgresql.version>9.1-901.jdbc3</driver.postgresql.version>
 
@@ -111,7 +111,7 @@
 
 
         <!-- Jahia Maven plugin version and default settings -->
-        <jahia.plugin.version>2.72</jahia.plugin.version>
+        <jahia.plugin.version>2.74</jahia.plugin.version>
         <!-- common settings -->
         <jahia.configure.useDataStore>true</jahia.configure.useDataStore>
         <jahia.configure.storeFilesInDB>false</jahia.configure.storeFilesInDB>
@@ -272,6 +272,18 @@
             <name>Jahia's Maven Repository</name>
             <url>http://maven.jahia.org/maven2</url>
         </repository>
+            <repository>
+            <id>jahia-public</id>
+            <name>Jahia Public Repository</name>
+            <url>https://devtools.jahia.com/nexus/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
     </repositories>
 
     <pluginRepositories>
@@ -285,6 +297,18 @@
             <id>jahiaRepository</id>
             <name>Jahia's Maven Repository</name>
             <url>http://maven.jahia.org/maven2</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>jahia-public</id>
+            <name>Jahia Public Repository</name>
+            <url>https://devtools.jahia.com/nexus/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </pluginRepository>
         <pluginRepository>
             <id>Codehaus</id>
