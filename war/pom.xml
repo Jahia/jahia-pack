@@ -49,19 +49,6 @@
     <name>Jahia Module Package WAR</name>
     <packaging>war</packaging>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>CodehausSnapshots</id>
-            <url>http://snapshots.repository.codehaus.org/</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </pluginRepository>
-    </pluginRepositories>
-
     <dependencies>
         <!-- Default Jahia Forge Modules -->
         <dependency>
