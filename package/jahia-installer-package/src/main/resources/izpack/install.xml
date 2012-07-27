@@ -134,10 +134,6 @@
             <packid>tomcat</packid>
         </condition>
 
-        <condition type="packselection" id="cnd.pack.wise">
-            <packid>wise</packid>
-        </condition>
-        
         <condition type="variable" id="cnd.db.mode.standalone">
             <name>dbSettings.mode</name>
             <value>standalone</value>

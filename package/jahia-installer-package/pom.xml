@@ -56,7 +56,6 @@
         <staging.dir>${project.build.directory}/izpack</staging.dir>
         <jahia.installers.version>2.12</jahia.installers.version>
         <izpack.version>4.3.5-jahia-beta4</izpack.version>
-        <docspace.version>1.0-SNAPSHOT</docspace.version>
     </properties>
 
     <dependencies>
@@ -185,101 +184,6 @@
                                 <configuration>
                                     <jar>${project.build.directory}/${installer.filename}.jar</jar>
                                     <outfile>${project.build.directory}/${installer.filename}.exe</outfile>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>docspace</id>
-            <properties>
-                <product.name>Jahia Wise</product.name>
-                <product.version>${docspace.version}</product.version>
-                <product.fullname>Jahia_Wise_v${product.version}</product.fullname>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <version>2.4</version>
-                        <executions>
-                            <execution>
-                                <id>unpack-docspace</id>
-                                <phase>process-resources</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>org.jahia.server</groupId>
-                                            <artifactId>jahia-docspace-package</artifactId>
-                                            <version>${docspace.version}</version>
-                                            <type>war</type>
-                                            <overWrite>false</overWrite>
-                                            <outputDirectory>${project.build.directory}/artifacts/docspace</outputDirectory>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                        <version>${antrun.plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>store-build-number</id>
-                                <phase>process-classes</phase>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                                <configuration>
-                                    <tasks>
-                                        <loadfile property="buildNumber-ce" srcFile="${project.build.directory}/marker/META-INF/jahia-impl-marker.txt" />
-                                        <echo message="installer.filename=Jahia_Wise_v${docspace.version}_r${buildNumber-ce}" file="${project.build.directory}/version.properties" />
-                                    </tasks>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-resources-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>copy-resources</id>
-                                <phase>process-resources</phase>
-                                <goals>
-                                    <goal>copy-resources</goal>
-                                </goals>
-                                <configuration>
-                                    <outputDirectory>${project.build.directory}/izpack</outputDirectory>
-                                    <overwrite>true</overwrite>
-                                    <resources>
-                                        <resource>
-                                            <directory>src/main/resources/izpack/docspace</directory>
-                                        </resource>
-                                    </resources>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>copy-images</id>
-                                <phase>process-resources</phase>
-                                <goals>
-                                    <goal>copy-resources</goal>
-                                </goals>
-                                <configuration>
-                                    <outputDirectory>${project.build.directory}/images</outputDirectory>
-                                    <overwrite>true</overwrite>
-                                    <resources>
-                                        <resource>
-                                            <directory>src/main/resources/images/docspace</directory>
-                                        </resource>
-                                    </resources>
                                 </configuration>
                             </execution>
                         </executions>
