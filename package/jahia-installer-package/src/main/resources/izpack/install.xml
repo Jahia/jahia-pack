@@ -33,7 +33,7 @@
         
         <variable name="TargetPanel.dir.mac" value="$APPLICATIONS_DEFAULT_ROOT/${product.fullname}"/>
         <variable name="TargetPanel.dir.macosx" value="$APPLICATIONS_DEFAULT_ROOT/${product.fullname}"/>
-        <variable name="TargetPanel.dir.unix" value="/usr/local/${product.fullname}"/>
+        <variable name="TargetPanel.dir.unix" value="$APPLICATIONS_DEFAULT_ROOT/${product.fullname}"/>
         <variable name="TargetPanel.dir.windows" value="C:\${product.fullname}"/>
 
         <variable name="afterInstall.startTomcat" value="true"/>
