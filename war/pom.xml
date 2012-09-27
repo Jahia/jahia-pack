@@ -321,13 +321,6 @@
             <type>zip</type>
             <scope>runtime</scope>
         </dependency>
-        <dependency>
-            <groupId>org.jahia.prepackagedsites</groupId>
-            <artifactId>webtemplates</artifactId>
-            <version>1.2</version>
-            <type>zip</type>
-            <scope>runtime</scope>
-        </dependency>
 
         <!-- JahiApps -->
         <dependency>
