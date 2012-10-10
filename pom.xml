@@ -44,7 +44,7 @@
     <artifactId>jahia-pack-root</artifactId>
     <name>Jahia Package Project Root</name>
     <groupId>org.jahia.server</groupId>
-    <version>6.6.1.0-SNAPSHOT</version>
+    <version>6.6.1.0</version>
     <packaging>pom</packaging>
     <inceptionYear>2004</inceptionYear>
     <!--
@@ -132,9 +132,9 @@
     </properties>
 
     <scm>
-        <connection>scm:svn:https://devtools.jahia.com/svn/jahia_pack/branches/JAHIA-6-6-X-X-BRANCH</connection>
-        <developerConnection>scm:svn:https://devtools.jahia.com/svn/jahia_pack/branches/JAHIA-6-6-X-X-BRANCH</developerConnection>
-        <url>https://devtools.jahia.com/svn/jahia_pack/branches/JAHIA-6-6-X-X-BRANCH</url>
+        <connection>scm:svn:https://devtools.jahia.com/svn/jahia_pack/tags/JAHIA_6_6_1_0</connection>
+        <developerConnection>scm:svn:https://devtools.jahia.com/svn/jahia_pack/tags/JAHIA_6_6_1_0</developerConnection>
+        <url>https://devtools.jahia.com/svn/jahia_pack/tags/JAHIA_6_6_1_0</url>
     </scm>
     <developers>
         <developer>
@@ -483,7 +483,7 @@
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore></ignore>
+                                        <ignore />
                                     </action>
                                 </pluginExecution>
                             </pluginExecutions>

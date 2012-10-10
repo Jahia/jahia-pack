@@ -42,7 +42,7 @@
     <parent>
         <groupId>org.jahia.server</groupId>
         <artifactId>jahia-pack-root</artifactId>
-        <version>6.6.1.0-SNAPSHOT</version>
+        <version>6.6.1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jahia-pack-war</artifactId>
@@ -74,14 +74,14 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>bookmarks</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>calendar</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
@@ -116,14 +116,14 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>formbuilder</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>googleAnalytics</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
@@ -137,7 +137,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>location</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
@@ -158,7 +158,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>poll</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
@@ -179,7 +179,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>rating</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
@@ -193,14 +193,14 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>sitemap</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>socialsharing</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
@@ -249,14 +249,14 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>userregistration</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>videostreaming</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
@@ -273,7 +273,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>ldap</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
@@ -282,42 +282,42 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>templates-intranet</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>templates-web</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>templates-web-blue</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>templates-web-space</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.prepackagedsites</groupId>
             <artifactId>acme</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>zip</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.prepackagedsites</groupId>
             <artifactId>acmespace</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>zip</type>
             <scope>runtime</scope>
         </dependency>
@@ -326,49 +326,49 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>blog</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>forum</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>newsletter</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>portal</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>social</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>myconnections</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>wiki</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
