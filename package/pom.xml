@@ -49,7 +49,7 @@
     <name>Jahia Install</name>
     <packaging>pom</packaging>
     <properties>
-        <jahia.tomcat.version>7.0.29</jahia.tomcat.version>
+        <jahia.tomcat.version>7.0.32</jahia.tomcat.version>
     </properties>
     <profiles>
         <profile>
