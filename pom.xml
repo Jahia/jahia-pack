@@ -73,9 +73,9 @@
         <jahia-ce.package.version>${project.version}</jahia-ce.package.version>
         <jahia.project.structure.version>2</jahia.project.structure.version>
 
-        <jahia.archivers.version>2.8</jahia.archivers.version>
-        <jahia.configurators.version>2.52.3</jahia.configurators.version>
-        <jahia.deployers.version>2.5</jahia.deployers.version>
+        <jahia.archivers.version>2.10.1-SNAPSHOT</jahia.archivers.version>
+        <jahia.configurators.version>2.53.1-SNAPSHOT</jahia.configurators.version>
+        <jahia.deployers.version>2.7.1-SNAPSHOT</jahia.deployers.version>
 
         <pluto.version>2.0.2</pluto.version>
         <ant.version>1.8.2</ant.version>
@@ -111,7 +111,7 @@
 
 
         <!-- Jahia Maven plugin version and default settings -->
-        <jahia.plugin.version>2.81</jahia.plugin.version>
+        <jahia.plugin.version>3.0.1-SNAPSHOT</jahia.plugin.version>
         <!-- common settings -->
         <jahia.configure.useDataStore>true</jahia.configure.useDataStore>
         <jahia.configure.storeFilesInDB>false</jahia.configure.storeFilesInDB>
@@ -452,43 +452,12 @@
                 </plugin>
                 <plugin>
                     <groupId>org.jahia.server</groupId>
-                    <artifactId>maven-jahia-plugin</artifactId>
+                    <artifactId>jahia-maven-plugin</artifactId>
                     <version>${jahia.plugin.version}</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>2.5</version>
-                </plugin>
-                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
-                <plugin>
-                    <groupId>org.eclipse.m2e</groupId>
-                    <artifactId>lifecycle-mapping</artifactId>
-                    <version>1.0.0</version>
-                    <configuration>
-                        <lifecycleMappingMetadata>
-                            <pluginExecutions>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>
-                                            org.jahia.server
-                                        </groupId>
-                                        <artifactId>
-                                            maven-jahia-plugin
-                                        </artifactId>
-                                        <versionRange>
-                                            [2.61,)
-                                        </versionRange>
-                                        <goals>
-                                            <goal>copy-templates</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <ignore />
-                                    </action>
-                                </pluginExecution>
-                            </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
