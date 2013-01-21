@@ -83,14 +83,6 @@
           <artifactId>portals-bridges-common</artifactId>
           <version>1.0.4</version>
       </dependency>
-      
-      <!-- Jahia Tomcat lifecycle listener -->
-      <dependency>
-          <groupId>org.jahia.configuration</groupId>
-          <artifactId>jahia-server-utils</artifactId>
-          <version>2.1-SNAPSHOT</version>
-      </dependency>
-
   </dependencies>
   <build>
       <plugins>
