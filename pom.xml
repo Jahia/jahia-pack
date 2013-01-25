@@ -101,10 +101,10 @@
         <jar.plugin.version>2.3.1</jar.plugin.version>
         <surefire.plugin.version>2.7.2</surefire.plugin.version>
 
-        <jahia.plugin.version>3.1-SNAPSHOT</jahia.plugin.version>
-        <jahia.archivers.version>2.11-SNAPSHOT</jahia.archivers.version>
-        <jahia.configurators.version>2.54-SNAPSHOT</jahia.configurators.version>
-        <jahia.deployers.version>2.8-SNAPSHOT</jahia.deployers.version>
+        <jahia.plugin.version>4.0-SNAPSHOT</jahia.plugin.version>
+        <jahia.archivers.version>4.0-SNAPSHOT</jahia.archivers.version>
+        <jahia.configurators.version>4.0-SNAPSHOT</jahia.configurators.version>
+        <jahia.deployers.version>4.0-SNAPSHOT</jahia.deployers.version>
     </properties>
 
     <scm>
