@@ -353,10 +353,6 @@
                     <version>${assembly.plugin.version}</version>
                 </plugin>
                 <plugin>
-                    <artifactId>maven-site-plugin</artifactId>
-                    <version>${site.plugin.version}</version>
-                </plugin>
-                <plugin>
                     <artifactId>maven-war-plugin</artifactId>
                     <version>${war.plugin.version}</version>
                 </plugin>
