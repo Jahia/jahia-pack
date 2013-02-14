@@ -82,8 +82,7 @@
         <jahia.manifest.vendor.url>http://www.jahia.com</jahia.manifest.vendor.url>
         <jahia.manifest.vendor.email>info@jahia.com</jahia.manifest.vendor.email>
 
-        <maven3.site.plugin.version>3.0</maven3.site.plugin.version>
-        <site.plugin.version>2.2</site.plugin.version>
+        <site.plugin.version>3.0</site.plugin.version>
 
         <license.plugin.version>1.8.0</license.plugin.version>
         <javadoc.plugin.version>2.7</javadoc.plugin.version>
@@ -399,7 +398,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>${maven3.site.plugin.version}</version>
+                    <version>${site.plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
