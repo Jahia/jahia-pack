@@ -256,7 +256,6 @@
             <groupId>org.jahia.modules</groupId>
             <artifactId>ldap</artifactId>
             <version>2.0.0-SNAPSHOT</version>
-            <type>war</type>
             <scope>runtime</scope>
         </dependency>
 
@@ -305,28 +304,24 @@
             <groupId>org.jahia.modules</groupId>
             <artifactId>blog</artifactId>
             <version>2.0.0-SNAPSHOT</version>
-            <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>forum</artifactId>
             <version>2.0.0-SNAPSHOT</version>
-            <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>newsletter</artifactId>
             <version>2.0.0-SNAPSHOT</version>
-            <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>portal</artifactId>
             <version>2.0.0-SNAPSHOT</version>
-            <type>war</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -351,7 +346,6 @@
             <groupId>org.jahia.modules</groupId>
             <artifactId>wiki</artifactId>
             <version>2.0.0-SNAPSHOT</version>
-            <type>war</type>
             <scope>runtime</scope>
         </dependency>
     </dependencies>
