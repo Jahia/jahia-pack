@@ -7,7 +7,7 @@
  
     For more information, please visit http://www.jahia.com.
  
-    Copyright (C) 2002-2012 Jahia Solutions Group SA. All rights reserved.
+    Copyright (C) 2002-2013 Jahia Solutions Group SA. All rights reserved.
  
     This program is free software; you can redistribute it and/or
     modify it under the terms of the GNU General Public License
@@ -72,7 +72,7 @@
         <pluto.version>2.0.2</pluto.version>
         <ant.version>1.8.2</ant.version>
 
-        <driver.derby.version>10.10.1.1</driver.derby.version>
+        <driver.derby.version>10.9.1.0</driver.derby.version>
         <driver.mysql.version>5.1.24</driver.mysql.version>
         <driver.postgresql.version>9.2-1002.jdbc4</driver.postgresql.version>
 
