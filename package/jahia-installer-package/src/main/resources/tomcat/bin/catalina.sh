@@ -96,7 +96,7 @@
 #
 # $Id: catalina.sh 1449412 2013-02-23 21:31:48Z kkolinko $
 # -----------------------------------------------------------------------------
-CATALINA_OPTS="$CATALINA_OPTS -server -Djava.awt.headless=true -Dhibernate.jdbc.use_streams_for_binary=true -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -Djava.net.preferIPv4Stack=true %{catalina.options}"
+CATALINA_OPTS="$CATALINA_OPTS -server -Xms1024m -Xmx1024m -XX:MaxPermSize=256m -Djava.awt.headless=true -Dhibernate.jdbc.use_streams_for_binary=true -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -Djava.net.preferIPv4Stack=true"
 export CATALINA_OPTS
 
 # OS specific support.  $var _must_ be set to either true or false.
