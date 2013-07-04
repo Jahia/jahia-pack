@@ -288,7 +288,11 @@
         <dependency>
             <groupId>org.jahia.prepackagedsites</groupId>
             <artifactId>acmespace</artifactId>
+<<<<<<< .working
             <version>2.0.0-SNAPSHOT</version>
+=======
+            <version>1.4-SNAPSHOT</version>
+>>>>>>> .merge-right.r679
             <type>zip</type>
             <scope>runtime</scope>
         </dependency>
