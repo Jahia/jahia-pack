@@ -94,7 +94,7 @@
 #                   Example (all one line)
 #                   LOGGING_MANAGER="-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager"
 #
-# $Id: catalina.sh 1449412 2013-02-23 21:31:48Z kkolinko $
+# $Id: catalina.sh 1498485 2013-07-01 14:37:43Z markt $
 # -----------------------------------------------------------------------------
 CATALINA_OPTS="$CATALINA_OPTS -server -Xms1024m -Xmx1024m -XX:MaxPermSize=256m -Djava.awt.headless=true -Dhibernate.jdbc.use_streams_for_binary=true -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -Djava.net.preferIPv4Stack=true"
 export CATALINA_OPTS
@@ -475,6 +475,7 @@ elif [ "$1" = "stop" ] ; then
     fi
   fi
 
+  KILL_SLEEP_INTERVAL=5
   if [ $FORCE -eq 1 ]; then
     if [ -z "$CATALINA_PID" ]; then
       echo "Kill failed: \$CATALINA_PID not set"
@@ -483,9 +484,22 @@ elif [ "$1" = "stop" ] ; then
         PID=`cat "$CATALINA_PID"`
         echo "Killing Tomcat with the PID: $PID"
         kill -9 $PID
-        rm -f "$CATALINA_PID" >/dev/null 2>&1
-        if [ $? != 0 ]; then
-          echo "Tomcat was killed but the PID file could not be removed."
+        while [ $KILL_SLEEP_INTERVAL -ge 0 ]; do
+            kill -0 `cat "$CATALINA_PID"` >/dev/null 2>&1
+            if [ $? -gt 0 ]; then
+                rm -f "$CATALINA_PID" >/dev/null 2>&1
+                if [ $? != 0 ]; then
+                    echo "Tomcat was killed but the PID file could not be removed."
+                fi
+                break
+            fi
+            if [ $KILL_SLEEP_INTERVAL -gt 0 ]; then
+                sleep 1
+            fi
+            KILL_SLEEP_INTERVAL=`expr $KILL_SLEEP_INTERVAL - 1 `
+        done
+        if [ $KILL_SLEEP_INTERVAL -gt 0 ]; then
+            echo "Tomcat has not been killed completely yet. The process might be waiting on some system call or might be UNINTERRUPTIBLE."
         fi
       fi
     fi
