@@ -90,7 +90,7 @@
             <version>${driver.mysql.version}</version>
         </dependency>
         <dependency>
-            <groupId>postgresql</groupId>
+            <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${driver.postgresql.version}</version>
         </dependency>
