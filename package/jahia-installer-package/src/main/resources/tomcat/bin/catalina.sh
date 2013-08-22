@@ -81,7 +81,7 @@
 #                   Example (all one line)
 #                   LOGGING_MANAGER="-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager"
 #
-# $Id: catalina.sh 1146097 2011-07-13 15:25:05Z markt $
+# $Id: catalina.sh 1476739 2013-04-28 09:13:33Z jfclere $
 # -----------------------------------------------------------------------------
 CATALINA_OPTS="$CATALINA_OPTS -Xms1024m -Xmx1024m -Djava.awt.headless=true -XX:MaxPermSize=256m -server -Dhibernate.jdbc.use_streams_for_binary=true -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -Djava.net.preferIPv4Stack=true"
 export CATALINA_OPTS
@@ -224,9 +224,7 @@ if [ -z "$LOGGING_CONFIG" ]; then
 fi
 
 if [ -z "$LOGGING_MANAGER" ]; then
-  JAVA_OPTS="$JAVA_OPTS -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager"
-else
-  JAVA_OPTS="$JAVA_OPTS $LOGGING_MANAGER"
+  LOGGING_MANAGER="-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager"
 fi
 
 # ----- Execute The Requested Command -----------------------------------------
@@ -275,7 +273,7 @@ if [ "$1" = "debug" ] ; then
         echo "Using Security Manager"
       fi
       shift
-      exec "$_RUNJDB" "$LOGGING_CONFIG" $JAVA_OPTS $CATALINA_OPTS \
+      exec "$_RUNJDB" "$LOGGING_CONFIG" $LOGGING_MANAGER $JAVA_OPTS $CATALINA_OPTS \
         -Djava.endorsed.dirs="$JAVA_ENDORSED_DIRS" -classpath "$CLASSPATH" \
         -sourcepath "$CATALINA_HOME"/../../java \
         -Djava.security.manager \
@@ -285,7 +283,7 @@ if [ "$1" = "debug" ] ; then
         -Djava.io.tmpdir="$CATALINA_TMPDIR" \
         org.apache.catalina.startup.Bootstrap "$@" start
     else
-      exec "$_RUNJDB" "$LOGGING_CONFIG" $JAVA_OPTS $CATALINA_OPTS \
+      exec "$_RUNJDB" "$LOGGING_CONFIG" $LOGGING_MANAGER $JAVA_OPTS $CATALINA_OPTS \
         -Djava.endorsed.dirs="$JAVA_ENDORSED_DIRS" -classpath "$CLASSPATH" \
         -sourcepath "$CATALINA_HOME"/../../java \
         -Dcatalina.base="$CATALINA_BASE" \
@@ -303,7 +301,7 @@ elif [ "$1" = "run" ]; then
       echo "Using Security Manager"
     fi
     shift
-    exec "$_RUNJAVA" "$LOGGING_CONFIG" $JAVA_OPTS $CATALINA_OPTS \
+    exec "$_RUNJAVA" "$LOGGING_CONFIG" $LOGGING_MANAGER $JAVA_OPTS $CATALINA_OPTS \
       -Djava.endorsed.dirs="$JAVA_ENDORSED_DIRS" -classpath "$CLASSPATH" \
       -Djava.security.manager \
       -Djava.security.policy=="$CATALINA_BASE"/conf/catalina.policy \
@@ -312,7 +310,7 @@ elif [ "$1" = "run" ]; then
       -Djava.io.tmpdir="$CATALINA_TMPDIR" \
       org.apache.catalina.startup.Bootstrap "$@" start
   else
-    exec "$_RUNJAVA" "$LOGGING_CONFIG" $JAVA_OPTS $CATALINA_OPTS \
+    exec "$_RUNJAVA" "$LOGGING_CONFIG" $LOGGING_MANAGER $JAVA_OPTS $CATALINA_OPTS \
       -Djava.endorsed.dirs="$JAVA_ENDORSED_DIRS" -classpath "$CLASSPATH" \
       -Dcatalina.base="$CATALINA_BASE" \
       -Dcatalina.home="$CATALINA_HOME" \
@@ -367,7 +365,7 @@ elif [ "$1" = "start" ] ; then
       echo "Using Security Manager"
     fi
     shift
-    "$_RUNJAVA" "$LOGGING_CONFIG" $JAVA_OPTS $CATALINA_OPTS \
+    "$_RUNJAVA" "$LOGGING_CONFIG" $LOGGING_MANAGER $JAVA_OPTS $CATALINA_OPTS \
       -Djava.endorsed.dirs="$JAVA_ENDORSED_DIRS" -classpath "$CLASSPATH" \
       -Djava.security.manager \
       -Djava.security.policy=="$CATALINA_BASE"/conf/catalina.policy \
@@ -378,7 +376,7 @@ elif [ "$1" = "start" ] ; then
       >> "$CATALINA_OUT" 2>&1 &
 
   else
-    "$_RUNJAVA" "$LOGGING_CONFIG" $JAVA_OPTS $CATALINA_OPTS \
+    "$_RUNJAVA" "$LOGGING_CONFIG" $LOGGING_MANAGER $JAVA_OPTS $CATALINA_OPTS \
       -Djava.endorsed.dirs="$JAVA_ENDORSED_DIRS" -classpath "$CLASSPATH" \
       -Dcatalina.base="$CATALINA_BASE" \
       -Dcatalina.home="$CATALINA_HOME" \
@@ -428,7 +426,7 @@ elif [ "$1" = "stop" ] ; then
     fi
   fi
   
-  "$_RUNJAVA" $JAVA_OPTS \
+  "$_RUNJAVA" $LOGGING_MANAGER $JAVA_OPTS \
     -Djava.endorsed.dirs="$JAVA_ENDORSED_DIRS" -classpath "$CLASSPATH" \
     -Dcatalina.base="$CATALINA_BASE" \
     -Dcatalina.home="$CATALINA_HOME" \
