@@ -94,7 +94,11 @@
 #                   Example (all one line)
 #                   LOGGING_MANAGER="-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager"
 #
+<<<<<<< .working
 # $Id: catalina.sh 1498485 2013-07-01 14:37:43Z markt $
+=======
+# $Id: catalina.sh 1476739 2013-04-28 09:13:33Z jfclere $
+>>>>>>> .merge-right.r724
 # -----------------------------------------------------------------------------
 CATALINA_OPTS="$CATALINA_OPTS -server -Xms1024m -Xmx1024m -XX:MaxPermSize=256m -Djava.awt.headless=true -Dhibernate.jdbc.use_streams_for_binary=true -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -Djava.net.preferIPv4Stack=true"
 export CATALINA_OPTS
@@ -315,8 +319,13 @@ elif [ "$1" = "run" ]; then
       echo "Using Security Manager"
     fi
     shift
+<<<<<<< .working
     eval exec \"$_RUNJAVA\" \"$LOGGING_CONFIG\" $LOGGING_MANAGER $JAVA_OPTS $CATALINA_OPTS \
       -Djava.endorsed.dirs=\"$JAVA_ENDORSED_DIRS\" -classpath \"$CLASSPATH\" \
+=======
+    exec "$_RUNJAVA" "$LOGGING_CONFIG" $LOGGING_MANAGER $JAVA_OPTS $CATALINA_OPTS \
+      -Djava.endorsed.dirs="$JAVA_ENDORSED_DIRS" -classpath "$CLASSPATH" \
+>>>>>>> .merge-right.r724
       -Djava.security.manager \
       -Djava.security.policy==\"$CATALINA_BASE/conf/catalina.policy\" \
       -Dcatalina.base=\"$CATALINA_BASE\" \
@@ -324,11 +333,19 @@ elif [ "$1" = "run" ]; then
       -Djava.io.tmpdir=\"$CATALINA_TMPDIR\" \
       org.apache.catalina.startup.Bootstrap "$@" start
   else
+<<<<<<< .working
     eval exec \"$_RUNJAVA\" \"$LOGGING_CONFIG\" $LOGGING_MANAGER $JAVA_OPTS $CATALINA_OPTS \
       -Djava.endorsed.dirs=\"$JAVA_ENDORSED_DIRS\" -classpath \"$CLASSPATH\" \
       -Dcatalina.base=\"$CATALINA_BASE\" \
       -Dcatalina.home=\"$CATALINA_HOME\" \
       -Djava.io.tmpdir=\"$CATALINA_TMPDIR\" \
+=======
+    exec "$_RUNJAVA" "$LOGGING_CONFIG" $LOGGING_MANAGER $JAVA_OPTS $CATALINA_OPTS \
+      -Djava.endorsed.dirs="$JAVA_ENDORSED_DIRS" -classpath "$CLASSPATH" \
+      -Dcatalina.base="$CATALINA_BASE" \
+      -Dcatalina.home="$CATALINA_HOME" \
+      -Djava.io.tmpdir="$CATALINA_TMPDIR" \
+>>>>>>> .merge-right.r724
       org.apache.catalina.startup.Bootstrap "$@" start
   fi
 
@@ -379,8 +396,13 @@ elif [ "$1" = "start" ] ; then
       echo "Using Security Manager"
     fi
     shift
+<<<<<<< .working
     eval \"$_RUNJAVA\" \"$LOGGING_CONFIG\" $LOGGING_MANAGER $JAVA_OPTS $CATALINA_OPTS \
       -Djava.endorsed.dirs=\"$JAVA_ENDORSED_DIRS\" -classpath \"$CLASSPATH\" \
+=======
+    "$_RUNJAVA" "$LOGGING_CONFIG" $LOGGING_MANAGER $JAVA_OPTS $CATALINA_OPTS \
+      -Djava.endorsed.dirs="$JAVA_ENDORSED_DIRS" -classpath "$CLASSPATH" \
+>>>>>>> .merge-right.r724
       -Djava.security.manager \
       -Djava.security.policy==\"$CATALINA_BASE/conf/catalina.policy\" \
       -Dcatalina.base=\"$CATALINA_BASE\" \
@@ -390,11 +412,19 @@ elif [ "$1" = "start" ] ; then
       >> "$CATALINA_OUT" 2>&1 "&"
 
   else
+<<<<<<< .working
     eval \"$_RUNJAVA\" \"$LOGGING_CONFIG\" $LOGGING_MANAGER $JAVA_OPTS $CATALINA_OPTS \
       -Djava.endorsed.dirs=\"$JAVA_ENDORSED_DIRS\" -classpath \"$CLASSPATH\" \
       -Dcatalina.base=\"$CATALINA_BASE\" \
       -Dcatalina.home=\"$CATALINA_HOME\" \
       -Djava.io.tmpdir=\"$CATALINA_TMPDIR\" \
+=======
+    "$_RUNJAVA" "$LOGGING_CONFIG" $LOGGING_MANAGER $JAVA_OPTS $CATALINA_OPTS \
+      -Djava.endorsed.dirs="$JAVA_ENDORSED_DIRS" -classpath "$CLASSPATH" \
+      -Dcatalina.base="$CATALINA_BASE" \
+      -Dcatalina.home="$CATALINA_HOME" \
+      -Djava.io.tmpdir="$CATALINA_TMPDIR" \
+>>>>>>> .merge-right.r724
       org.apache.catalina.startup.Bootstrap "$@" start \
       >> "$CATALINA_OUT" 2>&1 "&"
 
@@ -439,12 +469,21 @@ elif [ "$1" = "stop" ] ; then
       exit 1
     fi
   fi
+<<<<<<< .working
 
   eval \"$_RUNJAVA\" $LOGGING_MANAGER $JAVA_OPTS \
     -Djava.endorsed.dirs=\"$JAVA_ENDORSED_DIRS\" -classpath \"$CLASSPATH\" \
     -Dcatalina.base=\"$CATALINA_BASE\" \
     -Dcatalina.home=\"$CATALINA_HOME\" \
     -Djava.io.tmpdir=\"$CATALINA_TMPDIR\" \
+=======
+  
+  "$_RUNJAVA" $LOGGING_MANAGER $JAVA_OPTS \
+    -Djava.endorsed.dirs="$JAVA_ENDORSED_DIRS" -classpath "$CLASSPATH" \
+    -Dcatalina.base="$CATALINA_BASE" \
+    -Dcatalina.home="$CATALINA_HOME" \
+    -Djava.io.tmpdir="$CATALINA_TMPDIR" \
+>>>>>>> .merge-right.r724
     org.apache.catalina.startup.Bootstrap "$@" stop
 
   if [ ! -z "$CATALINA_PID" ]; then
