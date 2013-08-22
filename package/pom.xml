@@ -49,11 +49,7 @@
     <name>Jahia Install</name>
     <packaging>pom</packaging>
     <properties>
-<<<<<<< .working
         <jahia.tomcat.version>7.0.42</jahia.tomcat.version>
-=======
-        <jahia.tomcat.version>6.0.37</jahia.tomcat.version>
->>>>>>> .merge-right.r724
     </properties>
     <profiles>
         <profile>
