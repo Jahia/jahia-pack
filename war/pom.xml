@@ -317,7 +317,7 @@
         <dependency>
             <groupId>org.jahia.prepackagedsites</groupId>
             <artifactId>acmespace</artifactId>
-            <version>1.4</version>
+            <version>1.5-SNAPSHOT</version>
             <type>zip</type>
             <scope>runtime</scope>
         </dependency>
