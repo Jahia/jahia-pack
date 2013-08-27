@@ -10,9 +10,7 @@
             <fileset dir="../links" targetdir="$INSTALL_PATH/docs" override="true" condition="!cnd.pack.tomcat">
                 <include name="HowToInstall.URL"/>
             </fileset>
-            <fileset dir="../artifacts/jahia-war" targetdir="${jahia.war.target.path}" override="true">
-                <exclude name="WEB-INF/lib/juel-api-*.jar"/>
-            </fileset>
+            <fileset dir="../artifacts/jahia-war" targetdir="${jahia.war.target.path}" override="true"/>
             <fileset dir="../artifacts/jahia-pack-war" targetdir="${jahia.war.target.path}" override="true"/>
             <fileset dir="../images" targetdir="$INSTALL_PATH/icons" override="true">
                 <include name="jahia.ico"/>
