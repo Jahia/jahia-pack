@@ -114,7 +114,12 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>formbuilder</artifactId>
+<<<<<<< .working
             <version>2.0.0-SNAPSHOT</version>
+=======
+            <version>1.7</version>
+            <type>war</type>
+>>>>>>> .merge-right.r740
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -138,7 +143,12 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>news</artifactId>
+<<<<<<< .working
             <version>2.0.0-SNAPSHOT</version>
+=======
+            <version>1.4</version>
+            <type>war</type>
+>>>>>>> .merge-right.r740
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -186,7 +196,12 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>socialsharing</artifactId>
+<<<<<<< .working
             <version>2.0.0-SNAPSHOT</version>
+=======
+            <version>1.4</version>
+            <type>war</type>
+>>>>>>> .merge-right.r740
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -306,7 +321,11 @@
         <dependency>
             <groupId>org.jahia.prepackagedsites</groupId>
             <artifactId>acmespace</artifactId>
+<<<<<<< .working
             <version>2.0.0-SNAPSHOT</version>
+=======
+            <version>1.5</version>
+>>>>>>> .merge-right.r740
             <type>zip</type>
             <scope>runtime</scope>
         </dependency>
@@ -357,7 +376,12 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>wiki</artifactId>
+<<<<<<< .working
             <version>2.0.0-SNAPSHOT</version>
+=======
+            <version>1.6</version>
+            <type>war</type>
+>>>>>>> .merge-right.r740
             <scope>runtime</scope>
         </dependency>
     </dependencies>
