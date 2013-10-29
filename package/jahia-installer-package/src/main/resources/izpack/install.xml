@@ -321,6 +321,7 @@
             </fileset>
             <fileset dir="../artifacts/apache-tomcat-${jahia.tomcat.version}" targetdir="$INSTALL_PATH/tomcat" override="true" />
             <file override="true" src="../artifacts/shared-libraries-all.zip" targetdir="$INSTALL_PATH/tomcat/lib" unpack="true"/>
+            <file override="true" src="../artifacts/jdbc-drivers-all.zip" targetdir="$INSTALL_PATH/tomcat/lib" unpack="true"/>
             <fileset dir="../tomcat" targetdir="$INSTALL_PATH/tomcat" override="true" />
             <fileset dir="../scripts" targetdir="$INSTALL_PATH" override="true" condition="izpack.windowsinstall">
                 <include name="st*.bat"/>

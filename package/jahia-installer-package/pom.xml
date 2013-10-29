@@ -290,6 +290,15 @@
                                     <outputDirectory>${project.build.directory}/artifacts</outputDirectory>
                                 </artifactItem>
                                 <artifactItem>
+                                    <groupId>org.jahia.server</groupId>
+                                    <artifactId>jdbc-drivers</artifactId>
+                                    <version>${project.version}</version>
+                                    <classifier>all</classifier>
+                                    <type>zip</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/artifacts</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
                                     <groupId>org.apache.ant</groupId>
                                     <artifactId>ant</artifactId>
                                     <version>${ant.version}</version>

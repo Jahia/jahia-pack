@@ -61,6 +61,7 @@
     </profiles>
 
     <modules>
+        <module>jdbc-drivers</module>
         <module>shared-libraries</module>
     </modules>
 </project>
