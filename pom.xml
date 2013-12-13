@@ -104,6 +104,7 @@
         <jahia.archivers.version>4.0-SNAPSHOT</jahia.archivers.version>
         <jahia.configurators.version>4.0-SNAPSHOT</jahia.configurators.version>
         <jahia.deployers.version>4.0-SNAPSHOT</jahia.deployers.version>
+        <nexus.maven.plugin.version>1.5.1</nexus.maven.plugin.version>
     </properties>
 
     <scm>
@@ -503,7 +504,18 @@
                     <releaseProfiles>installer,windows-installer</releaseProfiles>
                 </configuration>
             </plugin>
-
+			
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>${nexus.maven.plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <nexusUrl>https://devtools.jahia.com/nexus/</nexusUrl>
+                    <serverId>staging-repo</serverId>
+                    <stagingProfileId>64277f72646358</stagingProfileId>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <reporting>
