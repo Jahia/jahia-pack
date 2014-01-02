@@ -14,23 +14,11 @@
 		<condition property="cnd.no.tomcat">
 			<equals arg1="${use.bundled.tomcat}" arg2="false"/>
 		</condition>
-		<antcall target="jahia-package"/>
 		<antcall target="cleanup"/>
 	</target>
 
-	<target name="jahia-package" if="cnd.no.tomcat">
-		<echo>Tomcat bundle is not selected. Packaging Jahia into a WAR file...</echo>
-		<java jar="${install.path}/tools/archivers.jar" fork="true" failonerror="true" maxmemory="512m">
-			<arg value="-cm"/>
-			<arg value="${install.path}/build"/>
-			<arg value="${install.path}/${jahia.war.target.dir.name}.war"/>
-			<arg value="${server.type}"/>
-		</java>
-		<echo>...packaging done.</echo>
-	</target>
-
 	<target name="cleanup">
-        <delete file="${install.path}/tools/archivers.jar" />
+		<delete dir="${install.path}/tools" />
 		<propertyfile file="${install.path}/logs/install.properties">
 			<entry key="databasePassword" value="***"/>
 			<entry key="jahiaRootPassword" value="***"/>

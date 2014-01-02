@@ -55,8 +55,7 @@
         <variable name="jahia.war.contextPath" value="/${jahia.war.contextName}" condition="cnd.installation.type.advanced+!cnd.contextPath.root"/>
         <variable name="jahia.war.target.dir.name" value="ROOT" condition="cnd.contextPath.root"/>
         <variable name="jahia.war.target.dir.name" value="${jahia.war.contextName}" condition="!cnd.contextPath.root"/>
-        <variable name="jahia.war.target.path" value="$INSTALL_PATH/tomcat/webapps/${jahia.war.target.dir.name}" condition="cnd.pack.tomcat"/>
-        <variable name="jahia.war.target.path" value="$INSTALL_PATH/build" condition="!cnd.pack.tomcat"/>
+        <variable name="jahia.war.target.path" value="$INSTALL_PATH/tomcat/webapps/${jahia.war.target.dir.name}"/>
         <variable name="jahia.tomcat.pack.selected" value="true" condition="cnd.pack.tomcat"/>
         <variable name="jahia.tomcat.pack.selected" value="false" condition="!cnd.pack.tomcat"/>
         
@@ -74,12 +73,12 @@
         <variable name="jahiaManager.password" value="password" condition="cnd.installation.type.express"/>
         
         <!-- embedded Derby defaults -->
-        <variable name="dbSettings.dbms.type" value="derby_embedded" condition="cnd.installation.type.express|cnd.db.dbms.derby_embedded"/>
-        <variable name="dbSettings.dbms.createTables" value="true" condition="cnd.installation.type.express|cnd.db.dbms.derby_embedded"/>
-        <variable name="dbSettings.connection.driver" value="org.apache.derby.jdbc.EmbeddedDriver" condition="cnd.installation.type.express|cnd.db.dbms.derby_embedded"/>
-        <variable name="dbSettings.connection.url" value="jdbc:derby:directory:jahia;create=true" condition="cnd.installation.type.express|cnd.db.dbms.derby_embedded"/>
-        <variable name="dbSettings.connection.username" value="" condition="cnd.installation.type.express|cnd.db.dbms.derby_embedded"/>
-        <variable name="dbSettings.connection.password" value="" condition="cnd.installation.type.express|cnd.db.dbms.derby_embedded"/>
+        <variable name="dbSettings.dbms.type" value="derby_embedded" condition="cnd.installation.type.express|cnd.db.mode.embedded"/>
+        <variable name="dbSettings.dbms.createTables" value="true" condition="cnd.db.dbms.derby_embedded"/>
+        <variable name="dbSettings.connection.driver" value="org.apache.derby.jdbc.EmbeddedDriver" condition="cnd.db.dbms.derby_embedded"/>
+        <variable name="dbSettings.connection.url" value="jdbc:derby:directory:jahia;create=true" condition="cnd.db.dbms.derby_embedded"/>
+        <variable name="dbSettings.connection.username" value="" condition="cnd.db.dbms.derby_embedded"/>
+        <variable name="dbSettings.connection.password" value="" condition="cnd.db.dbms.derby_embedded"/>
         
         <variable name="superUser.firstname" value="" condition="cnd.installation.type.express"/>
         <variable name="superUser.lastname" value="" condition="cnd.installation.type.express"/>
@@ -97,7 +96,7 @@
 
 		<!-- Use data store by default -->
         <!-- Store binary data on filesystem by default -->
-        <variable name="dbSettings.dbms.storeFilesInDB" value="false" condition="cnd.installation.type.express|cnd.db.dbms.derby_embedded"/>
+        <variable name="dbSettings.dbms.storeFilesInDB" value="false" condition="cnd.db.dbms.derby_embedded"/>
 		
         <!-- mail settings -->
         <variable name="mailSettings.administrator" value="" condition="cnd.installation.type.express"/>
@@ -138,9 +137,13 @@
             <name>dbSettings.mode</name>
             <value>standalone</value>
         </condition>
-        <condition type="variable" id="cnd.db.dbms.derby_embedded">
+        <condition type="variable" id="cnd.db.mode.embedded">
             <name>dbSettings.mode</name>
             <value>embedded</value>
+        </condition>
+        <condition type="variable" id="cnd.db.dbms.derby_embedded">
+            <name>dbSettings.dbms.type</name>
+            <value>derby_embedded</value>
         </condition>
         <condition type="variable" id="cnd.db.dbms.mysql">
             <name>dbSettings.dbms.type</name>
@@ -320,8 +323,6 @@
                 <include name="OpenJahia*"/>
             </fileset>
             <fileset dir="../artifacts/apache-tomcat-${jahia.tomcat.version}" targetdir="$INSTALL_PATH/tomcat" override="true" />
-            <file override="true" src="../artifacts/shared-libraries-all.zip" targetdir="$INSTALL_PATH/tomcat/lib" unpack="true"/>
-            <file override="true" src="../artifacts/jdbc-drivers-all.zip" targetdir="$INSTALL_PATH/tomcat/lib" unpack="true"/>
             <fileset dir="../tomcat" targetdir="$INSTALL_PATH/tomcat" override="true" />
             <fileset dir="../scripts" targetdir="$INSTALL_PATH" override="true" condition="izpack.windowsinstall">
                 <include name="st*.bat"/>

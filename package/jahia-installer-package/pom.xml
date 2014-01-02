@@ -61,13 +61,6 @@
     <dependencies>
         <dependency>
             <groupId>org.jahia.configuration</groupId>
-            <artifactId>archivers</artifactId>
-            <version>${jahia.archivers.version}</version>
-            <classifier>standalone</classifier>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jahia.configuration</groupId>
             <artifactId>configurators</artifactId>
             <version>${jahia.configurators.version}</version>
             <classifier>standalone</classifier>
@@ -252,6 +245,7 @@
                                     <type>war</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}/artifacts/jahia-war</outputDirectory>
+                                    <excludes>META-INF/maven/**</excludes>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.jahia.server</groupId>
@@ -259,7 +253,8 @@
                                     <version>${project.version}</version>
                                     <type>war</type>
                                     <overWrite>true</overWrite>
-                                    <outputDirectory>${project.build.directory}/artifacts/jahia-pack-war</outputDirectory>
+                                    <outputDirectory>${project.build.directory}/artifacts/jahia-war</outputDirectory>
+                                    <excludes>META-INF/**</excludes>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.jahia.server</groupId>
@@ -268,6 +263,27 @@
                                     <type>war</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}/artifacts/jahia-war</outputDirectory>
+                                    <excludes>META-INF/**</excludes>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.jahia.server</groupId>
+                                    <artifactId>jdbc-drivers</artifactId>
+                                    <version>${project.version}</version>
+                                    <classifier>all</classifier>
+                                    <type>zip</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/artifacts/jdbc-drivers</outputDirectory>
+                                    <excludes>META-INF/**</excludes>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.jahia.server</groupId>
+                                    <artifactId>shared-libraries</artifactId>
+                                    <version>${project.version}</version>
+                                    <classifier>all</classifier>
+                                    <type>zip</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/artifacts/shared-libraries</outputDirectory>
+                                    <excludes>META-INF/**</excludes>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
@@ -280,24 +296,6 @@
                         </goals>
                         <configuration>
                             <artifactItems>
-                                <artifactItem>
-                                    <groupId>org.jahia.server</groupId>
-                                    <artifactId>shared-libraries</artifactId>
-                                    <version>${project.version}</version>
-                                    <classifier>all</classifier>
-                                    <type>zip</type>
-                                    <overWrite>false</overWrite>
-                                    <outputDirectory>${project.build.directory}/artifacts</outputDirectory>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.jahia.server</groupId>
-                                    <artifactId>jdbc-drivers</artifactId>
-                                    <version>${project.version}</version>
-                                    <classifier>all</classifier>
-                                    <type>zip</type>
-                                    <overWrite>false</overWrite>
-                                    <outputDirectory>${project.build.directory}/artifacts</outputDirectory>
-                                </artifactItem>
                                 <artifactItem>
                                     <groupId>org.apache.ant</groupId>
                                     <artifactId>ant</artifactId>
@@ -444,7 +442,6 @@
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>2.5</version>
                 <configuration>
                     <encoding>ISO-8859-1</encoding>
                 </configuration>

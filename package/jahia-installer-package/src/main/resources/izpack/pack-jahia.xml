@@ -1,30 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xfragment>
-        <pack name="jahia" id="core" preselected="yes" required="yes">
-            <description/>
-            <fileset dir="../licenses" targetdir="$INSTALL_PATH/licenses" override="true" />
-            <fileset dir="../links" targetdir="$INSTALL_PATH/docs" override="true">
-                <exclude name="HowToInstall.URL"/>
-                <exclude name="OpenJahia*"/>
-            </fileset>
-            <fileset dir="../links" targetdir="$INSTALL_PATH/docs" override="true" condition="!cnd.pack.tomcat">
-                <include name="HowToInstall.URL"/>
-            </fileset>
-            <fileset dir="../artifacts/jahia-war" targetdir="${jahia.war.target.path}" override="true"/>
-            <fileset dir="../artifacts/jahia-pack-war" targetdir="${jahia.war.target.path}" override="true"/>
-            <fileset dir="../images" targetdir="$INSTALL_PATH/icons" override="true">
-                <include name="jahia.ico"/>
-                <include name="jahia.png"/>
-            </fileset>
-            <singlefile override="true" src="../scripts/openUrl.sh" target="$INSTALL_PATH/bin/openUrl.sh" os="unix"/>
-            <singlefile override="true" src="install.properties" target="$INSTALL_PATH/logs/install.properties"/>
-            <singlefile override="true" src="../dependency/configurators-standalone.jar" target="$INSTALL_PATH/tools/configurators.jar"/>
-            <singlefile override="true" src="../dependency/archivers-standalone.jar" target="$INSTALL_PATH/tools/archivers.jar"/>
-            <singlefile override="true" src="../artifacts/shared-libraries-all.zip" target="$INSTALL_PATH/shared-libraries.zip" condition="!cnd.pack.tomcat"/>
-            <singlefile override="true" src="../artifacts/jdbc-drivers-all.zip" target="$INSTALL_PATH/jdbc-drivers.zip" condition="!cnd.pack.tomcat"/>
-            <singlefile overrride="true" src="../docs/How-to-install-tomcat.html" target="$INSTALL_PATH/How-to-install.html" condition="!cnd.pack.tomcat"/>
-            <parsable targetfile="$INSTALL_PATH/logs/install.properties" type="javaprop"/>
-            <parsable targetfile="$INSTALL_PATH/docs/HowToInstall.URL" condition="!cnd.pack.tomcat"/>
-            <executable targetfile="$INSTALL_PATH/bin/openUrl.sh" os="unix"/>
-        </pack>
+    <pack name="jahia" id="core" preselected="yes" required="yes">
+        <description/>
+            
+        <!-- JDBC Drivers -->
+        <fileset dir="../artifacts/jdbc-drivers" targetdir="$INSTALL_PATH/tomcat/lib" condition="cnd.db.dbms.derby">
+            <include name="derbyclient-*.jar"/>
+        </fileset>
+        <fileset dir="../artifacts/jdbc-drivers" targetdir="$INSTALL_PATH/tomcat/lib" condition="cnd.db.dbms.derby_embedded">
+            <include name="derby-*.jar"/>
+        </fileset>
+        <fileset dir="../artifacts/jdbc-drivers" targetdir="$INSTALL_PATH/tomcat/lib" condition="cnd.db.dbms.mysql">
+            <include name="mysql-connector-java-*.jar"/>
+        </fileset>
+        <fileset dir="../artifacts/jdbc-drivers" targetdir="$INSTALL_PATH/tomcat/lib" condition="cnd.db.dbms.postgresql">
+            <include name="postgresql-*.jar"/>
+        </fileset>
+
+        <!-- Shared libraries -->
+        <fileset dir="../artifacts/shared-libraries" targetdir="$INSTALL_PATH/tomcat/lib"/>
+        
+        <!-- Jahia -->
+        <fileset dir="../licenses" targetdir="$INSTALL_PATH/licenses" override="true" />
+        <fileset dir="../links" targetdir="$INSTALL_PATH/docs" override="true">
+            <exclude name="HowToInstall.URL"/>
+            <exclude name="OpenJahia*"/>
+        </fileset>
+        <fileset dir="../links" targetdir="$INSTALL_PATH/docs" override="true" condition="!cnd.pack.tomcat">
+            <include name="HowToInstall.URL"/>
+        </fileset>
+        <fileset dir="../artifacts/jahia-war" targetdir="${jahia.war.target.path}" override="true"/>
+        <fileset dir="../images" targetdir="$INSTALL_PATH/icons" override="true">
+            <include name="jahia.ico"/>
+            <include name="jahia.png"/>
+        </fileset>
+        <singlefile override="true" src="../scripts/openUrl.sh" target="$INSTALL_PATH/bin/openUrl.sh" os="unix"/>
+        <singlefile override="true" src="install.properties" target="$INSTALL_PATH/logs/install.properties"/>
+        <singlefile override="true" src="../dependency/configurators-standalone.jar" target="$INSTALL_PATH/tools/configurators.jar"/>
+        <singlefile overrride="true" src="../docs/How-to-install-tomcat.html" target="$INSTALL_PATH/How-to-install.html" condition="!cnd.pack.tomcat"/>
+        <parsable targetfile="$INSTALL_PATH/logs/install.properties" type="javaprop"/>
+        <parsable targetfile="$INSTALL_PATH/docs/HowToInstall.URL" condition="!cnd.pack.tomcat"/>
+        <executable targetfile="$INSTALL_PATH/bin/openUrl.sh" os="unix"/>
+    </pack>
 </xfragment>
