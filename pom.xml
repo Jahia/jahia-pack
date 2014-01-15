@@ -339,6 +339,20 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>release-to-staging-repository</id>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>${nexus.maven.plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <nexusUrl>https://devtools.jahia.com/nexus/</nexusUrl>
+                    <serverId>staging-repository</serverId>
+                    <stagingProfileId>64277f72646358</stagingProfileId>
+                </configuration>
+            </plugin>
+        </profile>
     </profiles>
 
     <modules>
@@ -515,18 +529,6 @@
                     <goals>deploy</goals>
                     <preparationGoals>clean install</preparationGoals>
                     <releaseProfiles>installer,windows-installer</releaseProfiles>
-                </configuration>
-            </plugin>
-			
-            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>${nexus.maven.plugin.version}</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <nexusUrl>https://devtools.jahia.com/nexus/</nexusUrl>
-                    <serverId>staging-repo</serverId>
-                    <stagingProfileId>64277f72646358</stagingProfileId>
                 </configuration>
             </plugin>
         </plugins>
