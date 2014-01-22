@@ -341,17 +341,17 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <tasks>
+                            <target>
                                 <loadfile property="buildNumber-ce" srcFile="${project.build.directory}/marker/META-INF/jahia-impl-marker.txt" />
                                 <echo message="installer.filename=${product.fullname}_r${buildNumber-ce}" file="${project.build.directory}/version.properties" />
-                            </tasks>
+                            </target>
                         </configuration>
                     </execution>
                     <execution>
                         <id>i18n-resources</id>
                         <phase>compile</phase>
                         <configuration>
-                            <tasks>
+                            <target>
                                 <java classname="org.jahia.izpack.ResourcesConverter">
                                     <arg value="izpack.i18n.packsLang" />
                                     <!--
@@ -385,7 +385,7 @@
                                         <path refid="maven.dependency.classpath" />
                                     </classpath>
                                 </java>
-                            </tasks>
+                            </target>
                         </configuration>
                         <goals>
                             <goal>run</goal>
