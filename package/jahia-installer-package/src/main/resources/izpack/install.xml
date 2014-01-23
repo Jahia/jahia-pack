@@ -242,7 +242,7 @@
         <res id="shortcutSpec.xml" src="windows-shortcuts.xml"/>
         <res id="Unix_shortcutSpec.xml" src="unix-shortcuts.xml"/>
 
-        <res id="Heading.image" src="../images/jahia64x64.png" />
+        <res id="Heading.image" src="../images/logo-jahia-160x64.png" />
 
         <res id="userInputSpec.xml" src="userInputSpec.xml"/>
         <res id="userInputLang.xml_eng" src="i18n/userInputLang.eng.xml" />

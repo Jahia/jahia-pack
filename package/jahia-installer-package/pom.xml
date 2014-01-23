@@ -145,7 +145,7 @@
                             <stayAlive>false</stayAlive>
                             <icon>${project.build.directory}/images/jahia.ico</icon>
                             <jre>
-                                <minVersion>1.6.0_10</minVersion>
+                                <minVersion>1.6</minVersion>
                             </jre>
                             <splash>
                                 <file>${project.build.directory}/images/splash.bmp</file>
