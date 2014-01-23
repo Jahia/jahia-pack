@@ -201,6 +201,13 @@
         </condition>
     </conditions>
     <guiprefs height="520" resizable="yes" width="640">
+        <laf name="nimbus">
+            <os family="windows"/>
+            <os family="unix"/>
+            <os family="mac"/>
+            <param name="nimbusBlueGrey" value="0xffffff"/>
+            <param name="control" value="0xffffff"/>
+        </laf>
         <modifier key="labelGap" value="2"/>
         <modifier key="useFlags" value="no"/>
         <modifier key="langDisplayType" value="native"/>
