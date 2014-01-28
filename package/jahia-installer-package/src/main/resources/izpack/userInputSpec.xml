@@ -177,6 +177,16 @@
         <field type="text" align="left" variable="superUser.email" conditionid="cnd.installation.type.advanced">
             <spec txt="E-mail" id="superUser.email" size="15" set=""/>
         </field>
+        <field type="combo" align="left" variable="superUser.preferredLang" conditionid="cnd.installation.type.advanced">
+            <spec txt="Preferred language" id="superUser.preferredLang" set="${LOCALE_IDENTIFIER}">
+                <choice txt="Deutsch" value="de"/>
+                <choice txt="English" value="en"/>
+                <choice txt="Español" value="es"/>
+                <choice txt="Français" value="fr"/>
+                <choice txt="Italiano" value="it"/>
+                <choice txt="Português" value="pt"/>
+            </spec>
+        </field>
         <field type="space"/>
         <field type="space"/>
         <field type="space"/>

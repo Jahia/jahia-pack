@@ -83,6 +83,7 @@
         <variable name="superUser.firstname" value="" condition="cnd.installation.type.express"/>
         <variable name="superUser.lastname" value="" condition="cnd.installation.type.express"/>
         <variable name="superUser.email" value="" condition="cnd.installation.type.express"/>
+        <variable name="superUser.preferredLang" value="${LOCALE_IDENTIFIER}" condition="cnd.installation.type.express"/>
         
         <!-- DB drivers for standalone DBMSs -->
         <variable name="dbSettings.connection.driver" value="${dbSettings.connection.driver.mysql}" condition="cnd.db.dbms.mysql" />
