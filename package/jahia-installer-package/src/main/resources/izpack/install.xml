@@ -83,7 +83,7 @@
         <variable name="superUser.firstname" value="" condition="cnd.installation.type.express"/>
         <variable name="superUser.lastname" value="" condition="cnd.installation.type.express"/>
         <variable name="superUser.email" value="" condition="cnd.installation.type.express"/>
-        <variable name="superUser.preferredLang" value="${LOCALE_IDENTIFIER}" condition="cnd.installation.type.express"/>
+        <variable name="superUser.preferredLang" value="${LOCALE_IDENTIFIER}" condition="cnd.installation.type.express|!cnd.superUser.preferredLang.set"/>
         
         <!-- DB drivers for standalone DBMSs -->
         <variable name="dbSettings.connection.driver" value="${dbSettings.connection.driver.mysql}" condition="cnd.db.dbms.mysql" />
@@ -204,6 +204,10 @@
         </condition>
         <condition type="org.jahia.izpack.EmptyVariableCondition" id="cnd.dm.ffmpegPath.empty">
             <variable>dmConfig.ffmpegPath</variable>
+        </condition>
+        
+        <condition type="com.izforge.izpack.rules.VariableExistenceCondition" id="cnd.superUser.preferredLang.set">
+            <variable>superUser.preferredLang</variable>
         </condition>
     </conditions>
     <guiprefs height="520" resizable="yes" width="640">
