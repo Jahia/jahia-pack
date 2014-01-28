@@ -209,6 +209,25 @@
     </panel>
 
     <panel order="7">
+        <field type="staticText" txt="For working with modules in Jahia Studio the following build and SCM tools are useful. You can leave the fields empty if the paths to those executables are already in your PATH environment variable." id="studioToolSettings.description"/>
+        <field type="space"/>
+        <field type="staticText" txt="Provide the path for your Maven executable (mvn)" id="studioToolSettings.mvn.description"/>
+        <field type="file" variable="studioToolSettings.mvnPath" align="left">
+            <spec mustExist="false" allowEmptyValue="true" size="20" txt="" set=""/>
+        </field>        
+        <field type="space"/>        
+        <field type="staticText" txt="Provide the path for your Subversion executable (svn)" id="studioToolSettings.svn.description"/>
+        <field type="file" variable="studioToolSettings.svnPath" align="left">
+            <spec mustExist="false" allowEmptyValue="true" size="20" txt="" set=""/>
+        </field>        
+        <field type="space"/>        
+        <field type="staticText" txt="Provide the path for your Git executable (git)" id="studioToolSettings.git.description"/>
+        <field type="file" variable="studioToolSettings.gitPath" align="left">
+            <spec mustExist="false" allowEmptyValue="true" size="20" txt="" set=""/>
+        </field>        
+    </panel>
+
+    <panel order="8">
         <field type="staticText" txt="Document Management experience can be smoother if you have those external tools installed." id="dmConfig.description"/>
         <field type="space"/>
         <!-- Skip validation e.g. in case customer creates package for another machine -->
@@ -255,7 +274,7 @@
         </field>
     </panel>
 
-    <panel order="8">
+    <panel order="9">
         <field type="staticText" txt="Jahia supports externalized configurations stored in JAR files. This is optional and deactivated by default" id="externalizedConfig.description" />
         <field type="space" />
         <field type="check" variable="externalizedConfigActivated" align="left">
@@ -269,7 +288,7 @@
         </field>
     </panel>
 
-    <panel order="9" topBuffer="0">
+    <panel order="10" topBuffer="0">
         <field type="space"/>
         <field type="staticText" txt="Installation successful" id="afterInstall.description"/>
         <field type="space"/>

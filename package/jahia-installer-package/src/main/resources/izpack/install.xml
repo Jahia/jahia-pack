@@ -118,6 +118,11 @@
         <variable name="dmConfig.imageService" value="ImageJAndJava2DImageService" condition="cnd.dm.imagemagickPath.empty"/>
         <variable name="dmConfig.ffmpegPath.provided" value="true" condition="!cnd.dm.ffmpegPath.empty"/>
         <variable name="dmConfig.ffmpegPath.provided" value="false" condition="cnd.dm.ffmpegPath.empty"/>
+        
+        <!-- Studio tools -->
+        <variable name="studioToolSettings.gitPath" value="git" condition="cnd.installation.type.express|!cnd.operatingMode.development"/>
+        <variable name="studioToolSettings.mvnPath" value="mvn" condition="cnd.installation.type.express|!cnd.operatingMode.development"/>
+        <variable name="studioToolSettings.svnPath" value="svn" condition="cnd.installation.type.express|!cnd.operatingMode.development"/>
     </dynamicvariables>
     
     <conditions>
@@ -276,6 +281,12 @@
         <panel classname="UserInputPanel" id="appServer" condition="cnd.installation.type.advanced"/>
         <panel classname="UserInputPanel" id="superUser"/>
         <panel classname="UserInputPanel" condition="cnd.installation.type.advanced" id="mailSettings"/>
+        <panel classname="UserInputPanel" id="studioToolSettings" condition="cnd.installation.type.advanced+cnd.operatingMode.development">
+            <actions>
+                <action stage="preactivate" classname="org.jahia.izpack.StudioToolsPanelAction$StudioToolsPreActivateAction"/>
+                <action stage="postvalidate" classname="org.jahia.izpack.StudioToolsPanelAction$StudioToolsPostValidateAction"/>
+            </actions>
+        </panel>
         <panel classname="UserInputPanel" id="externalToolSettings">
             <actions>
                 <action stage="preconstruct" classname="org.jahia.izpack.ExternalToolsPanelAction"/>
