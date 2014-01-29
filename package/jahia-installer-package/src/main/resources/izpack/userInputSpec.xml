@@ -275,6 +275,29 @@
     </panel>
 
     <panel order="9">
+        <field type="staticText" txt="Choose default language" id="additionalSettings.defaultLanguageCode" />
+        <field type="combo" align="left" variable="defaultLanguageCode">
+            <spec txt="">
+                <choice processor="org.jahia.izpack.LanguageChoiceProcessor" set="${LOCALE_IDENTIFIER}" />
+            </spec>
+        </field>
+
+        <field type="space" />
+        
+        <field type="staticText" txt="Existing license file to use" id="additionalSettings.licensePath" />
+        <field type="file" align="left" variable="licensePath">
+          <spec txt="" size="20" set="" mustExist="true" allowEmptyValue="true" />
+        </field>
+        
+        <field type="space" />
+        
+        <field type="staticText" txt="Additional modules to deploy" id="additionalSettings.modulesPath" />
+        <field type="dir" align="left" variable="additionalModulesPath">
+          <spec txt="" size="20" set="" mustExist="true" allowEmptyValue="true" />
+        </field>
+    </panel>
+
+    <panel order="10">
         <field type="staticText" txt="Jahia supports externalized configurations stored in JAR files. This is optional and deactivated by default" id="externalizedConfig.description" />
         <field type="space" />
         <field type="check" variable="externalizedConfigActivated" align="left">
@@ -288,7 +311,7 @@
         </field>
     </panel>
 
-    <panel order="10" topBuffer="0">
+    <panel order="11" topBuffer="0">
         <field type="space"/>
         <field type="staticText" txt="Installation successful" id="afterInstall.description"/>
         <field type="space"/>

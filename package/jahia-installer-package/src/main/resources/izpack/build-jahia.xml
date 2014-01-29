@@ -1,7 +1,19 @@
 <?xml version="1.0"?>
 <project name="jahia" default="jahia-configure" basedir="${install.path}">
 
+	<available file="${modules.path}" type="dir" property="cnd.modules.dir.exists"/>
 	<available file="${install.path}" type="dir" property="cnd.install.dir.exists"/>
+
+	<target name="copy-modules" if="cnd.modules.dir.exists">
+		<echo>Copying additional modules to ${jahia.war.target.path}/WEB-INF/var/modules ...</echo>
+		<copy todir="${jahia.war.target.path}/WEB-INF/var/modules" verbose="true">
+			<fileset dir="${modules.path}">
+				<include name="**/*.cfg"/>
+				<include name="**/*.jar"/>
+				<include name="**/*.war"/>
+			</fileset>
+		</copy>
+	</target>
 
 	<target name="jahia-configure">
 		<echo>Configuring Jahia...</echo>
@@ -26,7 +38,7 @@
 			<entry key="mailServer" value="***"/>
 		</propertyfile>
 	</target>
-	
+
 	<target name="jahia-cleanup-install-dir" if="cnd.install.dir.exists">
 		<delete includeemptydirs="true" verbose="true">
 			<fileset dir="${install.path}" includes="**/*" excludes="logs/**"/>

@@ -123,6 +123,9 @@
         <variable name="studioToolSettings.gitPath" value="git" condition="cnd.installation.type.express|!cnd.operatingMode.development"/>
         <variable name="studioToolSettings.mvnPath" value="mvn" condition="cnd.installation.type.express|!cnd.operatingMode.development"/>
         <variable name="studioToolSettings.svnPath" value="svn" condition="cnd.installation.type.express|!cnd.operatingMode.development"/>
+        
+        <variable name="defaultLanguageCode" value="en" condition="cnd.installation.type.express"/>
+        <variable name="licensePath" value="" condition="cnd.installation.type.express"/>
     </dynamicvariables>
     
     <conditions>
@@ -296,6 +299,7 @@
                 <action stage="preconstruct" classname="org.jahia.izpack.ExternalToolsPanelAction"/>
             </actions>
         </panel>
+        <panel classname="UserInputPanel" id="additionalSettings" condition="cnd.installation.type.advanced" />
         <panel classname="UserInputPanel" id="externalizedConfig" condition="cnd.installation.type.advanced" />
         <panel classname="SummaryPanel"/>
         <panel classname="ExtendedInstallPanel">

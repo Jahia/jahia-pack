@@ -11,6 +11,10 @@
 			<property name="jahia.war.target.path" value="${jahia.war.target.path}"/>
 			<property name="use.bundled.tomcat" value="${jahia.tomcat.pack.selected}"/>
 			<property name="server.type" value="${server.type}"/>
+
+            <property name="modules.path" value="${additionalModulesPath}"/>
+            <target name="copy-modules" />
+            
 			<target name="jahia-configure" />
 		</antcall>
 	</pack>
