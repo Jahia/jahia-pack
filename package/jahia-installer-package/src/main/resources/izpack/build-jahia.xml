@@ -1,16 +1,21 @@
 <?xml version="1.0"?>
 <project name="jahia" default="jahia-configure" basedir="${install.path}">
 
-	<available file="${modules.path}" type="dir" property="cnd.modules.dir.exists"/>
+	<condition property="cnd.modules.dir.exists">
+		<and>
+			<length string="${modules.path}" when="greater" length="0" />
+			<available file="${modules.path}" type="dir" />
+		</and>
+	</condition>
 	<available file="${install.path}" type="dir" property="cnd.install.dir.exists"/>
 
 	<target name="copy-modules" if="cnd.modules.dir.exists">
-		<echo>Copying additional modules to ${jahia.war.target.path}/WEB-INF/var/modules ...</echo>
+		<echo>Copying additional modules from ${modules.path} to ${jahia.war.target.path}/WEB-INF/var/modules ...</echo>
 		<copy todir="${jahia.war.target.path}/WEB-INF/var/modules" verbose="true">
 			<fileset dir="${modules.path}">
-				<include name="**/*.cfg"/>
-				<include name="**/*.jar"/>
-				<include name="**/*.war"/>
+				<include name="*.cfg"/>
+				<include name="*.jar"/>
+				<include name="*.war"/>
 			</fileset>
 		</copy>
 	</target>
