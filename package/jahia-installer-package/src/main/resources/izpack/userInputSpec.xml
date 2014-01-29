@@ -284,11 +284,6 @@
 
         <field type="space" />
         
-        <field type="staticText" txt="Existing license file to use" id="additionalSettings.licensePath" />
-        <field type="file" align="left" variable="licensePath">
-          <spec txt="" size="20" set="" mustExist="true" allowEmptyValue="true" />
-        </field>
-        
         <field type="space" />
         
         <field type="staticText" txt="Additional modules to deploy" id="additionalSettings.modulesPath" />
