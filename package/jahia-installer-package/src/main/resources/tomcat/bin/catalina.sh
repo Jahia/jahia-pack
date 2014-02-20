@@ -93,8 +93,6 @@
 #   LOGGING_MANAGER (Optional) Override Tomcat's logging manager
 #                   Example (all one line)
 #                   LOGGING_MANAGER="-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager"
-#
-# $Id: catalina.sh 1515929 2013-08-20 19:11:24Z markt $
 # -----------------------------------------------------------------------------
 CATALINA_OPTS="$CATALINA_OPTS -server -Xms1024m -Xmx1024m -XX:MaxPermSize=256m -Djava.awt.headless=true -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -Djava.net.preferIPv4Stack=true"
 export CATALINA_OPTS
@@ -404,6 +402,8 @@ elif [ "$1" = "start" ] ; then
     echo $! > "$CATALINA_PID"
   fi
 
+  echo "Tomcat started."
+
 elif [ "$1" = "stop" ] ; then
 
   shift
@@ -447,6 +447,14 @@ elif [ "$1" = "stop" ] ; then
     -Djava.io.tmpdir="\"$CATALINA_TMPDIR\"" \
     org.apache.catalina.startup.Bootstrap "$@" stop
 
+  # stop failed. Shutdown port disabled? Try a normal kill.
+  if [ $? != 0 ]; then
+    if [ ! -z "$CATALINA_PID" ]; then
+      echo "The stop command failed. Attempting to signal the process to stop through OS signal."
+      kill -15 `cat "$CATALINA_PID"` >/dev/null 2>&1
+    fi
+  fi
+
   if [ ! -z "$CATALINA_PID" ]; then
     if [ -f "$CATALINA_PID" ]; then
       while [ $SLEEP -ge 0 ]; do
@@ -459,9 +467,10 @@ elif [ "$1" = "stop" ] ; then
               # If Tomcat has stopped don't try and force a stop with an empty PID file
               FORCE=0
             else
-              echo "Tomcat stopped but the PID file could not be removed or cleared."
+              echo "The PID file could not be removed or cleared."
             fi
           fi
+          echo "Tomcat stopped."
           break
         fi
         if [ $SLEEP -gt 0 ]; then
@@ -495,11 +504,12 @@ elif [ "$1" = "stop" ] ; then
                     if [ -w "$CATALINA_PID" ]; then
                         cat /dev/null > "$CATALINA_PID"
                     else
-                        echo "Tomcat was killed but the PID file could not be removed."
+                        echo "The PID file could not be removed."
                     fi
-                    # Set this to zero else a warning will be issued about the process still running
-                    KILL_SLEEP_INTERVAL=0
                 fi
+                # Set this to zero else a warning will be issued about the process still running
+                KILL_SLEEP_INTERVAL=0
+                echo "The Tomcat process has been killed."
                 break
             fi
             if [ $KILL_SLEEP_INTERVAL -gt 0 ]; then

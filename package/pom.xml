@@ -48,9 +48,6 @@
     <artifactId>jahia-package</artifactId>
     <name>Jahia Install</name>
     <packaging>pom</packaging>
-    <properties>
-        <jahia.tomcat.version>7.0.47</jahia.tomcat.version>
-    </properties>
     <profiles>
         <profile>
             <id>installer</id>
