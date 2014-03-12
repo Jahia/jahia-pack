@@ -100,7 +100,164 @@
 
     <profiles>
         <profile>
+            <id>os-family-windows</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                </os>
+            </activation>
+            <properties>
+                <os.family>windows</os.family>
+            </properties>
+        </profile>
+        <profile>
+            <id>os-family-unix</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                </os>
+            </activation>
+            <properties>
+                <os.family>unix</os.family>
+            </properties>
+        </profile>
+        <profile>
+            <id>os-family-mac</id>
+            <activation>
+                <os>
+                    <family>mac</family>
+                </os>
+            </activation>
+            <properties>
+                <os.family>mac</os.family>
+            </properties>
+        </profile>
+        <profile>
             <id>windows-installer</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.izpack</groupId>
+                        <artifactId>izpack-maven-plugin</artifactId>
+                        <version>1.0-alpha-5</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.codehaus.izpack</groupId>
+                                <artifactId>izpack-standalone-compiler</artifactId>
+                                <version>${izpack.version}</version>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <id>standard-installer</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>izpack</goal>
+                                </goals>
+                                <configuration>
+                                    <attach>false</attach>
+                                    <descriptor>${basedir}/src/main/resources/izpack/install.xml</descriptor>
+                                    <installerFile>${project.build.directory}/${installer.filename}.jar</installerFile>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>net.sf.launch4j</groupId>
+                                            <artifactId>launch4j-package</artifactId>
+                                            <version>3.1.0-beta2</version>
+                                            <type>zip</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.directory}/artifacts/launch4j</outputDirectory>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>net.sf.launch4j</groupId>
+                                            <artifactId>launch4j-bin</artifactId>
+                                            <version>3.1.0-beta2</version>
+                                            <classifier>${os.family}</classifier>
+                                            <type>zip</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.directory}/artifacts/launch4j/bin</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <configuration>
+                                    <target>
+                                        <path id="launch4j_classpath">
+                                            <pathelement location="${project.build.directory}/artifacts/launch4j/launch4j.jar"/>
+                                        </path>
+                                        <chmod dir="${project.build.directory}/artifacts/launch4j/bin" perm="755" includes="**"/>
+                                        <taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpathref="launch4j_classpath"/>
+                                        <launch4j>
+                                            <config
+                                                outfile="${project.build.directory}/${installer.filename}.exe"
+                                                jarPath="${project.build.directory}/${installer.filename}.jar"
+                                                dontWrapJar="false"
+                                                headerType="gui"
+                                                priority="normal"
+                                                downloadUrl="http://java.com/download"
+                                                supportUrl="http://www.jahia.com"
+                                                stayAlive="false"
+                                                icon="${project.build.directory}/images/jahia.ico">
+                                                <jre minVersion="1.6.0"/>
+                                                <splash
+                                                    file="${project.build.directory}/images/splash.bmp"
+                                                    waitForWindow="true"
+                                                    timeout="60"
+                                                    timeoutErr="true"/>
+                                                <versionInfo
+                                                    fileVersion="7.0.0.0"
+                                                    txtFileVersion="${product.version}"
+                                                    fileDescription="${product.name} Windows Installer"
+                                                    copyright="Copyright 2002-${year} ${jahia.manifest.vendor.name}"
+                                                    productVersion="7.0.0.0"
+                                                    txtProductVersion="${product.version}"
+                                                    productName="${product.name}"
+                                                    companyName="${jahia.manifest.vendor.name}"
+                                                    internalName="${installer.filename}"
+                                                    originalFilename="${installer.filename}.exe"/>
+                                            </config>
+                                        </launch4j>
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.thoughtworks.xstream</groupId>
+                                <artifactId>xstream</artifactId>
+                                <version>1.4.4</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>legacy-windows-installer</id>
             <build>
                 <plugins>
                     <plugin>
@@ -331,7 +488,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
-                <version>${antrun.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>store-build-number</id>
