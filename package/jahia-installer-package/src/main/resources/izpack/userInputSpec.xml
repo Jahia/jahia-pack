@@ -2,22 +2,22 @@
 <userInput>
     <panel order="0">
         <field type="staticText" align="left"
-               txt="Here you can choose your preferred installation type."
-               id="installation.type1"/>
-        
-        <field type="staticText" align="left"
-               txt="Express installation completes the common Jahia setup using pre-packaged Apache Tomcat 7.0 server and embedded Sun Java DB / Apache Derby DBMS, whereas the Custom install allows advanced configuration of the target application server, DBMS and addition options:"
-               id="installation.type2"/>
+               txt="Here you can choose your preferred installation type:"
+               id="installation.chooseType"/>
         
         <field type="space" />
-        
+
+
         <field type="radio" variable="installation.type" align="left">
             <spec>
-                <choice txt="Express install" id="installation.type.express" value="express" set="true"/>
-                <choice txt="Custom install (advanced)" id="installation.type.advanced" value="advanced"/>
+                <choice txt="Discovery install" id="installation.type.express" value="express" set="true">
+                    <description txt="&lt;html&gt;Completes the common Digital Factory setup using pre-packaged Apache Tomcat 7.0 server and embedded Sun Java DB / Apache Derby DBMS. A set of pre-configured demo Web-projects is available with this installation to let you start with Digital Factory experience right away.&lt;/html&gt;" id="installation.type.express.info"/>
+                </choice>
+                <choice txt="Custom install (advanced)" id="installation.type.advanced" value="advanced">
+                    <description txt="&lt;html&gt;Allows advanced configuration of the target application server, DBMS and addition options.&lt;/html&gt;" id="installation.type.advanced.info"/>
+                </choice>
             </spec>
         </field>
-        
     </panel>
     
     <panel order="1">
