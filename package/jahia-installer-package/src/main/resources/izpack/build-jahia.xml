@@ -21,13 +21,13 @@
 	</target>
 
 	<target name="jahia-configure">
-		<echo>Configuring Jahia...</echo>
+		<echo>Configuring Digital Factory...</echo>
 		<java jar="${install.path}/tools/configurators.jar" fork="true" failonerror="true" maxmemory="512m">
 			<sysproperty key="derby.system.home" value="${jahia.war.target.path}/WEB-INF/var/dbdata" />
 			<arg value="--configure" />
 			<arg value="${install.path}/logs/install.properties" />
 		</java>
-		<echo>...done configuring Jahia.</echo>
+		<echo>...done configuring Digital Factory.</echo>
 		<condition property="cnd.no.tomcat">
 			<equals arg1="${use.bundled.tomcat}" arg2="false"/>
 		</condition>
