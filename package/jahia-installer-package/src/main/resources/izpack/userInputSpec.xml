@@ -286,7 +286,7 @@
         
         <field type="space" />
         
-        <field type="staticText" txt="Additional modules to deploy" id="additionalSettings.modulesPath" />
+        <field type="staticText" txt="Path to a folder with additional modules to be deployed" id="additionalSettings.modulesPath" />
         <field type="dir" align="left" variable="additionalModulesPath">
           <spec txt="" size="20" set="" mustExist="true" allowEmptyValue="true" />
         </field>
