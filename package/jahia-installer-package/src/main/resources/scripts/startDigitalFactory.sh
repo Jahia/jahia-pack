@@ -1,6 +1,6 @@
 #!/bin/sh
 echo ---------------------------------------------------------------------------
-echo Starting Jahia Server
+echo Starting Digital Factory Server
 echo ---------------------------------------------------------------------------
 
 cd tomcat/bin

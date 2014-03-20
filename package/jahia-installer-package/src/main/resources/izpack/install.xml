@@ -355,7 +355,7 @@
         <pack name="tomcat" id="tomcat" preselected="yes" required="no">
             <description/>
             <fileset dir="../links" targetdir="$INSTALL_PATH" override="true">
-                <include name="OpenJahia*"/>
+                <include name="OpenDigitalFactory*"/>
             </fileset>
             <fileset dir="../artifacts/apache-tomcat-${jahia.tomcat.version}" targetdir="$INSTALL_PATH/tomcat" override="true" />
             <fileset dir="../tomcat" targetdir="$INSTALL_PATH/tomcat" override="true" />
@@ -366,16 +366,16 @@
                 <include name="st*.ico"/>
                 <include name="st*.png"/>
             </fileset>
-            <parsable targetfile="$INSTALL_PATH/startJahia.bat" type="shell"/>
-            <parsable targetfile="$INSTALL_PATH/startJahia.sh" type="shell"/>
-            <parsable targetfile="$INSTALL_PATH/stopJahia.bat" type="shell"/>
-            <parsable targetfile="$INSTALL_PATH/stopJahia.sh" type="shell"/>
+            <parsable targetfile="$INSTALL_PATH/startDigitalFactory.bat" type="shell"/>
+            <parsable targetfile="$INSTALL_PATH/startDigitalFactory.sh" type="shell"/>
+            <parsable targetfile="$INSTALL_PATH/stopDigitalFactory.bat" type="shell"/>
+            <parsable targetfile="$INSTALL_PATH/stopDigitalFactory.sh" type="shell"/>
 
             <parsable targetfile="$INSTALL_PATH/tomcat/bin/catalina.bat" type="shell"/>
             <parsable targetfile="$INSTALL_PATH/tomcat/bin/catalina.sh" type="shell"/>
             
-            <parsable targetfile="$INSTALL_PATH/OpenJahia.URL"/>
-            <parsable targetfile="$INSTALL_PATH/OpenJahiaAdministration.URL"/>
+            <parsable targetfile="$INSTALL_PATH/OpenDigitalFactory.URL"/>
+            <parsable targetfile="$INSTALL_PATH/OpenDigitalFactoryAdministration.URL"/>
             
             <parsable targetfile="$INSTALL_PATH/tomcat/conf/server.xml"/>
             
@@ -386,8 +386,8 @@
             <executable targetfile="$INSTALL_PATH/tomcat/bin/startup.sh" />
             <executable targetfile="$INSTALL_PATH/tomcat/bin/tool-wrapper.sh" />
             <executable targetfile="$INSTALL_PATH/tomcat/bin/version.sh" />
-            <executable targetfile="$INSTALL_PATH/startJahia.sh" />
-            <executable targetfile="$INSTALL_PATH/stopJahia.sh" />
+            <executable targetfile="$INSTALL_PATH/startDigitalFactory.sh" />
+            <executable targetfile="$INSTALL_PATH/stopDigitalFactory.sh" />
         </pack>
     </packs>
 

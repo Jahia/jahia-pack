@@ -1,9 +1,9 @@
 @echo off
 if "%OS%" == "Windows_NT" setlocal
 echo ---------------------------------------------------------------------------
-echo Starting Jahia Server
+echo Stopping Digital Factory Server
 echo ---------------------------------------------------------------------------
 
 cd /d %~dp0\tomcat\bin
-call startup.bat
+call shutdown.bat
 exit /b 0

@@ -1,6 +1,6 @@
 #!/bin/sh
 echo ---------------------------------------------------------------------------
-echo Stopping Jahia Server
+echo Stopping Digital Factory Server
 echo ---------------------------------------------------------------------------
 
 cd tomcat/bin

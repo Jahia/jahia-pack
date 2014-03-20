@@ -24,7 +24,7 @@
         <fileset dir="../licenses" targetdir="$INSTALL_PATH/licenses" override="true" />
         <fileset dir="../links" targetdir="$INSTALL_PATH/docs" override="true">
             <exclude name="HowToInstall.URL"/>
-            <exclude name="OpenJahia*"/>
+            <exclude name="OpenDigitalFactory*"/>
         </fileset>
         <fileset dir="../links" targetdir="$INSTALL_PATH/docs" override="true" condition="!cnd.pack.tomcat">
             <include name="HowToInstall.URL"/>
