@@ -260,14 +260,14 @@
                                                 <versionInfo
                                                     fileVersion="7.0.0.0"
                                                     txtFileVersion="${product.version}"
-                                                    fileDescription="${product.name} Windows Installer"
+                                                    fileDescription="${product.name} - Community Distribution - Windows Installer"
                                                     copyright="Copyright 2002-${year} ${jahia.manifest.vendor.name}"
                                                     productVersion="7.0.0.0"
                                                     txtProductVersion="${product.version}"
-                                                    productName="${product.name}"
+                                                    productName="${product.name} - Community Distribution"
                                                     companyName="${jahia.manifest.vendor.name}"
-                                                    internalName="Jahia-Digital-Factory-Community"
-                                                    originalFilename="Jahia-Digital-Factory-Community.exe"/>
+                                                    internalName="Jahia-DigitalFactory-Community"
+                                                    originalFilename="Jahia-DigitalFactory-Community.exe"/>
                                             </config>
                                         </launch4j>
                                     </target>
