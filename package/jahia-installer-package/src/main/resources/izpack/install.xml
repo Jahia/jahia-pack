@@ -212,13 +212,22 @@
             <variable>superUser.preferredLang</variable>
         </condition>
     </conditions>
-    <guiprefs height="520" resizable="yes" width="640">
+    <guiprefs height="560" resizable="yes" width="640">
         <laf name="nimbus">
             <os family="windows"/>
             <os family="unix"/>
             <os family="mac"/>
+            
             <param name="nimbusBlueGrey" value="0xffffff"/>
             <param name="control" value="0xffffff"/>
+            
+            <param name="FormattedTextField.background" value="0xe9ecf2"/>
+            <param name="PasswordField.background" value="0xe9ecf2"/>
+            <param name="ComboBox.background" value="0xe9ecf2"/>
+            <param name="CheckBox.background" value="0xe9ecf2"/>
+            <param name="List.background" value="0xe9ecf2"/>
+            <param name="RadioButton.background" value="0xe9ecf2"/>
+            <param name="TextField.background" value="0xe9ecf2"/>
         </laf>
         <modifier key="labelGap" value="2"/>
         <modifier key="useFlags" value="no"/>
