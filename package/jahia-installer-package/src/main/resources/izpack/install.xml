@@ -236,9 +236,12 @@
         <modifier key="headingImageOnLeft" value="no"/>
         <modifier key="headingLineCount" value="1"/>
         <modifier key="headingFontSize" value="1.5"/>
-        <modifier key="headingBackgroundColor" value="0x00ffffff"/>
+        <modifier key="headingForegroundColor" value="0xffffff"/>
+        <modifier key="headingBackgroundColor" value="0x000000"/>
         <modifier key="headingPanelCounter" value="progressbar"/>
         <modifier key="headingPanelCounterPos" value="inNavigationPanel"/>
+        <modifier key="headingBorderSizeTop" value="4"/>
+        <modifier key="headingBorderColor" value="0x3399ff"/>
         <modifier key="showDebugWindow" value="true"/>
     </guiprefs>
     <locale>
@@ -263,7 +266,7 @@
         <res id="shortcutSpec.xml" src="windows-shortcuts.xml"/>
         <res id="Unix_shortcutSpec.xml" src="unix-shortcuts.xml"/>
 
-        <res id="Heading.image" src="../images/logo-jahia-160x64.png" />
+        <res id="Heading.image" src="../images/logo-jahia-200x80-white.png" />
 
         <res id="userInputSpec.xml" src="userInputSpec.xml"/>
         <res id="userInputLang.xml_eng" src="i18n/userInputLang.eng.xml" />
