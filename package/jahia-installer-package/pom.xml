@@ -84,7 +84,7 @@
     <properties>
         <product.name>Digital Factory</product.name>
         <product.version>${project.version}</product.version>
-        <product.fullname>Jahia-DigitalFactory-Community-${product.version}</product.fullname>
+        <product.fullname>DigitalFactory-CommunityDistribution-${product.version}</product.fullname>
         <staging.dir>${project.build.directory}/izpack</staging.dir>
     </properties>
 
@@ -266,8 +266,8 @@
                                                     txtProductVersion="${product.version}"
                                                     productName="${product.name} - Community Distribution"
                                                     companyName="${jahia.manifest.vendor.name}"
-                                                    internalName="Jahia-DigitalFactory-Community"
-                                                    originalFilename="Jahia-DigitalFactory-Community.exe"/>
+                                                    internalName="DigitalFactory-CommunityDistribution"
+                                                    originalFilename="DigitalFactory-CommunityDistribution.exe"/>
                                             </config>
                                         </launch4j>
                                     </target>
