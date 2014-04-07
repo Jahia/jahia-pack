@@ -14,7 +14,6 @@ rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 rem See the License for the specific language governing permissions and
 rem limitations under the License.
 
-if "%OS%" == "Windows_NT" setlocal
 rem ---------------------------------------------------------------------------
 rem Start/Stop Script for the CATALINA Server
 rem
@@ -91,6 +90,9 @@ rem                   TITLE is Tomcat if it's not specified.
 rem                   Example (all one line)
 rem                   set TITLE=Tomcat.Cluster#1.Server#1 [%DATE% %TIME%]
 rem ---------------------------------------------------------------------------
+
+setlocal
+
 set CATALINA_OPTS=%CATALINA_OPTS% -Dsun.io.useCanonCaches=false -Xms1024m -Xmx1024m -XX:MaxPermSize=256m -server -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -Djava.net.preferIPv4Stack=true
 
 rem Suppress Terminate batch job on CTRL+C
@@ -263,13 +265,8 @@ goto execCmd
 
 :doStart
 shift
-if not "%OS%" == "Windows_NT" goto noTitle
 if "%TITLE%" == "" set TITLE=Tomcat
 set _EXECJAVA=start "%TITLE%" %_RUNJAVA%
-goto gotTitle
-:noTitle
-set _EXECJAVA=start %_RUNJAVA%
-:gotTitle
 if not ""%1"" == ""-security"" goto execCmd
 shift
 echo Using Security Manager
