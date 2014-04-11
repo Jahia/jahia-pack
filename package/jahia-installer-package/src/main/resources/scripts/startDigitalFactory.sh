@@ -4,5 +4,5 @@ echo Starting Digital Factory Server
 echo ---------------------------------------------------------------------------
 
 cd tomcat/bin
-./startup.sh
+nohup ./startup.sh
 tail -f ../logs/catalina.out
