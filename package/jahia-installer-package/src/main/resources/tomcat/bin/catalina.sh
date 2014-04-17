@@ -94,7 +94,7 @@
 #                   Example (all one line)
 #                   LOGGING_MANAGER="-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager"
 # -----------------------------------------------------------------------------
-CATALINA_OPTS="$CATALINA_OPTS -server -Xms1024m -Xmx1024m -XX:MaxPermSize=256m -Djava.awt.headless=true -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -Djava.net.preferIPv4Stack=true"
+CATALINA_OPTS="$CATALINA_OPTS -server -Xms1024m -Xmx1024m -XX:MaxPermSize=256m -Djava.awt.headless=true -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintConcurrentLocks -Djava.net.preferIPv4Stack=true"
 export CATALINA_OPTS
 
 # OS specific support.  $var _must_ be set to either true or false.
