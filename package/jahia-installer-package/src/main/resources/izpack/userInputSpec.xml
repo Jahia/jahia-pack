@@ -318,7 +318,7 @@
             <spec txt="Start Apache Tomcat server" id="afterInstall.startTomcat" true="true" false="false" revalidate="yes"/>
         </field>
         <field type="check" variable="afterInstall.launchJahia" align="left" conditionid="cnd.pack.tomcat+cnd.start.tomcat">
-            <spec txt="Wait for server startup and launch Jahia" id="afterInstall.launchJahia" true="true" false="false" set="false"/>
+            <spec txt="Wait for server startup and launch Digital Factory" id="afterInstall.launchJahia" true="true" false="false" set="false"/>
         </field>
     </panel>
 </userInput>
