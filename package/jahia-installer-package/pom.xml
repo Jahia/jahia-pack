@@ -353,6 +353,15 @@
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.jahia.server</groupId>
+                                    <artifactId>jahia-core-modules</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>war</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/artifacts/jahia-war</outputDirectory>
+                                    <excludes>META-INF/**</excludes>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.jahia.server</groupId>
                                     <artifactId>jahia-pack-war</artifactId>
                                     <version>${project.version}</version>
                                     <type>war</type>

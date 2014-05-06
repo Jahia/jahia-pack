@@ -121,24 +121,6 @@
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
-            <artifactId>external-provider</artifactId>
-            <version>2.0.1-SNAPSHOT</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jahia.modules</groupId>
-            <artifactId>external-provider-modules</artifactId>
-            <version>2.0.0</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jahia.modules</groupId>
-            <artifactId>external-provider-vfs</artifactId>
-            <version>2.0.0</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jahia.modules</groupId>
             <artifactId>faq</artifactId>
             <version>2.0.0</version>
             <scope>runtime</scope>
@@ -342,22 +324,6 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>wiki</artifactId>
-            <version>2.0.0</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <!-- RESTful API -->
-        <dependency>
-            <groupId>org.jahia.modules</groupId>
-            <artifactId>jcrestapi</artifactId>
-            <version>2.0.1-SNAPSHOT</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <!-- JAX-RS OSGi Extender, depends on Jersey and its dependencies, put in bundles -->
-        <dependency>
-            <groupId>org.jahia.modules</groupId>
-            <artifactId>jaxrs-osgi-extender</artifactId>
             <version>2.0.0</version>
             <scope>runtime</scope>
         </dependency>

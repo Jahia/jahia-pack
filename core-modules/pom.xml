@@ -71,61 +71,94 @@
 
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
     <parent>
-        <groupId>org.jahia</groupId>
-        <artifactId>jahia-parent</artifactId>
+        <groupId>org.jahia.server</groupId>
+        <artifactId>jahia-pack-root</artifactId>
         <version>7.0.1.0-SNAPSHOT</version>
-        <relativePath>../jahia/jahia-parent/pom.xml</relativePath>
     </parent>
-    
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>jahia-pack-root</artifactId>
-  <version>7.0.1.0-SNAPSHOT</version>
-    <name>Jahia Package Project Root</name>
-    <groupId>org.jahia.server</groupId>
-    <packaging>pom</packaging>
-    <description>Jahia CE Full Package</description>
+    <artifactId>jahia-core-modules</artifactId>
+    <name>Jahia Core Modules Package</name>
+    <packaging>war</packaging>
 
-    <scm>
-        <connection>scm:svn:https://devtools.jahia.com/svn/jahia_pack/trunk/</connection>
-        <developerConnection>scm:svn:https://devtools.jahia.com/svn/jahia_pack/trunk/</developerConnection>
-        <url>https://devtools.jahia.com/svn/jahia_pack/trunk</url>
-    </scm>
+    <dependencies>
+        <!-- External provider modules -->
+        <dependency>
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>external-provider</artifactId>
+            <version>2.0.1-SNAPSHOT</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>external-provider-modules</artifactId>
+            <version>2.0.1-SNAPSHOT</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>external-provider-vfs</artifactId>
+            <version>2.0.1-SNAPSHOT</version>
+            <scope>runtime</scope>
+        </dependency>
 
-    <repositories>
-        <repository>
-            <id>jahia-public</id>
-            <name>Jahia Public Repository</name>
-            <url>https://devtools.jahia.com/nexus/content/groups/public</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>        
-        <repository>
-            <id>jahia-internal</id>
-            <name>Jahia Internal Repository</name>
-            <url>https://devtools.jahia.com/nexus/content/groups/internal</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
+        <!-- RESTful API -->
+        <dependency>
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>jcrestapi</artifactId>
+            <version>2.0.1-SNAPSHOT</version>
+            <scope>runtime</scope>
+        </dependency>
 
-    </repositories>
+        <!-- JAX-RS OSGi Extender, depends on Jersey and its dependencies, put in bundles -->
+        <dependency>
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>jaxrs-osgi-extender</artifactId>
+            <version>2.0.0</version>
+            <scope>runtime</scope>
+        </dependency>
 
-    <modules>
-        <module>core-modules</module>
-        <module>war</module>
-        <module>dm-package</module>
-        <module>package</module>
-    </modules>
+        <dependency>
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>ckeditor</artifactId>
+            <version>4.4.0-SNAPSHOT</version>
+            <scope>runtime</scope>
+        </dependency>
+	</dependencies>
 
+    <build>
+        <finalName>jahia</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jahia.server</groupId>
+                <artifactId>jahia-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-templates</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>copy-templates</goal>
+                        </goals>
+                        <configuration>
+                            <targetServerDirectory>hack</targetServerDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
 </project>
