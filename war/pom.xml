@@ -312,12 +312,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>forum</artifactId>
-<<<<<<< .working
-            <version>2.0.0</version>
-=======
-            <version>1.9-SNAPSHOT</version>
-            <type>war</type>
->>>>>>> .merge-right.r956
+            <version>2.0.1-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
