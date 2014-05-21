@@ -63,10 +63,12 @@
         <variable name="operatingMode" value="production" condition="!cnd.operatingMode.development"/>
         
         <variable name="server.type" value="tomcat"/>
-        
+
         <variable name="tomcat.httpPort" value="8080" condition="cnd.installation.type.express|!cnd.pack.tomcat"/>
+        <variable name="tomcat.httpProtocol" value="org.apache.coyote.http11.Http11NioProtocol" />
         <variable name="tomcat.sslPort" value="8443" condition="cnd.installation.type.express|!cnd.pack.tomcat"/>
         <variable name="tomcat.ajpPort" value="8009" condition="cnd.installation.type.express|!cnd.pack.tomcat"/>
+        <variable name="tomcat.ajpProtocol" value="org.apache.coyote.ajp.AjpNioProtocol" />
         <variable name="tomcat.serverPort" value="8005" condition="cnd.installation.type.express|!cnd.pack.tomcat"/>
         
         <variable name="jahiaManager.username" value="jahia" condition="cnd.installation.type.express"/>
