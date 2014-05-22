@@ -371,10 +371,10 @@
                 <include name="st*.ico"/>
                 <include name="st*.png"/>
             </fileset>
-            <parsable targetfile="$INSTALL_PATH/startDigitalFactory.bat" type="shell"/>
-            <parsable targetfile="$INSTALL_PATH/startDigitalFactory.sh" type="shell"/>
-            <parsable targetfile="$INSTALL_PATH/stopDigitalFactory.bat" type="shell"/>
-            <parsable targetfile="$INSTALL_PATH/stopDigitalFactory.sh" type="shell"/>
+            <executable targetfile="$INSTALL_PATH/startDigitalFactory.bat"/>
+            <executable targetfile="$INSTALL_PATH/startDigitalFactory.sh"/>
+            <executable targetfile="$INSTALL_PATH/stopDigitalFactory.bat"/>
+            <executable targetfile="$INSTALL_PATH/stopDigitalFactory.sh"/>
 
             <parsable targetfile="$INSTALL_PATH/tomcat/bin/catalina.bat" type="shell"/>
             <parsable targetfile="$INSTALL_PATH/tomcat/bin/catalina.sh" type="shell"/>

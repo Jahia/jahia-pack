@@ -8,6 +8,7 @@
             <arg>/c</arg>
             <arg>$INSTALL_PATH\startDigitalFactory.bat</arg>
             <env>CATALINA_HOME=$INSTALL_PATH\tomcat</env>
+            <env>DF_SOURCE_INSTALLER=true</env>
         </executefile>
     </job>
     <!--
