@@ -208,7 +208,7 @@
                                         <artifactItem>
                                             <groupId>net.sf.launch4j</groupId>
                                             <artifactId>launch4j-package</artifactId>
-                                            <version>3.1.0-beta2</version>
+                                            <version>${launch4j.version}</version>
                                             <type>zip</type>
                                             <overWrite>false</overWrite>
                                             <outputDirectory>${project.build.directory}/artifacts/launch4j</outputDirectory>
@@ -216,7 +216,7 @@
                                         <artifactItem>
                                             <groupId>net.sf.launch4j</groupId>
                                             <artifactId>launch4j-bin</artifactId>
-                                            <version>3.1.0-beta2</version>
+                                            <version>${launch4j.version}</version>
                                             <classifier>${os.family}</classifier>
                                             <type>zip</type>
                                             <overWrite>false</overWrite>
