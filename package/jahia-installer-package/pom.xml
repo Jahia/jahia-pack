@@ -258,11 +258,11 @@
                                                     timeout="60"
                                                     timeoutErr="true"/>
                                                 <versionInfo
-                                                    fileVersion="7.0.0.0"
+                                                    fileVersion="7.0.0.1"
                                                     txtFileVersion="${product.version}"
                                                     fileDescription="${product.name} - Community Distribution - Windows Installer"
                                                     copyright="Copyright 2002-${year} ${jahia.manifest.vendor.name}"
-                                                    productVersion="7.0.0.0"
+                                                    productVersion="7.0.0.1"
                                                     txtProductVersion="${product.version}"
                                                     productName="${product.name} - Community Distribution"
                                                     companyName="${jahia.manifest.vendor.name}"
