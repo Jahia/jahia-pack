@@ -99,12 +99,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>document-viewer</artifactId>
-<<<<<<< .working
             <version>2.0.0</version>
-=======
-            <version>1.2-SNAPSHOT</version>
-            <type>war</type>
->>>>>>> .merge-right.r982
             <scope>runtime</scope>
         </dependency>
         <dependency>
