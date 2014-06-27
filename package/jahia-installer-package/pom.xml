@@ -241,7 +241,6 @@
                                         <chmod dir="${project.build.directory}/artifacts/launch4j/bin" perm="755" includes="**"/>
                                         <taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpathref="launch4j_classpath"/>
                                         <launch4j>
-<<<<<<< .working
                                             <config
                                                 outfile="${project.build.directory}/${installer.filename}.exe"
                                                 jarPath="${project.build.directory}/${installer.filename}.jar"
@@ -259,22 +258,16 @@
                                                     timeout="60"
                                                     timeoutErr="true"/>
                                                 <versionInfo
-                                                    fileVersion="7.0.0.1"
+                                                    fileVersion="7.1.0.0"
                                                     txtFileVersion="${product.version}"
                                                     fileDescription="${product.name} - Community Distribution - Windows Installer"
                                                     copyright="Copyright 2002-${year} ${jahia.manifest.vendor.name}"
-                                                    productVersion="7.0.0.1"
+                                                    productVersion="7.1.0.0"
                                                     txtProductVersion="${product.version}"
                                                     productName="${product.name} - Community Distribution"
                                                     companyName="${jahia.manifest.vendor.name}"
                                                     internalName="DigitalFactory-CommunityDistribution"
                                                     originalFilename="DigitalFactory-CommunityDistribution.exe"/>
-=======
-                                            <config outfile="${project.build.directory}/${installer.filename}.exe" jarPath="${project.build.directory}/${installer.filename}.jar" dontWrapJar="false" headerType="gui" priority="normal" downloadUrl="http://java.com/download" supportUrl="http://www.jahia.com" stayAlive="false" icon="${project.build.directory}/images/jahia.ico">
-                                                <jre minVersion="1.6.0" />
-                                                <splash file="${project.build.directory}/images/splash.bmp" waitForWindow="true" timeout="60" timeoutErr="true" />
-                                                <versionInfo fileVersion="7.0.0.2" txtFileVersion="${product.version}" fileDescription="${product.name} - Community Distribution - Windows Installer" copyright="Copyright 2002-${year} ${jahia.manifest.vendor.name}" productVersion="7.0.0.2" txtProductVersion="${product.version}" productName="${product.name} - Community Distribution" companyName="${jahia.manifest.vendor.name}" internalName="DigitalFactory-CommunityDistribution" originalFilename="DigitalFactory-CommunityDistribution.exe" />
->>>>>>> .merge-right.r1004
                                             </config>
                                         </launch4j>
                                     </target>
