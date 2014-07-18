@@ -125,8 +125,7 @@
 
     <modules>
         <module>core-modules</module>
-        <module>war</module>
-        <module>dm-package</module>
+        <module>additional-modules</module>
         <module>package</module>
     </modules>
 

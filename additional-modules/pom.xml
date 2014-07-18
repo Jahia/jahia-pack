@@ -76,12 +76,12 @@
     <parent>
         <groupId>org.jahia.server</groupId>
         <artifactId>jahia-pack-root</artifactId>
-        <version>7.1.0.0-SNAPSHOT</version>
+        <version>7.0.0.2-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>jahia-pack-war</artifactId>
-    <name>Jahia Module Package WAR</name>
-    <packaging>war</packaging>
+    <artifactId>jahia-additional-modules</artifactId>
+    <name>Jahia Additional Modules Package</name>
+    <packaging>pom</packaging>
 
     <dependencies>
         <!-- Default Jahia Forge Modules -->
@@ -295,6 +295,44 @@
             <scope>runtime</scope>
         </dependency>
         
+        <!-- Document management modules -->
+        <dependency>
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>document-management-api</artifactId>
+            <version>2.0.1</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>document-viewer-service</artifactId>
+            <version>2.0.1</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>document-viewer</artifactId>
+            <version>2.0.1</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>document-thumbnails</artifactId>
+            <version>2.0.1</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>video-thumbnails</artifactId>
+            <version>2.0.1</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>gateway</artifactId>
+            <version>2.0.1</version>
+            <scope>runtime</scope>
+        </dependency>
+        
         <!-- Pre-packaged demo sites -->
         <dependency>
             <groupId>org.jahia.prepackagedsites</groupId>
@@ -308,7 +346,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>blog</artifactId>
-            <version>3.0.0-SNAPSHOT</version>
+            <version>2.0.1</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -332,65 +370,49 @@
     </dependencies>
 
     <build>
-        <finalName>jahia</finalName>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                	<failOnMissingWebXml>false</failOnMissingWebXml>
-                    <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                        </manifest>
-                    </archive>
-                </configuration>
+            	<artifactId>maven-dependency-plugin</artifactId>
+            	<executions>
+            		<execution>
+            			<id>modules</id>
+            			<goals>
+            				<goal>copy-dependencies</goal>
+            			</goals>
+            			<configuration>
+            				<outputDirectory>${project.build.directory}/modules</outputDirectory>
+            				<excludeGroupIds>org.jahia.prepackagedsites</excludeGroupIds>
+            				<excludeTransitive>true</excludeTransitive>
+            			</configuration>
+            		</execution>
+            		<execution>
+            			<id>demos</id>
+            			<goals>
+            				<goal>copy-dependencies</goal>
+            			</goals>
+            			<configuration>
+            				<outputDirectory>${project.build.directory}/prepackagedSites</outputDirectory>
+            				<includeGroupIds>org.jahia.prepackagedsites</includeGroupIds>
+            				<stripVersion>true</stripVersion>
+            				<excludeTransitive>true</excludeTransitive>
+            			</configuration>
+            		</execution>
+            	</executions>
             </plugin>
-
-            <plugin>
-                <groupId>org.jahia.server</groupId>
-                <artifactId>jahia-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy-templates</id>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>copy-templates</goal>
-                        </goals>
-                        <configuration>
-                            <targetServerDirectory>hack</targetServerDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptor>src/main/assembly/src.xml</descriptor>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
         </plugins>
-
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
     </build>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
-                <version>${jxr.plugin.version}</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${javadoc.plugin.version}</version>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>javadoc</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-        </plugins>
-    </reporting>
 </project>

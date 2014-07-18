@@ -1,0 +1,17 @@
+<assembly>
+    <id>package</id>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <fileSets>
+        <fileSet>
+            <directory>${project.build.directory}</directory>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+            	<include>modules/**</include>
+            	<include>prepackagedSites/**</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+</assembly>
