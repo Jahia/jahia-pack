@@ -90,9 +90,15 @@
     <description>Jahia CE Full Package</description>
 
     <scm>
+<<<<<<< .working
         <connection>scm:svn:https://devtools.jahia.com/svn/jahia_pack/trunk/</connection>
         <developerConnection>scm:svn:https://devtools.jahia.com/svn/jahia_pack/trunk/</developerConnection>
         <url>https://devtools.jahia.com/svn/jahia_pack/trunk</url>
+=======
+        <connection>scm:svn:https://devtools.jahia.com/svn/jahia_pack/branches/JAHIA-7-0-X-X-BRANCH</connection>
+        <developerConnection>scm:svn:https://devtools.jahia.com/svn/jahia_pack/branches/JAHIA-7-0-X-X-BRANCH</developerConnection>
+        <url>https://devtools.jahia.com/svn/jahia_pack/branches/JAHIA-7-0-X-X-BRANCH</url>
+>>>>>>> .merge-right.r1026
     </scm>
 
     <repositories>
