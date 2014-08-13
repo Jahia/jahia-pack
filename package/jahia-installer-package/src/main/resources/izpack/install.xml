@@ -376,21 +376,25 @@
             <executable targetfile="$INSTALL_PATH/stopDigitalFactory.bat"/>
             <executable targetfile="$INSTALL_PATH/stopDigitalFactory.sh"/>
 
-            <parsable targetfile="$INSTALL_PATH/tomcat/bin/catalina.bat" type="shell"/>
-            <parsable targetfile="$INSTALL_PATH/tomcat/bin/catalina.sh" type="shell"/>
+            <parsable targetfile="$INSTALL_PATH/tomcat/bin/setenv.bat" type="shell"/>
+            <parsable targetfile="$INSTALL_PATH/tomcat/bin/setenv.sh" type="shell"/>
             
             <parsable targetfile="$INSTALL_PATH/OpenDigitalFactory.URL"/>
             <parsable targetfile="$INSTALL_PATH/OpenDigitalFactoryAdministration.URL"/>
             
             <parsable targetfile="$INSTALL_PATH/tomcat/conf/server.xml"/>
             
-            <executable targetfile="$INSTALL_PATH/tomcat/bin/catalina.sh" />
+            <executable targetfile="$INSTALL_PATH/tomcat/bin/cataline.sh" />
+            <executable targetfile="$INSTALL_PATH/tomcat/bin/configtest.sh" />
+            <executable targetfile="$INSTALL_PATH/tomcat/bin/daemon.sh" />
             <executable targetfile="$INSTALL_PATH/tomcat/bin/digest.sh" />
             <executable targetfile="$INSTALL_PATH/tomcat/bin/setclasspath.sh" />
+            <executable targetfile="$INSTALL_PATH/tomcat/bin/setenv.sh" />
             <executable targetfile="$INSTALL_PATH/tomcat/bin/shutdown.sh" />
             <executable targetfile="$INSTALL_PATH/tomcat/bin/startup.sh" />
             <executable targetfile="$INSTALL_PATH/tomcat/bin/tool-wrapper.sh" />
             <executable targetfile="$INSTALL_PATH/tomcat/bin/version.sh" />
+            
             <executable targetfile="$INSTALL_PATH/startDigitalFactory.sh" />
             <executable targetfile="$INSTALL_PATH/stopDigitalFactory.sh" />
         </pack>
