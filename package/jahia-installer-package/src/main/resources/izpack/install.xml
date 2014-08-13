@@ -384,7 +384,7 @@
             
             <parsable targetfile="$INSTALL_PATH/tomcat/conf/server.xml"/>
             
-            <executable targetfile="$INSTALL_PATH/tomcat/bin/cataline.sh" />
+            <executable targetfile="$INSTALL_PATH/tomcat/bin/catalina.sh" />
             <executable targetfile="$INSTALL_PATH/tomcat/bin/configtest.sh" />
             <executable targetfile="$INSTALL_PATH/tomcat/bin/daemon.sh" />
             <executable targetfile="$INSTALL_PATH/tomcat/bin/digest.sh" />
