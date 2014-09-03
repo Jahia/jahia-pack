@@ -293,16 +293,14 @@
     </panel>
 
     <panel order="10">
-        <field type="staticText" txt="Jahia supports externalized configurations stored in JAR files. This is optional and deactivated by default" id="externalizedConfig.description" />
+        <field type="staticText" txt="Digital Factory implies externalization of data and configuration to separate runtime data from the Web application." id="externalizedDataAndConfig.description"/>
         <field type="space" />
-        <field type="check" variable="externalizedConfigActivated" align="left">
-            <spec txt="Externalize configuration" id="externalizedConfig.activate" true="true" false="false" revalidate="yes"/>
+        <field type="dir" align="left" variable="data.dir">
+          <spec txt="Runtime data path" size="15" set="${defaultDataDir}" id="externalizedData.path" mustExist="false"/>
         </field>
-        <field type="space" conditionid="!cnd.externalizedConfig.activated"/>
-        <field type="space" conditionid="!cnd.externalizedConfig.activated"/>
-
-        <field type="dir" align="left" variable="externalizedConfigTargetPath" conditionid="cnd.externalizedConfig.activated">
-          <spec txt="Configuration path" size="15" set="${dynExternalizedConfigTargetPath}" id="externalizedConfig.path" mustExist="false"/>
+        <field type="space" />
+        <field type="dir" align="left" variable="externalizedConfigTargetPath">
+          <spec txt="Configuration path" size="15" set="${defaultExternalizedConfigTargetPath}" id="externalizedConfig.path" mustExist="false"/>
         </field>
     </panel>
 

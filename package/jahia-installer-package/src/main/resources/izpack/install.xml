@@ -34,15 +34,15 @@
         <variable name="TargetPanel.dir.mac" value="$APPLICATIONS_DEFAULT_ROOT/${product.fullname}"/>
         <variable name="TargetPanel.dir.macosx" value="$APPLICATIONS_DEFAULT_ROOT/${product.fullname}"/>
         <variable name="TargetPanel.dir.unix" value="$APPLICATIONS_DEFAULT_ROOT/${product.fullname}"/>
+        <!--
         <variable name="TargetPanel.dir.windows" value="C:\${product.fullname}"/>
+        -->
+        <variable name="TargetPanel.dir.windows" value="C:\dev\temp\_DF"/>
 
         <variable name="afterInstall.startTomcat" value="true"/>
         <variable name="jahia.war.contextName" value=""/>
         <variable name="developmentMode" value="true"/>
-        <variable name="externalizedConfigTargetPath" value=""/>
-        <variable name="externalizedConfigActivated" value="false" />
-        <variable name="externalizedConfigClassifier" value="" />
-        
+
         <!-- DM -->
         <variable name="dmConfig.officePath" value=""/>
         <variable name="dmConfig.pdf2swfPath" value=""/>
@@ -108,8 +108,19 @@
         
         <variable name="afterInstall.startTomcat" value="false" condition="!cnd.pack.tomcat"/>
 
-        <variable name="dynExternalizedConfigTargetPath" value="$INSTALL_PATH/tomcat/lib" condition="cnd.pack.tomcat" />
-        <variable name="dynExternalizedConfigTargetPath" value="$INSTALL_PATH" condition="!cnd.pack.tomcat" />
+        <!-- Externalization of configuration and data -->
+        <variable name="externalizedConfigTargetPath" value="$INSTALL_PATH${FILE_SEPARATOR}digital-factory-config" condition="cnd.installation.type.express" />
+        <variable name="defaultExternalizedConfigTargetPath" value="$INSTALL_PATH${FILE_SEPARATOR}digital-factory-config" />
+        <variable name="jahiaVarDiskPath" value="${jahiaWebAppRoot}/../../../digital-factory-data" condition="cnd.installation.type.express" />
+        <variable name="defaultDataDir" value="$INSTALL_PATH${FILE_SEPARATOR}digital-factory-data"/>
+        <variable name="data.dir" value="$INSTALL_PATH${FILE_SEPARATOR}digital-factory-data" condition="cnd.installation.type.express" />
+        <variable name="jahiaVarDiskPath" value="${data.dir}" condition="!cnd.installation.type.express" />
+        <variable name="tomcat.common.loader" value="${catalina.home}/../digital-factory-config" condition="cnd.installation.type.express" />
+        <variable name="tomcat.common.loader" value="${externalizedConfigTargetPathNormalized}" condition="!cnd.installation.type.express" />
+        <variable name="derby.home.win" value="%CATALINA_HOME%\..\digital-factory-data\dbdata" condition="cnd.installation.type.express" />
+        <variable name="derby.home.win" value="${data.dir}\dbdata" condition="!cnd.installation.type.express" />
+        <variable name="derby.home.unix" value="$CATALINA_HOME/../digital-factory-data/dbdata" condition="cnd.installation.type.express" />
+        <variable name="derby.home.unix" value="${data.dir}/dbdata" condition="!cnd.installation.type.express" />
         
         <!-- DM -->
         <variable name="dmConfig.officePath.provided" value="true" condition="!cnd.dm.officePath.empty"/>
@@ -288,8 +299,10 @@
         <res id="CustomActionsLang.xml_deu" src="i18n/customLang.deu.xml"/>
     </resources>
     <panels>
+    <!--
         <panel classname="HelloPanel"/>
         <panel classname="LicencePanel"/>
+        -->
         <panel classname="TargetPanel"/>
         <panel classname="UserInputPanel" id="installType"/>
         <panel classname="PacksPanel" id="packsPanel" condition="cnd.installation.type.advanced"/>
@@ -313,7 +326,11 @@
             </actions>
         </panel>
         <panel classname="UserInputPanel" id="additionalSettings" condition="cnd.installation.type.advanced" />
-        <panel classname="UserInputPanel" id="externalizedConfig" condition="cnd.installation.type.advanced" />
+        <panel classname="UserInputPanel" id="externalizedConfig" condition="cnd.installation.type.advanced">
+            <actions>
+                <action stage="postvalidate" classname="org.jahia.izpack.ExternalizedConfigPanelAction"/>
+            </actions>
+        </panel>
         <panel classname="SummaryPanel"/>
         <panel classname="ExtendedInstallPanel">
         	<actions>
@@ -383,6 +400,7 @@
             <parsable targetfile="$INSTALL_PATH/OpenDigitalFactoryAdministration.URL"/>
             
             <parsable targetfile="$INSTALL_PATH/tomcat/conf/server.xml"/>
+            <parsable targetfile="$INSTALL_PATH/tomcat/conf/catalina.properties" type="shell"/>
             
             <executable targetfile="$INSTALL_PATH/tomcat/bin/catalina.sh" />
             <executable targetfile="$INSTALL_PATH/tomcat/bin/configtest.sh" />

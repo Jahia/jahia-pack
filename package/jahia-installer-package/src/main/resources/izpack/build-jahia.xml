@@ -10,8 +10,8 @@
 	<available file="${install.path}" type="dir" property="cnd.install.dir.exists"/>
 
 	<target name="copy-modules" if="cnd.modules.dir.exists">
-		<echo>Copying additional modules from ${modules.path} to ${jahia.war.target.path}/WEB-INF/var/modules ...</echo>
-		<copy todir="${jahia.war.target.path}/WEB-INF/var/modules" verbose="true">
+        <echo>Copying additional modules from ${modules.path} to ${data.dir}/modules ...</echo>
+        <copy todir="${data.dir}/modules" verbose="true">
 			<fileset dir="${modules.path}">
 				<include name="*.cfg"/>
 				<include name="*.jar"/>
@@ -22,8 +22,11 @@
 
 	<target name="jahia-configure">
 		<echo>Configuring Digital Factory...</echo>
+        <!--
+        jvmargs="-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,address=9000,server=y,suspend=y"
+        -->
 		<java jar="${install.path}/tools/configurators.jar" fork="true" failonerror="true" maxmemory="512m">
-			<sysproperty key="derby.system.home" value="${jahia.war.target.path}/WEB-INF/var/dbdata" />
+            <sysproperty key="derby.system.home" value="${data.dir}/dbdata" />
 			<arg value="--configure" />
 			<arg value="${install.path}/logs/install.properties" />
 		</java>

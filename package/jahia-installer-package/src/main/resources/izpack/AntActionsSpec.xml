@@ -13,6 +13,8 @@
 			<property name="server.type" value="${server.type}"/>
 
             <property name="modules.path" value="${additionalModulesPath}"/>
+            <property name="data.dir" value="${data.dir}"/>
+            
             <target name="copy-modules" />
             
 			<target name="jahia-configure" />
