@@ -34,10 +34,7 @@
         <variable name="TargetPanel.dir.mac" value="$APPLICATIONS_DEFAULT_ROOT/${product.fullname}"/>
         <variable name="TargetPanel.dir.macosx" value="$APPLICATIONS_DEFAULT_ROOT/${product.fullname}"/>
         <variable name="TargetPanel.dir.unix" value="$APPLICATIONS_DEFAULT_ROOT/${product.fullname}"/>
-        <!--
         <variable name="TargetPanel.dir.windows" value="C:\${product.fullname}"/>
-        -->
-        <variable name="TargetPanel.dir.windows" value="C:\dev\temp\_DF"/>
 
         <variable name="afterInstall.startTomcat" value="true"/>
         <variable name="jahia.war.contextName" value=""/>
@@ -299,10 +296,8 @@
         <res id="CustomActionsLang.xml_deu" src="i18n/customLang.deu.xml"/>
     </resources>
     <panels>
-    <!--
         <panel classname="HelloPanel"/>
         <panel classname="LicencePanel"/>
-        -->
         <panel classname="TargetPanel"/>
         <panel classname="UserInputPanel" id="installType"/>
         <panel classname="PacksPanel" id="packsPanel" condition="cnd.installation.type.advanced"/>
