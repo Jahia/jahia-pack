@@ -262,7 +262,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>bootstrap-components</artifactId>
-            <version>2.0.1</version>
+            <version>2.0.2-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
