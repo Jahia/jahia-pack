@@ -116,6 +116,12 @@
 			padding:0 0.5em;
 			font-weight:bold
 		}
+		blockquote {
+			margin: 5px -5px;
+			padding: 5px;
+			background-color: rgb(217, 217, 217); 
+			border: 1px solid #333;
+		}
     </style>
 </head>
 <body>
@@ -128,30 +134,94 @@
     <ol>
         <li>Launch the installer</li>
         <li>Choose <em>Custom install (advanced)</em> installation type</li>
-        <li>Select only <em>Digital Factory Platform</em> pack</li>
-        <li>Choose <em>Apache Tomcat 7.0.x</em> as the target application server type</li>
+        <li>Select only <em>Digital Factory + Jahia Core Content Platform</em> pack, unselecting the <em>Add Apache Tomcat</em> one</li>
+        <li>On the next screen choose the <em>Apache Tomcat 7.0.x</em> as the target application server</li>
         <li>Follow the next steps of the installer</li>
     </ol>
-    <p>Once the installer is finished in your install directory you should find a file named <tt>ROOT.war</tt>
-    <sup>[<a href="#ftn.1">1</a>]</sup>, a file named <tt>shared-libraries.zip</tt> and if you chose to externalize
-    the configuration you will also have a <tt>jahia-config.jar</tt> file.</p>
+    <p>Once the Installer is finished in your installation directory you should find among others the <tt>tomcat</tt> folder 
+    and, if the locations of runtime data and configuration folders were not changed during the installation, 
+    the <tt>digital-factory-config</tt> and <tt>digital-factory-data</tt> folders.</p>
     
     <h2>Deployment</h2>
-    <p>Further it is assumed that the Apache Tomcat server is installed in the <tt>&lt;tomcat&gt;</tt> folder.</p>
+    <p>Further, it is assumed that your target Apache Tomcat server is installed in the <tt>tomcat</tt> folder 
+    and <tt>install-dir</tt> will reference the folder, where you’ve installed Digital Factory into using the installer.</p>
     <ol>
-        <li>Unzip the content of the <tt>shared-libraries.zip</tt> file into your <tt>&lt;tomcat&gt;/lib</tt> directory.</li>
-        <li>In case ROOT was configured as the Web application context name, please, remove or rename the default Tomcat ROOT Web application
-        at <tt>&lt;tomcat&gt;/webapps/ROOT</tt>, if it exists, to e.g. <tt>tomcat</tt>.</li>
-        <li>Unzip the content of the <tt>ROOT.war</tt><sup>[<a href="#ftn.1">1</a>]</sup> file to the <tt>&lt;tomcat&gt;/webapps/ROOT</tt><sup>[<a href="#ftn.1">1</a>]</sup> directory.</li>
-        <li>Adjust the <tt>serverHome</tt> veriable value in the <tt>&lt;tomcat&gt;/webapps/ROOT/WEB-INF/etc/config/jahia.properties</tt> file to point to your <tt>&lt;tomcat&gt;</tt> folder path.</li>
-        <li>If you chose to externalize the configuration into a JAR file, either copy the <tt>jahia-config.jar</tt> file into the
-        <tt>&lt;tomcat&gt;/lib</tt> directory, or modify the catalina.sh/bat files to add it to the classpath.</li>
-		<li>Adjust the JVM, connector and servlet container options appropriately (see next sections).</li>
+    	<li>Copy the content of the <tt>&lt;install-dir&gt;/tomcat/lib</tt> folder into your <tt>&lt;tomcat&gt;/lib</tt> directory.</li>
+    	<li>In case ROOT was configured as the Web application context name, please, remove or rename the default 
+    	Tomcat’s ROOT Web application at <tt>&lt;tomcat&gt;/webapps/ROOT</tt>, if it exists, to e.g. <tt>tomcat-root</tt> or similar.</li>
+    	<li>Copy the content of the <tt>&lt;install-dir&gt;/tomcat/webapps</tt> folder into your <tt>&lt;tomcat&gt;/webapps</tt> directory.</li>
+    	<li>The configuration folder path (digital-factory-config) has to be added into the class path to make 
+    	it available to Digital Factory. The easiest way is to modify the <tt>common.loader</tt> 
+    	variable value in the <tt>&lt;tomcat&gt;/conf/catalina.properties</tt> file to point to the <tt>digital-factory-config</tt> folder path. 
+    	For example, if the Digital Factory configuration folder has a path <tt>/opt/DigitalFactory-7/digital-factory-config</tt> than 
+    	the value of common.loader should look like:
+    	<blockquote><tt>common.loader=${catalina.base}/lib,${catalina.base}/lib/*.jar,${catalina.home}/lib,${catalina.home}/lib/*.jar,/opt/DigitalFactory-7/digital-factory-config</tt></blockquote>
+    	</li>
+    	<li>Please, note, if you decide to move the <tt>digital-factory-data</tt> folder to other location,
+    	the <tt>jahiaVarDiskPath</tt> value in the <tt>digital-factory-config/jahia/jahia.properties</tt> file should be adjusted to reflect its new path.</li>
+    	<li>Adjust the JVM, connector and servlet container options appropriately (see next sections).</li>
     </ol>
     
-    <h2>Session cookie configuration for portlet container</h2>
-	<p>Add the <tt>sessionCookiePath="/"</tt> attribute to the <tt>&lt;Context/&gt;</tt> element
-        in the <tt>&lt;tomcat&gt;/conf/context.xml</tt> file:</p>
+    <h2>JVM tuning options</h2>
+	<p>The default JVM options of the Apache Tomcat have to be adjusted to reflect the Digital Factory requirements.<br/>
+	We recommend creating a <tt>setenv.bat</tt> (Windows) or <tt>setenv.sh</tt> (non-Windows OS) script in the <tt>&lt;tomcat&gt;/bin</tt> folder to put those options.<br/>
+	An example of the <tt>&lt;tomcat&gt;/bin/setenv.bat</tt> for Windows OS could be:
+	<blockquote>
+	<tt>
+rem --------------------------------------------------------------------<br/>
+rem Digital Factory settings<br/>
+rem --------------------------------------------------------------------<br/>
+<br/>
+set CATALINA_OPTS=%CATALINA_OPTS% -server -Dsun.io.useCanonCaches=false -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintConcurrentLocks -Djava.net.preferIPv4Stack=true -Xms2048m -Xmx2048m -XX:MaxPermSize=384m<br/>
+set CATALINA_OPTS=%CATALINA_OPTS% -Dderby.system.home="%CATALINA_HOME%\..\digital-factory-data\dbdata"<br/>
+	</tt>
+	</blockquote><br/>
+	In a similar way, the <tt>&lt;tomcat&gt;/bin/setenv.sh</tt> script for a non-Windows OS can look like:
+	<blockquote>
+	<tt>
+#!/bin/sh<br/>
+<br/>
+# ----------------------------------------------------------------------<br/>
+# Digital Factory settings<br/>
+# ----------------------------------------------------------------------<br/>
+<br/>
+CATALINA_OPTS="$CATALINA_OPTS -server -Djava.awt.headless=true -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintConcurrentLocks -Djava.net.preferIPv4Stack=true -Xms2048m -Xmx2048m -XX:MaxPermSize=384m"
+CATALINA_OPTS="$CATALINA_OPTS -Dderby.system.home=$CATALINA_HOME/../digital-factory-data/dbdata"<br/>
+export CATALINA_OPTS<br/>
+export CATALINA_PID=$CATALINA_HOME/temp/tomcat.pid<br/>
+	</tt>
+	</blockquote><br/>
+	The JVM heap sizes (<tt>-Xms</tt> and <tt>-Xmx</tt>) as well as the permanent generation space size (<tt>-XX:MaxPermSize</tt>) should be adjusted according to your needs<sup>[<a href="#ftn.1">1</a>]</sup>.
+	Note that the minimal value of the <tt>-Xmx</tt> value, required by Digital Factory is <tt>1280m</tt>.<br/>
+	If you have chosen Apache Derby as the target DBMS server during the installation, the value of the <tt>-Dderby.system.home</tt> in the 
+	<tt>setenv.bat/setenv.sh</tt> script should point to your <tt>digital-factory-data/dbdata</tt> folder.
+	</p>
+
+    <h2>HTTP/AJP connector tuning options</h2>
+    <p>The following configuration for the HTTP and AJP connectors (configured in the <tt>&lt;tomcat&gt;/conf/server.xml</tt> file) is recommended<sup>[<a href="#ftn.2">2</a>]</sup>,
+    which includes UTF-8 URI encoding, compression of the response content etc.:</p>
+    <blockquote>
+    <p>
+    <tt>&lt;Connector port="8080"<br/>
+        &nbsp;&nbsp;&nbsp;protocol="org.apache.coyote.http11.Http11NioProtocol"<br/>
+        &nbsp;&nbsp;&nbsp;connectionTimeout="20000"<br/>
+        &nbsp;&nbsp;&nbsp;redirectPort="8443"<br/>
+        &nbsp;&nbsp;&nbsp;maxThreads="300" acceptCount="100"<br/>
+        &nbsp;&nbsp;&nbsp;enableLookups="false"<br/>
+        &nbsp;&nbsp;&nbsp;URIEncoding="UTF-8"<br/>
+        &nbsp;&nbsp;&nbsp;compression="on"<br/>
+        &nbsp;&nbsp;&nbsp;compressableMimeType="text/plain,text/html,text/xml,text/css,text/javascript,application/x-javascript,application/javascript" /&gt;</tt>
+    </p>
+    </blockquote>
+    <blockquote>
+    <p>
+    <tt>&lt;Connector port="8009" protocol="org.apache.coyote.ajp.AjpNioProtocol" redirectPort="8443"<br/>
+    &nbsp;&nbsp;&nbsp;enableLookups="false" URIEncoding="UTF-8" maxThreads="300" /&gt;</tt>
+    </p>
+    </blockquote>
+
+    <h2>Session cookie path</h2>
+	<p>The following attribute needs to be set on the <tt>&lt;Context/&gt;</tt> element in the <tt>&lg;tomcat&gt;/conf/context.xml</tt> file for Tomcat:</p>
     <blockquote>
     <p>
     <tt>&lt;Context sessionCookiePath="/"&gt;<br/>
@@ -162,93 +232,10 @@
     </blockquote>
     <p>This attribute is required for portlet container.</p>
     
-    <h2>HTTP/AJP connector tuning options</h2>
-    <p>The following configuration for the HTTP and AJP connectors (configured in the <tt>&lt;tomcat&gt;/conf/server.xml</tt> file) is recommended<sup>[<a href="#ftn.3">3</a>]</sup>,
-    which includes UTF-8 URI encoding, compression of the response content etc.:</p>
-    <blockquote>
-    <p>
-    <tt>&lt;Connector port="8080" protocol="HTTP/1.1"<br/>
-        &nbsp;&nbsp;&nbsp;connectionTimeout="20000"<br/>
-        &nbsp;&nbsp;&nbsp;redirectPort="8443"<br/>
-        &nbsp;&nbsp;&nbsp;maxThreads="300" acceptCount="100"<br/>
-        &nbsp;&nbsp;&nbsp;enableLookups="false"<br/>
-        &nbsp;&nbsp;&nbsp;URIEncoding="UTF-8"<br/>
-        &nbsp;&nbsp;&nbsp;compression="on"<br/>
-        &nbsp;&nbsp;&nbsp;compressableMimeType="text/plain,text/html,text/xml,text/css,text/javascript,application/x-javascript,application/javascript" /&gt;</tt>
-    </p>
-    </blockquote>
-    <blockquote>
-    <p>
-    <tt>&lt;Connector port="8009" protocol="AJP/1.3" redirectPort="8443"<br/>
-    &nbsp;&nbsp;&nbsp;enableLookups="false" URIEncoding="UTF-8" maxThreads="300" /&gt;</tt>
-    </p>
-    </blockquote>
-    
-    <h2>HTTP/AJP connector tuning options</h2>
-    <p>The following configuration for the HTTP and AJP connectors (configured in the <tt>&lt;tomcat&gt;/conf/server.xml</tt> file) is recommended<sup>[<a href="#ftn.3">3</a>]</sup>,
-    which includes UTF-8 URI encoding, compression of the response content etc.:</p>
-    <blockquote>
-    <p>
-    <tt>&lt;Connector port="8080" protocol="HTTP/1.1"<br/>
-        &nbsp;&nbsp;&nbsp;connectionTimeout="20000"<br/>
-        &nbsp;&nbsp;&nbsp;redirectPort="8443"<br/>
-        &nbsp;&nbsp;&nbsp;maxThreads="300" acceptCount="100"<br/>
-        &nbsp;&nbsp;&nbsp;enableLookups="false"<br/>
-        &nbsp;&nbsp;&nbsp;URIEncoding="UTF-8"<br/>
-        &nbsp;&nbsp;&nbsp;compression="on"<br/>
-        &nbsp;&nbsp;&nbsp;compressableMimeType="text/plain,text/html,text/xml,text/css,text/javascript,application/x-javascript,application/javascript" /&gt;</tt>
-	</p>
-	</blockquote>
-    <blockquote>
-    <p>
-    <tt>&lt;Connector port="8009" protocol="AJP/1.3" redirectPort="8443"<br/>
-    &nbsp;&nbsp;&nbsp;enableLookups="false" URIEncoding="UTF-8" maxThreads="300" /&gt;</tt>
-    </p>
-    </blockquote>
-    
-    <h2>JSP Compiler/Servlet tuning options</h2>
-    <p>JSP Servlet parameters (configured in the <tt>&lt;tomcat&gt;/conf/web.xml</tt> file) can be optimized in the following way:</p>
-    <pre>
-    &lt;servlet&gt;
-        &lt;servlet-name&gt;jsp&lt;/servlet-name&gt;
-        &lt;servlet-class&gt;org.apache.jasper.servlet.JspServlet&lt;/servlet-class&gt;
-        &lt;init-param&gt;
-            &lt;param-name&gt;fork&lt;/param-name&gt;
-            &lt;param-value&gt;true&lt;/param-value&gt;
-        &lt;/init-param&gt;
-        &lt;init-param&gt;
-            &lt;param-name&gt;trimSpaces&lt;/param-name&gt;
-            &lt;param-value&gt;true&lt;/param-value&gt;
-        &lt;/init-param&gt;
-        &lt;init-param&gt;
-            &lt;param-name&gt;genStrAsCharArray&lt;/param-name&gt;
-            &lt;param-value&gt;true&lt;/param-value&gt;
-        &lt;/init-param&gt;
-        &lt;init-param&gt;
-            &lt;param-name&gt;development&lt;/param-name&gt;
-            &lt;param-value&gt;true&lt;/param-value&gt;
-        &lt;/init-param&gt;
-        &lt;init-param&gt;
-            &lt;param-name&gt;checkInterval&lt;/param-name&gt;
-            &lt;param-value&gt;300&lt;/param-value&gt;
-        &lt;/init-param&gt;
-        &lt;init-param&gt;
-            &lt;param-name&gt;xpoweredBy&lt;/param-name&gt;
-            &lt;param-value&gt;false&lt;/param-value&gt;
-        &lt;/init-param&gt;
-        &lt;load-on-startup&gt;3&lt;/load-on-startup&gt;
-    &lt;/servlet&gt;
-    </pre>
-    
-    <p>In production you can set the <tt>development</tt> parameter to <tt>false</tt> to prevent compiler checking
-    for JSP modifications too often and enable background compilation with <tt>checkInterval</tt> seconds.
-	</p>
-    
     <div id="footnote">
     	<p>
-    	<sup>[<a name="ftn.1">1</a>]</sup>&nbsp;The name of the WAR file corresponds to the configured Web application context name<br/>
-    	<sup>[<a name="ftn.2">2</a>]</sup>&nbsp;For production systems the memory options should be adjusted accordingly to achieve high performance and scalability 
-    	<sup>[<a name="ftn.3">3</a>]</sup>&nbsp;Connector settings, especially <tt>maxThreads</tt> and <tt>acceptCount</tt> values, should be adjusted accordingly to achieve high performance and scalability in production run 
+    	<sup>[<a name="ftn.1">1</a>]</sup>&nbsp;For production systems the memory options should be adjusted accordingly to achieve high performance and scalability 
+    	<sup>[<a name="ftn.2">2</a>]</sup>&nbsp;Connector settings, especially <tt>maxThreads</tt> and <tt>acceptCount</tt> values, should be adjusted accordingly to achieve high performance and scalability in production run 
     	</p>
 	</div>
   </div>
