@@ -272,14 +272,6 @@
             <scope>runtime</scope>
         </dependency>
 		<!-- end of Jahia Forge Modules -->
-
-         <!-- external user/group provider -->
-         <dependency>
-            <groupId>org.jahia.modules</groupId>
-            <artifactId>external-provider-users-groups</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-            <scope>runtime</scope>
-        </dependency>
         
          <!-- LDAP -->
         <dependency>
