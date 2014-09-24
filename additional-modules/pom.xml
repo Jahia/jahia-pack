@@ -273,7 +273,13 @@
         </dependency>
 		<!-- end of Jahia Forge Modules -->
         
-         <!-- LDAP -->
+         <!-- Users and groups provider modules -->
+        <dependency>
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>users-groups-bridge-provider</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>runtime</scope>
+        </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>ldap</artifactId>
