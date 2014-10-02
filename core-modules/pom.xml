@@ -274,7 +274,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>ckeditor</artifactId>
-            <version>4.4.4</version>
+            <version>4.4.4-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
 	</dependencies>
