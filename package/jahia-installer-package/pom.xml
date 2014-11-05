@@ -296,7 +296,7 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-jarsigner-plugin</artifactId>
                         <configuration>
-                            <alias>jahia solutions group sa\'s godaddy.com, inc. id</alias>
+                            <alias>jahia solutions group sa'\''s godaddy.com, inc. id</alias>
                         </configuration>
                     </plugin>
                 </plugins>
