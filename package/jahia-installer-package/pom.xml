@@ -140,6 +140,7 @@
             </activation>
             <properties>
                 <os.family>windows</os.family>
+                <sign4j.executable>sign4j.exe</sign4j.executable>
             </properties>
         </profile>
         <profile>
@@ -151,6 +152,7 @@
             </activation>
             <properties>
                 <os.family>unix</os.family>
+                <sign4j.executable>sign4j</sign4j.executable>
             </properties>
         </profile>
         <profile>
@@ -162,6 +164,7 @@
             </activation>
             <properties>
                 <os.family>mac</os.family>
+                <sign4j.executable>sign4j</sign4j.executable>
             </properties>
         </profile>
         <profile>
@@ -199,6 +202,7 @@
                         <artifactId>maven-dependency-plugin</artifactId>
                         <executions>
                             <execution>
+                                <id>launch4j</id>
                                 <phase>process-resources</phase>
                                 <goals>
                                     <goal>unpack</goal>
@@ -232,6 +236,7 @@
                         <artifactId>maven-antrun-plugin</artifactId>
                         <executions>
                             <execution>
+                                <id>exe</id>
                                 <phase>package</phase>
                                 <configuration>
                                     <target>
@@ -300,6 +305,59 @@
                                 <id>sign</id>
                                 <goals>
                                     <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>sign-installer-exe</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>jsign</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>net.jsign</groupId>
+                                            <artifactId>jsign</artifactId>
+                                            <version>1.2</version>
+                                            <overWrite>false</overWrite>
+                                            <destFileName>jsign.jar</destFileName>
+                                            <outputDirectory>${project.build.directory}/artifacts/jsign</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>sign-exe</id>
+                                <phase>package</phase>
+                                <configuration>
+                                    <target>
+                                        <exec executable="${project.build.directory}/sign4j/${sign4j.executable}">
+                                            <arg
+                                                line="java -jar ${project.build.directory}/artifacts/jsign/jsign.jar --storetype PKCS12 --keystore ${jahia.sign.keystore} --storepass ${jahia.sign.storepass} --alias jahia --tsaurl http://tsa.starfieldtech.com/ ${project.build.directory}/${installer.filename}.exe" />
+                                        </exec>
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
                                 </goals>
                             </execution>
                         </executions>
