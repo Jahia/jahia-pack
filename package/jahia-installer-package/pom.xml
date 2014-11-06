@@ -350,6 +350,7 @@
                                 <phase>package</phase>
                                 <configuration>
                                     <target>
+                                        <chmod file="${project.build.directory}/sign4j/${sign4j.executable}" perm="ugo+rx" />
                                         <exec executable="${project.build.directory}/sign4j/${sign4j.executable}">
                                             <arg
                                                 line="java -jar ${project.build.directory}/artifacts/jsign/jsign.jar --storetype PKCS12 --keystore ${jahia.sign.keystore} --storepass ${jahia.sign.storepass} --alias jahia --tsaurl http://tsa.starfieldtech.com/ ${project.build.directory}/${installer.filename}.exe" />
