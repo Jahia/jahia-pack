@@ -130,11 +130,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>formbuilder</artifactId>
-<<<<<<< .working
-            <version>2.0.2-SNAPSHOT</version>
-=======
             <version>2.0.3-SNAPSHOT</version>
->>>>>>> .merge-right.r1135
             <scope>runtime</scope>
         </dependency>
         <dependency>
