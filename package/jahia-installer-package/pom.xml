@@ -451,7 +451,7 @@
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.jahia.server</groupId>
-                                    <artifactId>jahia-ee-additional-modules</artifactId>
+                                    <artifactId>jahia-additional-modules</artifactId>
                                     <version>${project.version}</version>
                                     <classifier>package</classifier>
                                     <type>zip</type>
