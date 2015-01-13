@@ -256,7 +256,7 @@
                                                 supportUrl="http://www.jahia.com"
                                                 stayAlive="false"
                                                 icon="${project.build.directory}/images/jahia.ico">
-                                                <jre minVersion="1.6.0"/>
+                                                <jre minVersion="1.7.0"/>
                                                 <splash
                                                     file="${project.build.directory}/images/splash.bmp"
                                                     waitForWindow="true"
