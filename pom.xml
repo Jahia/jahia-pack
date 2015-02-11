@@ -127,6 +127,7 @@
         <module>core-modules</module>
         <module>additional-modules</module>
         <module>package</module>
+        <module>jahia-packages-parent</module>
     </modules>
 
 </project>

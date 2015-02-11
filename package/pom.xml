@@ -94,6 +94,5 @@
     <modules>
         <module>jdbc-drivers</module>
         <module>shared-libraries</module>
-        <module>jahia-packages-parent</module>
     </modules>
 </project>
