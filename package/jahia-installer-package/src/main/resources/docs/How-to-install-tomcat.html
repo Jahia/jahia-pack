@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>How to install Digital Factory 7.0 on Apache Tomcat 7.0.x server</title>
+    <title>How to install Digital Factory 7.1 on Apache Tomcat 8.0.x server</title>
     <style type="text/css">
 		body {
 		    font: 75% Arial, Helvetica, sans-serif;
@@ -127,15 +127,15 @@
 <body>
 <div id="container">
   <div id="mainContent">
-	<h1>How to install Digital Factory 7.0 on Apache Tomcat 7.0.x server</h1>
+	<h1>How to install Digital Factory 7.1 on Apache Tomcat 8.0.x server</h1>
 	
 	<h2>Installation</h2>
-	<p>The installation procedure for Apache Tomcat 7 is as follows:</p>
+	<p>The installation procedure for Apache Tomcat 8 is as follows:</p>
     <ol>
         <li>Launch the installer</li>
         <li>Choose <em>Custom install (advanced)</em> installation type</li>
         <li>Select only <em>Digital Factory + Jahia Core Content Platform</em> pack, unselecting the <em>Add Apache Tomcat</em> one</li>
-        <li>On the next screen choose the <em>Apache Tomcat 7.0.x</em> as the target application server</li>
+        <li>On the next screen choose the <em>Apache Tomcat 8.0.x</em> as the target application server</li>
         <li>Follow the next steps of the installer</li>
     </ol>
     <p>Once the Installer is finished in your installation directory you should find among others the <tt>tomcat</tt> folder 
@@ -155,7 +155,7 @@
     	variable value in the <tt>&lt;tomcat&gt;/conf/catalina.properties</tt> file to point to the <tt>digital-factory-config</tt> folder path. 
     	For example, if the Digital Factory configuration folder has a path <tt>/opt/DigitalFactory-7/digital-factory-config</tt> than 
     	the value of common.loader should look like:
-    	<blockquote><tt>common.loader=${catalina.base}/lib,${catalina.base}/lib/*.jar,${catalina.home}/lib,${catalina.home}/lib/*.jar,/opt/DigitalFactory-7/digital-factory-config</tt></blockquote>
+    	<blockquote><tt>common.loader="${catalina.base}/lib","${catalina.base}/lib/*.jar","${catalina.home}/lib","${catalina.home}/lib/*.jar",/opt/DigitalFactory-7/digital-factory-config</tt></blockquote>
     	</li>
     	<li>Please, note, if you decide to move the <tt>digital-factory-data</tt> folder to other location,
     	the <tt>jahiaVarDiskPath</tt> value in the <tt>digital-factory-config/jahia/jahia.properties</tt> file should be adjusted to reflect its new path.</li>
