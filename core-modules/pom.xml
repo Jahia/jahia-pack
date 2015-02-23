@@ -87,145 +87,145 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>assets</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>channels</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>contentRetrieval</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>contribute</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>default</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>siteSettings</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>facets</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>grid</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>macros</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>profile</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>rolesmanager</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>search</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>seo</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>skins</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>default-skins</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>serverSettings</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>tabularList</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>tags</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>tasks</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>templates-system</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>visibility</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>translation</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>jquery</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>userDashboard</artifactId>
-            <version>${project.version}</version>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         
