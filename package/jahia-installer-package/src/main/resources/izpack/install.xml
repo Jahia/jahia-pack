@@ -62,8 +62,16 @@
         <variable name="server.type" value="tomcat"/>
 
         <variable name="tomcat.httpPort" value="8080" condition="cnd.installation.type.express|!cnd.pack.tomcat"/>
+<<<<<<< .working
+=======
+        <variable name="tomcat.httpProtocol" value="HTTP/1.1" />
+>>>>>>> .merge-right.r1269
         <variable name="tomcat.sslPort" value="8443" condition="cnd.installation.type.express|!cnd.pack.tomcat"/>
         <variable name="tomcat.ajpPort" value="8009" condition="cnd.installation.type.express|!cnd.pack.tomcat"/>
+<<<<<<< .working
+=======
+        <variable name="tomcat.ajpProtocol" value="AJP/1.3" />
+>>>>>>> .merge-right.r1269
         <variable name="tomcat.serverPort" value="8005" condition="cnd.installation.type.express|!cnd.pack.tomcat"/>
         
         <variable name="jahiaManager.username" value="jahia" condition="cnd.installation.type.express"/>
