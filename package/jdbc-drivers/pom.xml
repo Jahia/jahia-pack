@@ -89,7 +89,6 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${driver.mysql.version}</version>
-            <classifier>nofabric</classifier>
         </dependency>
         <dependency>
             <groupId>org.apache.derby</groupId>
