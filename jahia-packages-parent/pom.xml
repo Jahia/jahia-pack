@@ -8,9 +8,9 @@
   </parent>
   <groupId>org.jahia.packages</groupId>
   <artifactId>jahia-packages-parent</artifactId>
-  <name>Enterprise Distribution - Workspace Factory</name>
+  <name>Jahia Packages Parent</name>
   <packaging>pom</packaging>
-  <description>Parent project to package all Factories components.</description>
+  <description>Parent project to package all Factory components</description>
   <build>
     <pluginManagement>
       <plugins>
