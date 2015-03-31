@@ -11,6 +11,9 @@
   <name>Jahia Packages Parent</name>
   <packaging>pom</packaging>
   <description>Parent project to package all Factory components</description>
+  <properties>
+    <jahia.required.version>${project.parent.version}</jahia.required.version>
+  </properties>
   <build>
     <pluginManagement>
       <plugins>
@@ -61,7 +64,7 @@
                     <Jahia-Package-ID>${jahia.manifest.package.id}</Jahia-Package-ID>
                     <Jahia-Package-Name>${project.name}</Jahia-Package-Name>
                     <Jahia-Package-Version>${project.version}</Jahia-Package-Version>
-                    <Jahia-Required-Version>${project.parent.version}</Jahia-Required-Version>
+                    <Jahia-Required-Version>${jahia.required.version}</Jahia-Required-Version>
                     <Jahia-Package-License>${jahia.manifest.license}</Jahia-Package-License>
                     <Jahia-Package-Description>${jahia.manifest.description}</Jahia-Package-Description>
                   </manifestEntries>
