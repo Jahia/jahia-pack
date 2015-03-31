@@ -53,7 +53,7 @@
                 <descriptors>
                   <descriptor>${jahia.package.assembly.file}</descriptor>
                 </descriptors>
-                <attach>false</attach>
+                <attach>true</attach>
                 <finalName>${jahia.final.package.name}-${project.version}</finalName>
                 <appendAssemblyId>false</appendAssemblyId>
                 <archive>
