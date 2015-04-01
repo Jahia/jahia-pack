@@ -98,6 +98,12 @@
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
+            <artifactId>ckeditor</artifactId>
+            <version>4.4.4</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jahia.modules</groupId>
             <artifactId>contentRetrieval</artifactId>
             <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
@@ -116,8 +122,32 @@
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
-            <artifactId>siteSettings</artifactId>
+            <artifactId>default-skins</artifactId>
             <version>7.1.0-SNAPSHOT</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>external-provider</artifactId>
+            <version>3.0.0-SNAPSHOT</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>external-provider-modules</artifactId>
+            <version>3.0.0-SNAPSHOT</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+           <groupId>org.jahia.modules</groupId>
+           <artifactId>external-provider-users-groups</artifactId>
+           <version>1.0.0-SNAPSHOT</version>
+           <scope>runtime</scope>
+       </dependency>
+        <dependency>
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>external-provider-vfs</artifactId>
+            <version>3.0.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -133,6 +163,23 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
+            <!-- JAX-RS OSGi Extender, depends on Jersey and its dependencies, put in bundles -->
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>jaxrs-osgi-extender</artifactId>
+            <version>2.0.2-SNAPSHOT</version>
+            <scope>runtime</scope>
+        </dependency><dependency>
+            <!-- RESTful API -->
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>jcrestapi</artifactId>
+            <version>2.1.0-SNAPSHOT</version>
+            <scope>runtime</scope>
+        </dependency><dependency>
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>jquery</artifactId>
+            <version>7.1.0-SNAPSHOT</version>
+            <scope>runtime</scope>
+        </dependency><dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>macros</artifactId>
             <version>7.1.0-SNAPSHOT</version>
@@ -161,22 +208,20 @@
             <artifactId>seo</artifactId>
             <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jahia.modules</groupId>
-            <artifactId>skins</artifactId>
-            <version>7.1.0-SNAPSHOT</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jahia.modules</groupId>
-            <artifactId>default-skins</artifactId>
-            <version>7.1.0-SNAPSHOT</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
+        </dependency><dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>serverSettings</artifactId>
+            <version>7.1.0-SNAPSHOT</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>siteSettings</artifactId>
+            <version>7.1.0-SNAPSHOT</version>
+            <scope>runtime</scope>
+        </dependency><dependency>
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>skins</artifactId>
             <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
@@ -206,75 +251,18 @@
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
-            <artifactId>visibility</artifactId>
-            <version>7.1.0-SNAPSHOT</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jahia.modules</groupId>
             <artifactId>translation</artifactId>
             <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jahia.modules</groupId>
-            <artifactId>jquery</artifactId>
-            <version>7.1.0-SNAPSHOT</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
+        </dependency><dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>userDashboard</artifactId>
             <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
-        </dependency>
-        
-        <!-- External provider modules -->
-        <dependency>
+        </dependency><dependency>
             <groupId>org.jahia.modules</groupId>
-            <artifactId>external-provider</artifactId>
-            <version>3.0.0-SNAPSHOT</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jahia.modules</groupId>
-            <artifactId>external-provider-modules</artifactId>
-            <version>3.0.0-SNAPSHOT</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jahia.modules</groupId>
-            <artifactId>external-provider-vfs</artifactId>
-            <version>3.0.0-SNAPSHOT</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-           <groupId>org.jahia.modules</groupId>
-           <artifactId>external-provider-users-groups</artifactId>
-           <version>1.0.0-SNAPSHOT</version>
-           <scope>runtime</scope>
-       </dependency>
-
-        <!-- RESTful API -->
-        <dependency>
-            <groupId>org.jahia.modules</groupId>
-            <artifactId>jcrestapi</artifactId>
-            <version>2.1.0-SNAPSHOT</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <!-- JAX-RS OSGi Extender, depends on Jersey and its dependencies, put in bundles -->
-        <dependency>
-            <groupId>org.jahia.modules</groupId>
-            <artifactId>jaxrs-osgi-extender</artifactId>
-            <version>2.0.2-SNAPSHOT</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jahia.modules</groupId>
-            <artifactId>ckeditor</artifactId>
-            <version>4.4.4</version>
+            <artifactId>visibility</artifactId>
+            <version>7.1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
 	</dependencies>
