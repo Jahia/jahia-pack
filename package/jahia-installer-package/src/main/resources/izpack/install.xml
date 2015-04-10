@@ -109,13 +109,13 @@
         <variable name="jahiaVarDiskPath" value="${jahiaWebAppRoot}/../../../digital-factory-data" condition="cnd.installation.type.express" />
         <variable name="defaultDataDir" value="$INSTALL_PATH${FILE_SEPARATOR}digital-factory-data"/>
         <variable name="data.dir" value="$INSTALL_PATH${FILE_SEPARATOR}digital-factory-data" condition="cnd.installation.type.express" />
-        <variable name="jahiaVarDiskPath" value="${data.dir}" condition="!cnd.installation.type.express" />
+        <variable name="jahiaVarDiskPath" value="${data.dir}" condition="cnd.installation.type.advanced+!cnd.data.dir.relative" />
         <variable name="tomcat.common.loader" value="${catalina.home}/../digital-factory-config" condition="cnd.installation.type.express" />
-        <variable name="tomcat.common.loader" value="${externalizedConfigTargetPathNormalized}" condition="!cnd.installation.type.express" />
+        <variable name="tomcat.common.loader" value="${externalizedConfigTargetPathNormalized}" condition="cnd.installation.type.advanced+!cnd.config.dir.relative" />
         <variable name="derby.home.win" value="%CATALINA_HOME%\..\digital-factory-data\dbdata" condition="cnd.installation.type.express" />
-        <variable name="derby.home.win" value="${data.dir}\dbdata" condition="!cnd.installation.type.express" />
+        <variable name="derby.home.win" value="${data.dir}\dbdata" condition="cnd.installation.type.advanced+!cnd.data.dir.relative" />
         <variable name="derby.home.unix" value="$CATALINA_HOME/../digital-factory-data/dbdata" condition="cnd.installation.type.express" />
-        <variable name="derby.home.unix" value="${data.dir}/dbdata" condition="!cnd.installation.type.express" />
+        <variable name="derby.home.unix" value="${data.dir}/dbdata" condition="cnd.installation.type.advanced+!cnd.data.dir.relative" />
         
         <!-- DM -->
         <variable name="dmConfig.officePath.provided" value="true" condition="!cnd.dm.officePath.empty"/>
@@ -218,6 +218,19 @@
         
         <condition type="com.izforge.izpack.rules.VariableExistenceCondition" id="cnd.superUser.preferredLang.set">
             <variable>superUser.preferredLang</variable>
+        </condition>
+
+        <condition type="variable" id="cnd.data.dir.relative">
+            <!-- this variable is set by the ExternalizedConfigPanelAction in case the data directory
+                 is under the installation path and the paths are set by that action to relative ones -->
+            <name>isDataDirRelative</name>
+            <value>true</value>
+        </condition>
+        <condition type="variable" id="cnd.config.dir.relative">
+            <!-- this variable is set by the ExternalizedConfigPanelAction in case the config directory
+                 is under the installation path and the paths are set by that action to relative ones -->
+            <name>isConfigDirRelative</name>
+            <value>true</value>
         </condition>
     </conditions>
     <guiprefs height="560" resizable="yes" width="640">
