@@ -90,7 +90,11 @@
     -->
 
     <!-- Define an AJP 1.3 Connector on port 8009 -->
+<<<<<<< .working
     <Connector port="${tomcat.ajpPort}" protocol="AJP/1.3" redirectPort="${tomcat.sslPort}" maxThreads="300" />
+=======
+    <Connector port="${tomcat.ajpPort}" protocol="${tomcat.ajpProtocol}" connectionTimeout="20000" keepAliveTimeout="300000" redirectPort="${tomcat.sslPort}" enableLookups="false" URIEncoding="UTF-8" maxThreads="300" />
+>>>>>>> .merge-right.r1326
 
 
     <!-- An Engine represents the entry point (within Catalina) that processes
