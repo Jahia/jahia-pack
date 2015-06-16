@@ -156,10 +156,12 @@
     	For example, if the Digital Factory configuration folder has a path <tt>/opt/DigitalFactory-7/digital-factory-config</tt> than 
     	the value of common.loader should look like:
     	<blockquote><tt>common.loader="${catalina.base}/lib","${catalina.base}/lib/*.jar","${catalina.home}/lib","${catalina.home}/lib/*.jar",/opt/DigitalFactory-7/digital-factory-config</tt></blockquote>
+		If your <tt>digital-factory-config</tt> folder is inside the installation folder, you could use the path, relative to <tt>catalina.home</tt>, i.e.:
+    	<blockquote><tt>common.loader="${catalina.base}/lib","${catalina.base}/lib/*.jar","${catalina.home}/lib","${catalina.home}/lib/*.jar","${catalina.home}/../digital-factory-config"</tt></blockquote>
     	</li>
     	<li>Please, note, if you decide to move the <tt>digital-factory-data</tt> folder to other location,
     	the <tt>jahiaVarDiskPath</tt> value in the <tt>digital-factory-config/jahia/jahia.properties</tt> file should be adjusted to reflect its new path.</li>
-    	<li>Adjust the JVM, connector and servlet container options appropriately (see next sections).</li>
+    	<li>Adjust the JVM and connector options appropriately (see next sections).</li>
     </ol>
     
     <h2>JVM tuning options</h2>
@@ -199,39 +201,24 @@ export CATALINA_PID=$CATALINA_HOME/temp/tomcat.pid<br/>
 
     <h2>HTTP/AJP connector tuning options</h2>
     <p>The following configuration for the HTTP and AJP connectors (configured in the <tt>&lt;tomcat&gt;/conf/server.xml</tt> file) is recommended<sup>[<a href="#ftn.2">2</a>]</sup>,
-    which includes UTF-8 URI encoding, compression of the response content etc.:</p>
+    which includes maximum threads and accept count configuration, compression of the response content etc.:</p>
     <blockquote>
     <p>
     <tt>&lt;Connector port="8080"<br/>
-        &nbsp;&nbsp;&nbsp;protocol="org.apache.coyote.http11.Http11NioProtocol"<br/>
-        &nbsp;&nbsp;&nbsp;connectionTimeout="20000"<br/>
+        &nbsp;&nbsp;&nbsp;protocol="HTTP/1.1"<br/>
         &nbsp;&nbsp;&nbsp;redirectPort="8443"<br/>
         &nbsp;&nbsp;&nbsp;maxThreads="300" acceptCount="100"<br/>
-        &nbsp;&nbsp;&nbsp;enableLookups="false"<br/>
-        &nbsp;&nbsp;&nbsp;URIEncoding="UTF-8"<br/>
         &nbsp;&nbsp;&nbsp;compression="on"<br/>
         &nbsp;&nbsp;&nbsp;compressableMimeType="text/plain,text/html,text/xml,text/css,text/javascript,application/x-javascript,application/javascript" /&gt;</tt>
     </p>
     </blockquote>
     <blockquote>
     <p>
-    <tt>&lt;Connector port="8009" protocol="org.apache.coyote.ajp.AjpNioProtocol" redirectPort="8443"<br/>
-    &nbsp;&nbsp;&nbsp;enableLookups="false" URIEncoding="UTF-8" maxThreads="300" /&gt;</tt>
+    <tt>&lt;Connector port="8009" protocol="AJP/1.3" redirectPort="8443"<br/>
+    &nbsp;&nbsp;&nbsp;connectionTimeout="20000" keepAliveTimeout="300000" maxThreads="300" /&gt;</tt>
     </p>
     </blockquote>
 
-    <h2>Session cookie path</h2>
-	<p>The following attribute needs to be set on the <tt>&lt;Context/&gt;</tt> element in the <tt>&lg;tomcat&gt;/conf/context.xml</tt> file for Tomcat:</p>
-    <blockquote>
-    <p>
-    <tt>&lt;Context sessionCookiePath="/"&gt;<br/>
-        &nbsp;&nbsp;&nbsp;...<br/>
-        &lt;/Context&gt;
-    </tt>
-    </p>
-    </blockquote>
-    <p>This attribute is required for portlet container.</p>
-    
     <div id="footnote">
     	<p>
     	<sup>[<a name="ftn.1">1</a>]</sup>&nbsp;For production systems the memory options should be adjusted accordingly to achieve high performance and scalability 
