@@ -141,7 +141,7 @@
         <dependency>
            <groupId>org.jahia.modules</groupId>
            <artifactId>external-provider-users-groups</artifactId>
-           <version>1.0.0</version>
+           <version>1.0.1-SNAPSHOT</version>
            <scope>runtime</scope>
        </dependency>
         <dependency>
