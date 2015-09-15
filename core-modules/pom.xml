@@ -230,13 +230,8 @@
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
-<<<<<<< .working
             <artifactId>tabularList</artifactId>
             <version>7.1.0</version>
-=======
-            <artifactId>userDashboard</artifactId>
-            <version>7.0.1-SNAPSHOT</version>
->>>>>>> .merge-right.r1419
             <scope>runtime</scope>
         </dependency>
         <dependency>
