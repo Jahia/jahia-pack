@@ -197,7 +197,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>rolesmanager</artifactId>
-            <version>7.1.0</version>
+            <version>7.1.1-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
