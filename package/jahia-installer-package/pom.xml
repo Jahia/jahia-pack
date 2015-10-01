@@ -99,7 +99,7 @@
         <dependency>
             <groupId>org.jahia.configuration</groupId>
             <artifactId>jahia-installer-lib</artifactId>
-            <version>${jahia.installers.version}</version>
+            <version>4.6.1</version>
         </dependency>
 
         <dependency>
@@ -481,6 +481,15 @@
                                     <type>jar</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}/artifacts</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.osgi</groupId>
+                                    <artifactId>org.osgi.compendium</artifactId>
+                                    <version>${osgi.version}</version>
+                                    <type>jar</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/artifacts/jahia-war/WEB-INF/lib</outputDirectory>
+									<destFileName>org.osgi.compendium-${osgi.version}.jar</destFileName>
                                 </artifactItem>
                             </artifactItems>
                             <stripVersion>true</stripVersion>
