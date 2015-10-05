@@ -146,8 +146,13 @@
        </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
+<<<<<<< .working
             <artifactId>external-provider-vfs</artifactId>
             <version>3.0.1-SNAPSHOT</version>
+=======
+            <artifactId>macros</artifactId>
+            <version>7.0.1-SNAPSHOT</version>
+>>>>>>> .merge-right.r1437
             <scope>runtime</scope>
         </dependency>
         <dependency>
