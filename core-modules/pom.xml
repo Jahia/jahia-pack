@@ -87,7 +87,15 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>assets</artifactId>
+<<<<<<< .working
             <version>7.1.2-SNAPSHOT</version>
+=======
+<<<<<<< .working
+            <version>7.1.1</version>
+>>>>>>> .merge-right.r1484
+=======
+            <version>7.0.3-SNAPSHOT</version>
+>>>>>>> .merge-right.r1483
             <scope>runtime</scope>
         </dependency>
         <dependency>
