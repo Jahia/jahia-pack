@@ -297,13 +297,13 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>sample-bootstrap-templates</artifactId>
-            <version>3.0.1</version>
+            <version>3.0.2-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>bootstrap-acme-space-templates</artifactId>
-            <version>3.0.1</version>
+            <version>3.0.2-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         
