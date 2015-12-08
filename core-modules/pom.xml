@@ -129,41 +129,25 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>external-provider</artifactId>
-<<<<<<< .working
             <version>4.0.0-SNAPSHOT</version>
-=======
-            <version>3.0.2-SNAPSHOT</version>
->>>>>>> .merge-right.r1501
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>external-provider-modules</artifactId>
-<<<<<<< .working
             <version>4.0.0-SNAPSHOT</version>
-=======
-            <version>3.0.2-SNAPSHOT</version>
->>>>>>> .merge-right.r1501
             <scope>runtime</scope>
         </dependency>
         <dependency>
            <groupId>org.jahia.modules</groupId>
            <artifactId>external-provider-users-groups</artifactId>
-<<<<<<< .working
            <version>2.0.0-SNAPSHOT</version>
-=======
-           <version>1.0.2-SNAPSHOT</version>
->>>>>>> .merge-right.r1501
            <scope>runtime</scope>
        </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>external-provider-vfs</artifactId>
-<<<<<<< .working
             <version>4.0.0-SNAPSHOT</version>
-=======
-            <version>3.0.2-SNAPSHOT</version>
->>>>>>> .merge-right.r1501
        </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
@@ -224,7 +208,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>search</artifactId>
-            <version>7.1.1-SNAPSHOT</version>
+            <version>8.0.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -264,7 +248,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>tasks</artifactId>
-            <version>7.1.1-SNAPSHOT</version>
+            <version>8.0.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -276,11 +260,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>tools</artifactId>
-<<<<<<< .working
             <version>3.0.0-SNAPSHOT</version>
-=======
-            <version>2.0.2-SNAPSHOT</version>
->>>>>>> .merge-right.r1501
             <scope>runtime</scope>
         </dependency>
         <dependency>
