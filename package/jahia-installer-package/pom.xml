@@ -82,7 +82,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <product.name>Digital Factory</product.name>
+        <product.name>Digital Experience Manager</product.name>
         <product.version>${project.version}</product.version>
         <product.fullname>DigitalFactory-CommunityDistribution-${product.version}</product.fullname>
         <staging.dir>${project.build.directory}/izpack</staging.dir>
