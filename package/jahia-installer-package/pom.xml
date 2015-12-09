@@ -84,7 +84,7 @@
     <properties>
         <product.name>Digital Experience Manager</product.name>
         <product.version>${project.version}</product.version>
-        <product.fullname>DigitalFactory-CommunityDistribution-${product.version}</product.fullname>
+        <product.fullname>DigitalExperienceManager-CommunityDistribution-${product.version}</product.fullname>
         <staging.dir>${project.build.directory}/izpack</staging.dir>
     </properties>
 
@@ -249,7 +249,7 @@
                                             <config outfile="${project.build.directory}/${installer.filename}.exe" jarPath="${project.build.directory}/${installer.filename}.jar" dontWrapJar="false" headerType="gui" priority="normal" downloadUrl="http://java.com/download" supportUrl="http://www.jahia.com" stayAlive="false" icon="${project.build.directory}/images/jahia.ico">
                                                 <jre minVersion="1.7.0" />
                                                 <splash file="${project.build.directory}/images/splash.bmp" waitForWindow="true" timeout="60" timeoutErr="true" />
-                                                <versionInfo fileVersion="7.2.0.0" txtFileVersion="${product.version}" fileDescription="${product.name} - Community Distribution - Windows Installer" copyright="Copyright 2002-${year} ${jahia.manifest.vendor.name}" productVersion="7.2.0.0" txtProductVersion="${product.version}" productName="${product.name} - Community Distribution" companyName="${jahia.manifest.vendor.name}" internalName="DigitalFactory-CommunityDistribution" originalFilename="DigitalFactory-CommunityDistribution.exe" />
+                                                <versionInfo fileVersion="7.2.0.0" txtFileVersion="${product.version}" fileDescription="${product.name} - Community Distribution - Windows Installer" copyright="Copyright 2002-${year} ${jahia.manifest.vendor.name}" productVersion="7.2.0.0" txtProductVersion="${product.version}" productName="${product.name} - Community Distribution" companyName="${jahia.manifest.vendor.name}" internalName="DigitalExperienceManager-CommunityDistribution" originalFilename="DigitalExperienceManager-CommunityDistribution.exe" />
                                             </config>
                                         </launch4j>
                                     </target>
