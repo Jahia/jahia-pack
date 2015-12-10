@@ -50,7 +50,7 @@
         name="Digital Experience Manager"
         subgroup="\Shortcuts (only when Digital Experience Manager is running)"
         description="Open the Digital Experience Manager welcome page (running on localhost)"
-        target="$INSTALL_PATH\OpenDigitalFactory.URL"
+        target="$INSTALL_PATH\OpenHome.URL"
         iconFile="$INSTALL_PATH\icons\jahia.ico"
         iconIndex="0"
         programGroup="yes"
@@ -61,7 +61,7 @@
         name="Digital Experience Manager Administration"
         subgroup="\Shortcuts (only when Digital Experience Manager is running)"
         description="Open the Digital Experience Manager Administration page (running on localhost)"
-        target="$INSTALL_PATH\OpenDigitalFactoryAdministration.URL"
+        target="$INSTALL_PATH\OpenAdministration.URL"
         iconFile="$INSTALL_PATH\icons\jahia.ico"
         iconIndex="0"
         programGroup="yes"
@@ -72,7 +72,7 @@
 <!-- Start/stop Tomcat -->    
     <shortcut
         name="Start Digital Experience Manager"
-        target="$INSTALL_PATH\startDigitalFactory.bat"
+        target="$INSTALL_PATH\start.bat"
         commandLine=""
         workingDirectory="$INSTALL_PATH\"
         description="This starts the Digital Experience Manager Server"
@@ -89,7 +89,7 @@
     </shortcut>
     <shortcut
         name="Stop Digital Experience Manager"
-        target="$INSTALL_PATH\stopDigitalFactory.bat"
+        target="$INSTALL_PATH\stop.bat"
         commandLine=""
         workingDirectory="$INSTALL_PATH\"
         description="This stops the Digital Experience Manager Server"
