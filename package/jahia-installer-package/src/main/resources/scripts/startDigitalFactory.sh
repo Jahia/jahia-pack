@@ -1,6 +1,6 @@
 #!/bin/sh
 echo ---------------------------------------------------------------------------
-echo Starting Digital Factory Server
+echo Starting Digital Experience Manager Server
 echo ---------------------------------------------------------------------------
 
 cd tomcat/bin

@@ -1,7 +1,7 @@
 @echo off
 if "%OS%" == "Windows_NT" setlocal
 echo ---------------------------------------------------------------------------
-echo Stopping Digital Factory Server
+echo Stopping Digital Experience Manager Server
 echo ---------------------------------------------------------------------------
 
 cd /d %~dp0\tomcat\bin
