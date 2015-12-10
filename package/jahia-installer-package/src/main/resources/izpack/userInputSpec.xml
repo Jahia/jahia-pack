@@ -11,7 +11,7 @@
         <field type="radio" variable="installation.type" align="left">
             <spec>
                 <choice txt="Discovery install" id="installation.type.express" value="express" set="true">
-                    <description txt="&lt;html&gt;Completes the common Digital Factory setup using pre-packaged Apache Tomcat 8.0 server and embedded Sun Java DB / Apache Derby DBMS. A set of pre-configured demo Web-projects is available with this installation to let you start with Digital Factory experience right away.&lt;/html&gt;" id="installation.type.express.info"/>
+                    <description txt="&lt;html&gt;Completes the common Digital Experience Manager setup using pre-packaged Apache Tomcat 8.0 server and embedded Sun Java DB / Apache Derby DBMS. A set of pre-configured demo Web-projects is available with this installation to let you start with Digital Experience Manager experience right away.&lt;/html&gt;" id="installation.type.express.info"/>
                 </choice>
                 <choice txt="Custom install (advanced)" id="installation.type.advanced" value="advanced">
                     <description txt="&lt;html&gt;Allows advanced configuration of the target application server, DBMS and addition options.&lt;/html&gt;" id="installation.type.advanced.info"/>
@@ -293,7 +293,7 @@
     </panel>
 
     <panel order="10">
-        <field type="staticText" txt="Digital Factory implies externalization of data and configuration to separate runtime data from the Web application." id="externalizedDataAndConfig.description"/>
+        <field type="staticText" txt="Digital Experience Manager implies externalization of data and configuration to separate runtime data from the Web application." id="externalizedDataAndConfig.description"/>
         <field type="space" />
         <field type="dir" align="left" variable="data.dir">
           <spec txt="Runtime data path" size="15" set="${defaultDataDir}" id="externalizedData.path" mustExist="false"/>
@@ -316,7 +316,7 @@
             <spec txt="Start Apache Tomcat server" id="afterInstall.startTomcat" true="true" false="false" revalidate="yes"/>
         </field>
         <field type="check" variable="afterInstall.launchJahia" align="left" conditionid="cnd.pack.tomcat+cnd.start.tomcat">
-            <spec txt="Wait for server startup and launch Digital Factory" id="afterInstall.launchJahia" true="true" false="false" set="false"/>
+            <spec txt="Wait for server startup and launch Digital Experience Manager" id="afterInstall.launchJahia" true="true" false="false" set="false"/>
         </field>
     </panel>
 </userInput>
