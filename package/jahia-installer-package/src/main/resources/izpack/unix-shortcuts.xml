@@ -5,11 +5,11 @@
     
 <!-- Start/stop Tomcat -->    
     <shortcut
-        name="Start Digital Factory"
+        name="Start Digital Experience Manager"
         target="$INSTALL_PATH/startDigitalFactory.sh"
         commandLine=""
         workingDirectory="$INSTALL_PATH/"
-        description="This starts the Digital Factory Server"
+        description="This starts the Digital Experience Manager Server"
         initialState="normal"
         programGroup="yes"
         desktop="no"
@@ -24,11 +24,11 @@
         <createForPack name="tomcat"/>
     </shortcut>
     <shortcut
-        name="Stop Digital Factory"
+        name="Stop Digital Experience Manager"
         target="$INSTALL_PATH/stopDigitalFactory.bat"
         commandLine=""
         workingDirectory="$INSTALL_PATH/"
-        description="This stops the Digital Factory Server"
+        description="This stops the Digital Experience Manager Server"
         initialState="normal"
         programGroup="yes"
         desktop="no"
@@ -45,8 +45,8 @@
 
 <!-- Uninstaller -->    
     <shortcut
-        name="Uninstall Digital Factory"
-        description="This removes the Digital Factory Server from your system"
+        name="Uninstall Digital Experience Manager"
+        description="This removes the Digital Experience Manager Server from your system"
         target="$JAVA_HOME/bin/java"
         commandLine="-jar $INSTALL_PATH/uninstaller/uninstaller.jar"
         initialState="noShow"
@@ -62,8 +62,8 @@
 
 <!-- Shortcuts -->
     <shortcut
-     name="Digital Factory (localhost)"
-     description="Open the Digital Factory welcome page (running on localhost)"
+     name="Digital Experience Manager (localhost)"
+     description="Open the Digital Experience Manager welcome page (running on localhost)"
      programGroup="yes"
      desktop="no"
      applications="no"
@@ -86,8 +86,8 @@
     </shortcut>
      
     <shortcut
-     name="Digital Factory Administration (localhost)"
-     description="Open the Digital Factory Administration page (running on localhost)"
+     name="Digital Experience Manager Administration (localhost)"
+     description="Open the Digital Experience Manager Administration page (running on localhost)"
      programGroup="yes"
      desktop="no"
      applications="no"
