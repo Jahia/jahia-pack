@@ -1,6 +1,6 @@
 #!/bin/sh
 echo ---------------------------------------------------------------------------
-echo Stopping Digital Factory Server
+echo Stopping Digital Experience Manager Server
 echo ---------------------------------------------------------------------------
 
 cd tomcat/bin

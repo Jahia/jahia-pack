@@ -1,11 +1,11 @@
 @echo off
 if "%OS%" == "Windows_NT" setlocal
 echo ---------------------------------------------------------------------------
-echo Starting Digital Factory Server
+echo Starting Digital Experience Manager Server
 echo ---------------------------------------------------------------------------
 
 if "x%JAVA_HOME%" == "x" (
-    echo JAVA_HOME environment variable is not defined. It is required for running the Digital Factory Server.
+    echo JAVA_HOME environment variable is not defined. It is required for running the Digital Experience Manager Server.
 	echo Please set JAVA_HOME environment variable to point to the directory with the your Java SE Development Kit.
 	goto exit
 ) else (
