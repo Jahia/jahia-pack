@@ -6,7 +6,7 @@
         <os family="windows" />
         <executefile name="cmd">
             <arg>/c</arg>
-            <arg>$INSTALL_PATH\startDigitalFactory.bat</arg>
+            <arg>$INSTALL_PATH\start.bat</arg>
             <env>CATALINA_HOME=$INSTALL_PATH\tomcat</env>
             <env>DF_SOURCE_INSTALLER=true</env>
         </executefile>
@@ -46,7 +46,7 @@
         <os family="windows" />
         <executefile name="cmd">
             <arg>/c</arg>
-            <arg>$INSTALL_PATH\OpenDigitalFactory.URL</arg>
+            <arg>$INSTALL_PATH\OpenHome.URL</arg>
         </executefile>
     </job>
 </processing>
