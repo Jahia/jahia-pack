@@ -242,7 +242,11 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>webClipping</artifactId>
+<<<<<<< .working
             <version>2.0.3-SNAPSHOT</version>
+=======
+            <version>2.0.2</version>
+>>>>>>> .merge-right.r1547
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -257,8 +261,13 @@
             <version>2.0.3-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
+<<<<<<< .working
         <!-- end of Jahia Forge Modules -->
 
+=======
+        <!-- end of Jahia Forge Modules -->
+        
+>>>>>>> .merge-right.r1548
          <!-- Users and groups provider modules -->
         <dependency>
             <groupId>org.jahia.modules</groupId>
@@ -291,31 +300,51 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>document-management-api</artifactId>
+<<<<<<< .working
             <version>2.0.4-SNAPSHOT</version>
+=======
+            <version>2.0.3</version>
+>>>>>>> .merge-right.r1547
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>document-viewer-service</artifactId>
+<<<<<<< .working
             <version>2.0.4-SNAPSHOT</version>
+=======
+            <version>2.0.3</version>
+>>>>>>> .merge-right.r1547
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>document-viewer</artifactId>
+<<<<<<< .working
             <version>2.0.4-SNAPSHOT</version>
+=======
+            <version>2.0.3</version>
+>>>>>>> .merge-right.r1547
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>document-thumbnails</artifactId>
+<<<<<<< .working
             <version>2.0.4-SNAPSHOT</version>
+=======
+            <version>2.0.3</version>
+>>>>>>> .merge-right.r1547
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>video-thumbnails</artifactId>
+<<<<<<< .working
             <version>2.0.4-SNAPSHOT</version>
+=======
+            <version>2.0.3</version>
+>>>>>>> .merge-right.r1547
             <scope>runtime</scope>
         </dependency>
         <dependency>
