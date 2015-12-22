@@ -273,7 +273,6 @@
     <resources>
         <res id="installer.langsel.icon" src="../images/jahia.png"/>
         <res id="installer.langsel.img" src="../images/language-selection.png"/>
-        <res id="Installer.image" src="../images/left-side.png"/>
         <res id="customicons.xml" src="customicons.xml"/>
         <res id="installer.window.icon" src="../images/jahia.png"/>
 
