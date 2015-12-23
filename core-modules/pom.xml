@@ -182,7 +182,8 @@
             <artifactId>seo</artifactId>
             <version>7.1.1-SNAPSHOT</version>
             <scope>runtime</scope>
-        </dependency><dependency>
+        </dependency>
+        <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>serverSettings</artifactId>
             <version>7.1.2-SNAPSHOT</version>
@@ -250,45 +251,45 @@
     <build>
         <plugins>
             <plugin>
-            	<artifactId>maven-dependency-plugin</artifactId>
-            	<executions>
-            		<execution>
-            			<id>copy</id>
-            			<goals>
-            				<goal>copy-dependencies</goal>
-            			</goals>
-            			<configuration>
-            				<outputDirectory>${project.build.directory}/modules</outputDirectory>
-            				<excludeTransitive>true</excludeTransitive>
-            			</configuration>
-            		</execution>
-            		<execution>
-            			<id>db</id>
-            			<goals>
-            				<goal>unpack-dependencies</goal>
-            			</goals>
-            			<configuration>
-            				<outputDirectory>${project.build.directory}</outputDirectory>
-            				<includes>**/db/**</includes>
-            				<excludeTransitive>true</excludeTransitive>
-            			</configuration>
-            		</execution>
-            	</executions>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/modules</outputDirectory>
+                            <excludeTransitive>true</excludeTransitive>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>db</id>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <includes>**/db/**</includes>
+                            <excludeTransitive>true</excludeTransitive>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-						<configuration>
-							<descriptor>src/main/assembly/src.xml</descriptor>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptor>src/main/assembly/src.xml</descriptor>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>
