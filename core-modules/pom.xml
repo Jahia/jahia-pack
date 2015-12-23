@@ -194,7 +194,8 @@
             <artifactId>siteSettings</artifactId>
             <version>7.1.2-SNAPSHOT</version>
             <scope>runtime</scope>
-        </dependency><dependency>
+        </dependency>
+        <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>skins</artifactId>
             <version>7.1.1-SNAPSHOT</version>
@@ -235,12 +236,14 @@
             <artifactId>translation</artifactId>
             <version>7.1.1-SNAPSHOT</version>
             <scope>runtime</scope>
-        </dependency><dependency>
+        </dependency>
+        <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>userDashboard</artifactId>
             <version>7.1.2-SNAPSHOT</version>
             <scope>runtime</scope>
-        </dependency><dependency>
+        </dependency>
+        <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>visibility</artifactId>
             <version>7.1.1-SNAPSHOT</version>
