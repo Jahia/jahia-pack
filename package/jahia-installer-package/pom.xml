@@ -381,9 +381,9 @@
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.jahia.server</groupId>
-                                    <artifactId>jahia-data</artifactId>
+                                    <artifactId>jahia-war</artifactId>
                                     <version>${project.version}</version>
-                                    <classifier>package</classifier>
+                                    <classifier>data-package</classifier>
                                     <type>zip</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}/artifacts/jahia-data</outputDirectory>
