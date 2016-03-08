@@ -367,7 +367,7 @@
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}/artifacts</outputDirectory>
                                     <excludes>
-                                        **/temp/safeToDelete.tmp,**/webapps/examples/**,**/webapps/docs/**,**/webapps/ROOT/**
+                                        **/temp/safeToDelete.tmp,**/webapps/examples/**,**/webapps/docs/**,**/webapps/ROOT/**,**/webapps/manager/**,**/webapps/host-manager/**
                                     </excludes>
                                 </artifactItem>
                                 <artifactItem>
