@@ -62,9 +62,9 @@
     <description>Jahia CE Full Package</description>
 
     <scm>
-        <connection>scm:svn:https://devtools.jahia.com/svn/jahia_pack/branches/JAHIA-7-1-X-X-BRANCH</connection>
-        <developerConnection>scm:svn:https://devtools.jahia.com/svn/jahia_pack/branches/JAHIA-7-1-X-X-BRANCH</developerConnection>
-        <url>https://devtools.jahia.com/svn/jahia_pack/branches/JAHIA-7-1-X-X-BRANCH</url>
+        <connection>scm:svn:https://devtools.jahia.com/svn/jahia_pack/branches/JAHIA_7_1_2_0_RC</connection>
+        <developerConnection>scm:svn:https://devtools.jahia.com/svn/jahia_pack/branches/JAHIA_7_1_2_0_RC</developerConnection>
+        <url>https://devtools.jahia.com/svn/jahia_pack/branches/JAHIA_7_1_2_0_RC</url>
     </scm>
 
     <repositories>
