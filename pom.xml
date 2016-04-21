@@ -55,16 +55,16 @@
     
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jahia-pack-root</artifactId>
-  <version>7.1.2.0-SNAPSHOT</version>
+  <version>7.1.2.1-SNAPSHOT</version>
     <name>Jahia Package Project Root</name>
     <groupId>org.jahia.server</groupId>
     <packaging>pom</packaging>
     <description>Jahia CE Full Package</description>
 
     <scm>
-        <connection>scm:svn:https://devtools.jahia.com/svn/jahia_pack/branches/JAHIA_7_1_2_0_RC</connection>
-        <developerConnection>scm:svn:https://devtools.jahia.com/svn/jahia_pack/branches/JAHIA_7_1_2_0_RC</developerConnection>
-        <url>https://devtools.jahia.com/svn/jahia_pack/branches/JAHIA_7_1_2_0_RC</url>
+        <connection>scm:svn:https://devtools.jahia.com/svn/jahia_pack/branches/JAHIA-7-1-X-X-BRANCH</connection>
+        <developerConnection>scm:svn:https://devtools.jahia.com/svn/jahia_pack/branches/JAHIA-7-1-X-X-BRANCH</developerConnection>
+        <url>https://devtools.jahia.com/svn/jahia_pack/branches/JAHIA-7-1-X-X-BRANCH</url>
     </scm>
 
     <repositories>
