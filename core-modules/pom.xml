@@ -246,7 +246,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>userDashboard</artifactId>
-            <version>7.1.4-SNAPSHOT</version>
+            <version>7.1.5-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
