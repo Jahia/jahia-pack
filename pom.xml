@@ -50,7 +50,7 @@
         <groupId>org.jahia</groupId>
         <artifactId>jahia-parent</artifactId>
         <version>7.1.2.2-SNAPSHOT</version>
-        <relativePath>../jahia/jahia-parent/pom.xml</relativePath>
+        <relativePath>../jahia-root/jahia-parent/pom.xml</relativePath>
     </parent>
     
     <modelVersion>4.0.0</modelVersion>
