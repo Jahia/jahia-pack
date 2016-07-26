@@ -28,7 +28,7 @@
         GNU General Public License for more details.
 
         You should have received a copy of the GNU General Public License
-        along with this program. If not, see <http://www.gnu.org/licenses/>.
+        along with this program. If not, see <http://www.gnu.org/licenses />.
 
 
         2/ JSEL - Commercial and Supported Versions of the program
@@ -55,6 +55,7 @@
     
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jahia-pack-root</artifactId>
+  <version>7.2.0.0-BACKLOG5637-SNAPSHOT</version>
     <name>Jahia Package Project Root</name>
     <groupId>org.jahia.server</groupId>
     <packaging>pom</packaging>
@@ -64,7 +65,7 @@
         <connection>scm:git:git@github.com:Jahia/dxm-pack-private.git</connection>
         <developerConnection>scm:git:git@github.com:Jahia/dxm-pack-private.git</developerConnection>
         <url>https://github.com/Jahia/dxm-pack-private</url>
-        <tag>HEAD</tag>
+        <tag>BACKLOG-5637</tag>
     </scm>
 
     <repositories>
