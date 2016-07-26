@@ -55,16 +55,16 @@
     
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jahia-pack-root</artifactId>
-  <version>7.1.2.2-SNAPSHOT</version>
+    <version>7.1.2.2-SNAPSHOT</version>
     <name>Jahia Package Project Root</name>
     <groupId>org.jahia.server</groupId>
     <packaging>pom</packaging>
     <description>Jahia CE Full Package</description>
 
     <scm>
-        <connection>scm:git:git@github.com:Jahia/dxm-pack.git</connection>
-        <developerConnection>scm:git:git@github.com:Jahia/dxm-pack.git</developerConnection>
-        <url>https://github.com/Jahia/dxm-pack</url>
+        <connection>scm:git:git@github.com:Jahia/dxm-pack-private.git</connection>
+        <developerConnection>scm:git:git@github.com:Jahia/dxm-pack-private.git</developerConnection>
+        <url>https://github.com/Jahia/dxm-pack-private</url>
         <tag>JAHIA-7-1-X-X-BRANCH</tag>
     </scm>
 
