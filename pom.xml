@@ -61,9 +61,9 @@
     <description>Jahia CE Full Package</description>
 
     <scm>
-        <connection>scm:git:git@github.com:Jahia/dxm-pack.git</connection>
-        <developerConnection>scm:git:git@github.com:Jahia/dxm-pack.git</developerConnection>
-        <url>https://github.com/Jahia/dxm-pack</url>
+        <connection>scm:git:git@github.com:Jahia/dxm-pack-private.git</connection>
+        <developerConnection>scm:git:git@github.com:Jahia/dxm-pack-private.git</developerConnection>
+        <url>https://github.com/Jahia/dxm-pack-private</url>
         <tag>HEAD</tag>
     </scm>
 
