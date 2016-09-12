@@ -143,6 +143,12 @@
             </spec>
             <validator class="com.izforge.izpack.util.NotEmptyValidator" txt="Jahia tool manager password is a mandatory field" id="appServer.password.mandatory"/>
         </field>
+        <field type="text" align="left" variable="karaf.remoteShell.port">
+            <spec txt="SSH console port (*)" id="karaf.remoteShell.port" size="4" set="8101"/>
+            <validator class="com.izforge.izpack.util.RegularExpressionValidator" txt="SSH console port port is a mandatory field and should contain a valid TCP port number" id="karaf.remoteShell.port.validator">
+                <param name="pattern" value="[0-9]{2,5}"/>
+            </validator>
+        </field>
         <field type="check" variable="developmentMode" align="left">
             <spec txt="Use development mode for templates?" id="appServer.developmentMode" true="true" false="false" set="true"/>
         </field>

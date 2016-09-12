@@ -133,6 +133,8 @@
         <variable name="studioToolSettings.svnPath" value="svn" condition="cnd.installation.type.express|!cnd.operatingMode.development"/>
         
         <variable name="defaultLanguageCode" value="en" condition="cnd.installation.type.express"/>
+        
+        <variable name="karaf.remoteShell.port" value="8101" condition="cnd.installation.type.express"/>
     </dynamicvariables>
     
     <conditions>
