@@ -126,7 +126,7 @@
                 <descriptors>
                   <descriptor>${jahia.package.sources.assembly.file}</descriptor>
                 </descriptors>
-                <attach>false</attach>
+                <attach>true</attach>
                 <finalName>${jahia.final.package.name}-${project.version}-sources</finalName>
                 <appendAssemblyId>false</appendAssemblyId>
                 <archive>
