@@ -38,7 +38,7 @@
 	</target>
 
 	<target name="cleanup">
-		<delete dir="${install.path}/tools" />
+		<delete file="${install.path}/tools/configurators.jar" />
 		<propertyfile file="${install.path}/logs/install.properties">
 			<entry key="databasePassword" value="***"/>
 			<entry key="jahiaRootPassword" value="***"/>

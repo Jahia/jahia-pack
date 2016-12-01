@@ -42,5 +42,14 @@
         <parsable targetfile="$INSTALL_PATH/logs/install.properties" type="javaprop"/>
         <parsable targetfile="$INSTALL_PATH/docs/HowToInstall.URL" condition="!cnd.pack.tomcat"/>
         <executable targetfile="$INSTALL_PATH/bin/openUrl.sh" os="unix"/>
+
+        <!-- Module management REST API tools -->
+        <fileset dir="../tools" targetdir="$INSTALL_PATH/tools"/>
+        <parsable targetfile="$INSTALL_PATH/tools/setupBundleApi.sh" type="shell"/>
+        <executable targetfile="$INSTALL_PATH/tools/installBundle.sh" os="unix"/>
+        <executable targetfile="$INSTALL_PATH/tools/setupBundleApi.sh" os="unix"/>
+        <executable targetfile="$INSTALL_PATH/tools/startBundle.sh" os="unix"/>
+        <executable targetfile="$INSTALL_PATH/tools/stopBundle.sh" os="unix"/>
+        <executable targetfile="$INSTALL_PATH/tools/uninstallBundle.sh" os="unix"/>
     </pack>
 </xfragment>
