@@ -137,7 +137,7 @@
             <!-- JAX-RS OSGi Extender, depends on Jersey and its dependencies, put in bundles -->
             <groupId>org.jahia.modules</groupId>
             <artifactId>jaxrs-osgi-extender</artifactId>
-            <version>2.0.4-SNAPSHOT</version>
+            <version>2.0.4</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
