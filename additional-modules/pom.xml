@@ -334,7 +334,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>digitall</artifactId>
-            <version>1.0.2-SNAPSHOT</version>
+            <version>1.0.2</version>
             <type>jar</type>
             <scope>runtime</scope>
         </dependency>
