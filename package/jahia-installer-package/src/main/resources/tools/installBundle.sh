@@ -3,7 +3,7 @@
 
 DX_DISPLAY_USAGE="Script to install a bundle using the Module management REST API.\n
 if the second parameter is set to true, the bundle is started\n
-\nUsage:\n$0 bundleName  [ true ]\n"
+\nUsage:\n$0 bundleFilePath  [ true ]\n"
 
 source ./setupBundleApi.sh
 

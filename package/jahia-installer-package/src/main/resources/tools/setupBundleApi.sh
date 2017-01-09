@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 DX_REST_URL=http://localhost:%{tomcat.httpPort}%{jahia.war.contextPath}/modules/api/bundles
 DX_USERNAME=root
-DX_PASSWORD=%{superUser.password}
-CURL_OPTIONS="-s --user $DX_USERNAME:$DX_PASSWORD"
+CURL_OPTIONS="-s --user $DX_USERNAME"
 
 display_usage() {
     echo -e $DX_DISPLAY_USAGE
