@@ -127,8 +127,8 @@
                   <descriptor>${jahia.package.sources.assembly.file}</descriptor>
                 </descriptors>
                 <attach>true</attach>
-                <finalName>${jahia.final.package.name}-${project.version}-sources</finalName>
-                <appendAssemblyId>false</appendAssemblyId>
+                <finalName>${jahia.final.package.name}-${project.version}</finalName>
+                <appendAssemblyId>true</appendAssemblyId>
                 <archive>
                   <manifestEntries>
                     <Jahia-Package-ID>${jahia.manifest.package.id}</Jahia-Package-ID>
