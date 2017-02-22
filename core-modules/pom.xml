@@ -162,7 +162,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>module-manager</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1-backlog_6820-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
