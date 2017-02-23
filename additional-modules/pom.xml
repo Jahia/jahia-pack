@@ -258,13 +258,13 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>bootstrap3-components</artifactId>
-            <version>3.5.0</version>
+            <version>3.5.1-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>bootstrap3-core</artifactId>
-            <version>3.5.0</version>
+            <version>3.5.1-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
 
