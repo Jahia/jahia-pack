@@ -181,7 +181,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>search</artifactId>
-            <version>7.2.0</version>
+            <version>7.2.1-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
