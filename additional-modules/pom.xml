@@ -90,7 +90,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>dx-base-demo-components</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.2-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
