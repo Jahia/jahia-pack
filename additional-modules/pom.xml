@@ -120,7 +120,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>formbuilder</artifactId>
-            <version>3.0.1-SNAPSHOT</version>
+            <version>3.0.1</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -192,7 +192,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>sitemap</artifactId>
-            <version>2.0.5-SNAPSHOT</version>
+            <version>2.0.5</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -246,13 +246,13 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>videostreaming</artifactId>
-            <version>2.0.3-SNAPSHOT</version>
+            <version>2.0.3</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>webClipping</artifactId>
-            <version>2.0.4-SNAPSHOT</version>
+            <version>2.0.4</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -295,31 +295,31 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>document-management-api</artifactId>
-            <version>2.0.7-SNAPSHOT</version>
+            <version>2.0.7</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>document-viewer-service</artifactId>
-            <version>2.0.7-SNAPSHOT</version>
+            <version>2.0.7</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>document-viewer</artifactId>
-            <version>2.0.7-SNAPSHOT</version>
+            <version>2.0.7</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>document-thumbnails</artifactId>
-            <version>2.0.7-SNAPSHOT</version>
+            <version>2.0.7</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>video-thumbnails</artifactId>
-            <version>2.0.7-SNAPSHOT</version>
+            <version>2.0.7</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
