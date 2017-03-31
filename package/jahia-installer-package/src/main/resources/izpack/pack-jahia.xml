@@ -46,6 +46,7 @@
         <!-- Module management REST API tools -->
         <fileset dir="../tools" targetdir="$INSTALL_PATH/tools"/>
         <parsable targetfile="$INSTALL_PATH/tools/setupBundleApi.sh" type="shell"/>
+        <parsable targetfile="$INSTALL_PATH/tools/setupBundleApi.bat" type="shell"/>
         <executable targetfile="$INSTALL_PATH/tools/installBundle.sh" os="unix"/>
         <executable targetfile="$INSTALL_PATH/tools/setupBundleApi.sh" os="unix"/>
         <executable targetfile="$INSTALL_PATH/tools/startBundle.sh" os="unix"/>
