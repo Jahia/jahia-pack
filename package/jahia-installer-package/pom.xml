@@ -48,7 +48,7 @@
     <parent>
         <groupId>org.jahia.server</groupId>
         <artifactId>jahia-package</artifactId>
-        <version>7.2.0.3-SNAPSHOT</version>
+        <version>7.2.0.4-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jahia-installer-package</artifactId>
@@ -223,7 +223,7 @@
                                             <config outfile="${project.build.directory}/${installer.filename}.exe" jarPath="${project.build.directory}/${installer.filename}.jar" dontWrapJar="false" headerType="gui" priority="normal" downloadUrl="http://java.com/download" supportUrl="http://www.jahia.com" stayAlive="false" icon="${project.build.directory}/images/jahia.ico">
                                                 <jre minVersion="1.7.0" />
                                                 <splash file="${project.build.directory}/images/splash.bmp" waitForWindow="true" timeout="60" timeoutErr="true" />
-                                                <versionInfo fileVersion="7.2.0.3" txtFileVersion="${product.version}" fileDescription="${product.name} - Community Distribution - Windows Installer" copyright="Copyright 2002-${year} ${jahia.manifest.vendor.name}" productVersion="7.2.0.3" txtProductVersion="${product.version}" productName="${product.name} - Community Distribution" companyName="${jahia.manifest.vendor.name}" internalName="DigitalExperienceManager-CommunityDistribution" originalFilename="DX-CommunityDistribution.exe" />
+                                                <versionInfo fileVersion="7.2.0.4" txtFileVersion="${product.version}" fileDescription="${product.name} - Community Distribution - Windows Installer" copyright="Copyright 2002-${year} ${jahia.manifest.vendor.name}" productVersion="7.2.0.4" txtProductVersion="${product.version}" productName="${product.name} - Community Distribution" companyName="${jahia.manifest.vendor.name}" internalName="DigitalExperienceManager-CommunityDistribution" originalFilename="DX-CommunityDistribution.exe" />
                                             </config>
                                         </launch4j>
                                     </target>
