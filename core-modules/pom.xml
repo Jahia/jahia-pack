@@ -229,7 +229,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>templates-system</artifactId>
-            <version>8.0.0</version>
+            <version>8.0.1-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
