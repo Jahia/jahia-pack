@@ -147,6 +147,21 @@
             </execution>
           </executions>
         </plugin>
+        <plugin>
+          <groupId>org.apache.karaf.tooling</groupId>
+          <artifactId>karaf-maven-plugin</artifactId>
+          <version>${karaf.version}</version>
+          <extensions>true</extensions>
+          <configuration>
+            <includeTransitiveDependency>false</includeTransitiveDependency>
+          </configuration>
+          <executions>
+            <execution>
+              <id>features-generate</id>
+              <goals><goal>features-generate-descriptor</goal></goals>
+            </execution>
+          </executions>
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>
