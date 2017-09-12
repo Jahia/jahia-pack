@@ -101,13 +101,13 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>external-provider</artifactId>
-            <version>3.0.6</version>
+            <version>3.0.7-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>external-provider-modules</artifactId>
-            <version>3.0.6</version>
+            <version>3.0.7-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -119,7 +119,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>external-provider-vfs</artifactId>
-            <version>3.0.6</version>
+            <version>3.0.7-SNAPSHOT</version>
        </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
