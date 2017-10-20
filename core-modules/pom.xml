@@ -101,7 +101,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>external-provider</artifactId>
-            <version>3.0.7</version>
+            <version>3.0.8-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
