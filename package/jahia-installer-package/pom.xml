@@ -218,7 +218,7 @@
                                 <configuration>
                                     <name>product.version.nosnapshot</name>
                                     <value>${project.version}</value>
-                                    <regex>-SNAPSHOT</regex>
+                                    <regex>-.*</regex>
                                     <replacement></replacement>
                                     <failIfNoMatch>false</failIfNoMatch>
                                 </configuration>
