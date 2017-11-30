@@ -114,7 +114,7 @@
         <dependency>
            <groupId>org.jahia.modules</groupId>
            <artifactId>external-provider-users-groups</artifactId>
-           <version>1.1.1</version>
+           <version>1.1.2-SNAPSHOT</version>
            <scope>runtime</scope>
        </dependency>
         <dependency>
@@ -223,7 +223,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>tasks</artifactId>
-            <version>7.1.2</version>
+            <version>7.1.3-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
