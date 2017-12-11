@@ -261,7 +261,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>ldap</artifactId>
-            <version>3.0.6</version>
+            <version>3.0.7-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
 
