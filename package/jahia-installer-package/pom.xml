@@ -427,7 +427,7 @@
                                     <type>zip</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}/artifacts/jahia-data</outputDirectory>
-                                    <excludes>META-INF/**</excludes>
+                                    <excludes>META-INF/**,modules/ldap-*</excludes>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.jahia.server</groupId>
