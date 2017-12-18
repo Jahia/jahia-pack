@@ -42,10 +42,8 @@
 
         <!-- DM -->
         <variable name="dmConfig.officePath" value=""/>
-        <variable name="dmConfig.pdf2swfPath" value=""/>
         <variable name="dmConfig.imagemagickPath" value=""/>
         <variable name="dmConfig.imageService" value="ImageJAndJava2DImageService"/>
-        <variable name="dmConfig.ffmpegPath" value=""/>
     </variables>
     <dynamicvariables>
         <variable name="jahia.war.contextPath" value="" condition="cnd.installation.type.express|cnd.contextPath.root"/>
@@ -120,12 +118,8 @@
         <!-- DM -->
         <variable name="dmConfig.officePath.provided" value="true" condition="!cnd.dm.officePath.empty"/>
         <variable name="dmConfig.officePath.provided" value="false" condition="cnd.dm.officePath.empty"/>
-        <variable name="dmConfig.pdf2swfPath.provided" value="true" condition="!cnd.dm.pdf2swfPath.empty"/>
-        <variable name="dmConfig.pdf2swfPath.provided" value="false" condition="cnd.dm.pdf2swfPath.empty"/>
         <variable name="dmConfig.imageService" value="ImageMagickImageService" condition="!cnd.dm.imagemagickPath.empty"/>
         <variable name="dmConfig.imageService" value="ImageJAndJava2DImageService" condition="cnd.dm.imagemagickPath.empty"/>
-        <variable name="dmConfig.ffmpegPath.provided" value="true" condition="!cnd.dm.ffmpegPath.empty"/>
-        <variable name="dmConfig.ffmpegPath.provided" value="false" condition="cnd.dm.ffmpegPath.empty"/>
         
         <!-- Studio tools -->
         <variable name="studioToolSettings.gitPath" value="git" condition="cnd.installation.type.express|!cnd.operatingMode.development"/>
@@ -208,14 +202,8 @@
         <condition type="org.jahia.izpack.EmptyVariableCondition" id="cnd.dm.officePath.empty">
             <variable>dmConfig.officePath</variable>
         </condition>
-        <condition type="org.jahia.izpack.EmptyVariableCondition" id="cnd.dm.pdf2swfPath.empty">
-            <variable>dmConfig.pdf2swfPath</variable>
-        </condition>
         <condition type="org.jahia.izpack.EmptyVariableCondition" id="cnd.dm.imagemagickPath.empty">
             <variable>dmConfig.imagemagickPath</variable>
-        </condition>
-        <condition type="org.jahia.izpack.EmptyVariableCondition" id="cnd.dm.ffmpegPath.empty">
-            <variable>dmConfig.ffmpegPath</variable>
         </condition>
         
         <condition type="com.izforge.izpack.rules.VariableExistenceCondition" id="cnd.superUser.preferredLang.set">

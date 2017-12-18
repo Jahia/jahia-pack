@@ -260,24 +260,6 @@
                 <param name="fileName" value="convert"/>
             </validator>
         </field>
-        <field type="divider"/>
-        <field type="staticText" txt="Select the pdf2swf executable file" id="dmConfig.pdf2swf.description"/>
-        <field type="file" variable="dmConfig.pdf2swfPath" align="left">
-            <spec mustExist="false" allowEmptyValue="true" size="20" txt=""/>
-            <validator class="org.jahia.izpack.ToolInstalledValidator" txt="pdf2swf is not installed (correctly) at the given location" id="externalTool.pdf2swf.notInstalled">
-                <param name="validate" value="${dmConfig.validate}"/>
-                <param name="fileName" value="pdf2swf"/>
-            </validator>
-        </field>
-        <field type="space"/>
-        <field type="staticText" txt="Select the ffmpeg executable file" id="dmConfig.ffmpeg.description"/>
-        <field type="file" variable="dmConfig.ffmpegPath" align="left">
-            <spec mustExist="false" allowEmptyValue="true" size="20" txt=""/>
-            <validator class="org.jahia.izpack.ToolInstalledValidator" txt="ffmpeg is not installed (correctly) at the given location" id="externalTool.ffmpeg.notInstalled">
-                <param name="validate" value="${dmConfig.validate}"/>
-                <param name="fileName" value="ffmpeg"/>
-            </validator>
-        </field>
     </panel>
 
     <panel order="9">
