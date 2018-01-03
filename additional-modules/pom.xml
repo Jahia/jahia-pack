@@ -60,7 +60,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>article</artifactId>
-            <version>2.0.2</version>
+            <version>2.0.3-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -78,7 +78,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>contact</artifactId>
-            <version>2.0.2</version>
+            <version>2.0.3-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -96,7 +96,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>event</artifactId>
-            <version>2.0.2</version>
+            <version>2.0.3-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -156,7 +156,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>rss</artifactId>
-            <version>2.0.4</version>
+            <version>2.0.5-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
