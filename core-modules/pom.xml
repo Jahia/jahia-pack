@@ -130,6 +130,12 @@
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
+            <artifactId>graphql-dxm-provider</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jahia.modules</groupId>
             <artifactId>grid</artifactId>
             <version>7.1.1</version>
             <scope>runtime</scope>
@@ -256,13 +262,6 @@
             <version>7.1.3-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
-        <dependency>
-            <groupId>org.jahia.modules</groupId>
-            <artifactId>graphql-dxm-provider</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-            <scope>runtime</scope>
-        </dependency>
-        <!-- End of graphql bundles -->
 
     </dependencies>
 
