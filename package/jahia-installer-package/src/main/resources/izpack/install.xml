@@ -42,7 +42,6 @@
 
         <!-- DM -->
         <variable name="dmConfig.officePath" value=""/>
-        <variable name="dmConfig.pdf2swfPath" value=""/>
         <variable name="dmConfig.imagemagickPath" value=""/>
         <variable name="dmConfig.imageService" value="ImageJAndJava2DImageService"/>
         <variable name="dmConfig.ffmpegPath" value=""/>
@@ -120,8 +119,6 @@
         <!-- DM -->
         <variable name="dmConfig.officePath.provided" value="true" condition="!cnd.dm.officePath.empty"/>
         <variable name="dmConfig.officePath.provided" value="false" condition="cnd.dm.officePath.empty"/>
-        <variable name="dmConfig.pdf2swfPath.provided" value="true" condition="!cnd.dm.pdf2swfPath.empty"/>
-        <variable name="dmConfig.pdf2swfPath.provided" value="false" condition="cnd.dm.pdf2swfPath.empty"/>
         <variable name="dmConfig.imageService" value="ImageMagickImageService" condition="!cnd.dm.imagemagickPath.empty"/>
         <variable name="dmConfig.imageService" value="ImageJAndJava2DImageService" condition="cnd.dm.imagemagickPath.empty"/>
         <variable name="dmConfig.ffmpegPath.provided" value="true" condition="!cnd.dm.ffmpegPath.empty"/>
@@ -205,9 +202,6 @@
         
         <condition type="org.jahia.izpack.EmptyVariableCondition" id="cnd.dm.officePath.empty">
             <variable>dmConfig.officePath</variable>
-        </condition>
-        <condition type="org.jahia.izpack.EmptyVariableCondition" id="cnd.dm.pdf2swfPath.empty">
-            <variable>dmConfig.pdf2swfPath</variable>
         </condition>
         <condition type="org.jahia.izpack.EmptyVariableCondition" id="cnd.dm.imagemagickPath.empty">
             <variable>dmConfig.imagemagickPath</variable>
