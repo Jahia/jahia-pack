@@ -89,7 +89,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>default</artifactId>
-            <version>7.1.6</version>
+            <version>7.1.7-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -222,7 +222,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>tasks</artifactId>
-            <version>7.1.2</version>
+            <version>7.1.4-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
