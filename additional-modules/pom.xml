@@ -330,7 +330,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>forum</artifactId>
-            <version>3.1.2-SNAPSHOT</version>
+            <version>3.0.2-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
