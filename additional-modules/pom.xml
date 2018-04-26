@@ -236,15 +236,8 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- New Vanity URL dashboard -->
         <dependency>
-            <groupId>org.jahia.modules</groupId>
-            <artifactId>react-dxcomponents</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-            <type>jar</type>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
+            <!-- New Vanity URL dashboard -->
             <groupId>org.jahia.modules</groupId>
             <artifactId>site-settings-seo</artifactId>
             <version>1.0.0-SNAPSHOT</version>
