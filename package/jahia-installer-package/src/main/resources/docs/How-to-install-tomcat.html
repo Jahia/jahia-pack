@@ -174,7 +174,7 @@ rem --------------------------------------------------------------------<br/>
 rem Digital Experience Manager settings<br/>
 rem --------------------------------------------------------------------<br/>
 <br/>
-set CATALINA_OPTS=%CATALINA_OPTS% -server -Dsun.io.useCanonCaches=false -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintConcurrentLocks -Djava.net.preferIPv4Stack=true -Xms2048m -Xmx2048m -XX:MaxPermSize=384m<br/>
+set CATALINA_OPTS=%CATALINA_OPTS% -server -Dsun.io.useCanonCaches=false -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintConcurrentLocks -Djava.net.preferIPv4Stack=true -Xms2048m -Xmx2048m<br/>
 set CATALINA_OPTS=%CATALINA_OPTS% -Dderby.system.home="%CATALINA_HOME%\..\digital-factory-data\dbdata"<br/>
 	</tt>
 	</blockquote><br/>
@@ -187,13 +187,13 @@ set CATALINA_OPTS=%CATALINA_OPTS% -Dderby.system.home="%CATALINA_HOME%\..\digita
 # Digital Experience Manager settings<br/>
 # ----------------------------------------------------------------------<br/>
 <br/>
-CATALINA_OPTS="$CATALINA_OPTS -server -Djava.awt.headless=true -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintConcurrentLocks -Djava.net.preferIPv4Stack=true -Xms2048m -Xmx2048m -XX:MaxPermSize=384m"
+CATALINA_OPTS="$CATALINA_OPTS -server -Djava.awt.headless=true -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintConcurrentLocks -Djava.net.preferIPv4Stack=true -Xms2048m -Xmx2048m"
 CATALINA_OPTS="$CATALINA_OPTS -Dderby.system.home=$CATALINA_HOME/../digital-factory-data/dbdata"<br/>
 export CATALINA_OPTS<br/>
 export CATALINA_PID=$CATALINA_HOME/temp/tomcat.pid<br/>
 	</tt>
 	</blockquote><br/>
-	The JVM heap sizes (<tt>-Xms</tt> and <tt>-Xmx</tt>) as well as the permanent generation space size (<tt>-XX:MaxPermSize</tt>) should be adjusted according to your needs<sup>[<a href="#ftn.1">1</a>]</sup>.
+	The JVM heap sizes (<tt>-Xms</tt> and <tt>-Xmx</tt>) should be adjusted according to your needs<sup>[<a href="#ftn.1">1</a>]</sup>.
 	Note that the minimal value of the <tt>-Xmx</tt> value, required by Digital Experience Manager is <tt>2048m</tt>.<br/>
 	If you have chosen Apache Derby as the target DBMS server during the installation, the value of the <tt>-Dderby.system.home</tt> in the 
 	<tt>setenv.bat/setenv.sh</tt> script should point to your <tt>digital-factory-data/dbdata</tt> folder.
