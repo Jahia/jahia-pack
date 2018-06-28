@@ -205,7 +205,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>serverSettings</artifactId>
-            <version>8.0.4</version>
+            <version>8.0.5-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
