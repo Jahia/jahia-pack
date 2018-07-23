@@ -224,7 +224,7 @@
             <!-- New Vanity URL dashboard -->
             <groupId>org.jahia.modules</groupId>
             <artifactId>site-settings-seo</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
+            <version>1.0.2-SNAPSHOT</version>
             <type>jar</type>
             <scope>runtime</scope>
         </dependency>
