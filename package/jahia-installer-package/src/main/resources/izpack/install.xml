@@ -418,7 +418,6 @@
 	<jar src="../artifacts/ant.jar" />
 	<jar src="../artifacts/ant-launcher.jar" />
 	
-	<jar src="../dependency/derbyclient.jar" />
 	<jar src="../dependency/mysql-connector-java.jar" />
 	<jar src="../dependency/postgresql.jar" />
     <jar src="../dependency/mariadb-java-client.jar" />
