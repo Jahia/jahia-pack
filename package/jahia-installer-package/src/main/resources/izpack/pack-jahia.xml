@@ -4,9 +4,6 @@
         <description/>
             
         <!-- JDBC Drivers -->
-        <fileset dir="../artifacts/jdbc-drivers" targetdir="$INSTALL_PATH/tomcat/lib" condition="cnd.db.dbms.derby">
-            <include name="derbyclient-*.jar"/>
-        </fileset>
         <fileset dir="../artifacts/jdbc-drivers" targetdir="$INSTALL_PATH/tomcat/lib" condition="cnd.db.dbms.derby_embedded">
             <include name="derby-*.jar"/>
         </fileset>
@@ -15,6 +12,9 @@
         </fileset>
         <fileset dir="../artifacts/jdbc-drivers" targetdir="$INSTALL_PATH/tomcat/lib" condition="cnd.db.dbms.postgresql">
             <include name="postgresql-*.jar"/>
+        </fileset>
+        <fileset dir="../artifacts/jdbc-drivers" targetdir="$INSTALL_PATH/tomcat/lib" condition="cnd.db.dbms.mariadb">
+            <include name="mariadb-java-client-*.jar"/>
         </fileset>
 
         <!-- Shared libraries -->

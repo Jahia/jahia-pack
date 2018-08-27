@@ -38,9 +38,9 @@
         <field type="radio" variable="dbSettings.dbms.type" align="left" conditionid="cnd.db.mode.standalone">
             <description align="left" txt="Choose your DBMS type" id="dbSettings.dbms.type"/>
             <spec>
+                <choice txt="MariaDB 10.x" id="dbSettings.dbms.type.mariadb" value="mariadb"/>
                 <choice txt="MySQL 5.x" id="dbSettings.dbms.type.mysql" value="mysql" set="true"/>
                 <choice txt="PostgreSQL 9.x" id="dbSettings.dbms.type.postgresql" value="postgresql"/>
-                <choice txt="Sun Java DB / Apache Derby (standalone)" id="dbSettings.dbms.type.derby" value="derby"/>
             </spec>
         </field>
     </panel>
@@ -68,16 +68,18 @@
             <spec txt="Database URL (*)" id="dbSettings.connection.url" size="25" set="${def.db.url.postgresql}"/>
             <validator class="com.izforge.izpack.util.NotEmptyValidator" txt="Database URL is a mandatory field" id="dbSettings.connection.url.mandatory"/>
         </field>
-        
-        <!-- Derby -->
-        <field type="text" align="left" variable="dbSettings.connection.driver.derby" conditionid="cnd.db.dbms.derby">
-            <spec txt="Database driver (*)" id="dbSettings.connection.driver" size="25" set="${def.db.driver.derby}"/>
+
+
+        <!-- MariaDB -->
+        <field type="text" align="left" variable="dbSettings.connection.driver.mariadb" conditionid="cnd.db.dbms.mariadb">
+            <spec txt="Database driver (*)" id="dbSettings.connection.driver" size="25" set="${def.db.driver.mariadb}"/>
             <validator class="com.izforge.izpack.util.NotEmptyValidator" txt="Database driver is a mandatory field" id="dbSettings.connection.driver.mandatory"/>
         </field>
-        <field type="text" align="left" variable="dbSettings.connection.url.derby" conditionid="cnd.db.dbms.derby">
-            <spec txt="Database URL (*)" id="dbSettings.connection.url" size="25" set="${def.db.url.derby}"/>
+        <field type="text" align="left" variable="dbSettings.connection.url.mariadb" conditionid="cnd.db.dbms.mariadb">
+            <spec txt="Database URL (*)" id="dbSettings.connection.url" size="25" set="${def.db.url.mariadb}"/>
             <validator class="com.izforge.izpack.util.NotEmptyValidator" txt="Database URL is a mandatory field" id="dbSettings.connection.url.mandatory"/>
         </field>
+
         <field type="text" align="left" variable="dbSettings.connection.username">
             <spec txt="Database username" id="dbSettings.connection.username" size="20" set="jahia"/>
         </field>
@@ -94,6 +96,9 @@
         <field type="check" variable="dbSettings.dbms.createTables" align="left">
             <spec txt="Create required database tables?" id="dbSettings.dbms.createTables" true="true" false="false" set="true"/>
         </field>
+
+        <field type="divider" align="bottom" conditionid="cnd.db.dbms.mariadb"/>
+        <field type="staticText" align="left" txt="the MariaDB driver is downloaded from Maven Central Repository (${driver.mariadb.download.central}), where you could also find the source code and the terms of use" id="dbType.mariadb.hint" conditionid="cnd.db.dbms.mariadb"/>
     </panel>
     
     <panel order="4">
