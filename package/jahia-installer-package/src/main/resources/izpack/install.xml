@@ -21,12 +21,12 @@
         <!-- default values for DB driver -->
         <variable name="def.db.driver.mysql" value="com.mysql.jdbc.Driver"/>
         <variable name="def.db.driver.postgresql" value="org.postgresql.Driver"/>
-        <variable name="def.db.driver.derby" value="org.apache.derby.jdbc.ClientDriver"/>
+        <variable name="def.db.driver.mariadb" value="org.mariadb.jdbc.Driver"/>
 
         <variable name="def.db.url.mysql" value="jdbc:mysql://localhost/jahia?useUnicode=true&amp;characterEncoding=UTF-8&amp;useServerPrepStmts=false"/>
         <variable name="def.db.url.postgresql" value="jdbc:postgresql://localhost:5432/jahia"/>
-        <variable name="def.db.url.derby" value="jdbc:derby://localhost:1527/jahia;create=true"/>
-        
+        <variable name="def.db.url.mariadb" value="jdbc:mariadb://localhost/jahia?useUnicode=true&amp;characterEncoding=UTF-8&amp;useServerPrepStmts=false"/>
+
         <variable name="superUser.username" value="root"/>
         
         <variable name="TargetPanel.noWhitespaces" value="true"/>
@@ -44,6 +44,8 @@
         <variable name="dmConfig.officePath" value=""/>
         <variable name="dmConfig.imagemagickPath" value=""/>
         <variable name="dmConfig.imageService" value="ImageJAndJava2DImageService"/>
+
+        <variable name="driver.mariadb.download.central" value="http://central.maven.org/maven2/org/mariadb/jdbc/mariadb-java-client/${driver.mariadb.version}"/>
     </variables>
     <dynamicvariables>
         <variable name="jahia.war.contextPath" value="" condition="cnd.installation.type.express|cnd.contextPath.root"/>
@@ -83,12 +85,12 @@
         <!-- DB drivers for standalone DBMSs -->
         <variable name="dbSettings.connection.driver" value="${dbSettings.connection.driver.mysql}" condition="cnd.db.dbms.mysql" />
         <variable name="dbSettings.connection.driver" value="${dbSettings.connection.driver.postgresql}" condition="cnd.db.dbms.postgresql" />
-        <variable name="dbSettings.connection.driver" value="${dbSettings.connection.driver.derby}" condition="cnd.db.dbms.derby" />
+        <variable name="dbSettings.connection.driver" value="${dbSettings.connection.driver.mariadb}" condition="cnd.db.dbms.mariadb" />
 
         <!-- DB URLs for standalone DBMSs -->
         <variable name="dbSettings.connection.url" value="${dbSettings.connection.url.mysql}" condition="cnd.db.dbms.mysql" />
         <variable name="dbSettings.connection.url" value="${dbSettings.connection.url.postgresql}" condition="cnd.db.dbms.postgresql" />
-        <variable name="dbSettings.connection.url" value="${dbSettings.connection.url.derby}" condition="cnd.db.dbms.derby" />
+        <variable name="dbSettings.connection.url" value="${dbSettings.connection.url.mariadb}" condition="cnd.db.dbms.mariadb" />
 
 		<!-- Use data store by default -->
         <!-- Store binary data on filesystem by default -->
@@ -165,9 +167,9 @@
             <name>dbSettings.dbms.type</name>
             <value>postgresql</value>
         </condition>
-        <condition type="variable" id="cnd.db.dbms.derby">
+        <condition type="variable" id="cnd.db.dbms.mariadb">
             <name>dbSettings.dbms.type</name>
-            <value>derby</value>
+            <value>mariadb</value>
         </condition>
 
         <condition type="variable" id="cnd.start.tomcat">
@@ -419,6 +421,7 @@
 	<jar src="../dependency/derbyclient.jar" />
 	<jar src="../dependency/mysql-connector-java.jar" />
 	<jar src="../dependency/postgresql.jar" />
+    <jar src="../dependency/mariadb-java-client.jar" />
 
 	<jar src="../dependency/jahia-installer-lib.jar" />
 </installation>
