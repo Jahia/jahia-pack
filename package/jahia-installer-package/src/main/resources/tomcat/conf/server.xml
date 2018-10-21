@@ -67,9 +67,9 @@
          Define a non-SSL/TLS HTTP/1.1 Connector on port 8080
     -->
     <Connector port="${tomcat.httpPort}" protocol="HTTP/1.1"
-               redirectPort="${tomcat.sslPort}"
+               redirectPort="${tomcat.sslPort}" 
                maxThreads="300" acceptCount="100"
-               compression="on"
+               compression="on" 
                compressableMimeType="text/plain,text/html,text/xml,text/css,text/javascript,application/x-javascript,application/javascript,application/json,application/xml" />
     <!-- A "Connector" using the shared thread pool-->
     <!--
