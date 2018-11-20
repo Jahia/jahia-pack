@@ -14,9 +14,15 @@ Retrieves the state information for the specified bundle(s) using DX module mana
 
                  in case the target module can be detected unambiguously.^
 
-                 Examples: org.jahia.modules/article/2.0.2, article/2.0.2^
+                 In case of multiple bundle keys, separate them with a space.^
 
-                 In case of multiple bundle kes, separate them with a space.
+                 When passing a single module key, it may be supplied for special values:^
+
+                 ^* - retrieve states of all installed modules^
+
+                 ^<bundleName^>/* - retrieve states of all installed versions of the module identified by the bundleName^
+
+                 Examples: org.jahia.modules/article/2.0.2, article/2.0.2, org.jahia.modules/article/*, article/*, *
 rem ---------------------------------------------------------------------------
 
 set "CURRENT_DIR=%~dp0%"
@@ -25,11 +31,11 @@ if exist "%CURRENT_DIR%setupBundleApi.bat" (
 )
 
 if not %ERRORLEVEL% == 0 (
-	if %ERRORLEVEL% == 999 (
-		rem we printed out the usage and can stop here
-		@endlocal
-		exit /b 0
-	)
+    if %ERRORLEVEL% == 999 (
+        rem we printed out the usage and can stop here
+        @endlocal
+        exit /b 0
+    )
     goto end
 )
 
