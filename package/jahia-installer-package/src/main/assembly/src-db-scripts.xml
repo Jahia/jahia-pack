@@ -1,0 +1,18 @@
+<assembly>
+    <id>db-scripts</id>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <fileSets>
+        <fileSet>
+            <directory>${project.build.directory}/artifacts/jahia-data/db/sql/schema</directory>
+            <excludes>
+                <exclude>mssql/**</exclude>
+                <exclude>oracle/**</exclude>
+            </excludes>
+            <outputDirectory>/</outputDirectory>
+            <filtered>false</filtered>
+        </fileSet>
+    </fileSets>
+</assembly>
