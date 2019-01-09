@@ -557,7 +557,6 @@
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>properties-maven-plugin</artifactId>
@@ -576,7 +575,6 @@
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.codehaus.izpack</groupId>
                 <artifactId>izpack-maven-plugin</artifactId>
@@ -626,11 +624,11 @@
                         <goals>
                             <goal>single</goal>
                         </goals>
-                            <configuration>
-                                <descriptors>
-                                    <descriptor>src/main/assembly/src.xml</descriptor>
-                                </descriptors>
-                            </configuration>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/main/assembly/src.xml</descriptor>
+                            </descriptors>
+                        </configuration>
                     </execution>
                     <execution>
                         <id>package-ddl</id>
