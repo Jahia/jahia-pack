@@ -211,7 +211,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>siteSettings</artifactId>
-            <version>7.2.6</version>
+            <version>7.2.7-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
