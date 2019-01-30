@@ -125,6 +125,9 @@
                 </os>
             </activation>
             <properties>
+                <!-- BACKLOG-9506: the devtools server, where we are building DX, is using old version of GLIBC.
+                If it will be upgraded one day and the EXE installer build will suddenly fail,
+                try to change this value from 'linux' to 'linux64' -->
                 <os.family>linux</os.family>
                 <sign4j.executable>sign4j</sign4j.executable>
             </properties>
