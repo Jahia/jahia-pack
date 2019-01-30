@@ -113,7 +113,7 @@
                 </os>
             </activation>
             <properties>
-                <os.family>windows</os.family>
+                <os.family>win32</os.family>
                 <sign4j.executable>sign4j.exe</sign4j.executable>
             </properties>
         </profile>
@@ -125,7 +125,7 @@
                 </os>
             </activation>
             <properties>
-                <os.family>unix</os.family>
+                <os.family>linux64</os.family>
                 <sign4j.executable>sign4j</sign4j.executable>
             </properties>
         </profile>
@@ -143,6 +143,9 @@
         </profile>
         <profile>
             <id>windows-installer</id>
+            <properties>
+                <launch4j.run.dir>launch4j-${launch4j.version}-workdir-${os.family}</launch4j.run.dir>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -176,7 +179,7 @@
                         <artifactId>maven-dependency-plugin</artifactId>
                         <executions>
                             <execution>
-                                <id>launch4j</id>
+                                <id>launch4j-workdir</id>
                                 <phase>process-resources</phase>
                                 <goals>
                                     <goal>unpack</goal>
@@ -185,20 +188,33 @@
                                     <artifactItems>
                                         <artifactItem>
                                             <groupId>net.sf.launch4j</groupId>
-                                            <artifactId>launch4j-package</artifactId>
+                                            <artifactId>launch4j</artifactId>
                                             <version>${launch4j.version}</version>
-                                            <type>zip</type>
+                                            <classifier>workdir-${os.family}</classifier>
+                                            <type>jar</type>
                                             <overWrite>false</overWrite>
-                                            <outputDirectory>${project.build.directory}/artifacts/launch4j</outputDirectory>
+                                            <outputDirectory>${project.build.directory}</outputDirectory>
+                                            <excludes>META-INF/**</excludes>
                                         </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>launch4j-core</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
                                         <artifactItem>
                                             <groupId>net.sf.launch4j</groupId>
-                                            <artifactId>launch4j-bin</artifactId>
+                                            <artifactId>launch4j</artifactId>
                                             <version>${launch4j.version}</version>
-                                            <classifier>${os.family}</classifier>
-                                            <type>zip</type>
+                                            <classifier>core</classifier>
                                             <overWrite>false</overWrite>
-                                            <outputDirectory>${project.build.directory}/artifacts/launch4j/bin</outputDirectory>
+                                            <outputDirectory>${project.build.directory}/${launch4j.run.dir}</outputDirectory>
+                                            <destFileName>launch4j.jar</destFileName>
                                         </artifactItem>
                                     </artifactItems>
                                 </configuration>
@@ -235,9 +251,9 @@
                                 <configuration>
                                     <target>
                                         <path id="launch4j_classpath">
-                                            <pathelement location="${project.build.directory}/artifacts/launch4j/launch4j.jar" />
+                                            <pathelement location="${project.build.directory}/${launch4j.run.dir}/launch4j.jar" />
                                         </path>
-                                        <chmod dir="${project.build.directory}/artifacts/launch4j/bin" perm="755" includes="**" />
+                                        <chmod dir="${project.build.directory}/${launch4j.run.dir}/bin" perm="755" includes="**" />
                                         <taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpathref="launch4j_classpath" />
                                         <launch4j>
                                             <config outfile="${project.build.directory}/${installer.filename}.exe" jarPath="${project.build.directory}/${installer.filename}.jar" dontWrapJar="false" headerType="gui" priority="normal" downloadUrl="http://java.com/download" supportUrl="http://www.jahia.com" stayAlive="false" icon="${project.build.directory}/images/jahia.ico">
