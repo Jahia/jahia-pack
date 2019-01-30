@@ -125,7 +125,7 @@
                 </os>
             </activation>
             <properties>
-                <os.family>linux64</os.family>
+                <os.family>linux</os.family>
                 <sign4j.executable>sign4j</sign4j.executable>
             </properties>
         </profile>
