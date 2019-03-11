@@ -230,7 +230,7 @@
             <!-- New Vanity URL dashboard -->
             <groupId>org.jahia.modules</groupId>
             <artifactId>site-settings-seo</artifactId>
-            <version>1.0.2</version>
+            <version>1.0.3-SNAPSHOT</version>
             <type>jar</type>
             <scope>runtime</scope>
         </dependency>
