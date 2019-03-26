@@ -49,7 +49,7 @@
     <parent>
         <groupId>org.jahia.server</groupId>
         <artifactId>jahia-pack-root</artifactId>
-        <version>7.3.1.0-SNAPSHOT</version>
+        <version>7.3.1.0-count__edp__backlog_9298-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jahia-core-modules</artifactId>
@@ -114,13 +114,13 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>external-provider</artifactId>
-            <version>3.2.1-SNAPSHOT</version>
+            <version>3.2.1-count__edp__backlog_9298-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>external-provider-modules</artifactId>
-            <version>3.2.1-SNAPSHOT</version>
+            <version>3.2.1-count__edp__backlog_9298-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -132,7 +132,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>external-provider-vfs</artifactId>
-            <version>3.2.1-SNAPSHOT</version>
+            <version>3.2.1-count__edp__backlog_9298-SNAPSHOT</version>
        </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
