@@ -180,7 +180,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>bootstrap3-core</artifactId>
-            <version>3.5.2</version>
+            <version>3.5.3-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <!-- end of Jahia Forge Modules -->
