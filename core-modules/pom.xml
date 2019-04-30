@@ -78,7 +78,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>content-media-manager</artifactId>
-            <version>1.2.0</version>
+            <version>1.2.1-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -108,7 +108,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>dx-commons-webpack</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
