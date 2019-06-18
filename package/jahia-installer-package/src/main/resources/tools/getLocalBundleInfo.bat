@@ -51,7 +51,7 @@ set bundleKeys=%bundleKeys: =,%
 if "%2" == "" (
     %DX_CURL_CMD% %CURL_OPTIONS% %DX_REST_URL%/%1/_localInfo
 ) else (
-    %DX_CURL_CMD% %CURL_OPTIONS% %DX_REST_URL%/\[%bundleKeys%\]/_localInfo
+    %DX_CURL_CMD% %CURL_OPTIONS% %DX_REST_URL%/^%5B%bundleKeys%^%5D]/_localInfo
 )
 echo.
 
