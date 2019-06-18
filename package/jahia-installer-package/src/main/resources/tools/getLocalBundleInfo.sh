@@ -15,7 +15,7 @@ source ./setupBundleApi.sh
 if [ $# -gt 1 ]; then
     bundleKeys=$(printf ",%s" $@)
     echo Getting local info about bundles $bundleKeys ...
-    OUTPUT=`curl $CURL_OPTIONS "$DX_REST_URL/\[$bundleKeys\]/_localInfo"`
+    OUTPUT=`curl $CURL_OPTIONS "$DX_REST_URL/%5B$bundleKeys%5D/_localInfo"`
 else
     echo Getting local info about bundle\(s\) $1 ...
     OUTPUT=`curl $CURL_OPTIONS $DX_REST_URL/$1/_localInfo`
