@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>How to install Digital Experience Manager 7.3 on Apache Tomcat 9.0.x server</title>
+    <title>How to install Jahia 7.4 on Apache Tomcat 9.0.x server</title>
     <style type="text/css">
 		body {
 		    font: 75% Arial, Helvetica, sans-serif;
@@ -127,14 +127,14 @@
 <body>
 <div id="container">
   <div id="mainContent">
-	<h1>How to install Digital Experience Manager 7.3 on Apache Tomcat 9.0.x server</h1>
+	<h1>How to install Jahia 7.4 on Apache Tomcat 9.0.x server</h1>
 	
 	<h2>Installation</h2>
 	<p>The installation procedure for Apache Tomcat 9 is as follows:</p>
     <ol>
         <li>Launch the installer</li>
         <li>Choose <em>Custom install (advanced)</em> installation type</li>
-        <li>Select only <em>Digital Experience Manager + Jahia Core Content Platform</em> pack, unselecting the <em>Add Apache Tomcat</em> one</li>
+        <li>Select only <em>Jahia + Jahia Core Content Platform</em> pack, unselecting the <em>Add Apache Tomcat</em> one</li>
         <li>On the next screen choose the <em>Apache Tomcat 9.0.x</em> as the target application server</li>
         <li>Follow the next steps of the installer</li>
     </ol>
@@ -144,16 +144,16 @@
     
     <h2>Deployment</h2>
     <p>Further, it is assumed that your target Apache Tomcat server is installed in the <tt>tomcat</tt> folder 
-    and <tt>install-dir</tt> will reference the folder, where you’ve installed Digital Experience Manager into using the installer.</p>
+    and <tt>install-dir</tt> will reference the folder, where you’ve installed Jahia into using the installer.</p>
     <ol>
     	<li>Copy the content of the <tt>&lt;install-dir&gt;/tomcat/lib</tt> folder into your <tt>&lt;tomcat&gt;/lib</tt> directory.</li>
     	<li>In case ROOT was configured as the Web application context name, please, remove or rename the default 
     	Tomcat’s ROOT Web application at <tt>&lt;tomcat&gt;/webapps/ROOT</tt>, if it exists, to e.g. <tt>tomcat-root</tt> or similar.</li>
     	<li>Copy the content of the <tt>&lt;install-dir&gt;/tomcat/webapps</tt> folder into your <tt>&lt;tomcat&gt;/webapps</tt> directory.</li>
     	<li>The configuration folder path (digital-factory-config) has to be added into the class path to make 
-    	it available to Digital Experience Manager. The easiest way is to modify the <tt>common.loader</tt>
+    	it available to Jahia. The easiest way is to modify the <tt>common.loader</tt>
     	variable value in the <tt>&lt;tomcat&gt;/conf/catalina.properties</tt> file to point to the <tt>digital-factory-config</tt> folder path. 
-    	For example, if the Digital Experience Manager configuration folder has a path <tt>/opt/DigitalExperienceManager-7/digital-factory-config</tt> than
+    	For example, if the Jahia configuration folder has a path <tt>/opt/DigitalExperienceManager-7/digital-factory-config</tt> than
     	the value of common.loader should look like:
     	<blockquote><tt>common.loader="${catalina.base}/lib","${catalina.base}/lib/*.jar","${catalina.home}/lib","${catalina.home}/lib/*.jar",/opt/DigitalExperienceManager-7/digital-factory-config</tt></blockquote>
 		If your <tt>digital-factory-config</tt> folder is inside the installation folder, you could use the path, relative to <tt>catalina.home</tt>, i.e.:
@@ -165,13 +165,13 @@
     </ol>
     
     <h2>JVM tuning options</h2>
-	<p>The default JVM options of the Apache Tomcat have to be adjusted to reflect the Digital Experience Manager requirements.<br/>
+	<p>The default JVM options of the Apache Tomcat have to be adjusted to reflect the Jahia requirements.<br/>
 	We recommend creating a <tt>setenv.bat</tt> (Windows) or <tt>setenv.sh</tt> (non-Windows OS) script in the <tt>&lt;tomcat&gt;/bin</tt> folder to put those options.<br/>
 	An example of the <tt>&lt;tomcat&gt;/bin/setenv.bat</tt> for Windows OS could be:
 	<blockquote>
 	<tt>
 rem --------------------------------------------------------------------<br/>
-rem Digital Experience Manager settings<br/>
+rem Jahia settings<br/>
 rem --------------------------------------------------------------------<br/>
 <br/>
 set CATALINA_OPTS=%CATALINA_OPTS% -server -Dsun.io.useCanonCaches=false -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintConcurrentLocks -Djava.net.preferIPv4Stack=true -Xms2048m -Xmx2048m<br/>
@@ -184,7 +184,7 @@ set CATALINA_OPTS=%CATALINA_OPTS% -Dderby.system.home="%CATALINA_HOME%\..\digita
 #!/bin/sh<br/>
 <br/>
 # ----------------------------------------------------------------------<br/>
-# Digital Experience Manager settings<br/>
+# Jahia settings<br/>
 # ----------------------------------------------------------------------<br/>
 <br/>
 CATALINA_OPTS="$CATALINA_OPTS -server -Djava.awt.headless=true -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintConcurrentLocks -Djava.net.preferIPv4Stack=true -Xms2048m -Xmx2048m"
@@ -195,7 +195,7 @@ export CATALINA_PID=$CATALINA_HOME/temp/tomcat.pid<br/>
 	</tt>
 	</blockquote><br/>
 	The JVM heap sizes (<tt>-Xms</tt> and <tt>-Xmx</tt>) should be adjusted according to your needs<sup>[<a href="#ftn.1">1</a>]</sup>.
-	Note that the minimal value of the <tt>-Xmx</tt> value, required by Digital Experience Manager is <tt>2048m</tt>.<br/>
+	Note that the minimal value of the <tt>-Xmx</tt> value, required by Jahia is <tt>2048m</tt>.<br/>
 	If you have chosen Apache Derby as the target DBMS server during the installation, the value of the <tt>-Dderby.system.home</tt> in the 
 	<tt>setenv.bat/setenv.sh</tt> script should point to your <tt>digital-factory-data/dbdata</tt> folder.
 	</p>

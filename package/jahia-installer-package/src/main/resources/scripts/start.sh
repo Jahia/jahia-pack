@@ -1,6 +1,6 @@
 #!/bin/sh
 echo ---------------------------------------------------------------------------
-echo Starting Digital Experience Manager Server
+echo Starting Jahia Server
 echo ---------------------------------------------------------------------------
 
 cd tomcat/bin

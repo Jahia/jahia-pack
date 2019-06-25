@@ -1,7 +1,7 @@
 @echo off
 if "%OS%" == "Windows_NT" setlocal
 echo ---------------------------------------------------------------------------
-echo Stopping Digital Experience Manager Server
+echo Stopping Jahia Server
 echo ---------------------------------------------------------------------------
 
 cd /d %~dp0\tomcat\bin
