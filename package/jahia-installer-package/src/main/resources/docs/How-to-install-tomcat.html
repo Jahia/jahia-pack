@@ -153,9 +153,9 @@
     	<li>The configuration folder path (digital-factory-config) has to be added into the class path to make 
     	it available to Jahia. The easiest way is to modify the <tt>common.loader</tt>
     	variable value in the <tt>&lt;tomcat&gt;/conf/catalina.properties</tt> file to point to the <tt>digital-factory-config</tt> folder path. 
-    	For example, if the Jahia configuration folder has a path <tt>/opt/DigitalExperienceManager-7/digital-factory-config</tt> than
+    	For example, if the Jahia configuration folder has a path <tt>/opt/Jahia-7/digital-factory-config</tt> than
     	the value of common.loader should look like:
-    	<blockquote><tt>common.loader="${catalina.base}/lib","${catalina.base}/lib/*.jar","${catalina.home}/lib","${catalina.home}/lib/*.jar",/opt/DigitalExperienceManager-7/digital-factory-config</tt></blockquote>
+    	<blockquote><tt>common.loader="${catalina.base}/lib","${catalina.base}/lib/*.jar","${catalina.home}/lib","${catalina.home}/lib/*.jar",/opt/Jahia-7/digital-factory-config</tt></blockquote>
 		If your <tt>digital-factory-config</tt> folder is inside the installation folder, you could use the path, relative to <tt>catalina.home</tt>, i.e.:
     	<blockquote><tt>common.loader="${catalina.base}/lib","${catalina.base}/lib/*.jar","${catalina.home}/lib","${catalina.home}/lib/*.jar","${catalina.home}/../digital-factory-config"</tt></blockquote>
     	</li>
