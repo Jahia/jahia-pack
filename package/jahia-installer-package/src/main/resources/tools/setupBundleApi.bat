@@ -1,6 +1,6 @@
 @echo off
 echo ---------------------------------------------------------------------------
-echo   Digital Experience Manager - Module Management
+echo   Jahia - Module Management
 echo ---------------------------------------------------------------------------
 if ""%1"" == """"  goto printUsage
 if ""%1"" == ""--help""  goto printUsage
