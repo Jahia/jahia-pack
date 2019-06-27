@@ -1,6 +1,6 @@
 #!/bin/sh
 echo ---------------------------------------------------------------------------
-echo Stopping Digital Experience Manager Server
+echo Stopping Jahia Server
 echo ---------------------------------------------------------------------------
 
 cd tomcat/bin
