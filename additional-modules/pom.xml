@@ -174,13 +174,13 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>bootstrap3-components</artifactId>
-            <version>3.6.0-SNAPSHOT</version>
+            <version>3.5.4-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>bootstrap3-core</artifactId>
-            <version>3.6.0-SNAPSHOT</version>
+            <version>3.5.4-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <!-- end of Jahia Forge Modules -->
