@@ -48,7 +48,7 @@
     <parent>
         <groupId>org.jahia.server</groupId>
         <artifactId>jahia-package</artifactId>
-        <version>7.4.0.0-SNAPSHOT</version>
+        <version>7.4.0.0-backlog_10664-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jahia-installer-package</artifactId>
@@ -262,9 +262,7 @@
                                             <config outfile="${project.build.directory}/${installer.filename}.exe" jarPath="${project.build.directory}/${installer.filename}.jar" dontWrapJar="false" headerType="gui" priority="normal" downloadUrl="http://java.com/download" supportUrl="http://www.jahia.com" stayAlive="false" icon="${project.build.directory}/images/jahia.ico">
                                                 <jre minVersion="1.8.0" />
                                                 <splash file="${project.build.directory}/images/splash.bmp" waitForWindow="true" timeout="60" timeoutErr="true" />
-                                                <versionInfo fileVersion="${product.version.nosnapshot}"
-                                                             txtFileVersion="${product.version}"
-                                                             fileDescription="${product.name} - Community Distribution - Windows Installer" copyright="Copyright 2002-${year} ${jahia.manifest.vendor.name}" productVersion="${product.version.nosnapshot}" txtProductVersion="${product.version}" productName="${product.name} - Community Distribution" companyName="${jahia.manifest.vendor.name}" internalName="Jahia-CommunityDistribution" originalFilename="Jahia-CommunityDistribution.exe" />
+                                                <versionInfo fileVersion="${product.version.nosnapshot}" txtFileVersion="${product.version}" fileDescription="${product.name} - Community Distribution - Windows Installer" copyright="Copyright 2002-${year} ${jahia.manifest.vendor.name}" productVersion="${product.version.nosnapshot}" txtProductVersion="${product.version}" productName="${product.name} - Community Distribution" companyName="${jahia.manifest.vendor.name}" internalName="Jahia-CommunityDistribution" originalFilename="Jahia-CommunityDistribution.exe" />
                                             </config>
                                         </launch4j>
                                     </target>

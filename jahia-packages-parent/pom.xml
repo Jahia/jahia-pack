@@ -49,7 +49,7 @@
   <parent>
       <groupId>org.jahia.server</groupId>
       <artifactId>jahia-pack-root</artifactId>
-    <version>7.4.0.0-SNAPSHOT</version>
+    <version>7.4.0.0-backlog_10664-SNAPSHOT</version>
   </parent>
   <groupId>org.jahia.packages</groupId>
   <artifactId>jahia-packages-parent</artifactId>
