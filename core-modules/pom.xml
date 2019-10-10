@@ -114,13 +114,13 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>external-provider</artifactId>
-            <version>3.3.1-SNAPSHOT</version>
+            <version>3.3.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>external-provider-modules</artifactId>
-            <version>3.3.1-SNAPSHOT</version>
+            <version>3.3.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -132,7 +132,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>external-provider-vfs</artifactId>
-            <version>3.3.1-SNAPSHOT</version>
+            <version>3.3.0</version>
        </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
@@ -143,7 +143,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>graphql-dxm-provider</artifactId>
-            <version>1.2.1-SNAPSHOT</version>
+            <version>1.2.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -193,7 +193,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>module-manager</artifactId>
-            <version>1.3.1-SNAPSHOT</version>
+            <version>1.3.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
