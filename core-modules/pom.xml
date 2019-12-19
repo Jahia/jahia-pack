@@ -60,7 +60,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>assets</artifactId>
-            <version>7.2.4-SNAPSHOT</version>
+            <version>7.3.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -78,7 +78,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>content-media-manager</artifactId>
-            <version>1.4.0-SNAPSHOT</version>
+            <version>1.5.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -96,7 +96,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>default</artifactId>
-            <version>7.5.0-SNAPSHOT</version>
+            <version>7.5.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -114,13 +114,13 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>external-provider</artifactId>
-            <version>3.4.0-SNAPSHOT</version>
+            <version>3.4.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>external-provider-modules</artifactId>
-            <version>3.4.0-SNAPSHOT</version>
+            <version>3.4.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -132,12 +132,12 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>external-provider-vfs</artifactId>
-            <version>3.4.0-SNAPSHOT</version>
+            <version>3.4.0</version>
        </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>facets</artifactId>
-            <version>7.1.5-SNAPSHOT</version>
+            <version>7.2.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -181,7 +181,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>jquery</artifactId>
-            <version>7.1.4-SNAPSHOT</version>
+            <version>7.2.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -229,7 +229,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>siteSettings</artifactId>
-            <version>7.4.0-SNAPSHOT</version>
+            <version>7.4.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -261,7 +261,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>tags</artifactId>
-            <version>7.3.0-SNAPSHOT</version>
+            <version>7.3.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
