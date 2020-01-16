@@ -300,7 +300,12 @@
             <version>1.0.0</version>
             <scope>runtime</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>content-security-policy</artifactId>
+            <version>1.0.1</version>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
 
     <build>
