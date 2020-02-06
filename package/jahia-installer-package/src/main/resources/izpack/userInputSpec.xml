@@ -38,9 +38,9 @@
         <field type="radio" variable="dbSettings.dbms.type" align="left" conditionid="cnd.db.mode.standalone">
             <description align="left" txt="Choose your DBMS type" id="dbSettings.dbms.type"/>
             <spec>
-                <choice txt="MariaDB 10.x" id="dbSettings.dbms.type.mariadb" value="mariadb"/>
-                <choice txt="MySQL 5.x" id="dbSettings.dbms.type.mysql" value="mysql" set="true"/>
-                <choice txt="PostgreSQL 9.x" id="dbSettings.dbms.type.postgresql" value="postgresql"/>
+                <choice txt="MariaDB" id="dbSettings.dbms.type.mariadb" value="mariadb"/>
+                <choice txt="MySQL" id="dbSettings.dbms.type.mysql" value="mysql" set="true"/>
+                <choice txt="PostgreSQL" id="dbSettings.dbms.type.postgresql" value="postgresql"/>
             </spec>
         </field>
     </panel>
