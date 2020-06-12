@@ -43,7 +43,7 @@ jobs:
           condition: <<parameters.is_pull_request>>
           steps:
             - run:
-                # TODO We will want to add the missing profile -Pinstaller,sign-installer-jar,windows-installer,sign-installer-exe -Dbamboo.buildNumber=$CIRCLE_BUILD_NUM
+                # TODO We will want to add the missing profile -Pinstaller,sign-installer-jar,windows-installer,sign-installer-exe
                 name: mvn clean install
                 command: mvn -s .circleci/.circleci.settings.xml -U -e clean install
       - unless:
@@ -51,7 +51,7 @@ jobs:
           steps:
             - run:
                 # TODO One day we may want to replace the install by deploy in the name and the command
-                # TODO We will want to add the missing profile too -Pinstaller,sign-installer-jar,windows-installer,sign-installer-exe -Dbamboo.buildNumber=$CIRCLE_BUILD_NUM
+                # TODO We will want to add the missing profile too -Pinstaller,sign-installer-jar,windows-installer,sign-installer-exe
                 name: mvn clean install
                 command: mvn -s .circleci/.circleci.settings.xml -U -e clean install
       - save_cache:
@@ -112,6 +112,7 @@ jobs:
           key: v2-dependencies-{{ checksum "pom.xml" }}
 
   trigger_ee_build:
+    <<: *workdir
     docker: # run the steps with Docker
       - image: circleci/openjdk:8-jdk-stretch
     steps:
