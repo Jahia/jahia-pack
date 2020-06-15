@@ -31,7 +31,7 @@ jobs:
     <<: *workdir
     docker: # run the steps with Docker
       - image: circleci/openjdk:8-jdk-stretch
-    resource_class: large
+    resource_class: xlarge
     steps:
       - *attach-workspace
       - restore_cache:
@@ -76,7 +76,7 @@ jobs:
     <<: *workdir
     docker: # run the steps with Docker
       - image: circleci/openjdk:8-jdk-stretch
-    resource_class: large
+    resource_class: xlarge
     steps:
       - *attach-workspace
       - restore_cache:
@@ -88,7 +88,7 @@ jobs:
           condition: <<parameters.is_pull_request>>
           steps:
             - run:
-                name: Sonar analysis
+                name: Analyze pull request with sonar
                 command: |
                   mvn -s .circleci/.circleci.settings.xml sonar:sonar -Dsonar.pullrequest.branch=$CIRCLE_BRANCH \
                   -Dsonar.pullrequest.key=<< pipeline.parameters.pull_request_number >> \
@@ -98,7 +98,7 @@ jobs:
           condition: <<parameters.is_pull_request>>
           steps:
             - run:
-                name: Analyze pull request with sonar
+                name: Sonar analysis
                 command: |
                   if [[ "${CIRCLE_BRANCH}" == "master" ]];
                   then
@@ -144,17 +144,20 @@ workflows:
   pull_request:
     when: << pipeline.parameters.run_pull_request >>
     jobs:
-      - checkout
+      - checkout:
+          name: PR Checkout
       - build:
+          name: PR Build Jahia Pack
           is_pull_request: true
           context: QA_ENVIRONMENT
           requires:
-            - checkout
+            - PR Checkout
       - sonar:
+          name: PR Sonar analysis of the pull request
           is_pull_request: true
           context: QA_ENVIRONMENT
           requires:
-            - build
+            - PR Build Jahia Pack
   on-code-change:
     jobs:
       - checkout:
@@ -165,16 +168,19 @@ workflows:
                 - /feature-.*/
                 - /JAHIA-[0-9]-[0-9]-[0-9]-X-BRANCH/
       - build:
+          name: Build Jahia Pack
           is_pull_request: false
           context: QA_ENVIRONMENT
           requires:
             - checkout
       - sonar:
+          name: Sonar analysis
           is_pull_request: false
           context: QA_ENVIRONMENT
           requires:
-            - build
+            - Build Jahia Pack
       - trigger_ee_build:
+          name: Trigger build of jahia-ee
           context: QA_ENVIRONMENT
           requires:
-            - build
+            - Build Jahia Pack
