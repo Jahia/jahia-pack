@@ -72,7 +72,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>ckeditor</artifactId>
-            <version>4.13.1-jahia8-2-SNAPSHOT</version>
+            <version>4.13.1-jahia8-2</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
