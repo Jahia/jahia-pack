@@ -17,7 +17,7 @@
     <variables>
         <variable name="product.name" value="${product.name}"/>
         <variable name="product.version" value="${product.version}"/>
-        
+
         <!-- default values for DB driver -->
         <variable name="def.db.driver.mysql" value="com.mysql.jdbc.Driver"/>
         <variable name="def.db.driver.postgresql" value="org.postgresql.Driver"/>
@@ -28,9 +28,9 @@
         <variable name="def.db.url.mariadb" value="jdbc:mariadb://localhost/jahia?useUnicode=true&amp;characterEncoding=UTF-8&amp;useServerPrepStmts=false"/>
 
         <variable name="superUser.username" value="root"/>
-        
+
         <variable name="TargetPanel.noWhitespaces" value="true"/>
-        
+
         <variable name="TargetPanel.dir.mac" value="$APPLICATIONS_DEFAULT_ROOT/${product.fullname}"/>
         <variable name="TargetPanel.dir.macosx" value="$APPLICATIONS_DEFAULT_ROOT/${product.fullname}"/>
         <variable name="TargetPanel.dir.unix" value="$APPLICATIONS_DEFAULT_ROOT/${product.fullname}"/>
@@ -55,20 +55,17 @@
         <variable name="jahia.war.target.path" value="$INSTALL_PATH/tomcat/webapps/${jahia.war.target.dir.name}"/>
         <variable name="jahia.tomcat.pack.selected" value="true" condition="cnd.pack.tomcat"/>
         <variable name="jahia.tomcat.pack.selected" value="false" condition="!cnd.pack.tomcat"/>
-        
+
         <variable name="operatingMode" value="development" condition="cnd.operatingMode.development"/>
         <variable name="operatingMode" value="production" condition="!cnd.operatingMode.development"/>
-        
+
         <variable name="server.type" value="tomcat"/>
 
         <variable name="tomcat.httpPort" value="8080" condition="cnd.installation.type.express|!cnd.pack.tomcat"/>
         <variable name="tomcat.sslPort" value="8443" condition="cnd.installation.type.express|!cnd.pack.tomcat"/>
         <variable name="tomcat.ajpPort" value="8009" condition="cnd.installation.type.express|!cnd.pack.tomcat"/>
         <variable name="tomcat.serverPort" value="8005" condition="cnd.installation.type.express|!cnd.pack.tomcat"/>
-        
-        <variable name="jahiaManager.username" value="jahia" condition="cnd.installation.type.express"/>
-        <variable name="jahiaManager.password" value="password" condition="cnd.installation.type.express"/>
-        
+
         <!-- embedded Derby defaults -->
         <variable name="dbSettings.dbms.type" value="derby_embedded" condition="cnd.installation.type.express|cnd.db.mode.embedded"/>
         <variable name="dbSettings.dbms.createTables" value="true" condition="cnd.db.dbms.derby_embedded"/>
@@ -76,12 +73,12 @@
         <variable name="dbSettings.connection.url" value="jdbc:derby:directory:jahia;create=true" condition="cnd.db.dbms.derby_embedded"/>
         <variable name="dbSettings.connection.username" value="" condition="cnd.db.dbms.derby_embedded"/>
         <variable name="dbSettings.connection.password" value="" condition="cnd.db.dbms.derby_embedded"/>
-        
+
         <variable name="superUser.firstname" value="" condition="cnd.installation.type.express"/>
         <variable name="superUser.lastname" value="" condition="cnd.installation.type.express"/>
         <variable name="superUser.email" value="" condition="cnd.installation.type.express"/>
         <variable name="superUser.preferredLang" value="${LOCALE_IDENTIFIER}" condition="cnd.installation.type.express|!cnd.superUser.preferredLang.set"/>
-        
+
         <!-- DB drivers for standalone DBMSs -->
         <variable name="dbSettings.connection.driver" value="${dbSettings.connection.driver.mysql}" condition="cnd.db.dbms.mysql" />
         <variable name="dbSettings.connection.driver" value="${dbSettings.connection.driver.postgresql}" condition="cnd.db.dbms.postgresql" />
@@ -95,12 +92,12 @@
 		<!-- Use data store by default -->
         <!-- Store binary data on filesystem by default -->
         <variable name="dbSettings.dbms.storeFilesInDB" value="false" condition="cnd.db.dbms.derby_embedded"/>
-		
+
         <!-- mail settings -->
         <variable name="mailSettings.administrator" value="" condition="cnd.installation.type.express"/>
         <variable name="mailSettings.from" value="" condition="cnd.installation.type.express"/>
         <variable name="mailSettings.server" value="" condition="cnd.installation.type.express"/>
-        
+
         <variable name="afterInstall.startTomcat" value="false" condition="!cnd.pack.tomcat"/>
 
         <!-- Externalization of configuration and data -->
@@ -116,23 +113,23 @@
         <variable name="derby.home.win" value="${data.dir}\dbdata" condition="cnd.installation.type.advanced+!cnd.data.dir.relative" />
         <variable name="derby.home.unix" value="$CATALINA_HOME/../digital-factory-data/dbdata" condition="cnd.installation.type.express" />
         <variable name="derby.home.unix" value="${data.dir}/dbdata" condition="cnd.installation.type.advanced+!cnd.data.dir.relative" />
-        
+
         <!-- DM -->
         <variable name="dmConfig.officePath.provided" value="true" condition="!cnd.dm.officePath.empty"/>
         <variable name="dmConfig.officePath.provided" value="false" condition="cnd.dm.officePath.empty"/>
         <variable name="dmConfig.imageService" value="ImageMagickImageService" condition="!cnd.dm.imagemagickPath.empty"/>
         <variable name="dmConfig.imageService" value="ImageJAndJava2DImageService" condition="cnd.dm.imagemagickPath.empty"/>
-        
+
         <!-- Studio tools -->
         <variable name="studioToolSettings.gitPath" value="git" condition="cnd.installation.type.express|!cnd.operatingMode.development"/>
         <variable name="studioToolSettings.mvnPath" value="mvn" condition="cnd.installation.type.express|!cnd.operatingMode.development"/>
         <variable name="studioToolSettings.svnPath" value="svn" condition="cnd.installation.type.express|!cnd.operatingMode.development"/>
-        
+
         <variable name="defaultLanguageCode" value="en" condition="cnd.installation.type.express"/>
-        
+
         <variable name="karaf.remoteShell.port" value="8101" condition="cnd.installation.type.express"/>
     </dynamicvariables>
-    
+
     <conditions>
         <condition type="variable" id="cnd.installation.type.express">
             <name>installation.type</name>
@@ -142,7 +139,7 @@
             <name>installation.type</name>
             <value>advanced</value>
         </condition>
-        
+
         <condition type="packselection" id="cnd.pack.tomcat">
             <packid>tomcat</packid>
         </condition>
@@ -200,14 +197,14 @@
             <condition type="ref" refid="cnd.start.tomcat"/>
             <condition type="ref" refid="cnd.view.howtoinstall"/>
         </condition>
-        
+
         <condition type="org.jahia.izpack.EmptyVariableCondition" id="cnd.dm.officePath.empty">
             <variable>dmConfig.officePath</variable>
         </condition>
         <condition type="org.jahia.izpack.EmptyVariableCondition" id="cnd.dm.imagemagickPath.empty">
             <variable>dmConfig.imagemagickPath</variable>
         </condition>
-        
+
         <condition type="com.izforge.izpack.rules.VariableExistenceCondition" id="cnd.superUser.preferredLang.set">
             <variable>superUser.preferredLang</variable>
         </condition>
@@ -230,10 +227,10 @@
             <os family="windows"/>
             <os family="unix"/>
             <os family="mac"/>
-            
+
             <param name="nimbusBlueGrey" value="0xffffff"/>
             <param name="control" value="0xffffff"/>
-            
+
             <param name="FormattedTextField.background" value="0xe9ecf2"/>
             <param name="PasswordField.background" value="0xe9ecf2"/>
             <param name="ComboBox.background" value="0xe9ecf2"/>
@@ -292,7 +289,7 @@
         <res id="CustomLangpack.xml_eng" src="i18n/customLang.eng.xml"/>
         <res id="CustomLangpack.xml_fra" src="i18n/customLang.fra.xml"/>
         <res id="CustomLangpack.xml_deu" src="i18n/customLang.deu.xml"/>
-        
+
         <res id="CustomActionsLang.xml_eng" src="i18n/customLang.eng.xml"/>
         <res id="CustomActionsLang.xml_fra" src="i18n/customLang.fra.xml"/>
         <res id="CustomActionsLang.xml_deu" src="i18n/customLang.deu.xml"/>
@@ -347,7 +344,7 @@
         <panel classname="ProcessPanel" condition="izpack.windowsinstall+cnd.show.process.panel"/>
         <panel classname="FinishPanel"/>
     </panels>
-    
+
     <native name="ShellLink_x64.dll" type="izpack">
         <os arch="amd64"/>
         <os arch="ia64"/>
@@ -361,7 +358,7 @@
         <os arch="i686"/>
         <os arch="x86"/>
     </native>
-     
+
     <listeners>
     	<listener installer="ProgressBarInstallerListener"/>
         <listener installer="SummaryLoggerInstallerListener"/>
@@ -392,13 +389,13 @@
 
             <parsable targetfile="$INSTALL_PATH/tomcat/bin/setenv.bat" type="shell"/>
             <parsable targetfile="$INSTALL_PATH/tomcat/bin/setenv.sh" type="shell"/>
-            
+
             <parsable targetfile="$INSTALL_PATH/OpenHome.URL"/>
             <parsable targetfile="$INSTALL_PATH/OpenAdministration.URL"/>
-            
+
             <parsable targetfile="$INSTALL_PATH/tomcat/conf/server.xml"/>
             <parsable targetfile="$INSTALL_PATH/tomcat/conf/catalina.properties" type="shell"/>
-            
+
             <executable targetfile="$INSTALL_PATH/tomcat/bin/catalina.sh" />
             <executable targetfile="$INSTALL_PATH/tomcat/bin/configtest.sh" />
             <executable targetfile="$INSTALL_PATH/tomcat/bin/daemon.sh" />
@@ -409,7 +406,7 @@
             <executable targetfile="$INSTALL_PATH/tomcat/bin/startup.sh" />
             <executable targetfile="$INSTALL_PATH/tomcat/bin/tool-wrapper.sh" />
             <executable targetfile="$INSTALL_PATH/tomcat/bin/version.sh" />
-            
+
             <executable targetfile="$INSTALL_PATH/start.sh" />
             <executable targetfile="$INSTALL_PATH/stop.sh" />
         </pack>
@@ -417,7 +414,7 @@
 
 	<jar src="../artifacts/ant.jar" />
 	<jar src="../artifacts/ant-launcher.jar" />
-	
+
 	<jar src="../dependency/mysql-connector-java.jar" />
 	<jar src="../dependency/postgresql.jar" />
     <jar src="../dependency/mariadb-java-client.jar" />
