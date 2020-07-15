@@ -4,7 +4,7 @@
         <field type="staticText" align="left"
                txt="Here you can choose your preferred installation type:"
                id="installation.chooseType"/>
-        
+
         <field type="space" />
 
 
@@ -19,7 +19,7 @@
             </spec>
         </field>
     </panel>
-    
+
     <panel order="1">
         <field type="space" />
         <field type="space"/>
@@ -31,7 +31,7 @@
             </spec>
         </field>
     </panel>
-    
+
     <panel order="2">
         <field type="space" />
         <field type="space" />
@@ -44,7 +44,7 @@
             </spec>
         </field>
     </panel>
-    
+
     <panel order="3">
         <!-- DB driver and URL fields are for each DB type due to value initialization problem (if the DB type is changed) -->
 
@@ -57,7 +57,7 @@
             <spec txt="Database URL (*)" id="dbSettings.connection.url" size="25" set="${def.db.url.mysql}"/>
             <validator class="com.izforge.izpack.util.NotEmptyValidator" txt="Database URL is a mandatory field" id="dbSettings.connection.url.mandatory"/>
         </field>
-        
+
 
         <!-- PostgreSQL -->
         <field type="text" align="left" variable="dbSettings.connection.driver.postgresql" conditionid="cnd.db.dbms.postgresql">
@@ -100,7 +100,7 @@
         <field type="divider" align="bottom" conditionid="cnd.db.dbms.mariadb"/>
         <field type="staticText" align="left" txt="the MariaDB driver is downloaded from Maven Central Repository (${driver.mariadb.download.central}), where you could also find the source code and the terms of use" id="dbType.mariadb.hint" conditionid="cnd.db.dbms.mariadb"/>
     </panel>
-    
+
     <panel order="4">
         <field type="staticText" align="left" id="appServer.tomcat.description" txt="Apache Tomcat configuration" conditionid="cnd.pack.tomcat"/>
         <field type="divider" align="top" conditionid="cnd.pack.tomcat"/>
@@ -138,16 +138,6 @@
             </validator>
         </field>
         <field type="space"/>
-        <field type="text" align="left" variable="jahiaManager.username">
-            <spec txt="Jahia tool manager username (*)" id="appServer.username" size="10" set="jahia"/>
-            <validator class="com.izforge.izpack.util.NotEmptyValidator" txt="Jahia tool manager username is a mandatory field" id="appServer.username.mandatory"/>
-        </field>
-        <field type="password" align="left" variable="jahiaManager.password">
-            <spec>
-                <pwd set="" size="10" txt="Jahia tool manager password (*)" id="appServer.password"/>
-            </spec>
-            <validator class="com.izforge.izpack.util.NotEmptyValidator" txt="Jahia tool manager password is a mandatory field" id="appServer.password.mandatory"/>
-        </field>
         <field type="text" align="left" variable="karaf.remoteShell.port">
             <spec txt="SSH console port (*)" id="karaf.remoteShell.port" size="4" set="8101"/>
             <validator class="com.izforge.izpack.util.RegularExpressionValidator" txt="SSH console port port is a mandatory field and should contain a valid TCP port number" id="karaf.remoteShell.port.validator">
@@ -161,7 +151,7 @@
         <field type="divider" align="bottom"/>
         <field type="staticText" align="left" txt="(*) - this field is required" id="common.requiredFieldHint"/>
     </panel>
-    
+
     <panel order="5">
         <!-- Allow changing the root username when we will support it
         <field type="text" align="left" variable="superUser.username">
@@ -204,7 +194,7 @@
         <field type="divider" align="bottom"/>
         <field type="staticText" align="left" txt="(*) - this field is required" id="common.requiredFieldHint"/>
     </panel>
-    
+
     <panel order="6">
         <field type="staticText" txt="The settings below are optional. Leave them empty to disable E-Mail notification. Specifying them will enable the E-Mail notification feature." id="mailSettings.description"/>
         <field type="space"/>
@@ -225,17 +215,17 @@
         <field type="staticText" txt="Provide the path for your Maven executable (mvn)" id="studioToolSettings.mvn.description"/>
         <field type="file" variable="studioToolSettings.mvnPath" align="left">
             <spec mustExist="false" allowEmptyValue="true" size="20" txt="" set=""/>
-        </field>        
-        <field type="space"/>        
+        </field>
+        <field type="space"/>
         <field type="staticText" txt="Provide the path for your Subversion executable (svn)" id="studioToolSettings.svn.description"/>
         <field type="file" variable="studioToolSettings.svnPath" align="left">
             <spec mustExist="false" allowEmptyValue="true" size="20" txt="" set=""/>
-        </field>        
-        <field type="space"/>        
+        </field>
+        <field type="space"/>
         <field type="staticText" txt="Provide the path for your Git executable (git)" id="studioToolSettings.git.description"/>
         <field type="file" variable="studioToolSettings.gitPath" align="left">
             <spec mustExist="false" allowEmptyValue="true" size="20" txt="" set=""/>
-        </field>        
+        </field>
     </panel>
 
     <panel order="8">
@@ -254,8 +244,8 @@
                 <param name="directory" value="true"/>
                 <param name="fileName" value="program/soffice.bin,MacOS/soffice.bin"/>
             </validator>
-        </field>        
-        <field type="space"/>        
+        </field>
+        <field type="space"/>
         <field type="staticText" txt="Select the path for your imagemagick install" id="dmConfig.imagemagick.description"/>
         <field type="dir" variable="dmConfig.imagemagickPath" align="left">
             <spec mustExist="false" allowEmptyValue="true" size="20" txt=""/>
@@ -276,9 +266,9 @@
         </field>
 
         <field type="space" />
-        
+
         <field type="space" />
-        
+
         <field type="staticText" txt="Path to a folder with additional modules to be deployed" id="additionalSettings.modulesPath" />
         <field type="dir" align="left" variable="additionalModulesPath">
           <spec txt="" size="20" set="" mustExist="true" allowEmptyValue="true" />
