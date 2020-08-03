@@ -18,7 +18,7 @@ fi
 
 echo "Using JVM options: -Xms$JAHIA_JAVA_XMS -Xmx$JAHIA_JAVA_XMX $JAHIA_JAVA_OPTS"
 
-CATALINA_OPTS="$CATALINA_OPTS -server -Xms$JAHIA_JAVA_XMS -Xmx$JAHIA_JAVA_XMX -Djava.awt.headless=true -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintConcurrentLocks -Djava.net.preferIPv4Stack=true $JAHIA_JAVA_OPTS"
+CATALINA_OPTS="$CATALINA_OPTS -server -Xms$JAHIA_JAVA_XMS -Xmx$JAHIA_JAVA_XMX -Djava.awt.headless=true -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintConcurrentLocks -Djava.net.preferIPv4Stack=true -Djavax.el.class-resolution.disableOnLowerCase=true $JAHIA_JAVA_OPTS"
 CATALINA_OPTS="$CATALINA_OPTS -Dderby.system.home=%{derby.home.unix}"
 CATALINA_OPTS="$CATALINA_OPTS -Dkaraf.handle.sigterm=false"
 export CATALINA_OPTS
