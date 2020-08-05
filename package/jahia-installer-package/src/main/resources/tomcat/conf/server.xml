@@ -64,21 +64,21 @@
          Java HTTP Connector: /docs/config/http.html
          Java AJP  Connector: /docs/config/ajp.html
          APR (HTTP/AJP) Connector: /docs/apr.html
-         Define a non-SSL/TLS HTTP/1.1 Connector on port 8080
+         Define a non-SSL/TLS HTTP/1.1 Connector on port ${tomcat.httpPort}
     -->
     <Connector port="${tomcat.httpPort}" protocol="HTTP/1.1"
-               redirectPort="${tomcat.sslPort}" 
+               redirectPort="${tomcat.sslPort}"
                maxThreads="300" acceptCount="100"
                compression="on" 
                compressibleMimeType="text/plain,text/html,text/xml,text/css,text/javascript,application/x-javascript,application/javascript,application/json,application/xml" />
     <!-- A "Connector" using the shared thread pool-->
     <!--
     <Connector executor="tomcatThreadPool"
-               port="8080" protocol="HTTP/1.1"
+               port="${tomcat.httpPort}" protocol="HTTP/1.1"
                connectionTimeout="20000"
                redirectPort="8443" />
     -->
-    <!-- Define a SSL/TLS HTTP/1.1 Connector on port 8443
+    <!-- Define an SSL/TLS HTTP/1.1 Connector on port ${tomcat.sslPort}
          This connector uses the NIO implementation. The default
          SSLImplementation will depend on the presence of the APR/native
          library and the useOpenSSL attribute of the
@@ -95,14 +95,14 @@
         </SSLHostConfig>
     </Connector>
     -->
-    <!-- Define a SSL/TLS HTTP/1.1 Connector on port 8443 with HTTP/2
+    <!-- Define an SSL/TLS HTTP/1.1 Connector on port ${tomcat.sslPort} with HTTP/2
          This connector uses the APR/native implementation which always uses
          OpenSSL for TLS.
          Either JSSE or OpenSSL style configuration may be used. OpenSSL style
          configuration is used below.
     -->
     <!--
-    <Connector port="8443" protocol="org.apache.coyote.http11.Http11AprProtocol"
+    <Connector port="${tomcat.sslPort}" protocol="org.apache.coyote.http11.Http11AprProtocol"
                maxThreads="150" SSLEnabled="true" >
         <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" />
         <SSLHostConfig>
@@ -114,8 +114,20 @@
     </Connector>
     -->
 
-    <!-- Define an AJP 1.3 Connector on port 8009 -->
-    <Connector port="${tomcat.ajpPort}" protocol="AJP/1.3" connectionTimeout="20000" keepAliveTimeout="300000" redirectPort="${tomcat.sslPort}" maxThreads="300" />
+    <!-- Define an AJP 1.3 Connector on port ${tomcat.ajpPort} -->
+    <Connector protocol="AJP/1.3"
+               port="${tomcat.ajpPort}"
+               connectionTimeout="20000"
+               keepAliveTimeout="300000"
+               redirectPort="${tomcat.sslPort}"
+               maxThreads="300"
+               secretRequired="false" />
+    <!--
+    <Connector protocol="AJP/1.3"
+               address="::1"
+               port="${tomcat.ajpPort}"
+               redirectPort="${tomcat.sslPort}" />
+    -->
 
 
     <!-- An Engine represents the entry point (within Catalina) that processes
