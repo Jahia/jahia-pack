@@ -276,7 +276,7 @@
                             <dependency>
                                 <groupId>com.thoughtworks.xstream</groupId>
                                 <artifactId>xstream</artifactId>
-                                <version>1.4.10</version>
+                                <version>1.4.13</version>
                             </dependency>
                         </dependencies>
                     </plugin>
