@@ -153,6 +153,12 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
+            <groupId>org.jahia.modules</groupId>
+            <artifactId>jahia-csrf-guard</artifactId>
+            <version>1.1.0-SNAPSHOT</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
             <!-- JAX-RS OSGi Extender, depends on Jersey and its dependencies, put in bundles -->
             <groupId>org.jahia.modules</groupId>
             <artifactId>jaxrs-osgi-extender</artifactId>
