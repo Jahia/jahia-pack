@@ -77,6 +77,27 @@
           <artifactId>mariadb-java-client</artifactId>
           <version>${driver.mariadb.version}</version>
       </dependency>
+      <dependency>
+          <groupId>com.oracle.jdbc</groupId>
+          <artifactId>ojdbc8</artifactId>
+          <version>${driver.oracle.version}</version>
+          <exclusions>
+              <exclusion>
+                  <groupId>com.oracle.jdbc</groupId>
+                  <artifactId>ucp</artifactId>
+              </exclusion>
+          </exclusions>
+      </dependency>
+      <dependency>
+          <groupId>com.oracle.jdbc</groupId>
+          <artifactId>orai18n</artifactId>
+          <version>${driver.oracle.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>com.microsoft.sqlserver</groupId>
+          <artifactId>mssql-jdbc</artifactId>
+          <version>${driver.mssql.version}</version>
+      </dependency>
   </dependencies>
   <build>
       <plugins>
