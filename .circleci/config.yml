@@ -1,5 +1,14 @@
 version: 2.1
 
+commands:
+  generate_cachekey_seed:
+      description: Generate Cache Key Seeds
+      steps:
+      - run: 
+          name: Generate Cache Key Seeds
+          command: |
+            find . -name 'pom.xml' | sort | xargs cat > ~/source/maven_cache_seed
+
 references:
   workdir: &workdir
     working_directory: ~/source
@@ -21,6 +30,7 @@ jobs:
       - image: circleci/openjdk:8-jdk-stretch
     steps:
       - checkout
+      - generate_cachekey_seed
       - *persist-workspace
 
   build:
@@ -36,9 +46,8 @@ jobs:
       - *attach-workspace
       - restore_cache:
           keys:
-            - v2-dependencies-{{ checksum "pom.xml" }}
-            # fallback to using the latest cache if no exact match is found
-            - v2-dependencies-
+            - v1-maven-dependencies-{{ checksum "maven_cache_seed" }}
+            - v1-maven-dependencies-
       - run:
           name: Get the code signing certificate
           command: |
@@ -64,7 +73,7 @@ jobs:
       - save_cache:
           paths:
             - ~/.m2
-          key: v2-dependencies-{{ checksum "pom.xml" }}
+          key: v1-maven-dependencies-{{ checksum "maven_cache_seed" }}
       # TODO We are just running sonar in this task, when we want to really switch over to CircleCI we will want to uncomment this part
       #- run:
       #     name: Copy artifacts
@@ -88,9 +97,13 @@ jobs:
       - *attach-workspace
       - restore_cache:
           keys:
-            - v2-dependencies-{{ checksum "pom.xml" }}
+            - v1-maven-dependencies-{{ checksum "maven_cache_seed" }}
             # fallback to using the latest cache if no exact match is found
-            - v2-dependencies-
+            - v1-maven-dependencies-
+      - restore_cache:
+          keys:
+            - v1-sonar-owasp-dependencies-<<parameters.is_pull_request>>
+            - v1-sonar-owasp-dependencies-
       - when:
           condition: <<parameters.is_pull_request>>
           steps:
@@ -106,17 +119,26 @@ jobs:
           steps:
             - run:
                 name: Sonar analysis
+                environment: 
+                  DEPENDENCY_CHECK_SETTINGS: -DfailOnError=false -DskipProvidedScope=true -DskipTestScope=false 
+                      -DretireJsAnalyzerEnabled=false -DnodeAnalyzerEnabled=false -Dformats=HTML,JSON 
+                      -Dsonar.dependencyCheck.jsonReportPath=target/dependency-check-report.json 
+                      -Dsonar.dependencyCheck.htmlReportPath=target/dependency-check-report.html 
+                      -DdataDirectory=/home/circleci/.owasp/dependency-check-data
                 command: |
                   if [[ "${CIRCLE_BRANCH}" == "master" ]];
                   then
-                    mvn -s .circleci/.circleci.settings.xml sonar:sonar
+                    mvn -s .circleci/.circleci.settings.xml dependency-check:aggregate sonar:sonar \
+                        $DEPENDENCY_CHECK_SETTINGS
                   else
-                    mvn -s .circleci/.circleci.settings.xml sonar:sonar -Dsonar.branch.name=$CIRCLE_BRANCH
+                    mvn -s .circleci/.circleci.settings.xml dependency-check:aggregate sonar:sonar \
+                        -Dsonar.branch.name=$CIRCLE_BRANCH $DEPENDENCY_CHECK_SETTINGS
                   fi
       - save_cache:
           paths:
-            - ~/.m2
-          key: v2-dependencies-{{ checksum "pom.xml" }}
+            - ~/.owasp/dependency-check-data
+            - ~/.sonar/cache
+          key: v1-sonar-owasp-dependencies-<<parameters.is_pull_request>>
 
   trigger_ee_build:
     <<: *workdir
