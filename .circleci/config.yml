@@ -124,7 +124,8 @@ jobs:
                       -DretireJsAnalyzerEnabled=false -DnodeAnalyzerEnabled=false -Dformats=HTML,JSON 
                       -Dsonar.dependencyCheck.jsonReportPath=target/dependency-check-report.json 
                       -Dsonar.dependencyCheck.htmlReportPath=target/dependency-check-report.html 
-                      -DdataDirectory=/home/circleci/.owasp/dependency-check-data
+                      -DdataDirectory=/home/circleci/.owasp/dependency-check-data 
+                      -DsuppressionFile=.circleci/owasp-suppressions.xml
                 command: |
                   if [[ "${CIRCLE_BRANCH}" == "master" ]];
                   then
