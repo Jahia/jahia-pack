@@ -99,8 +99,15 @@
     <modules>
         <module>core-modules</module>
         <module>additional-modules</module>
-        <module>package</module>
-        <module>jahia-packages-parent</module>
     </modules>
+
+    <profiles>
+        <profile>
+            <id>installer</id>
+            <modules>
+                <module>jahia-installer-package</module>
+            </modules>
+        </profile>
+    </profiles>
 
 </project>

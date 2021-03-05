@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    ==========================================================================================
+    =                   JAHIA'S DUAL LICENSING - IMPORTANT INFORMATION                       =
+    ==========================================================================================
+
+                                    http://www.jahia.com
+
+        Copyright (C) 2002-2020 Jahia Solutions Group SA. All rights reserved.
+
+        THIS FILE IS AVAILABLE UNDER TWO DIFFERENT LICENSES:
+        1/GPL OR 2/JSEL
+
+        1/ GPL
+        ==================================================================================
+
+        IF YOU DECIDE TO CHOOSE THE GPL LICENSE, YOU MUST COMPLY WITH THE FOLLOWING TERMS:
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation, either version 3 of the License, or
+        (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+        GNU General Public License for more details.
+
+        You should have received a copy of the GNU General Public License
+        along with this program. If not, see <http://www.gnu.org/licenses />.
+
+
+        2/ JSEL - Commercial and Supported Versions of the program
+        ===================================================================================
+
+        IF YOU DECIDE TO CHOOSE THE JSEL LICENSE, YOU MUST COMPLY WITH THE FOLLOWING TERMS:
+
+        Alternatively, commercial and supported versions of the program - also known as
+        Enterprise Distributions - must be used in accordance with the terms and conditions
+        contained in a separate written agreement between you and Jahia Solutions Group SA.
+
+        If you are unsure which license is appropriate for your use,
+        please contact the sales department at sales@jahia.com.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.jahia.server</groupId>
+        <artifactId>jahia-pack-root</artifactId>
+        <version>8.0.3.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>jahia-installer-package</artifactId>
+    <name>Jahia Installer Package</name>
+    <packaging>pom</packaging>
+
+    <properties>
+        <product.name>Jahia</product.name>
+        <product.version>${project.version}</product.version>
+        <product.fullname>Jahia-CommunityDistribution-${product.version}</product.fullname>
+        <staging.dir>${project.build.directory}/izpack</staging.dir>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jahia.configuration</groupId>
+            <artifactId>configurators</artifactId>
+            <version>${jahia.configurators.version}</version>
+            <classifier>standalone</classifier>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jahia.configuration</groupId>
+            <artifactId>jahia-installer-lib</artifactId>
+            <version>${jahia.installers.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${driver.mysql.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${driver.postgresql.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>${driver.mariadb.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.izpack</groupId>
+            <artifactId>izpack-standalone-compiler</artifactId>
+            <version>${izpack.version}</version>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>os-family-windows</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                </os>
+            </activation>
+            <properties>
+                <os.family>win32</os.family>
+                <sign4j.executable>sign4j.exe</sign4j.executable>
+            </properties>
+        </profile>
+        <profile>
+            <id>os-family-unix</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                </os>
+            </activation>
+            <properties>
+                <!-- BACKLOG-9506: the devtools server, where we are building DX, is using old version of GLIBC.
+                If it will be upgraded one day and the EXE installer build will suddenly fail,
+                try to change this value from 'linux' to 'linux64' -->
+                <os.family>linux64</os.family>
+                <sign4j.executable>sign4j</sign4j.executable>
+            </properties>
+        </profile>
+        <profile>
+            <id>os-family-mac</id>
+            <activation>
+                <os>
+                    <family>mac</family>
+                </os>
+            </activation>
+            <properties>
+                <os.family>mac</os.family>
+                <sign4j.executable>sign4j</sign4j.executable>
+            </properties>
+        </profile>
+        <profile>
+            <id>windows-installer</id>
+            <properties>
+                <launch4j.run.dir>launch4j-${launch4j.version}-workdir-${os.family}</launch4j.run.dir>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.izpack</groupId>
+                        <artifactId>izpack-maven-plugin</artifactId>
+                        <version>1.0-alpha-5</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.codehaus.izpack</groupId>
+                                <artifactId>izpack-standalone-compiler</artifactId>
+                                <version>${izpack.version}</version>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <id>standard-installer</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>izpack</goal>
+                                </goals>
+                                <configuration>
+                                    <attach>false</attach>
+                                    <descriptor>${basedir}/src/main/resources/izpack/install.xml</descriptor>
+                                    <installerFile>${project.build.directory}/${installer.filename}.jar</installerFile>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>launch4j-workdir</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>net.sf.launch4j</groupId>
+                                            <artifactId>launch4j</artifactId>
+                                            <version>${launch4j.version}</version>
+                                            <classifier>workdir-${os.family}</classifier>
+                                            <type>jar</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.directory}</outputDirectory>
+                                            <excludes>META-INF/**</excludes>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>launch4j-core</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>net.sf.launch4j</groupId>
+                                            <artifactId>launch4j</artifactId>
+                                            <version>${launch4j.version}</version>
+                                            <classifier>core</classifier>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.directory}/${launch4j.run.dir}</outputDirectory>
+                                            <destFileName>launch4j.jar</destFileName>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <version>3.0.0</version>
+                        <executions>
+                            <execution>
+                                <id>regex-property</id>
+                                <goals>
+                                    <goal>regex-property</goal>
+                                </goals>
+                                <configuration>
+                                    <name>product.version.nosnapshot</name>
+                                    <value>${project.version}</value>
+                                    <regex>-.*</regex>
+                                    <replacement />
+                                    <failIfNoMatch>false</failIfNoMatch>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>exe</id>
+                                <phase>package</phase>
+                                <configuration>
+                                    <target>
+                                        <path id="launch4j_classpath">
+                                            <pathelement location="${project.build.directory}/${launch4j.run.dir}/launch4j.jar" />
+                                        </path>
+                                        <chmod dir="${project.build.directory}/${launch4j.run.dir}/bin" perm="755" includes="**" />
+                                        <taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpathref="launch4j_classpath" />
+                                        <launch4j>
+                                            <config outfile="${project.build.directory}/${installer.filename}.exe" jarPath="${project.build.directory}/${installer.filename}.jar" dontWrapJar="false" headerType="gui" priority="normal" downloadUrl="http://java.com/download" supportUrl="http://www.jahia.com" stayAlive="false" icon="${project.build.directory}/images/jahia.ico">
+                                                <jre minVersion="1.8.0" />
+                                                <splash file="${project.build.directory}/images/splash.bmp" waitForWindow="true" timeout="60" timeoutErr="true" />
+                                                <versionInfo fileVersion="${product.version.nosnapshot}" txtFileVersion="${product.version}" fileDescription="${product.name} - Community Distribution - Windows Installer" copyright="Copyright 2002-${year} ${jahia.manifest.vendor.name}" productVersion="${product.version.nosnapshot}" txtProductVersion="${product.version}" productName="${product.name} - Community Distribution" companyName="${jahia.manifest.vendor.name}" internalName="Jahia-CommunityDistribution" originalFilename="Jahia-CommunityDistribution.exe" />
+                                            </config>
+                                        </launch4j>
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.thoughtworks.xstream</groupId>
+                                <artifactId>xstream</artifactId>
+                                <version>1.4.13</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>sign-installer-jar</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.8</version>
+                        <executions>
+                            <execution>
+                                <id>sign-jar</id>
+                                <!--we need to do it in the "verify" phase to be sure that izpack has already packaged the installer-->
+                                <phase>verify</phase>
+                                <configuration>
+                                    <target>
+                                        <retry retryCount="3" retryDelay="30000">
+                                            <exec executable="jarsigner" failOnError="true">
+                                                <arg line="-storetype PKCS12 -keystore ${jahia.sign.keystore} -storepass ${jahia.sign.storepass} -tsa http://timestamp.sectigo.com/ ${project.build.directory}/${installer.filename}.jar jahia" />
+                                            </exec>
+                                        </retry>
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>sign-installer-exe</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>jsign</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>net.jsign</groupId>
+                                            <artifactId>jsign</artifactId>
+                                            <version>1.2</version>
+                                            <overWrite>false</overWrite>
+                                            <destFileName>jsign.jar</destFileName>
+                                            <outputDirectory>${project.build.directory}/artifacts/jsign</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.8</version>
+                        <executions>
+                            <execution>
+                                <id>sign-exe</id>
+                                <phase>package</phase>
+                                <configuration>
+                                    <target>
+                                        <chmod file="${project.build.directory}/sign4j/${sign4j.executable}" perm="ugo+rx" />
+                                        <retry retryCount="3" retryDelay="30000">
+                                            <exec executable="${project.build.directory}/sign4j/${sign4j.executable}" failOnError="true">
+                                                <arg line="java -jar ${project.build.directory}/artifacts/jsign/jsign.jar --storetype PKCS12 --keystore ${jahia.sign.keystore} --storepass ${jahia.sign.storepass} --alias jahia --tsaurl http://timestamp.sectigo.com/ ${project.build.directory}/${installer.filename}.exe" />
+                                            </exec>
+                                        </retry>
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <build>
+        <outputDirectory>${basedir}/target</outputDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>izpack/i18n/customLang_*.properties</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>izpack/i18n/customLang_*.properties</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <!-- Tries to get the version number from the CE -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack-artifacts</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.jahia.server</groupId>
+                                    <artifactId>jahia-impl</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>jar</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/marker
+                                    </outputDirectory>
+                                    <includes>**/jahia-impl-marker.txt</includes>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.tomcat</groupId>
+                                    <artifactId>tomcat</artifactId>
+                                    <version>${jahia.tomcat.version}</version>
+                                    <type>zip</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/artifacts</outputDirectory>
+                                    <excludes>
+                                        **/temp/safeToDelete.tmp,**/webapps/examples/**,**/webapps/docs/**,**/webapps/ROOT/**,**/webapps/manager/**,**/webapps/host-manager/**
+                                    </excludes>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.jahia.server</groupId>
+                                    <artifactId>jahia-war</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>war</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/artifacts/jahia-war</outputDirectory>
+                                    <excludes>META-INF/maven/**</excludes>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.jahia.server</groupId>
+                                    <artifactId>jahia-war</artifactId>
+                                    <version>${project.version}</version>
+                                    <classifier>data-package</classifier>
+                                    <type>zip</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/artifacts/jahia-data</outputDirectory>
+                                    <excludes>META-INF/maven/**</excludes>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.jahia.server</groupId>
+                                    <artifactId>jahia-core-modules</artifactId>
+                                    <version>${project.version}</version>
+                                    <classifier>package</classifier>
+                                    <type>zip</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/artifacts/jahia-data</outputDirectory>
+                                    <excludes>META-INF/**</excludes>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.jahia.server</groupId>
+                                    <artifactId>jahia-additional-modules</artifactId>
+                                    <version>${project.version}</version>
+                                    <classifier>package</classifier>
+                                    <type>zip</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/artifacts/jahia-data</outputDirectory>
+                                    <excludes>META-INF/**,modules/ldap-*</excludes>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.jahia.server</groupId>
+                                    <artifactId>jdbc-drivers</artifactId>
+                                    <version>${project.version}</version>
+                                    <classifier>all</classifier>
+                                    <type>zip</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/artifacts/jdbc-drivers</outputDirectory>
+                                    <excludes>META-INF/**</excludes>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.jahia.server</groupId>
+                                    <artifactId>shared-libraries</artifactId>
+                                    <version>${project.version}</version>
+                                    <classifier>all</classifier>
+                                    <type>zip</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/artifacts/shared-libraries</outputDirectory>
+                                    <excludes>META-INF/**</excludes>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-jahia-artifacts</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.apache.ant</groupId>
+                                    <artifactId>ant</artifactId>
+                                    <version>${ant.version}</version>
+                                    <type>jar</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/artifacts</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.ant</groupId>
+                                    <artifactId>ant-launcher</artifactId>
+                                    <version>${ant.version}</version>
+                                    <type>jar</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/artifacts</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                            <stripVersion>true</stripVersion>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-configurators</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <stripVersion>true</stripVersion>
+                            <excludeTransitive>true</excludeTransitive>
+                            <excludeGroupIds>org.codehaus.izpack</excludeGroupIds>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>store-build-number</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <loadfile property="buildNumber-ce" srcFile="${project.build.directory}/marker/META-INF/jahia-impl-marker.txt" />
+                                <echo message="installer.filename=${product.fullname}-r${buildNumber-ce}" file="${project.build.directory}/version.properties" />
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>i18n-resources</id>
+                        <phase>compile</phase>
+                        <configuration>
+                            <target>
+                                <java classname="org.jahia.izpack.ResourcesConverter">
+                                    <arg value="izpack.i18n.packsLang" />
+                                    <!--
+                                    <arg value="en,fr,de,it,pt,es" />
+                                    -->
+                                    <arg value="en,fr,de" />
+                                    <arg value="${project.build.directory}/izpack/i18n" />
+                                    <classpath>
+                                        <path refid="maven.dependency.classpath" />
+                                    </classpath>
+                                </java>
+                                <java classname="org.jahia.izpack.ResourcesConverter">
+                                    <arg value="izpack.i18n.userInputLang" />
+                                    <!--
+                                    <arg value="en,fr,de,it,pt,es" />
+                                    -->
+                                    <arg value="en,fr,de" />
+                                    <arg value="${project.build.directory}/izpack/i18n" />
+                                    <classpath>
+                                        <path refid="maven.dependency.classpath" />
+                                    </classpath>
+                                </java>
+                                <java classname="org.jahia.izpack.ResourcesConverter">
+                                    <arg value="izpack.i18n.customLang" />
+                                    <!--
+                                    <arg value="en,fr,de,it,pt,es" />
+                                    -->
+                                    <arg value="en,fr,de" />
+                                    <arg value="${project.build.directory}/izpack/i18n" />
+                                    <classpath>
+                                        <path refid="maven.dependency.classpath" />
+                                    </classpath>
+                                </java>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.0-alpha-2</version>
+                <executions>
+                    <execution>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>read-project-properties</goal>
+                        </goals>
+                        <configuration>
+                            <files>
+                                <file>${project.build.directory}/version.properties</file>
+                            </files>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.izpack</groupId>
+                <artifactId>izpack-maven-plugin</artifactId>
+                <version>1.0-alpha-5</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.codehaus.izpack</groupId>
+                        <artifactId>izpack-standalone-compiler</artifactId>
+                        <version>${izpack.version}</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>standard-installer</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>izpack</goal>
+                        </goals>
+                        <configuration>
+                            <attach>false</attach>
+                            <descriptor>${basedir}/src/main/resources/izpack/install.xml</descriptor>
+                            <installerFile>${project.build.directory}/${installer.filename}.jar</installerFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <encoding>ISO-8859-1</encoding>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>resources</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/main/assembly/src.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>package-ddl</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptor>src/main/assembly/src-db-scripts.xml</descriptor>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
