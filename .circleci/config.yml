@@ -52,6 +52,12 @@ jobs:
           version: 19.03.13
           docker_layer_caching: true
       - run:
+          name: Docker login
+          # This is needed to push docker image
+          command: |
+            echo "$DOCKERHUB_LOGIN"
+            echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_LOGIN" --password-stdin
+      - run:
           name: Get the code signing certificate
           command: |
             CODE_SIGNING_CERTIFICATE_URL=$(echo $CODE_SIGNING_CERTIFICATE_ENCRYPTED_URL | sed -r 's/(.{64})/\1\n/g' | openssl enc -base64 -d -aes-256-cbc -nosalt -md md5 -pass pass:$CODE_SIGNING_CERTIFICATE_ENCRYPTION_PWD)
@@ -72,7 +78,7 @@ jobs:
             - run:
                 # TODO One day we may want to replace the install by deploy in the name and the command
                 name: mvn clean install
-                command: mvn -s .circleci/.circleci.settings.xml -U -e clean install -Pinstaller,sign-installer-jar,windows-installer,sign-installer-exe -Djahia.sign.keystore=/home/circleci/source/.codesign/jahia-code-signing-certificate.p12 -Djahia.sign.storepass=$CODE_SIGNING_PWD
+                command: mvn -s .circleci/.circleci.settings.xml -U -e clean install -Pdocker,installer,sign-installer-jar,windows-installer,sign-installer-exe -Djahia.sign.keystore=/home/circleci/source/.codesign/jahia-code-signing-certificate.p12 -Djahia.sign.storepass=$CODE_SIGNING_PWD
             - run:
                 # TODO Until that day, deploy docker image from here
                 name: mvn deploy
