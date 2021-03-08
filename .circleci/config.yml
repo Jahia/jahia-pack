@@ -70,6 +70,11 @@ jobs:
                 # TODO One day we may want to replace the install by deploy in the name and the command
                 name: mvn clean install
                 command: mvn -s .circleci/.circleci.settings.xml -U -e clean install -Pinstaller,sign-installer-jar,windows-installer,sign-installer-exe -Djahia.sign.keystore=/home/circleci/source/.codesign/jahia-code-signing-certificate.p12 -Djahia.sign.storepass=$CODE_SIGNING_PWD
+            - run:
+                # TODO Until that day, deploy docker image from here
+                name: mvn deploy
+                working_directory: ~/source/docker-jahia
+                command: mvn -s ../.circleci/.circleci.settings.xml -U -e deploy
       - save_cache:
           paths:
             - ~/.m2

@@ -12,9 +12,5 @@
             	<include>modules/**</include>
             </includes>
         </fileSet>
-        <fileSet>
-            <directory>${project.build.directory}/META-INF/db</directory>
-            <outputDirectory>db/sql/schema</outputDirectory>
-        </fileSet>
     </fileSets>
 </assembly>

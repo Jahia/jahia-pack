@@ -10,7 +10,6 @@
             <outputDirectory>/</outputDirectory>
             <includes>
             	<include>modules/**</include>
-            	<include>prepackagedSites/**</include>
             </includes>
         </fileSet>
     </fileSets>

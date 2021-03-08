@@ -47,8 +47,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>org.jahia.server</groupId>
-        <artifactId>jahia-pack-root</artifactId>
+        <artifactId>modules-set-parent</artifactId>
         <version>8.0.3.0-SNAPSHOT</version>
+        <relativePath>../modules-set-parent</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jahia-additional-modules</artifactId>
@@ -210,45 +211,16 @@
         <plugins>
             <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>modules</id>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}/modules</outputDirectory>
-                            <excludeGroupIds>org.jahia.prepackagedsites</excludeGroupIds>
-                            <excludeTransitive>true</excludeTransitive>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>demos</id>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}/prepackagedSites</outputDirectory>
-                            <includeGroupIds>org.jahia.prepackagedsites</includeGroupIds>
-                            <stripVersion>true</stripVersion>
-                            <excludeTransitive>true</excludeTransitive>
-                        </configuration>
-                    </execution>
-                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
             </plugin>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <descriptor>src/main/assembly/src.xml</descriptor>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
