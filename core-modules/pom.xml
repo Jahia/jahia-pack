@@ -85,7 +85,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>jahia-administration</artifactId>
-            <version>1.2.0</version>
+            <version>1.3.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -97,7 +97,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>jahia-page-composer</artifactId>
-            <version>1.2.0</version>
+            <version>1.3.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
