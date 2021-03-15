@@ -12,8 +12,8 @@
     <packaging>pom</packaging>
 
     <properties>
-        <!-- this should be :       <image-tag>jahia</image-tag>-->
-        <image-tag>jahia-opencore</image-tag>
+        <!-- this should be :       <image.repo>jahia</image.repo>-->
+        <image.repo>jahia-opencore</image.repo>
     </properties>
 
     <repositories>
