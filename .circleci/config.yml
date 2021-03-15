@@ -90,7 +90,7 @@ jobs:
                 # TODO Until that day, only deploy docker image from here
                 name: mvn deploy
                 working_directory: ~/source/docker-jahia
-                command: mvn -s ../.circleci/.circleci.settings.xml -U -e -Dparent.tag=`cat parent.tag` -Dimage.tag=`cat image.tag` deploy
+                command: mvn -s ../.circleci/.circleci.settings.xml -U -e -Dparent.tag=`cat ../parent.tag` -Dimage.tag=`cat ../image.tag` deploy
       - run:
           name: Store docker image
           command: docker save -o image.tar jahia/jahia-opencore:`cat image.tag`
