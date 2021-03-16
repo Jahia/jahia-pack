@@ -97,8 +97,6 @@
     </repositories>
 
     <modules>
-        <module>modules-set-parent</module>
-        <module>docker-distribution-parent</module>
         <module>core-modules</module>
         <module>additional-modules</module>
     </modules>

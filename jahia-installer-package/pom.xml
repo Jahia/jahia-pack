@@ -444,24 +444,24 @@
                                     <excludes>META-INF/maven/**</excludes>
                                 </artifactItem>
                                 <artifactItem>
-                                    <groupId>org.jahia.server</groupId>
+                                    <groupId>org.jahia.packages</groupId>
                                     <artifactId>jahia-core-modules</artifactId>
                                     <version>${project.version}</version>
                                     <classifier>package</classifier>
-                                    <type>zip</type>
+                                    <type>jar</type>
                                     <overWrite>false</overWrite>
-                                    <outputDirectory>${project.build.directory}/artifacts/jahia-data</outputDirectory>
+                                    <outputDirectory>${project.build.directory}/artifacts/jahia-data/modules</outputDirectory>
                                     <excludes>META-INF/**</excludes>
                                 </artifactItem>
                                 <artifactItem>
-                                    <groupId>org.jahia.server</groupId>
+                                    <groupId>org.jahia.packages</groupId>
                                     <artifactId>jahia-additional-modules</artifactId>
                                     <version>${project.version}</version>
                                     <classifier>package</classifier>
-                                    <type>zip</type>
+                                    <type>jar</type>
                                     <overWrite>false</overWrite>
-                                    <outputDirectory>${project.build.directory}/artifacts/jahia-data</outputDirectory>
-                                    <excludes>META-INF/**,modules/ldap-*</excludes>
+                                    <outputDirectory>${project.build.directory}/artifacts/jahia-data/modules</outputDirectory>
+                                    <excludes>META-INF/**,ldap-*</excludes>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.jahia.server</groupId>
