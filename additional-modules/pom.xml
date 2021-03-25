@@ -184,14 +184,6 @@
         </dependency>
         <!-- end of Jahia Forge Modules -->
 
-        <!-- Users and groups provider modules -->
-        <dependency>
-            <groupId>org.jahia.modules</groupId>
-            <artifactId>ldap</artifactId>
-            <version>4.2.0</version>
-            <scope>runtime</scope>
-        </dependency>
-
         <!-- Templates sets -->
         <dependency>
             <groupId>org.jahia.modules</groupId>

@@ -102,6 +102,21 @@
             <artifactId>izpack-standalone-compiler</artifactId>
             <version>${izpack.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.jahia.packages</groupId>
+            <artifactId>jahia-core-modules</artifactId>
+            <version>${project.version}</version>
+            <classifier>provisioning</classifier>
+            <type>yaml</type>
+        </dependency>
+        <dependency>
+            <groupId>org.jahia.packages</groupId>
+            <artifactId>jahia-additional-modules</artifactId>
+            <version>${project.version}</version>
+            <classifier>provisioning</classifier>
+            <type>yaml</type>
+        </dependency>
     </dependencies>
 
     <profiles>
@@ -390,7 +405,34 @@
             </resource>
         </resources>
         <plugins>
-            <!-- Tries to get the version number from the CE -->
+            <plugin>
+                <groupId>org.codehaus.gmaven</groupId>
+                <artifactId>groovy-maven-plugin</artifactId>
+                <version>2.1.1</version>
+                <executions>
+                    <execution>
+                        <id>gather-artifact-ids</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <source>
+                                def properties = []
+                                new File(project.build.directory, 'artifacts/jahia-data/patches/provisioning').eachFile { file ->
+                                    file.eachLine { line ->
+                                        if ((matcher = line =~ /.*mvn:([^\/]+)\/([^\/]+).*/)) {
+                                            properties.add(matcher[0][2]);
+                                        }
+                                    }
+                                }
+                                project.properties.artifactIds = properties.join(',');
+                            </source>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -444,26 +486,6 @@
                                     <excludes>META-INF/maven/**</excludes>
                                 </artifactItem>
                                 <artifactItem>
-                                    <groupId>org.jahia.packages</groupId>
-                                    <artifactId>jahia-core-modules</artifactId>
-                                    <version>${project.version}</version>
-                                    <classifier>package</classifier>
-                                    <type>jar</type>
-                                    <overWrite>false</overWrite>
-                                    <outputDirectory>${project.build.directory}/artifacts/jahia-data/modules</outputDirectory>
-                                    <excludes>META-INF/**</excludes>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.jahia.packages</groupId>
-                                    <artifactId>jahia-additional-modules</artifactId>
-                                    <version>${project.version}</version>
-                                    <classifier>package</classifier>
-                                    <type>jar</type>
-                                    <overWrite>false</overWrite>
-                                    <outputDirectory>${project.build.directory}/artifacts/jahia-data/modules</outputDirectory>
-                                    <excludes>META-INF/**,ldap-*</excludes>
-                                </artifactItem>
-                                <artifactItem>
                                     <groupId>org.jahia.server</groupId>
                                     <artifactId>jdbc-drivers</artifactId>
                                     <version>${project.version}</version>
@@ -488,7 +510,7 @@
                     </execution>
                     <execution>
                         <id>copy-jahia-artifacts</id>
-                        <phase>process-resources</phase>
+                        <phase>generate-resources</phase>
                         <goals>
                             <goal>copy</goal>
                         </goals>
@@ -510,10 +532,46 @@
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}/artifacts</outputDirectory>
                                 </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.jahia.packages</groupId>
+                                    <artifactId>jahia-core-modules</artifactId>
+                                    <version>${project.version}</version>
+                                    <classifier>provisioning</classifier>
+                                    <type>yaml</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/artifacts/jahia-data/patches/provisioning</outputDirectory>
+                                    <destFileName>1.1-jahia-core-modules.yaml</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.jahia.packages</groupId>
+                                    <artifactId>jahia-additional-modules</artifactId>
+                                    <version>${project.version}</version>
+                                    <classifier>provisioning</classifier>
+                                    <type>yaml</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/artifacts/jahia-data/patches/provisioning</outputDirectory>
+                                    <destFileName>3.1-jahia-additional-modules.yaml</destFileName>
+                                </artifactItem>
                             </artifactItems>
                             <stripVersion>true</stripVersion>
                         </configuration>
                     </execution>
+
+                    <execution>
+                        <id>download</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <excludeTransitive>false</excludeTransitive>
+                            <useRepositoryLayout>true</useRepositoryLayout>
+                            <copyPom>true</copyPom>
+                            <outputDirectory>${project.build.directory}/artifacts/jahia-war/WEB-INF/karaf/system</outputDirectory>
+                            <includeArtifactIds>${artifactIds}</includeArtifactIds>
+                        </configuration>
+                    </execution>
+
                     <execution>
                         <id>copy-configurators</id>
                         <phase>process-resources</phase>
