@@ -540,7 +540,7 @@
                                     <type>yaml</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}/artifacts/jahia-data/patches/provisioning</outputDirectory>
-                                    <destFileName>1.1-jahia-core-modules.yaml</destFileName>
+                                    <destFileName>1.1-jahia-core-modules.contextInitialized.yaml</destFileName>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.jahia.packages</groupId>
@@ -550,7 +550,7 @@
                                     <type>yaml</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}/artifacts/jahia-data/patches/provisioning</outputDirectory>
-                                    <destFileName>3.1-jahia-additional-modules.yaml</destFileName>
+                                    <destFileName>3.1-jahia-additional-modules.contextInitialized.yaml</destFileName>
                                 </artifactItem>
                             </artifactItems>
                             <stripVersion>true</stripVersion>
