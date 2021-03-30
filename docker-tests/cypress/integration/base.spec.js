@@ -15,7 +15,7 @@ describe('Base tests', () => {
         login('')
         cy.visit('/cms/adminframe/default/en/settings.aboutJahia.html?redirect=false');
 
-        cy.contains('JAHIA\'S COMMUNITY DISTRIBUTION');
+        cy.contains('JAHIA\'S OPENCORE DISTRIBUTION');
     })
 
     it('should have module started', () => {
