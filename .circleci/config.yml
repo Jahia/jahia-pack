@@ -93,7 +93,7 @@ jobs:
                 command: mvn -s ../.circleci/.circleci.settings.xml -U -e -Dparent.tag=`cat ../parent.tag` -Dimage.tag=`cat ../image.tag` deploy
       - run:
           name: Store docker image
-          command: docker save -o image.tar jahia/jahia-opencore:`cat image.tag`
+          command: docker save -o image.tar jahia/jahia-opencore-dev:`cat image.tag`
       - save_cache:
           paths:
             - ~/.m2
@@ -117,7 +117,7 @@ jobs:
     parameters:
       TESTS_IMAGE:
         type: string
-        default: "jahia/jahia-opencore_test"
+        default: "jahia/jahia-opencore-test"
       BUILD_TESTSIMAGE:
         type: boolean
         default: true
@@ -159,7 +159,7 @@ jobs:
             if [[ ! -e .env ]]; then
               mv .env.example .env
             fi
-            echo JAHIA_IMAGE=jahia/jahia-opencore:`cat ../image.tag` >> .env
+            echo JAHIA_IMAGE=jahia/jahia-opencore-dev:`cat ../image.tag` >> .env
             docker-compose -f docker-compose.yml up -d jahia
           no_output_timeout: 2h
       - run:
