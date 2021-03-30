@@ -74,7 +74,11 @@ jobs:
           command: |
             if [ "current" = "<< pipeline.parameters.PARENT_IMAGE_TAG >>" ]; then
               cp jahia.version parent.tag
-              cp jahia.version image.tag
+              if [ "false" = "<<parameters.is_pull_request>>" ]; then
+                cp jahia.version image.tag
+              else
+                echo `cat jahia.version`-"${CIRCLE_BRANCH}" > image.tag
+              fi
             else
               echo "<< pipeline.parameters.PARENT_IMAGE_TAG >>" > parent.tag
               cp parent.tag image.tag
@@ -91,6 +95,14 @@ jobs:
                 name: mvn deploy
                 working_directory: ~/source/docker-jahia
                 command: mvn -s ../.circleci/.circleci.settings.xml -U -e -Dparent.tag=`cat ../parent.tag` -Dimage.tag=`cat ../image.tag` deploy
+      - when:
+          condition: <<parameters.is_pull_request>>
+          steps:
+            - run:
+                # This is only done on PR, as master is pushed with mvn deploy
+                name: Push PR Docker image
+                command: |
+                  docker push jahia/jahia-opencore-dev:`cat image.tag`
       - run:
           name: Store docker image
           command: docker save -o image.tar jahia/jahia-opencore-dev:`cat image.tag`
@@ -284,6 +296,19 @@ jobs:
             --header 'content-type:application/json'
             --data '{ "branch":"'"$CIRCLE_BRANCH"'" }'
 
+  trigger_pr_ee_build:
+    <<: *workdir
+    docker: # run the steps with Docker
+      - image: circleci/openjdk:8-jdk-stretch
+    steps:
+      - *attach-workspace
+      - run:
+          name: Trigger the build of jahia-ee
+          command: curl -X POST --url 'https://circleci.com/api/v2/project/gh/Jahia/jahia-ee/pipeline'
+            --header 'circle-token:'"$CIRCLECI_PIPELINE_LAUNCH_TOKEN"''
+            --header 'content-type:application/json'
+            --data '{ "parameters":{"PARENT_IMAGE_TAG":"'"`cat image.tag`"'"} }'
+
 # Pipeline parameter must be declared
 parameters:
   run_pull_request:
@@ -328,6 +353,31 @@ workflows:
           context: QA_ENVIRONMENT
           requires:
             - PR Build Jahia Pack
+  core_pr_triggered:
+    when:
+      not:
+        equal: [ current, << pipeline.parameters.PARENT_IMAGE_TAG >> ]
+    jobs:
+      - checkout:
+          name: Core PR Checkout
+      - build:
+          name: Core PR Build Jahia Pack
+          is_pull_request: true
+          context:
+            - QA_ENVIRONMENT
+            - jahia-code-signing
+          requires:
+            - Core PR Checkout
+      - integration_tests:
+          name: Integration tests
+          context: QA_ENVIRONMENT
+          requires:
+            - Core PR Build Jahia Pack
+      - trigger_pr_ee_build:
+          name: Trigger build of jahia-ee for core PR
+          context: QA_ENVIRONMENT
+          requires:
+            - Core PR Build Jahia Pack
   on-code-change:
     jobs:
       - checkout:
