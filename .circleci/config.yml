@@ -34,10 +34,6 @@ jobs:
       - *persist-workspace
 
   build:
-    parameters:
-      is_pull_request:
-        type: boolean
-        default: false
     <<: *workdir
     docker: # run the steps with Docker
       - image: circleci/openjdk:8-jdk-stretch
@@ -58,15 +54,6 @@ jobs:
             echo "$DOCKERHUB_LOGIN"
             echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_LOGIN" --password-stdin
       - run:
-          name: Get the code signing certificate
-          command: |
-            CODE_SIGNING_CERTIFICATE_URL=$(echo $CODE_SIGNING_CERTIFICATE_ENCRYPTED_URL | sed -r 's/(.{64})/\1\n/g' | openssl enc -base64 -d -aes-256-cbc -nosalt -md md5 -pass pass:$CODE_SIGNING_CERTIFICATE_ENCRYPTION_PWD)
-            if [ ! -d /home/circleci/source/.codesign/ ]; then
-              mkdir /home/circleci/source/.codesign/
-            fi
-            CODE_SIGNING_CERTIFICATE_URL=${CODE_SIGNING_CERTIFICATE_URL%$'\r'}
-            curl ${CODE_SIGNING_CERTIFICATE_URL} --output /home/circleci/source/.codesign/jahia-code-signing-certificate.p12
-      - run:
           name: Store project version
           command: mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec > jahia.version
       - run:
@@ -74,7 +61,7 @@ jobs:
           command: |
             if [ "current" = "<< pipeline.parameters.PARENT_IMAGE_TAG >>" ]; then
               cp jahia.version parent.tag
-              if [ "false" = "<<parameters.is_pull_request>>" ]; then
+              if [ "false" = "<< pipeline.parameters.run_pull_request >>" ]; then
                 cp jahia.version image.tag
               else
                 echo `cat jahia.version`-"${CIRCLE_BRANCH}" > image.tag
@@ -86,9 +73,9 @@ jobs:
       - run:
           # TODO One day we may want to replace the install by deploy in the name and the command
           name: mvn clean install
-          command: mvn -s .circleci/.circleci.settings.xml -U -e -Dparent.tag=`cat parent.tag` -Dimage.tag=`cat image.tag` clean install -Pdocker,installer,sign-installer-jar,windows-installer,sign-installer-exe -Djahia.sign.keystore=/home/circleci/source/.codesign/jahia-code-signing-certificate.p12 -Djahia.sign.storepass=$CODE_SIGNING_PWD
+          command: mvn -s .circleci/.circleci.settings.xml -U -e -Dparent.tag=`cat parent.tag` -Dimage.tag=`cat image.tag` clean install -Pdocker
       - unless:
-          condition: <<parameters.is_pull_request>>
+          condition: << pipeline.parameters.run_pull_request >>
           steps:
             - run:
                 # TODO Until that day, only deploy docker image from here
@@ -96,7 +83,7 @@ jobs:
                 working_directory: ~/source/docker-jahia
                 command: mvn -s ../.circleci/.circleci.settings.xml -U -e -Dparent.tag=`cat ../parent.tag` -Dimage.tag=`cat ../image.tag` deploy
       - when:
-          condition: <<parameters.is_pull_request>>
+          condition: << pipeline.parameters.run_pull_request >>
           steps:
             - run:
                 # This is only done on PR, as master is pushed with mvn deploy
@@ -110,14 +97,6 @@ jobs:
           paths:
             - ~/.m2
           key: v1-maven-dependencies-{{ checksum "maven_cache_seed" }}
-      # TODO We are just running sonar in this task, when we want to really switch over to CircleCI we will want to uncomment this part
-      #- run:
-      #     name: Copy artifacts
-      #     command: |
-      #       mkdir /tmp/artifacts/
-      #       cp /home/circleci/source/package/jahia-installer-package/target/*.jar /tmp/artifacts/
-      #- store_artifacts:
-      #     path: /tmp/artifacts/
       - *persist-workspace
 
   integration_tests:
@@ -228,10 +207,6 @@ jobs:
       - *persist-workspace
 
   sonar:
-    parameters:
-      is_pull_request:
-        type: boolean
-        default: false
     <<: *workdir
     docker: # run the steps with Docker
       - image: circleci/openjdk:8-jdk-stretch
@@ -245,10 +220,10 @@ jobs:
             - v1-maven-dependencies-
       - restore_cache:
           keys:
-            - v1-sonar-owasp-dependencies-<<parameters.is_pull_request>>
+            - v1-sonar-owasp-dependencies-<< pipeline.parameters.run_pull_request >>
             - v1-sonar-owasp-dependencies-
       - when:
-          condition: <<parameters.is_pull_request>>
+          condition: << pipeline.parameters.run_pull_request >>
           steps:
             - run:
                 name: Analyze pull request with sonar
@@ -258,7 +233,7 @@ jobs:
                   -Dsonar.pullrequest.base=<< pipeline.parameters.target_branch >> \
                   -Dsonar.pullrequest.github.repository=<< pipeline.parameters.github_repository >>
       - unless:
-          condition: <<parameters.is_pull_request>>
+          condition: << pipeline.parameters.run_pull_request >>
           steps:
             - run:
                 name: Sonar analysis
@@ -282,36 +257,40 @@ jobs:
           paths:
             - ~/.owasp/dependency-check-data
             - ~/.sonar/cache
-          key: v1-sonar-owasp-dependencies-<<parameters.is_pull_request>>
+          key: v1-sonar-owasp-dependencies-<< pipeline.parameters.run_pull_request >>
 
   trigger_ee_build:
     <<: *workdir
     docker: # run the steps with Docker
       - image: circleci/openjdk:8-jdk-stretch
     steps:
-      - run:
-          name: Trigger the build of jahia-ee
-          command: curl -X POST --url 'https://circleci.com/api/v2/project/gh/Jahia/jahia-ee/pipeline'
-            --header 'circle-token:'"$CIRCLECI_PIPELINE_LAUNCH_TOKEN"''
-            --header 'content-type:application/json'
-            --data '{ "branch":"'"$CIRCLE_BRANCH"'" }'
-
-  trigger_pr_ee_build:
-    <<: *workdir
-    docker: # run the steps with Docker
-      - image: circleci/openjdk:8-jdk-stretch
-    steps:
-      - *attach-workspace
-      - run:
-          name: Trigger the build of jahia-ee
-          command: curl -X POST --url 'https://circleci.com/api/v2/project/gh/Jahia/jahia-ee/pipeline'
-            --header 'circle-token:'"$CIRCLECI_PIPELINE_LAUNCH_TOKEN"''
-            --header 'content-type:application/json'
-            --data '{ "parameters":{"PARENT_IMAGE_TAG":"'"`cat image.tag`"'"} }'
+      - when:
+          condition:
+            not: << pipeline.parameters.run_pull_request >>
+          steps:
+            - run:
+                name: Trigger the build of jahia-ee
+                command: curl -X POST --url 'https://circleci.com/api/v2/project/gh/Jahia/jahia-ee/pipeline'
+                  --header 'circle-token:'"$CIRCLECI_PIPELINE_LAUNCH_TOKEN"''
+                  --header 'content-type:application/json'
+                  --data '{ "branch":"'"$CIRCLE_BRANCH"'" }'
+      - when:
+          condition: << pipeline.parameters.run_pull_request >>
+          steps:
+            - *attach-workspace
+            - run:
+                name: Trigger the build of jahia-ee
+                command: curl -X POST --url 'https://circleci.com/api/v2/project/gh/Jahia/jahia-ee/pipeline'
+                  --header 'circle-token:'"$CIRCLECI_PIPELINE_LAUNCH_TOKEN"''
+                  --header 'content-type:application/json'
+                  --data '{ "parameters":{"run_core_code_change":true, "run_pull_request":true, "PARENT_IMAGE_TAG":"'"`cat image.tag`"'"} }'
 
 # Pipeline parameter must be declared
 parameters:
   run_pull_request:
+    type: boolean
+    default: false
+  run_core_code_change:
     type: boolean
     default: false
   target_branch:
@@ -328,15 +307,39 @@ parameters:
     default: "current"
 
 workflows:
+  core_triggered:
+    when: << pipeline.parameters.run_core_code_change >>
+    jobs:
+      - checkout:
+          name: Core PR Checkout
+      - build:
+          name: Core PR Build Jahia Pack
+          context:
+            - QA_ENVIRONMENT
+            - jahia-code-signing
+          requires:
+            - Core PR Checkout
+      - integration_tests:
+          name: Integration tests
+          context: QA_ENVIRONMENT
+          requires:
+            - Core PR Build Jahia Pack
+      - trigger_ee_build:
+          name: Trigger build of jahia-ee for core PR
+          context: QA_ENVIRONMENT
+          requires:
+            - Core PR Build Jahia Pack
   # This one is run only when triggered with the API, using a GitHub action
   pull_request:
-    when: << pipeline.parameters.run_pull_request >>
+    when:
+      and:
+        - << pipeline.parameters.run_pull_request >>
+        - not: << pipeline.parameters.run_core_code_change >>
     jobs:
       - checkout:
           name: PR Checkout
       - build:
           name: PR Build Jahia Pack
-          is_pull_request: true
           context:
             - QA_ENVIRONMENT
             - jahia-code-signing
@@ -349,39 +352,13 @@ workflows:
             - PR Build Jahia Pack
       - sonar:
           name: PR Sonar analysis of the pull request
-          is_pull_request: true
           context: QA_ENVIRONMENT
           requires:
             - PR Build Jahia Pack
-  core_pr_triggered:
-    when:
-      not:
-        equal: [ current, << pipeline.parameters.PARENT_IMAGE_TAG >> ]
-    jobs:
-      - checkout:
-          name: Core PR Checkout
-      - build:
-          name: Core PR Build Jahia Pack
-          is_pull_request: true
-          context:
-            - QA_ENVIRONMENT
-            - jahia-code-signing
-          requires:
-            - Core PR Checkout
-      - integration_tests:
-          name: Integration tests
-          context: QA_ENVIRONMENT
-          requires:
-            - Core PR Build Jahia Pack
-      - trigger_pr_ee_build:
-          name: Trigger build of jahia-ee for core PR
-          context: QA_ENVIRONMENT
-          requires:
-            - Core PR Build Jahia Pack
   on-code-change:
     when:
       and:
-        - equal: [ current, << pipeline.parameters.PARENT_IMAGE_TAG >> ]
+        - not: << pipeline.parameters.run_core_code_change >>
         - not: << pipeline.parameters.run_pull_request >>
     jobs:
       - checkout:
@@ -393,7 +370,6 @@ workflows:
                 - /JAHIA-[0-9]-[0-9]-[0-9]-X-BRANCH/
       - build:
           name: Build Jahia Pack
-          is_pull_request: false
           context:
             - QA_ENVIRONMENT
             - jahia-code-signing
@@ -406,7 +382,6 @@ workflows:
             - Build Jahia Pack
       - sonar:
           name: Sonar analysis
-          is_pull_request: false
           context: QA_ENVIRONMENT
           requires:
             - Build Jahia Pack
