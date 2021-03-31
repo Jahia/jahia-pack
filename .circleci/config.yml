@@ -379,6 +379,10 @@ workflows:
           requires:
             - Core PR Build Jahia Pack
   on-code-change:
+    when:
+      and:
+        - equal: [ current, << pipeline.parameters.PARENT_IMAGE_TAG >> ]
+        - not: << pipeline.parameters.run_pull_request >>
     jobs:
       - checkout:
           filters:
