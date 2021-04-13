@@ -57,6 +57,12 @@ jobs:
             fi
             CODE_SIGNING_CERTIFICATE_URL=${CODE_SIGNING_CERTIFICATE_URL%$'\r'}
             curl ${CODE_SIGNING_CERTIFICATE_URL} --output /home/circleci/source/.codesign/jahia-code-signing-certificate.p12
+      - unless:
+          condition: <<parameters.is_pull_request>>
+          steps:
+            - run:
+                name: mvn clean deploy
+                command: mvn -s .circleci/.circleci.settings.xml -U -e clean deploy -Pinstaller,sign-installer-jar,windows-installer,sign-installer-exe -Djahia.sign.keystore=/home/circleci/source/.codesign/jahia-code-signing-certificate.p12 -Djahia.sign.storepass=$CODE_SIGNING_PWD
       - when:
           condition: <<parameters.is_pull_request>>
           steps:
@@ -67,21 +73,21 @@ jobs:
           condition: <<parameters.is_pull_request>>
           steps:
             - run:
-                # TODO One day we may want to replace the install by deploy in the name and the command
-                name: mvn clean install
-                command: mvn -s .circleci/.circleci.settings.xml -U -e clean install -Pinstaller,sign-installer-jar,windows-installer,sign-installer-exe -Djahia.sign.keystore=/home/circleci/source/.codesign/jahia-code-signing-certificate.p12 -Djahia.sign.storepass=$CODE_SIGNING_PWD
+                name: Copy artifacts to rqa2
+                command: scp -o "ProxyCommand=ssh -o StrictHostKeyChecking=no -W %h:%p -p 220 jahia-ci@circleci-bastion-prod.jahia.com" -o StrictHostKeyChecking=no package/jahia-installer-package/target/Jahia-* bamboo@rqa2.int.jahia.com:/home/bamboo/qa-tools/fixCreator/jahiaInstallers
       - save_cache:
           paths:
             - ~/.m2
           key: v1-maven-dependencies-{{ checksum "maven_cache_seed" }}
-      # TODO We are just running sonar in this task, when we want to really switch over to CircleCI we will want to uncomment this part
-      #- run:
-      #     name: Copy artifacts
-      #     command: |
-      #       mkdir /tmp/artifacts/
-      #       cp /home/circleci/source/package/jahia-installer-package/target/*.jar /tmp/artifacts/
-      #- store_artifacts:
-      #     path: /tmp/artifacts/
+      - run:
+           name: Copy artifacts
+           command: |
+             mkdir /tmp/artifacts/
+             cp /home/circleci/source/package/jahia-installer-package/target/*.jar /tmp/artifacts/
+             cp /home/circleci/source/package/jahia-installer-package/target/*.exe /tmp/artifacts/
+             cp /home/circleci/source/package/jahia-installer-package/target/*db-scripts.zip /tmp/artifacts/
+      - store_artifacts:
+           path: /tmp/artifacts/
       - *persist-workspace
 
   sonar:
