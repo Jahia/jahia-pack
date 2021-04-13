@@ -54,6 +54,15 @@ jobs:
             echo "$DOCKERHUB_LOGIN"
             echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_LOGIN" --password-stdin
       - run:
+          name: Get the code signing certificate
+          command: |
+            CODE_SIGNING_CERTIFICATE_URL=$(echo $CODE_SIGNING_CERTIFICATE_ENCRYPTED_URL | sed -r 's/(.{64})/\1\n/g' | openssl enc -base64 -d -aes-256-cbc -nosalt -md md5 -pass pass:$CODE_SIGNING_CERTIFICATE_ENCRYPTION_PWD)
+            if [ ! -d /home/circleci/source/.codesign/ ]; then
+              mkdir /home/circleci/source/.codesign/
+            fi
+            CODE_SIGNING_CERTIFICATE_URL=${CODE_SIGNING_CERTIFICATE_URL%$'\r'}
+            curl ${CODE_SIGNING_CERTIFICATE_URL} --output /home/circleci/source/.codesign/jahia-code-signing-certificate.p12
+      - run:
           name: Store project version
           command: mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec > jahia.version
       - run:
@@ -70,21 +79,19 @@ jobs:
               echo "<< pipeline.parameters.PARENT_IMAGE_TAG >>" > parent.tag
               cp parent.tag image.tag
             fi
-      - run:
-          # TODO One day we may want to replace the install by deploy in the name and the command
-          name: mvn clean install
-          command: mvn -s .circleci/.circleci.settings.xml -U -e -Dparent.tag=`cat parent.tag` -Dimage.tag=`cat image.tag` clean install -Pdocker
       - unless:
           condition: << pipeline.parameters.run_pull_request >>
           steps:
             - run:
-                # TODO Until that day, only deploy docker image from here
-                name: mvn deploy
-                working_directory: ~/source/docker-jahia
-                command: mvn -s ../.circleci/.circleci.settings.xml -U -e -Dparent.tag=`cat ../parent.tag` -Dimage.tag=`cat ../image.tag` deploy
+                name: mvn clean deploy
+                working_directory: ~/source
+                command: mvn -s .circleci/.circleci.settings.xml -U -e -Dparent.tag=`cat parent.tag` -Dimage.tag=`cat image.tag` clean deploy -Pdocker,installer,sign-installer-jar,windows-installer,sign-installer-exe -Djahia.sign.keystore=/home/circleci/source/.codesign/jahia-code-signing-certificate.p12 -Djahia.sign.storepass=$CODE_SIGNING_PWD
       - when:
           condition: << pipeline.parameters.run_pull_request >>
           steps:
+            - run:
+                name: mvn clean install
+                command: mvn -s .circleci/.circleci.settings.xml -U -e -Dparent.tag=`cat parent.tag` -Dimage.tag=`cat image.tag` clean install -Pdocker,installer,sign-installer-jar,windows-installer,sign-installer-exe -Djahia.sign.keystore=/home/circleci/source/.codesign/jahia-code-signing-certificate.p12 -Djahia.sign.storepass=$CODE_SIGNING_PWD
             - run:
                 # This is only done on PR, as master is pushed with mvn deploy
                 name: Push PR Docker image
@@ -93,10 +100,29 @@ jobs:
       - run:
           name: Store docker image
           command: docker save -o image.tar jahia/jahia-opencore-dev:`cat image.tag`
+      - unless:
+          condition: << pipeline.parameters.run_pull_request >>
+          steps:
+            - run:
+                name: Copy artifacts to rqa2
+                command: scp -o "ProxyCommand=ssh -o StrictHostKeyChecking=no -W %h:%p -p 220 jahia-ci@circleci-bastion-prod.jahia.com" -o StrictHostKeyChecking=no jahia-installer-package/target/Jahia-* bamboo@rqa2.int.jahia.com:/home/bamboo/qa-tools/fixCreator/jahiaInstallers
       - save_cache:
           paths:
             - ~/.m2
           key: v1-maven-dependencies-{{ checksum "maven_cache_seed" }}
+      - when:
+          condition:
+            equal: [ current, << pipeline.parameters.PARENT_IMAGE_TAG >> ]
+          steps:
+            - run:
+                name: Copy artifacts
+                command: |
+                  mkdir /tmp/artifacts/
+                  cp /home/circleci/source/jahia-installer-package/target/*.jar /tmp/artifacts/
+                  cp /home/circleci/source/jahia-installer-package/target/*.exe /tmp/artifacts/
+                  cp /home/circleci/source/jahia-installer-package/target/*db-scripts.zip /tmp/artifacts/
+            - store_artifacts:
+                path: /tmp/artifacts/
       - *persist-workspace
 
   integration_tests:
