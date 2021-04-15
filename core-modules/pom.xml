@@ -227,13 +227,6 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <!-- JAX-RS OSGi Extender, depends on Jersey and its dependencies, put in bundles -->
-            <groupId>org.jahia.modules</groupId>
-            <artifactId>jaxrs-osgi-extender</artifactId>
-            <version>3.1.0</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>security-filter</artifactId>
             <version>2.0.0</version>
