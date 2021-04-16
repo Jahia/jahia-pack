@@ -348,24 +348,24 @@ workflows:
     when: << pipeline.parameters.run_core_code_change >>
     jobs:
       - checkout:
-          name: Core PR Checkout
+          name: Triggered build Checkout
       - build:
-          name: Core PR Build Jahia Pack
+          name: Build Jahia Pack for << pipeline.parameters.PARENT_IMAGE_TAG >> core branch
           context:
             - QA_ENVIRONMENT
             - jahia-code-signing
           requires:
-            - Core PR Checkout
+            - Triggered build Checkout
       - integration_tests:
           name: Integration tests
           context: QA_ENVIRONMENT
           requires:
-            - Core PR Build Jahia Pack
+            - Build Jahia Pack for << pipeline.parameters.PARENT_IMAGE_TAG >> core branch
       - trigger_ee_build:
           name: Trigger build of jahia-ee for core PR
           context: QA_ENVIRONMENT
           requires:
-            - Core PR Build Jahia Pack
+            - Build Jahia Pack for << pipeline.parameters.PARENT_IMAGE_TAG >> core branch
   # This one is run only when triggered with the API, using a GitHub action
   pull_request:
     when:
