@@ -69,7 +69,7 @@
     <Connector port="${tomcat.httpPort}" protocol="HTTP/1.1"
                redirectPort="${tomcat.sslPort}"
                maxThreads="300" acceptCount="100"
-               compression="on" 
+               compression="on"
                compressibleMimeType="text/plain,text/html,text/xml,text/css,text/javascript,application/x-javascript,application/javascript,application/json,application/xml" />
     <!-- A "Connector" using the shared thread pool-->
     <!--
@@ -173,7 +173,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
                prefix="access-log" suffix=".txt"
-               pattern="%h %l %u %t &quot;%r&quot; %s %b" />
+               pattern="%{org.apache.catalina.AccessLog.RemoteAddr}r %l %u %t &quot;%r&quot; %s %b" />
 
       </Host>
     </Engine>
