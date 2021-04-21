@@ -93,6 +93,10 @@ jobs:
                 version: "parent.tag"
                 repo: "jahia-opencore-dev"
                 dry-run: false
+            - run:
+                name: Build graalvm image
+                working_directory: ~/source/docker-jahia
+                command: mvn -s ../.circleci/.circleci.settings.xml -e -Dparent.tag=$(cat ../parent.tag)"-graalvm -Dimage.tag="$(cat ../image.tag)"-graalvm deploy -Dbamboo.buildNumber=$CIRCLE_BUILD_NUM
       - when:
           condition: << pipeline.parameters.run_pull_request >>
           steps:
