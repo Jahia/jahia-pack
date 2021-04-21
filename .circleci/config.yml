@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  docker-tags-orb: jahia/docker-tags-orb@1.1.0
+
 commands:
   generate_cachekey_seed:
       description: Generate Cache Key Seeds
@@ -86,6 +89,10 @@ jobs:
                 name: mvn clean deploy
                 working_directory: ~/source
                 command: mvn -s .circleci/.circleci.settings.xml -U -e -Dparent.tag=`cat parent.tag` -Dimage.tag=`cat image.tag` clean deploy -Pdocker,installer,sign-installer-jar,windows-installer,sign-installer-exe -Djahia.sign.keystore=/home/circleci/source/.codesign/jahia-code-signing-certificate.p12 -Djahia.sign.storepass=$CODE_SIGNING_PWD
+            - docker-tags-orb/docker-tags:
+                version: "parent.tag"
+                repo: "jahia-opencore-dev"
+                dry-run: false
       - when:
           condition: << pipeline.parameters.run_pull_request >>
           steps:
