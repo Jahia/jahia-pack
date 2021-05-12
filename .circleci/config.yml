@@ -3,6 +3,33 @@ version: 2.1
 orbs:
   docker-tags-orb: jahia/docker-tags-orb@1.1.0
 
+# Pipeline parameter must be declared
+parameters:
+  run_pull_request:
+    type: boolean
+    default: false
+  run_core_code_change:
+    type: boolean
+    default: false
+  target_branch:
+    type: string
+    default: ""
+  pull_request_number:
+    type: string
+    default: ""
+  github_repository:
+    type: string
+    default: ""
+  PARENT_IMAGE_TAG:
+    type: string
+    default: "current"
+  BASE_BRANCH:
+    type: string
+    default: "master"
+  JAHIA_PRIVATE_SHA1:
+    type: string
+    default: ""  
+
 commands:
   generate_cachekey_seed:
       description: Generate Cache Key Seeds
@@ -167,6 +194,17 @@ jobs:
               mkdir -p << parameters.TESTS_PATH >>artifacts
             fi
       - run:
+          name: Notify upstream PR of job start
+          # This is needed to fetch private docker images (such as Jahia snapshot)
+          command: |
+            if [[ "<< pipeline.parameters.JAHIA_PRIVATE_SHA1 >>" != "" ]]; then
+              CONTENT_TYPE_H='Content-Type:application/json'
+              AUTH_H='Authorization: token ${GITHUB_API_TOKEN}'
+              DATA='{"state":"pending","target_url":"${CIRCLE_BUILD_URL}","description":"${CIRCLE_PROJECT_REPONAME}: ${CIRCLE_JOB}","context":"default"}'
+              echo $DATA
+              curl -H "$CONTENT_TYPE_H" -H "$AUTH_H" -d "$DATA" -X POST https://api.github.com/repos/jahia/jahia-private/statuses/<< pipeline.parameters.JAHIA_PRIVATE_SHA1 >>
+            fi       
+      - run:
           name: Docker login
           # This is needed to fetch private docker images (such as Jahia snapshot)
           command: |
@@ -234,6 +272,23 @@ jobs:
               echo "More than one failure found, sending exit signal"
               exit 1
             fi
+      - run:
+          name: Notify upstream PR of test status
+          when: always
+          command: |
+            if [[ "<< pipeline.parameters.JAHIA_PRIVATE_SHA1 >>" != "" ]]; then          
+              cd << parameters.TESTS_PATH >>
+              if [[ ! -e ./artifacts/results/test_success ]]; then
+                STATUS='success'
+              else
+                STATUS='failure'
+              fi
+              CONTENT_TYPE_H='Content-Type:application/json'
+              AUTH_H='Authorization: token ${GITHUB_API_TOKEN}'
+              DATA='{"state":"${STATUS}","target_url":"${CIRCLE_BUILD_URL}","description":"${CIRCLE_PROJECT_REPONAME}: ${CIRCLE_JOB}","context":"default"}'
+              echo $DATA
+              curl -H "$CONTENT_TYPE_H" -H "$AUTH_H" -d "$DATA" -X POST https://api.github.com/repos/jahia/jahia-private/statuses/<< pipeline.parameters.JAHIA_PRIVATE_SHA1 >>
+            fi              
       - store_test_results:
           path: << parameters.TESTS_PATH >>artifacts/results/xml_reports
       - run:
@@ -310,7 +365,7 @@ jobs:
                 command: curl -X POST --url 'https://circleci.com/api/v2/project/gh/Jahia/jahia-ee/pipeline'
                   --header 'circle-token:'"$CIRCLECI_PIPELINE_LAUNCH_TOKEN"''
                   --header 'content-type:application/json'
-                  --data '{ "parameters":{"run_core_code_change":true}, "branch":"'"$CIRCLE_BRANCH"'" }'
+                  --data '{ "parameters":{"run_core_code_change":true, "JAHIA_PRIVATE_SHA1":"<< pipeline.parameters.JAHIA_PRIVATE_SHA1 >>", "JAHIA_PACK_PRIVATE_SHA1":"'"$CIRCLE_SHA1"'"}, "branch":"'"$CIRCLE_BRANCH"'" }'
       - when:
           condition: << pipeline.parameters.run_pull_request >>
           steps:
@@ -328,31 +383,7 @@ jobs:
                   curl -X POST --url 'https://circleci.com/api/v2/project/gh/Jahia/jahia-ee/pipeline' \
                     --header 'circle-token:'"$CIRCLECI_PIPELINE_LAUNCH_TOKEN"'' \
                     --header 'content-type:application/json' \
-                    --data '{ "parameters":{"run_core_code_change":true, "run_pull_request":true, "PARENT_IMAGE_TAG":"'"`cat image.tag`"'"}, "branch":"'"$BRANCH"'" }'
-
-# Pipeline parameter must be declared
-parameters:
-  run_pull_request:
-    type: boolean
-    default: false
-  run_core_code_change:
-    type: boolean
-    default: false
-  target_branch:
-    type: string
-    default: ""
-  pull_request_number:
-    type: string
-    default: ""
-  github_repository:
-    type: string
-    default: ""
-  PARENT_IMAGE_TAG:
-    type: string
-    default: "current"
-  BASE_BRANCH:
-    type: string
-    default: "master"
+                    --data '{ "parameters":{"run_core_code_change":true, "run_pull_request":true, "PARENT_IMAGE_TAG":"'"`cat image.tag`"'", "JAHIA_PRIVATE_SHA1":"<< pipeline.parameters.JAHIA_PRIVATE_SHA1 >>", "JAHIA_PACK_PRIVATE_SHA1":"'"$CIRCLE_SHA1"'"}, "branch":"'"$BRANCH"'" }'
 
 workflows:
   core_triggered:
