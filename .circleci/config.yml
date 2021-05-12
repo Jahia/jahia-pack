@@ -199,8 +199,8 @@ jobs:
           command: |
             if [[ "<< pipeline.parameters.JAHIA_PRIVATE_SHA1 >>" != "" ]]; then
               CONTENT_TYPE_H='Content-Type:application/json'
-              AUTH_H='Authorization: token ${GITHUB_API_TOKEN}'
-              DATA='{"state":"pending","target_url":"${CIRCLE_BUILD_URL}","description":"${CIRCLE_PROJECT_REPONAME}: ${CIRCLE_JOB}","context":"default"}'
+              AUTH_H="Authorization: token ${GITHUB_API_TOKEN}"
+              DATA='{"state":"pending","target_url":"'"${CIRCLE_BUILD_URL}"'","description":"'"${CIRCLE_PROJECT_REPONAME}"': '"${CIRCLE_JOB}"'","context":"default"}'
               echo $DATA
               curl -H "$CONTENT_TYPE_H" -H "$AUTH_H" -d "$DATA" -X POST https://api.github.com/repos/jahia/jahia-private/statuses/<< pipeline.parameters.JAHIA_PRIVATE_SHA1 >>
             fi       
@@ -284,8 +284,8 @@ jobs:
                 STATUS='failure'
               fi
               CONTENT_TYPE_H='Content-Type:application/json'
-              AUTH_H='Authorization: token ${GITHUB_API_TOKEN}'
-              DATA='{"state":"${STATUS}","target_url":"${CIRCLE_BUILD_URL}","description":"${CIRCLE_PROJECT_REPONAME}: ${CIRCLE_JOB}","context":"default"}'
+              AUTH_H="Authorization: token ${GITHUB_API_TOKEN}"
+              DATA='{"state":"'"${STATUS}"'","target_url":"'"${CIRCLE_BUILD_URL}"'","description":"'"${CIRCLE_PROJECT_REPONAME}"': '"${CIRCLE_JOB}"'","context":"default"}'
               echo $DATA
               curl -H "$CONTENT_TYPE_H" -H "$AUTH_H" -d "$DATA" -X POST https://api.github.com/repos/jahia/jahia-private/statuses/<< pipeline.parameters.JAHIA_PRIVATE_SHA1 >>
             fi              
