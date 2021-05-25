@@ -223,3 +223,34 @@ workflows:
           context: QA_ENVIRONMENT
           requires:
             - Build Jahia Pack
+
+  scheduled:
+    triggers:
+      - schedule:
+          # At minute 0 past hour 4, 10, and 16 on every day-of-week from Monday through Friday
+          cron: "0 4,10,16 * * 1-5"
+          filters:
+            branches:
+              only:
+                - master
+                - /JAHIA-7-3-9-X-BRANCH/
+    jobs:
+      - checkout:
+          name: Scheduled checkout
+      - build:
+          name: Scheduled build
+          context:
+            - QA_ENVIRONMENT
+            - jahia-code-signing
+          requires:
+            - Scheduled checkout
+#      - integration_tests:
+#          name: Scheduled integration tests
+#          context: QA_ENVIRONMENT
+#          requires:
+#            - Scheduled build
+      - trigger_ee_build:
+          name: Trigger build of jahia-ee
+          context: QA_ENVIRONMENT
+          requires:
+            - Scheduled build
