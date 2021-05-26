@@ -233,7 +233,7 @@ workflows:
             branches:
               only:
                 - master
-                - /JAHIA-7-3-9-X-BRANCH/
+                - ${JAHIA_LATEST_MAINTENANCE_BRANCH}
     jobs:
       - checkout:
           name: Scheduled checkout
