@@ -477,8 +477,8 @@ workflows:
           filters:
             branches:
               only:
-                - master
-                - /JAHIA-7-3-[8-9]-X-BRANCH/
+                - << pipeline.parameters.BASE_BRANCH>>
+                - ${JAHIA_LATEST_MAINTENANCE_BRANCH}
     jobs:
       - checkout:
           name: Scheduled checkout
