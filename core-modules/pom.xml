@@ -19,7 +19,7 @@
     <parent>
         <groupId>org.jahia.packages</groupId>
         <artifactId>jahia-packages-parent</artifactId>
-        <version>8.0.3.0</version>
+        <version>8.1.0.0-SNAPSHOT</version>
         <relativePath />
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -356,8 +356,4 @@
             <scope>runtime</scope>
         </dependency>
     </dependencies>
-
-  <scm>
-    <tag>JAHIA_8_0_3_0</tag>
-  </scm>
 </project>
