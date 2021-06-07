@@ -1,10 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>org.jahia.server</groupId>
         <artifactId>docker-distribution-parent</artifactId>
-        <version>8.0.3.0-SNAPSHOT</version>
-        <relativePath></relativePath>
+        <version>8.0.3.0</version>
+        <relativePath />
     </parent>
     <artifactId>docker-jahia</artifactId>
     <modelVersion>4.0.0</modelVersion>
@@ -40,4 +39,8 @@
             <type>yaml</type>
         </dependency>
     </dependencies>
+
+  <scm>
+    <tag>JAHIA_8_0_3_0</tag>
+  </scm>
 </project>

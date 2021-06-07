@@ -48,7 +48,7 @@
     <parent>
         <groupId>org.jahia.server</groupId>
         <artifactId>jahia-pack-root</artifactId>
-        <version>8.0.3.0-SNAPSHOT</version>
+        <version>8.0.3.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jahia-installer-package</artifactId>
@@ -419,8 +419,8 @@
                         <configuration>
                             <source>
                                 def properties = []
-                                new File(project.build.directory, 'artifacts/jahia-data/patches/provisioning').eachFile { file ->
-                                    file.eachLine { line ->
+                                new File(project.build.directory, 'artifacts/jahia-data/patches/provisioning').eachFile { file -&gt;
+                                    file.eachLine { line -&gt;
                                         if ((matcher = line =~ /.*mvn:([^\/]+)\/([^\/]+).*/)) {
                                             properties.add(matcher[0][2]);
                                         }

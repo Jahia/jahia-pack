@@ -48,8 +48,8 @@
     <parent>
         <groupId>org.jahia.packages</groupId>
         <artifactId>jahia-packages-parent</artifactId>
-        <version>8.0.3.0-SNAPSHOT</version>
-        <relativePath></relativePath>
+        <version>8.0.3.0</version>
+        <relativePath />
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jahia-additional-modules</artifactId>
@@ -92,7 +92,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>calendar</artifactId>
-            <version>3.2.0-SNAPSHOT</version>
+            <version>3.2.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -146,7 +146,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>news</artifactId>
-            <version>3.2.0-SNAPSHOT</version>
+            <version>3.2.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -211,9 +211,13 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>digitall</artifactId>
-            <version>2.1.0-SNAPSHOT</version>
+            <version>2.1.0</version>
             <type>jar</type>
             <scope>runtime</scope>
         </dependency>
     </dependencies>
+
+  <scm>
+    <tag>JAHIA_8_0_3_0</tag>
+  </scm>
 </project>
