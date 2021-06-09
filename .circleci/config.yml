@@ -1,5 +1,23 @@
 version: 2.1
 
+# Pipeline parameter must be declared
+parameters:
+  run_pull_request:
+    type: boolean
+    default: false
+  target_branch:
+    type: string
+    default: ""
+  pull_request_number:
+    type: string
+    default: ""
+  github_repository:
+    type: string
+    default: ""
+  JAHIA_LATEST_MAINTENANCE_BRANCH:
+    type: string
+    default: "JAHIA-7-3-9-X-BRANCH"
+
 commands:
   generate_cachekey_seed:
       description: Generate Cache Key Seeds
@@ -159,21 +177,6 @@ jobs:
             --header 'content-type:application/json'
             --data '{ "branch":"'"$CIRCLE_BRANCH"'" }'
 
-# Pipeline parameter must be declared
-parameters:
-  run_pull_request:
-    type: boolean
-    default: false
-  target_branch:
-    type: string
-    default: ""
-  pull_request_number:
-    type: string
-    default: ""
-  github_repository:
-    type: string
-    default: ""
-
 workflows:
   # This one is run only when triggered with the API, using a GitHub action
   pull_request:
@@ -233,7 +236,7 @@ workflows:
             branches:
               only:
                 - master
-                - ${JAHIA_LATEST_MAINTENANCE_BRANCH}
+                - << pipeline.parameters.JAHIA_LATEST_MAINTENANCE_BRANCH >>
     jobs:
       - checkout:
           name: Scheduled checkout
