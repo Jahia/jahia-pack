@@ -29,6 +29,9 @@ parameters:
   JAHIA_PRIVATE_SHA1:
     type: string
     default: ""  
+  JAHIA_LATEST_MAINTENANCE_BRANCH:
+    type: string
+    default: "JAHIA-7-3-9-X-BRANCH"
 
 commands:
   generate_cachekey_seed:
@@ -478,7 +481,7 @@ workflows:
             branches:
               only:
                 - << pipeline.parameters.BASE_BRANCH>>
-                - ${JAHIA_LATEST_MAINTENANCE_BRANCH}
+                - << pipeline.parameters.JAHIA_LATEST_MAINTENANCE_BRANCH >>
     jobs:
       - checkout:
           name: Scheduled checkout
