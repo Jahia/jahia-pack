@@ -141,12 +141,6 @@ jobs:
       - run:
           name: Store docker image
           command: docker save -o image.tar jahia/jahia-opencore-dev:`cat image.tag`
-      - unless:
-          condition: << pipeline.parameters.run_pull_request >>
-          steps:
-            - run:
-                name: Copy artifacts to rqa2
-                command: scp -o "ProxyCommand=ssh -o StrictHostKeyChecking=no -W %h:%p -p 220 jahia-ci@circleci-bastion-prod.jahia.com" -o StrictHostKeyChecking=no jahia-installer-package/target/Jahia-* bamboo@rqa2.int.jahia.com:/home/bamboo/qa-tools/fixCreator/jahiaInstallers
       - save_cache:
           paths:
             - ~/.m2
