@@ -7,4 +7,34 @@
       <packageUrl regex="true">^pkg:maven/org\.jahia\.modules/dx\-base\-demo\-components@.*$</packageUrl>
       <cpe>cpe:/a:gallery:gallery</cpe>
    </suppress>
+   <suppress>
+       <notes><![CDATA[
+       file name: external-provider-users-groups-1.2.0.jar
+       ]]></notes>
+       <packageUrl regex="true">^pkg:maven/org\.jahia\.modules/external\-provider\-users\-groups@.*$</packageUrl>
+       <cpe>cpe:/a:list_site_pro:list_site_pro</cpe>
+       <cpe>cpe:/a:set_user_project:set_user</cpe>
+    </suppress>
+    <suppress>
+       <notes><![CDATA[
+       file name: tasks-7.1.4.jar
+       ]]></notes>
+       <packageUrl regex="true">^pkg:maven/org\.jahia\.modules/tasks@.*$</packageUrl>
+       <cpe>cpe:/a:tasks:tasks</cpe>
+    </suppress>
+    <suppress>
+       <notes><![CDATA[
+       file name: tools-2.7.0.jar
+       ]]></notes>
+       <packageUrl regex="true">^pkg:maven/org\.jahia\.modules/tools@.*$</packageUrl>
+       <cpe>cpe:/a:apache:karaf</cpe>
+       <cpe>cpe:/a:qos:slf4j</cpe>
+    </suppress>
+    <suppress>
+        <notes><![CDATA[
+        file name: xercesImpl-2.4.0.jar - we already package xercesImpl-2.12.0.jar
+        ]]></notes>
+        <packageUrl regex="true">^pkg:maven/xerces/xercesImpl@.*$</packageUrl>
+        <vulnerabilityName>CVE-2009-2625</vulnerabilityName>
+    </suppress>
 </suppressions>
