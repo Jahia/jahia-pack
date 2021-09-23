@@ -66,27 +66,18 @@ jobs:
           keys:
             - v1-maven-dependencies-{{ checksum "maven_cache_seed" }}
             - v1-maven-dependencies-
-      - run:
-          name: Get the code signing certificate
-          command: |
-            CODE_SIGNING_CERTIFICATE_URL=$(echo $CODE_SIGNING_CERTIFICATE_ENCRYPTED_URL | sed -r 's/(.{64})/\1\n/g' | openssl enc -base64 -d -aes-256-cbc -nosalt -md md5 -pass pass:$CODE_SIGNING_CERTIFICATE_ENCRYPTION_PWD)
-            if [ ! -d /home/circleci/source/.codesign/ ]; then
-              mkdir /home/circleci/source/.codesign/
-            fi
-            CODE_SIGNING_CERTIFICATE_URL=${CODE_SIGNING_CERTIFICATE_URL%$'\r'}
-            curl ${CODE_SIGNING_CERTIFICATE_URL} --output /home/circleci/source/.codesign/jahia-code-signing-certificate.p12
       - unless:
           condition: <<parameters.is_pull_request>>
           steps:
             - run:
                 name: mvn clean deploy
-                command: mvn -s .circleci/.circleci.settings.xml -U -e clean deploy -Pinstaller,sign-installer-jar,windows-installer,sign-installer-exe -Djahia.sign.keystore=/home/circleci/source/.codesign/jahia-code-signing-certificate.p12 -Djahia.sign.storepass=$CODE_SIGNING_PWD
+                command: mvn -s .circleci/.circleci.settings.xml -U -e clean deploy -Pinstaller,windows-installer
       - when:
           condition: <<parameters.is_pull_request>>
           steps:
             - run:
                 name: mvn clean install
-                command: mvn -s .circleci/.circleci.settings.xml -U -e clean install -Pinstaller,sign-installer-jar,windows-installer,sign-installer-exe -Djahia.sign.keystore=/home/circleci/source/.codesign/jahia-code-signing-certificate.p12 -Djahia.sign.storepass=$CODE_SIGNING_PWD
+                command: mvn -s .circleci/.circleci.settings.xml -U -e clean install -Pinstaller,windows-installer 
       - unless:
           condition: <<parameters.is_pull_request>>
           steps:
