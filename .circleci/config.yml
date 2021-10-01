@@ -513,6 +513,12 @@ workflows:
             - QA_ENVIRONMENT
           requires:
             - Scheduled checkout
+      - code-sign:
+          name: Sign installer files
+          requires:
+            - Scheduled build
+          context:
+            - code-signing-orb
 #      - integration_tests:
 #          name: Scheduled integration tests
 #          context: QA_ENVIRONMENT
