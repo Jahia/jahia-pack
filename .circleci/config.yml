@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  jahia-modules-orb: jahia/jahia-modules-orb@0.5.4
+
 # Pipeline parameter must be declared
 parameters:
   run_pull_request:
@@ -99,6 +102,27 @@ jobs:
            path: /tmp/artifacts/
       - *persist-workspace
 
+  code-sign:
+    <<: *workdir
+    docker:
+      - image: cimg/openjdk:11.0-node
+    resource_class: large
+    steps:
+      - *attach-workspace
+      - add_ssh_keys:
+          fingerprints:
+            - "f4:0e:08:4c:00:5d:d8:e6:74:d5:0d:4f:62:fe:e5:02"
+      - jahia-modules-orb/code-signer:
+          installer_dir: "~/source/package/jahia-installer-package/target"
+          file_pattern: "Jahia-*Distribution*"
+      - store_artifacts:
+          path: /tmp/signed-installers
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - source/package/jahia-installer-package/target
+
+
   sonar:
     parameters:
       is_pull_request:
@@ -180,15 +204,20 @@ workflows:
           is_pull_request: true
           context:
             - QA_ENVIRONMENT
-            - jahia-code-signing
           requires:
             - PR Checkout
+      - code-sign:
+          name: Sign installer files
+          requires:
+            - PR Build Jahia Pack
+          context:
+            - code-signing-orb
       - sonar:
           name: PR Sonar analysis of the pull request
           is_pull_request: true
           context: QA_ENVIRONMENT
           requires:
-            - PR Build Jahia Pack
+            - Sign installer files
   on-code-change:
     jobs:
       - checkout:
@@ -203,20 +232,25 @@ workflows:
           is_pull_request: false
           context:
             - QA_ENVIRONMENT
-            - jahia-code-signing
           requires:
             - checkout
+      - code-sign:
+          name: Sign installer files
+          requires:
+            - Build Jahia Pack
+          context:
+            - code-signing-orb
       - sonar:
           name: Sonar analysis
           is_pull_request: false
           context: QA_ENVIRONMENT
           requires:
-            - Build Jahia Pack
+            - Sign installer files
       - trigger_ee_build:
           name: Trigger build of jahia-ee
           context: QA_ENVIRONMENT
           requires:
-            - Build Jahia Pack
+            - Sign installer files
 
   scheduled:
     triggers:
@@ -235,9 +269,14 @@ workflows:
           name: Scheduled build
           context:
             - QA_ENVIRONMENT
-            - jahia-code-signing
           requires:
             - Scheduled checkout
+      - code-sign:
+          name: Sign installer files
+          requires:
+            - Scheduled build
+          context:
+            - code-signing-orb
 #      - integration_tests:
 #          name: Scheduled integration tests
 #          context: QA_ENVIRONMENT
@@ -247,4 +286,4 @@ workflows:
           name: Trigger build of jahia-ee
           context: QA_ENVIRONMENT
           requires:
-            - Scheduled build
+            - Sign installer files
