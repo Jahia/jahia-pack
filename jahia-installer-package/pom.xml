@@ -67,7 +67,7 @@
             <groupId>org.jahia.configuration</groupId>
             <artifactId>configurators</artifactId>
             <version>${jahia.configurators.version}</version>
-            <classifier>standalone</classifier>
+            <classifier>build</classifier>
             <scope>runtime</scope>
         </dependency>
         <dependency>
