@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   docker-tags-orb: jahia/docker-tags-orb@1.1.0
-  jahia-modules-orb: jahia/jahia-modules-orb@0.5.4
+  jahia-modules-orb: jahia/jahia-modules-orb@0.5.9
 
 # Pipeline parameter must be declared
 parameters:
@@ -33,6 +33,9 @@ parameters:
   JAHIA_LATEST_MAINTENANCE_BRANCH:
     type: string
     default: "JAHIA-7-3-9-X-BRANCH"
+  SSH_KEY_FINGERPRINT:
+    type: string
+    default: "b1:d7:0c:2f:43:6b:82:b2:4e:66:d6:8a:46:70:60:26"
 
 commands:
   generate_cachekey_seed:
@@ -381,10 +384,8 @@ jobs:
     resource_class: large
     steps:
       - *attach-workspace
-      - add_ssh_keys:
-          fingerprints:
-            - "f4:0e:08:4c:00:5d:d8:e6:74:d5:0d:4f:62:fe:e5:02"
       - jahia-modules-orb/code-signer:
+          ssh_key_fingerprint: << pipeline.parameters.SSH_KEY_FINGERPRINT >>
           installer_dir: "~/source/jahia-installer-package/target"
           file_pattern: "Jahia-*Distribution*"
       - store_artifacts:
