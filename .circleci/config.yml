@@ -19,7 +19,7 @@ parameters:
     default: ""
   JAHIA_LATEST_MAINTENANCE_BRANCH:
     type: string
-    default: "JAHIA-7-3-9-X-BRANCH"
+    default: "JAHIA-7-3-X-X-BRANCH"
 
 commands:
   generate_cachekey_seed:
