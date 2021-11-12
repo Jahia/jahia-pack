@@ -79,8 +79,8 @@ jobs:
       - *attach-workspace
       - restore_cache:
           keys:
-            - v1-maven-dependencies-{{ checksum "maven_cache_seed" }}
-            - v1-maven-dependencies-
+            - v2-maven-dependencies-{{ checksum "maven_cache_seed" }}
+            - v2-maven-dependencies-
       - setup_remote_docker:
           version: 19.03.13
           docker_layer_caching: true
@@ -139,7 +139,7 @@ jobs:
       - save_cache:
           paths:
             - ~/.m2
-          key: v1-maven-dependencies-{{ checksum "maven_cache_seed" }}
+          key: v2-maven-dependencies-{{ checksum "maven_cache_seed" }}
       - when:
           condition:
             equal: [ current, << pipeline.parameters.PARENT_IMAGE_TAG >> ]
@@ -299,9 +299,9 @@ jobs:
       - *attach-workspace
       - restore_cache:
           keys:
-            - v1-maven-dependencies-{{ checksum "maven_cache_seed" }}
+            - v2-maven-dependencies-{{ checksum "maven_cache_seed" }}
             # fallback to using the latest cache if no exact match is found
-            - v1-maven-dependencies-
+            - v2-maven-dependencies-
       - restore_cache:
           keys:
             - v1-sonar-owasp-dependencies-<< pipeline.parameters.run_pull_request >>
