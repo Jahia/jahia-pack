@@ -16,6 +16,13 @@
        <cpe>cpe:/a:set_user_project:set_user</cpe>
     </suppress>
     <suppress>
+        <notes><![CDATA[
+        file name: pluto-*.jar 
+        ]]></notes>
+        <packageUrl regex="true">^pkg:maven/org\.apache\.portals\.pluto/pluto\-.*@.*$</packageUrl>
+        <cve>CVE-2021-29425</cve>
+    </suppress> 
+    <suppress>
        <notes><![CDATA[
        file name: tasks-7.1.4.jar
        ]]></notes>
