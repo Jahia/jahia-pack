@@ -218,7 +218,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>macros</artifactId>
-            <version>8.1.0</version>
+            <version>8.2.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
