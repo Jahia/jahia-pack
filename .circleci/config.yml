@@ -45,38 +45,27 @@ commands:
           name: Generate Cache Key Seeds
           command: |
             find . -name 'pom.xml' | sort | xargs cat > ~/source/maven_cache_seed
-
-references:
-  workdir: &workdir
-    working_directory: ~/source
-
-  persist-workspace: &persist-workspace
-    persist_to_workspace:
-      root: ~/source
-      paths:
-        - .
-
-  attach-workspace: &attach-workspace
-    attach_workspace:
-      at: .
-
 jobs:
   checkout:
-    <<: *workdir
+    working_directory: ~/source
     docker: # run the steps with Docker
       - image: circleci/openjdk:8-jdk-stretch
     steps:
       - checkout
       - generate_cachekey_seed
-      - *persist-workspace
+      - persist_to_workspace:
+          root: ~/source
+          paths:
+            - .
 
   build:
-    <<: *workdir
+    working_directory: ~/source
     docker: # run the steps with Docker
       - image: circleci/openjdk:8-jdk-stretch
     resource_class: xlarge
     steps:
-      - *attach-workspace
+      - attach_workspace:
+          at: .
       - restore_cache:
           keys:
             - v2-maven-dependencies-{{ checksum "maven_cache_seed" }}
@@ -153,10 +142,29 @@ jobs:
                   cp /home/circleci/source/jahia-installer-package/target/*db-scripts.zip /tmp/artifacts/
             - store_artifacts:
                 path: /tmp/artifacts/
-      - *persist-workspace
+      - run:
+          name: Display size of the folders to be persisted (for space optimization)
+          command: | 
+            echo "Size of jahia-installer-package/target/"
+            du -h -d 1 jahia-installer-package/target/
+            echo "Size of ./"
+            du -h -d 1 ./
+      - run:
+          name: Display content of the folders to be persisted in workspace
+          command: | 
+            echo "Listing of jahia-installer-package/target/"
+            ls -lah jahia-installer-package/target/
+            echo "Listing of ./"
+            ls -lah ./                
+      - persist_to_workspace:
+          root: ~/source
+          paths:
+            - image.tar
+            - image.tag
+            - jahia-installer-package/target/Jahia-*Distribution*
 
   integration_tests:
-    <<: *workdir
+    working_directory: ~/source
     docker: # run the steps with Docker
       - image: circleci/openjdk:8-jdk-stretch
     # Available types: medium, large, xlarge, 2xlarge https://circleci.com/docs/2.0/configuration-reference/#machine-executor-linux
@@ -172,7 +180,8 @@ jobs:
         type: string
         default: "docker-tests/"
     steps:
-      - *attach-workspace
+      - attach_workspace:
+          at: .
       - setup_remote_docker:
           version: 19.03.13
           docker_layer_caching: true
@@ -288,15 +297,15 @@ jobs:
           command: rm -rf << parameters.TESTS_PATH >>artifacts/results/xml_reports
       - store_artifacts:
           path: << parameters.TESTS_PATH >>artifacts/results
-      - *persist-workspace
 
   sonar:
-    <<: *workdir
+    working_directory: ~/source
     docker: # run the steps with Docker
       - image: circleci/openjdk:8-jdk-stretch
     resource_class: xlarge
     steps:
-      - *attach-workspace
+      - attach_workspace:
+          at: .
       - restore_cache:
           keys:
             - v2-maven-dependencies-{{ checksum "maven_cache_seed" }}
@@ -344,7 +353,7 @@ jobs:
           key: v1-sonar-owasp-dependencies-<< pipeline.parameters.run_pull_request >>
 
   trigger_ee_build:
-    <<: *workdir
+    working_directory: ~/source
     docker: # run the steps with Docker
       - image: circleci/openjdk:8-jdk-stretch
     steps:
@@ -361,7 +370,8 @@ jobs:
       - when:
           condition: << pipeline.parameters.run_pull_request >>
           steps:
-            - *attach-workspace
+            - attach_workspace:
+                at: .
             - run:
                 name: Trigger the build of jahia-ee
                 command: |
@@ -378,22 +388,19 @@ jobs:
                     --data '{ "parameters":{"run_core_code_change":true, "run_pull_request":true, "PARENT_IMAGE_TAG":"'"`cat image.tag`"'", "JAHIA_PRIVATE_SHA1":"<< pipeline.parameters.JAHIA_PRIVATE_SHA1 >>", "JAHIA_PACK_PRIVATE_SHA1":"'"$CIRCLE_SHA1"'"}, "branch":"'"$BRANCH"'" }'
 
   code-sign:
-    <<: *workdir
+    working_directory: ~/source
     docker:
       - image: cimg/openjdk:11.0-node
     resource_class: large
     steps:
-      - *attach-workspace
+      - attach_workspace:
+          at: .
       - jahia-modules-orb/code-signer:
           ssh_key_fingerprint: << pipeline.parameters.SSH_KEY_FINGERPRINT >>
           installer_dir: "~/source/jahia-installer-package/target"
           file_pattern: "Jahia-*Distribution*"
       - store_artifacts:
           path: /tmp/signed-installers
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - source/jahia-installer-package/target
 
 workflows:
   core_triggered:
