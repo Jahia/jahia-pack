@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  jahia-modules-orb: jahia/jahia-modules-orb@0.7.5
+  jahia-modules-orb: jahia/jahia-modules-orb@0.8.4
 
 # Pipeline parameter must be declared
 parameters:
