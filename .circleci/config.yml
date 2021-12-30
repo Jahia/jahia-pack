@@ -395,10 +395,18 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - jahia-modules-orb/code-signer:
-          ssh_key_fingerprint: << pipeline.parameters.SSH_KEY_FINGERPRINT >>
-          installer_dir: "~/source/jahia-installer-package/target"
-          file_pattern: "Jahia-*Distribution*"
+# START INFRA-2050 - Temporarily disabled automated signature          
+#       - jahia-modules-orb/code-signer:
+#           ssh_key_fingerprint: << pipeline.parameters.SSH_KEY_FINGERPRINT >>
+#           installer_dir: "~/source/jahia-installer-package/target"
+#           file_pattern: "Jahia-*Distribution*"
+      - run:
+          name: Bypass the signature process and stored unsigned artifacts
+          command: |
+            mkdir -p /tmp/signed-installers
+            cp ~/source/jahia-ee-installer-package/target/*.jar /tmp/signed-installers/
+            cp ~/source/jahia-ee-installer-package/target/*.exe /tmp/signed-installers/
+# END INFRA-2050
       - store_artifacts:
           path: /tmp/signed-installers
 
