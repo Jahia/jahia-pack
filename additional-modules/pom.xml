@@ -146,7 +146,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>news</artifactId>
-            <version>3.3.0</version>
+            <version>3.4.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
