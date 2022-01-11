@@ -84,12 +84,6 @@ jobs:
             - run:
                 name: mvn clean install
                 command: mvn -s .circleci/.circleci.settings.xml -U -e clean install -Pinstaller,windows-installer 
-      - unless:
-          condition: <<parameters.is_pull_request>>
-          steps:
-            - run:
-                name: Copy artifacts to rqa2
-                command: scp -o "ProxyCommand=ssh -o StrictHostKeyChecking=no -W %h:%p -p 220 jahia-ci@circleci-bastion-prod.jahia.com" -o StrictHostKeyChecking=no package/jahia-installer-package/target/Jahia-* bamboo@rqa2.int.jahia.com:/home/bamboo/qa-tools/fixCreator/jahiaInstallers
       - save_cache:
           paths:
             - ~/.m2
