@@ -193,7 +193,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>macros</artifactId>
-            <version>7.1.3-SNAPSHOT</version>
+            <version>7.1.3</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
