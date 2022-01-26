@@ -49,7 +49,7 @@
     <parent>
         <groupId>org.jahia.server</groupId>
         <artifactId>jahia-pack-root</artifactId>
-        <version>7.3.11.0-SNAPSHOT</version>
+        <version>7.3.10.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jahia-core-modules</artifactId>
@@ -72,7 +72,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>ckeditor</artifactId>
-            <version>4.17.1-jahia1</version>
+            <version>4.17.1-jahia7.3-2-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -96,7 +96,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>default</artifactId>
-            <version>7.10.0</version>
+            <version>7.10.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -114,13 +114,13 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>external-provider</artifactId>
-            <version>3.6.0</version>
+            <version>3.6.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>external-provider-modules</artifactId>
-            <version>3.6.0</version>
+            <version>3.6.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -132,7 +132,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>external-provider-vfs</artifactId>
-            <version>3.6.0</version>
+            <version>3.6.0-SNAPSHOT</version>
        </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
@@ -143,7 +143,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>graphql-dxm-provider</artifactId>
-            <version>1.11.0</version>
+            <version>1.11.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -155,7 +155,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>jahia-csrf-guard</artifactId>
-            <version>1.5.0</version>
+            <version>1.5.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -291,7 +291,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>userDashboard</artifactId>
-            <version>7.3.0</version>
+            <version>7.3.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
