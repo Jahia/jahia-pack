@@ -401,6 +401,15 @@ jobs:
           file_pattern: "Jahia-*Distribution*"
       - store_artifacts:
           path: /tmp/signed-installers
+      - when:
+          condition:
+            and:
+              - on_fail
+              - equal: [ current, << pipeline.parameters.PARENT_IMAGE_TAG >> ]
+          steps:
+            - jahia-modules-orb/slack-jahia:
+                job_event: "fail"
+                skip_docker: true
 
 workflows:
   core_triggered:
@@ -420,6 +429,7 @@ workflows:
             - Build Jahia Pack for << pipeline.parameters.PARENT_IMAGE_TAG >> core branch
           context:
             - code-signing-orb
+            - product-slack
       - integration_tests:
           name: Integration tests
           context: QA_ENVIRONMENT
@@ -451,6 +461,7 @@ workflows:
             - PR Build Jahia Pack
           context:
             - code-signing-orb
+            - product-slack
       - integration_tests:
           name: Integration tests
           context: QA_ENVIRONMENT
@@ -487,6 +498,7 @@ workflows:
             - Build Jahia Pack
           context:
             - code-signing-orb
+            - product-slack
       - integration_tests:
           name: Integration tests
           context: QA_ENVIRONMENT
@@ -527,6 +539,7 @@ workflows:
             - Scheduled build
           context:
             - code-signing-orb
+            - product-slack
 #      - integration_tests:
 #          name: Scheduled integration tests
 #          context: QA_ENVIRONMENT
