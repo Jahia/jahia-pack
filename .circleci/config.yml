@@ -155,7 +155,13 @@ jobs:
             echo "Listing of jahia-installer-package/target/"
             ls -lah jahia-installer-package/target/
             echo "Listing of ./"
-            ls -lah ./                
+            ls -lah ./
+      - when:
+          condition: on_fail
+          steps:
+            - jahia-modules-orb/slack-jahia:
+                job_event: "fail"
+                skip_docker: true
       - persist_to_workspace:
           root: ~/source
           paths:
@@ -421,6 +427,7 @@ workflows:
           name: Build Jahia Pack for << pipeline.parameters.PARENT_IMAGE_TAG >> core branch
           context:
             - QA_ENVIRONMENT
+            - product-slack
           requires:
             - Triggered build Checkout
       - code-sign:
@@ -453,6 +460,7 @@ workflows:
           name: PR Build Jahia Pack
           context:
             - QA_ENVIRONMENT
+            - product-slack
           requires:
             - PR Checkout
       - code-sign:
@@ -490,6 +498,7 @@ workflows:
           name: Build Jahia Pack
           context:
             - QA_ENVIRONMENT
+            - product-slack
           requires:
             - checkout
       - code-sign:
@@ -531,6 +540,7 @@ workflows:
           name: Scheduled build
           context:
             - QA_ENVIRONMENT
+            - product-slack
           requires:
             - Scheduled checkout
       - code-sign:
