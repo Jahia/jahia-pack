@@ -1,5 +1,4 @@
 {
-    "baseUrl": "http://localhost:8080",
     "chromeWebSecurity": false,
     "failOnStatusCode": false,
     "defaultCommandTimeout": 30000,
@@ -10,7 +9,7 @@
     },
     "screenshotsFolder": "./results/screenshots",
     "videosFolder": "./results/videos",
-    "ignoreTestFiles": "*.example.ts",
+    "ignoreTestFiles": "*.ignore.ts",
     "viewportWidth": 1366,
     "viewportHeight": 768
 }

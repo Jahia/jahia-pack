@@ -1,8 +1,10 @@
-const env = require('./env');
-const installLogsPrinter = require('cypress-terminal-report/src/installLogsPrinter');
+/**
+ * @type {Cypress.PluginConfig}
+ */
+ module.exports = (on, config) => {
+    require('@jahia/cypress/dist/plugins/registerPlugins').registerPlugins(on, config)
 
-module.exports = (on, config) => {
-    env(on, config);
-    installLogsPrinter(on)
+    config.env.NEXUS_USERNAME = process.env.NEXUS_USERNAME
+
     return config;
 };

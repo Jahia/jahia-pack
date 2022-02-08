@@ -2,32 +2,37 @@
 # This script can be used to warmup the environment and execute the tests
 # It is used by the docker image at startup
 
-if [[ ! -f .env ]]; then
- cp .env.example .env
-fi
+source ./set-env.sh
 
-source .env
+mkdir -p ./run-artifacts
+mkdir -p ./results
 
-#!/usr/bin/env bash
+echo " == Using JAHIA_URL= ${JAHIA_URL}"
+echo " == Using Node version: $(node -v)"
+echo " == Using yarn version: $(yarn -v)"
+
 START_TIME=$SECONDS
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
-echo " == Using JAHIA_URL= ${JAHIA_URL}"
-
 echo " == Waiting for Jahia to startup"
-./node_modules/jahia-reporter/bin/run utils:alive --jahiaUrl=${JAHIA_URL}
+while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' ${JAHIA_URL}/cms/login)" != "200" ]];
+  do sleep 5;
+done
+
 ELAPSED_TIME=$(($SECONDS - $START_TIME))
 echo " == Jahia became alive in ${ELAPSED_TIME} seconds"
 
-echo "== Run tests =="
-CYPRESS_baseUrl=${JAHIA_URL} yarn e2e:ci
+echo "$(date +'%d %B %Y - %k:%M') == Run tests =="
+yarn e2e:ci
 if [[ $? -eq 0 ]]; then
-  echo "success" > $DIR/results/test_success
+  echo "$(date +'%d %B %Y - %k:%M') == Full execution successful =="
+  echo "success" > ./results/test_success
+  yarn report:merge; yarn report:html
   exit 0
 else
-  echo "failure" > $DIR/results/test_failure
+  echo "$(date +'%d %B %Y - %k:%M') == One or more failed tests =="
+  echo "failure" > ./results/test_failure
+  yarn report:merge; yarn report:html
   exit 1
 fi
-
-# After the test ran, we're dropping a marker file to indicate if the test failed or succeeded based on the script test command exit code

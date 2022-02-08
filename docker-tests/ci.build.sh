@@ -9,4 +9,4 @@ if [ ! -d ./artifacts ]; then
   mkdir -p ./artifacts
 fi
 
-docker build -t jahia/jahia-opencore-test .
+docker build -t ${TESTS_IMAGE} .

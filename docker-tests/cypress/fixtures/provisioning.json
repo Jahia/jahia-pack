@@ -1,0 +1,9 @@
+[
+    {
+      "editConfiguration": "org.jahia.test.provisioning",
+      "content": "## clear ##",
+      "properties": {
+        "NEXUS_USERNAME" :"${env:NEXUS_USERNAME}"
+      }
+    }
+  ]

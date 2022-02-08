@@ -1,7 +1,7 @@
 function login() {
     cy.visit(Cypress.env('JAHIA_URL'), {failOnStatusCode: false});
     cy.get('input[name=username]').type('root');
-    cy.get('input[name=password]').type(Cypress.env('JAHIA_PASSWORD'));
+    cy.get('input[name=password]').type(Cypress.env('SUPER_USER_PASSWORD'));
     cy.get('button[type=submit]').click();
 }
 

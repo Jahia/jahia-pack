@@ -229,10 +229,9 @@ jobs:
           command: |
             set -e
             cd << parameters.TESTS_PATH >>
-            if [[ ! -e .env ]]; then
-              mv .env.example .env
-            fi
-            echo JAHIA_IMAGE=jahia/jahia-opencore-dev:`cat ../image.tag` >> .env
+            . ./set-env.sh
+            export JAHIA_IMAGE=jahia/jahia-opencore-dev:`cat ../image.tag`
+            echo "export JAHIA_IMAGE=jahia/jahia-opencore-dev:`cat ../image.tag`" >> $BASH_ENV
             docker-compose -f docker-compose.yml up -d jahia
           no_output_timeout: 2h
       - run:
@@ -255,8 +254,8 @@ jobs:
             cd << parameters.TESTS_PATH >>
             export DOCKER_CLIENT_TIMEOUT=120
             export COMPOSE_HTTP_TIMEOUT=120
+            . ./set-env.sh            
             docker-compose -f docker-compose.yml up cypress
-            docker cp cypress:/tmp/results ./artifacts
           no_output_timeout: 2h
           environment:
             TESTS_IMAGE: << parameters.TESTS_IMAGE >>:latest
@@ -266,6 +265,7 @@ jobs:
           command: |
             set -e
             cd << parameters.TESTS_PATH >>
+            docker cp cypress:/home/jahians/results ./artifacts
             docker logs jahia > ./artifacts/results/jahia.log
             docker logs cypress > ./artifacts/results/cypress.log
       # This is not needed since cypress is going to terminat on failure with exit code 1
