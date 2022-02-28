@@ -97,7 +97,7 @@
 		h4{
 		  color:#333;
 		}
-		
+
 		h5{
 		  color:#333;
 		}
@@ -119,7 +119,7 @@
 		blockquote {
 			margin: 5px -5px;
 			padding: 5px;
-			background-color: rgb(217, 217, 217); 
+			background-color: rgb(217, 217, 217);
 			border: 1px solid #333;
 		}
     </style>
@@ -128,7 +128,7 @@
 <div id="container">
   <div id="mainContent">
 	<h1>How to install Jahia 7.3 on Apache Tomcat 9.0.x server</h1>
-	
+
 	<h2>Installation</h2>
 	<p>The installation procedure for Apache Tomcat 9 is as follows:</p>
     <ol>
@@ -138,21 +138,21 @@
         <li>On the next screen choose the <em>Apache Tomcat 9.0.x</em> as the target application server</li>
         <li>Follow the next steps of the installer</li>
     </ol>
-    <p>Once the Installer is finished in your installation directory you should find among others the <tt>tomcat</tt> folder 
-    and, if the locations of runtime data and configuration folders were not changed during the installation, 
+    <p>Once the Installer is finished in your installation directory you should find among others the <tt>tomcat</tt> folder
+    and, if the locations of runtime data and configuration folders were not changed during the installation,
     the <tt>digital-factory-config</tt> and <tt>digital-factory-data</tt> folders.</p>
-    
+
     <h2>Deployment</h2>
-    <p>Further, it is assumed that your target Apache Tomcat server is installed in the <tt>tomcat</tt> folder 
+    <p>Further, it is assumed that your target Apache Tomcat server is installed in the <tt>tomcat</tt> folder
     and <tt>install-dir</tt> will reference the folder, where you’ve installed Jahia into using the installer.</p>
     <ol>
     	<li>Copy the content of the <tt>&lt;install-dir&gt;/tomcat/lib</tt> folder into your <tt>&lt;tomcat&gt;/lib</tt> directory.</li>
-    	<li>In case ROOT was configured as the Web application context name, please, remove or rename the default 
+    	<li>In case ROOT was configured as the Web application context name, please, remove or rename the default
     	Tomcat’s ROOT Web application at <tt>&lt;tomcat&gt;/webapps/ROOT</tt>, if it exists, to e.g. <tt>tomcat-root</tt> or similar.</li>
     	<li>Copy the content of the <tt>&lt;install-dir&gt;/tomcat/webapps</tt> folder into your <tt>&lt;tomcat&gt;/webapps</tt> directory.</li>
-    	<li>The configuration folder path (digital-factory-config) has to be added into the class path to make 
+    	<li>The configuration folder path (digital-factory-config) has to be added into the class path to make
     	it available to Jahia. The easiest way is to modify the <tt>common.loader</tt>
-    	variable value in the <tt>&lt;tomcat&gt;/conf/catalina.properties</tt> file to point to the <tt>digital-factory-config</tt> folder path. 
+    	variable value in the <tt>&lt;tomcat&gt;/conf/catalina.properties</tt> file to point to the <tt>digital-factory-config</tt> folder path.
     	For example, if the Jahia configuration folder has a path <tt>/opt/Jahia-7/digital-factory-config</tt> than
     	the value of common.loader should look like:
     	<blockquote><tt>common.loader="${catalina.base}/lib","${catalina.base}/lib/*.jar","${catalina.home}/lib","${catalina.home}/lib/*.jar",/opt/Jahia-7/digital-factory-config</tt></blockquote>
@@ -163,7 +163,7 @@
     	the <tt>jahiaVarDiskPath</tt> value in the <tt>digital-factory-config/jahia/jahia.properties</tt> file should be adjusted to reflect its new path.</li>
     	<li>Adjust the JVM and connector options appropriately (see next sections).</li>
     </ol>
-    
+
     <h2>JVM tuning options</h2>
 	<p>The default JVM options of the Apache Tomcat have to be adjusted to reflect the Jahia requirements.<br/>
 	We recommend creating a <tt>setenv.bat</tt> (Windows) or <tt>setenv.sh</tt> (non-Windows OS) script in the <tt>&lt;tomcat&gt;/bin</tt> folder to put those options.<br/>
@@ -196,7 +196,7 @@ export CATALINA_PID=$CATALINA_HOME/temp/tomcat.pid<br/>
 	</blockquote><br/>
 	The JVM heap sizes (<tt>-Xms</tt> and <tt>-Xmx</tt>) should be adjusted according to your needs<sup>[<a href="#ftn.1">1</a>]</sup>.
 	Note that the minimal value of the <tt>-Xmx</tt> value, required by Jahia is <tt>2048m</tt>.<br/>
-	If you have chosen Apache Derby as the target DBMS server during the installation, the value of the <tt>-Dderby.system.home</tt> in the 
+	If you have chosen Apache Derby as the target DBMS server during the installation, the value of the <tt>-Dderby.system.home</tt> in the
 	<tt>setenv.bat/setenv.sh</tt> script should point to your <tt>digital-factory-data/dbdata</tt> folder.
 	</p>
 
@@ -222,13 +222,13 @@ export CATALINA_PID=$CATALINA_HOME/temp/tomcat.pid<br/>
 
     <div id="footnote">
     	<p>
-    	<sup>[<a name="ftn.1">1</a>]</sup>&nbsp;For production systems the memory options should be adjusted accordingly to achieve high performance and scalability 
-    	<sup>[<a name="ftn.2">2</a>]</sup>&nbsp;Connector settings, especially <tt>maxThreads</tt> and <tt>acceptCount</tt> values, should be adjusted accordingly to achieve high performance and scalability in production run 
+    	<sup>[<a name="ftn.1">1</a>]</sup>&nbsp;For production systems the memory options should be adjusted accordingly to achieve high performance and scalability
+    	<sup>[<a name="ftn.2">2</a>]</sup>&nbsp;Connector settings, especially <tt>maxThreads</tt> and <tt>acceptCount</tt> values, should be adjusted accordingly to achieve high performance and scalability in production run
     	</p>
 	</div>
   </div>
   <div id="footer">
-    <p>Copyright &copy; 2002-2020 Jahia Solutions Group. All rights reserved.</p>
+    <p>Copyright &copy; 2002-2022 Jahia Solutions Group. All rights reserved.</p>
   </div>
 </div>
 </body>
