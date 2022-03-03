@@ -447,6 +447,8 @@ workflows:
           context: QA_ENVIRONMENT
           requires:
             - Build Jahia Pack for << pipeline.parameters.PARENT_IMAGE_TAG >> core branch
+            - Integration tests
+
   # This one is run only when triggered with the API, using a GitHub action
   pull_request:
     when:
@@ -523,6 +525,9 @@ workflows:
           context: QA_ENVIRONMENT
           requires:
             - Build Jahia Pack
+            - Integration tests
+            - Sonar analysis
+
   scheduled:
     triggers:
       - schedule:
