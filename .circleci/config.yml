@@ -319,8 +319,8 @@ jobs:
             - v2-maven-dependencies-
       - restore_cache:
           keys:
-            - v1-sonar-owasp-dependencies-<< pipeline.parameters.run_pull_request >>
-            - v1-sonar-owasp-dependencies-
+            - v2-sonar-owasp-dependencies-<< pipeline.parameters.run_pull_request >>
+            - v2-sonar-owasp-dependencies-
       - when:
           condition: << pipeline.parameters.run_pull_request >>
           steps:
@@ -356,7 +356,7 @@ jobs:
           paths:
             - ~/.owasp/dependency-check-data
             - ~/.sonar/cache
-          key: v1-sonar-owasp-dependencies-<< pipeline.parameters.run_pull_request >>
+          key: v2-sonar-owasp-dependencies-<< pipeline.parameters.run_pull_request >>
 
   trigger_ee_build:
     working_directory: ~/source
