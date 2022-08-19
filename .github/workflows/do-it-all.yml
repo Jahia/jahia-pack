@@ -1,0 +1,395 @@
+name: Full CI Workflow
+
+env:
+  PARENT_IMAGE_TAG: "current"
+  TARGET_BRANCH: ""
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+  schedule:
+    - cron: '0 4,10,16 * * 1-5'
+  push:
+    branches:
+      - master
+      - '/feature-.*/'
+      - '/JAHIA-[0-9]-[0-9]-[0-9]-X-BRANCH/'
+  workflow_dispatch:
+    inputs:
+      parent_image_tag:
+        description: 'Tag used by the parent build'
+        default: 'current'
+      target_branch:
+        description: 'Target branch for the build step'
+        default: ''
+
+jobs:
+  # This trick is necessary to be able to join key variables from all workflow triggers (pr, push, dispatch...)
+  # Using a dedicated job is overkill but has the advantage of clearly separating the
+  # logic of setting up these variables
+  vars:
+    name: Set up environment variables
+    runs-on: ubuntu-latest
+    outputs:
+      parent_image_tag: ${{ steps.vars.outputs.parent_image_tag }}
+      target_branch: ${{ steps.vars.outputs.target_branch }}
+    steps:
+      - name: Set environment variables from either input parameters or default env
+        shell: bash
+        run: |
+          INPUT_PARENT_IMAGE_TAG=${{ github.event.inputs.parent_image_tag }}
+          echo "ENV_PARENT_IMAGE_TAG=${INPUT_PARENT_IMAGE_TAG:-${{ env.PARENT_IMAGE_TAG }}}" >> $GITHUB_ENV
+          INPUT_TARGET_BRANCH=${{ github.event.inputs.target_branch }}
+          echo "ENV_TARGET_BRANCH=${INPUT_TARGET_BRANCH:-${{ env.TARGET_BRANCH }}}" >> $GITHUB_ENV
+      - id: vars
+        name: Set output variables
+        shell: bash
+        run: | 
+          echo "::set-output name=parent_image_tag::`echo ${ENV_PARENT_IMAGE_TAG}`"
+          echo "::set-output name=target_branch::`echo ${ENV_TARGET_BRANCH}`"
+      - name: Display output variables
+        shell: bash
+        run: | 
+          echo "ENV_PARENT_IMAGE_TAG = ${ENV_PARENT_IMAGE_TAG}"
+          echo "ENV_TARGET_BRANCH = ${ENV_TARGET_BRANCH}"
+          echo "steps.vars.outputs.parent_image_tag = ${{ steps.vars.outputs.parent_image_tag}}"
+          echo "steps.vars.outputs.target_branch = ${{ steps.vars.outputs.target_branch}}"
+
+  build:
+    runs-on: ubuntu-latest
+    needs: vars
+    outputs:
+      jahia_version: ${{ steps.tags.outputs.jahia_version }}
+      image_tag: ${{ steps.tags.outputs.image_tag }}
+      parent_tag: ${{ steps.tags.outputs.parent_tag }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v3
+        with: 
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+      # Artifacts are saved via the cache mechanism to save time
+      - name: Save/Restore build artifacts from cache
+        uses: actions/cache@v3
+        with:
+          key: run-${{ github.run_id }}
+          path: |
+            jahia-installer-package/target/Jahia-*Distribution*
+            ${{ github.workspace }}/artifacts/*
+            image.tar
+            image.tag
+      - name: Set environment variables from parameters
+        shell: bash
+        run: |
+          echo "NEXUS_USERNAME=${{ secrets.NEXUS_USERNAME }}" >> $GITHUB_ENV
+          echo "NEXUS_PASSWORD=${{ secrets.NEXUS_PASSWORD }}" >> $GITHUB_ENV
+      - name: Docker Login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Store project version
+        shell: bash
+        run: mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec > jahia.version
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v5.4
+      - name: Determine tag
+        shell: bash
+        run: |
+          echo "Parent tag: ${{ needs.vars.outputs.parent_image_tag }}"
+          echo "Jahia Version: `cat jahia.version`"
+          if [ "${{ needs.vars.outputs.parent_image_tag }}" = "current" ]; then
+            cp jahia.version parent.tag
+            if [ "${{ github.event_name }}" != "pull_request" ]; then
+              cp jahia.version image.tag
+            else
+              echo `cat jahia.version`-"${{ steps.branch-name.outputs.current_branch }}" > image.tag
+            fi            
+          else
+            echo "${{ needs.vars.outputs.parent_image_tag }}" > parent.tag
+            cp parent.tag image.tag
+          fi
+          echo "Parent tag: `cat parent.tag`"
+          echo "Image tag: `cat image.tag`"
+      - id: tags
+        name: Set Output variables
+        run: | 
+          echo "::set-output name=jahia_version::`cat jahia.version`"
+          echo "::set-output name=image_tag::`cat image.tag`"
+          echo "::set-output name=parent_tag::`cat parent.tag`"
+      - name: Display Output variables
+        run: | 
+          echo "OUTPUT: jahia_version = ${{steps.tags.outputs.jahia_version}}"
+          echo "OUTPUT: image_tag = ${{steps.tags.outputs.image_tag}}"
+          echo "OUTPUT: parent_tag = ${{steps.tags.outputs.parent_tag}}"
+
+      # Series of steps only executed when pushing to master or to one of the maintenance branches
+      - name: mvn clean deploy
+        if: ${{ github.event_name != 'pull_request' }}
+        shell: bash
+        run: |
+          mvn -U -ntp -s .github/maven.settings.xml -U -e \
+            -Dparent.tag=`cat parent.tag` \
+            -Dimage.tag=`cat image.tag` \
+            clean deploy \
+            -Pdocker,installer,windows-installer
+      - uses: jahia/jahia-modules-action/docker-tags@v2
+        if: ${{ github.event_name != 'pull_request' }}
+        with:
+          docker_username: ${{ secrets.DOCKERHUB_USERNAME }}
+          docker_password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          version: ${{steps.tags.outputs.parent_tag}}
+          repo: "jahia-opencore-dev"
+          dry-run: false
+      - name: Build graalvm image
+        shell: bash
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          cd docker/docker-jahia/
+          mvn -U -ntp -s ../../.github/maven.settings.xml -e \
+            -Dparent.tag=${{steps.tags.outputs.parent_tag}}-graalvm \
+            -Dimage.tag=${{steps.tags.outputs.image_tag}}-graalvm \
+            deploy \
+            -Dbamboo.buildNumber=${{ github.run_id }}
+
+      # Series of steps only executed when in a PR
+      - name: mvn clean install
+        if: ${{ github.event_name == 'pull_request' }}
+        shell: bash
+        run: |
+          mvn -U -ntp -s .github/maven.settings.xml -U -e \
+            -Dparent.tag=${{steps.tags.outputs.parent_tag}} \
+            -Dimage.tag=${{steps.tags.outputs.image_tag}} \
+            clean install \
+            -Pdocker,installer,windows-installer
+      - name: Push PR Docker image
+        # This is only done on PR, as master is pushed with mvn deploy in "Deploy artifacts to server repository"
+        if: ${{ github.event_name == 'pull_request' }}
+        shell: bash
+        run: docker push jahia/jahia-opencore-dev:${{steps.tags.outputs.image_tag}}     
+
+      - name: Store docker image
+        shell: bash
+        run: docker save -o image.tar jahia/jahia-opencore-dev:${{steps.tags.outputs.image_tag}}
+
+      - name: Copy artifacts
+        if: ${{ needs.vars.outputs.parent_image_tag == 'current' }}
+        shell: bash
+        run: |
+          mkdir -p ${{ github.workspace }}/artifacts/
+          if [ "current" = "${{ needs.vars.outputs.parent_image_tag }}"]; then
+            cp ${{ github.workspace }}/jahia-installer-package/target/*.jar ${{ github.workspace }}/artifacts/
+            cp ${{ github.workspace }}/jahia-installer-package/target/*.exe ${{ github.workspace }}/artifacts/
+            cp ${{ github.workspace }}/jahia-installer-package/target/*db-scripts.zip ${{ github.workspace }}/artifacts/
+          fi
+
+      - name: Display size of the folders to be persisted (for space optimization)
+        shell: bash
+        run: | 
+          echo "Size of jahia-installer-package/target/"
+          du -h -d 1 jahia-installer-package/target/
+          echo "Size of ./"
+          du -h -d 1 ./
+
+      - name: Display content of the folders to be persisted in workspace
+        shell: bash
+        run: |
+          echo "Listing of jahia-installer-package/target/"
+          ls -lah jahia-installer-package/target/
+          echo "Listing of ./"
+          ls -lah ./
+
+      - uses: jahia/jahia-modules-action/slack-jahia@v2
+        if: ${{ failure() }}
+        with:
+          job-event: "fail"
+          skip-docker: true
+          slack-webhook: ${{ secrets.SLACK_WEBHOOK_TEAM_PRODUCT_SNAPSHOTS_NOTIFICATIONS }}
+
+  # It appears that a workflow cache generated in a Github hosted runner is
+  # not available on a self-hosted runner. This step is only there to make the 
+  # docker artifact available to the self-hosted runner. This is in a dedicated job, 
+  # instead of a step, to allow the code-sign action to start earlier.
+  expose-docker-artifacts:
+    runs-on: ubuntu-latest
+    needs: build  
+    steps:
+      - name: Save/Restore build artifacts from cache
+        uses: actions/cache@v3
+        with:
+          key: run-${{ github.run_id }}
+          path: |
+            jahia-installer-package/target/Jahia-*Distribution*
+            ${{ github.workspace }}/artifacts/*
+            image.tar
+            image.tag
+      - uses: actions/upload-artifact@v3
+        with:
+          name: jahia-docker-artifacts
+          retention-days: 1
+          path: |
+            image.tar
+            image.tag
+
+  code-sign:
+    runs-on: ubuntu-latest
+    needs: [vars, build]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Save/Restore build artifacts from cache
+        uses: actions/cache@v3
+        with:
+          key: run-${{ github.run_id }}
+          path: |
+            jahia-installer-package/target/Jahia-*Distribution*
+            ${{ github.workspace }}/artifacts/*
+            image.tar
+            image.tag
+      - uses: jahia/jahia-modules-action/code-signer@v2
+        with:
+          ssh-private-key: ${{ secrets.GH_SSH_PRIVATE_KEY_JAHIACI }}
+          installer_dir: "${{ github.workspace }}/jahia-installer-package/target" 
+          file_pattern: "Jahia-*Distribution*"
+          codesigntool_url: ${{ secrets.CODESIGNTOOL_SANDBOX_URL }}
+          credential_id: ${{ secrets.CREDENTIAL_ID }}
+          signer_username: ${{ secrets.SIGNER_USERNAME }}
+          signer_password: ${{ secrets.SIGNER_PASSWORD }}
+          totp_secret: ${{ secrets.TOTP_SECRET }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: signed-installers
+          path: /tmp/signed-installers
+      - uses: jahia/jahia-modules-action/slack-jahia@v2
+        if: ${{ failure() && needs.vars.outputs.parent_image_tag == 'current'}}
+        with:
+          job-event: "fail"
+          skip-docker: true
+          slack-webhook: ${{ secrets.SLACK_WEBHOOK_TEAM_PRODUCT_SNAPSHOTS_NOTIFICATIONS }}
+
+  integration-tests:
+    name: Integration Tests (Standalone)
+    needs: [expose-docker-artifacts, build]
+    runs-on: self-hosted
+    if: ${{ github.event_name != 'schedule'}}
+    timeout-minutes: 45
+    steps:
+      - uses: jahia/jahia-modules-action/helper@v2
+      - uses: KengoTODA/actions-setup-docker-compose@main
+        with:
+          version: '1.29.2'
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 'lts/*'
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v3
+        with:
+          name: jahia-docker-artifacts
+      - name: Load docker image 
+        shell: bash
+        run: |
+          docker load -i image.tar
+      - name: Prepare environment variable for Jahia Image
+        shell: bash
+        run: |
+          export JAHIA_IMAGE=jahia/jahia-opencore-dev:${{needs.build.outputs.image_tag}}
+          echo "JAHIA_IMAGE = ${JAHIA_IMAGE}"
+          echo "JAHIA_IMAGE=${JAHIA_IMAGE}" >> $GITHUB_ENV
+      - uses: jahia/jahia-modules-action/integration-tests@v2
+        with:
+          module_id: jahia-ui-root
+          testrail_project: Jahia
+          tests_manifest: provisioning-manifest-build.yml
+          tests_path: docker-tests/
+          jahia_image: ${{ env.JAHIA_IMAGE }}
+          should_use_build_artifacts: true
+          should_skip_testrail: true
+          github_artifact_name: jahia-integ-tests-${{ github.run_number }}
+          jahia_license: ${{ secrets.JAHIA_LICENSE_8X_FULL }}
+          docker_username: ${{ secrets.DOCKERHUB_USERNAME }}
+          docker_password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          nexus_username: ${{ secrets.NEXUS_USERNAME }}
+          nexus_password: ${{ secrets.NEXUS_PASSWORD }}
+          tests_report_name: Test report (Standalone)
+          testrail_username: ${{ secrets.TESTRAIL_USERNAME }}
+          testrail_password: ${{ secrets.TESTRAIL_PASSWORD }}
+          incident_pagerduty_api_key: ${{ secrets.INCIDENT_PAGERDUTY_API_KEY }}
+          incident_pagerduty_reporter_email: ${{ secrets.INCIDENT_PAGERDUTY_REPORTER_EMAIL }}
+          incident_pagerduty_reporter_id: ${{ secrets.INCIDENT_PAGERDUTY_REPORTER_ID }}
+          incident_google_spreadsheet_id: ${{ secrets.INCIDENT_GOOGLE_SPREADSHEET_ID }}
+          incident_google_client_email: ${{ secrets.INCIDENT_GOOGLE_CLIENT_EMAIL }}
+          incident_google_api_key_base64: ${{ secrets.INCIDENT_GOOGLE_PRIVATE_KEY_BASE64 }}
+          zencrepes_secret: ${{ secrets.ZENCREPES_WEBHOOK_SECRET }}
+          build_artifacts: jahia-docker-artifacts
+
+  sonar:
+    runs-on: ubuntu-latest
+    needs: [vars, build]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v5.4
+      - name: Save/Restore build artifacts from cache
+        uses: actions/cache@v3
+        with:
+          key: run-${{ github.run_id }}
+          path: |
+            jahia-installer-package/target/Jahia-*Distribution*
+            ${{ github.workspace }}/artifacts/*
+            image.tar
+            image.tag
+      - name: Set environment variables
+        shell: bash
+        run: |
+          echo "SONAR_URL=${{ secrets.SONAR_URL }}" >> $GITHUB_ENV
+          echo "SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}" >> $GITHUB_ENV
+          echo "NEXUS_USERNAME=${{ secrets.NEXUS_USERNAME }}" >> $GITHUB_ENV
+          echo "NEXUS_PASSWORD=${{ secrets.NEXUS_PASSWORD }}" >> $GITHUB_ENV
+      - name: Analyze pull request with sonar
+        if: ${{ github.event_name == 'pull_request' }}
+        shell: bash
+        run: |
+          mvn -s .github/maven.settings.xml sonar:sonar -Dsonar.pullrequest.branch=${{ steps.branch-name.outputs.current_branch }} \
+          -Dsonar.pullrequest.key=${{ github.run_id }} \
+          -Dsonar.pullrequest.base=${{ needs.vars.outputs.target_branch }} \
+          -Dsonar.pullrequest.github.repository=${{ github.event.repository.name }}          
+      - name: Sonar analysis
+        if: ${{ github.event_name != 'pull_request' }}
+        shell: bash
+        env:
+          DEPENDENCY_CHECK_SETTINGS: -DfailOnError=false -DskipProvidedScope=true -DskipTestScope=false 
+            -DretireJsAnalyzerEnabled=false -DnodeAnalyzerEnabled=false -Dformats=HTML,JSON 
+            -Dsonar.dependencyCheck.jsonReportPath=target/dependency-check-report.json 
+            -Dsonar.dependencyCheck.htmlReportPath=target/dependency-check-report.html 
+            -DdataDirectory=/home/circleci/.owasp/dependency-check-data 
+            -DsuppressionFile=.circleci/owasp-suppressions.xml
+        run: |
+          if [[ "${{ steps.branch-name.outputs.current_branch }}" == "master" ]];
+          then
+            mvn -s .github/maven.settings.xml dependency-check:aggregate sonar:sonar \
+                $DEPENDENCY_CHECK_SETTINGS
+          else
+            mvn -s .github/maven.settings.xml dependency-check:aggregate sonar:sonar \
+                -Dsonar.branch.name=$CIRCLE_BRANCH $DEPENDENCY_CHECK_SETTINGS
+          fi
+    
+  trigger-jahia-ee:
+    runs-on: ubuntu-latest
+    needs: [integration-tests, sonar, build]
+    steps:
+      - name: Call Jahia-ee
+        id: trigger-step
+        uses: jonas-schievink/workflow-proxy@v1
+        with:
+          workflow: do-it-all.yml
+          ref: master
+          repo: Jahia/jahia-ee
+          inputs: '{ "parent_image_tag": "${{needs.build.outputs.image_tag}}" }'
+          token: ${{ secrets.GH_API_TOKEN }}
+      - name: Get results of Jahia-ee
+        if: always()
+        shell: bash
+        run: | 
+          echo "jahia-ee Workflow conclusion -> ${{ steps.trigger-step.outputs.workflow-conclusion }}"
+          echo "::notice title=Jahia-ee workflow::The following workflow has been executed: ${{ steps.trigger-step.outputs.workflow-url }} its conclusion was: ${{ steps.trigger-step.outputs.workflow-conclusion }}"

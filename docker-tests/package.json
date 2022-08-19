@@ -4,6 +4,7 @@
   "description": "cypress",
   "devDependencies": {
     "@jahia/cypress": "^1.0.10",
+    "@jahia/jahia-reporter": "^1.0.27",
     "@cypress/webpack-preprocessor": "^5.9.1",
     "cypress": "^8.7.0",
     "cypress-file-upload": "^5.0.8",
