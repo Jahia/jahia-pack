@@ -271,7 +271,6 @@ jobs:
     name: Integration Tests (Standalone)
     needs: [expose-docker-artifacts, build]
     runs-on: self-hosted
-    if: ${{ github.event_name != 'schedule'}}
     timeout-minutes: 45
     steps:
       - uses: jahia/jahia-modules-action/helper@v2
