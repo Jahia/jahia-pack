@@ -6,7 +6,7 @@ env:
 
 on:
   pull_request:
-    types: [opened, reopened, synchronize]
+    types: [ opened, reopened, synchronize ]
   schedule:
     - cron: '0 4,10,16 * * 1-5'
   push:
@@ -44,12 +44,12 @@ jobs:
       - id: vars
         name: Set output variables
         shell: bash
-        run: | 
+        run: |
           echo "::set-output name=parent_image_tag::`echo ${ENV_PARENT_IMAGE_TAG}`"
           echo "::set-output name=target_branch::`echo ${ENV_TARGET_BRANCH}`"
       - name: Display output variables
         shell: bash
-        run: | 
+        run: |
           echo "ENV_PARENT_IMAGE_TAG = ${ENV_PARENT_IMAGE_TAG}"
           echo "ENV_TARGET_BRANCH = ${ENV_TARGET_BRANCH}"
           echo "steps.vars.outputs.parent_image_tag = ${{ steps.vars.outputs.parent_image_tag}}"
@@ -65,7 +65,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v3
-        with: 
+        with:
           path: ~/.m2
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
       # Artifacts are saved via the cache mechanism to save time
@@ -114,12 +114,12 @@ jobs:
           echo "Image tag: `cat image.tag`"
       - id: tags
         name: Set Output variables
-        run: | 
+        run: |
           echo "::set-output name=jahia_version::`cat jahia.version`"
           echo "::set-output name=image_tag::`cat image.tag`"
           echo "::set-output name=parent_tag::`cat parent.tag`"
       - name: Display Output variables
-        run: | 
+        run: |
           echo "OUTPUT: jahia_version = ${{steps.tags.outputs.jahia_version}}"
           echo "OUTPUT: image_tag = ${{steps.tags.outputs.image_tag}}"
           echo "OUTPUT: parent_tag = ${{steps.tags.outputs.parent_tag}}"
@@ -146,8 +146,8 @@ jobs:
         shell: bash
         if: ${{ github.event_name == 'push' }}
         run: |
-          cd docker/docker-jahia/
-          mvn -U -ntp -s ../../.github/maven.settings.xml -e \
+          cd docker-jahia/
+          mvn -U -ntp -s ../.github/maven.settings.xml -e \
             -Dparent.tag=${{steps.tags.outputs.parent_tag}}-graalvm \
             -Dimage.tag=${{steps.tags.outputs.image_tag}}-graalvm \
             deploy \
@@ -167,7 +167,7 @@ jobs:
         # This is only done on PR, as master is pushed with mvn deploy in "Deploy artifacts to server repository"
         if: ${{ github.event_name == 'pull_request' }}
         shell: bash
-        run: docker push jahia/jahia-opencore-dev:${{steps.tags.outputs.image_tag}}     
+        run: docker push jahia/jahia-opencore-dev:${{steps.tags.outputs.image_tag}}
 
       - name: Store docker image
         shell: bash
@@ -186,7 +186,7 @@ jobs:
 
       - name: Display size of the folders to be persisted (for space optimization)
         shell: bash
-        run: | 
+        run: |
           echo "Size of jahia-installer-package/target/"
           du -h -d 1 jahia-installer-package/target/
           echo "Size of ./"
@@ -208,12 +208,12 @@ jobs:
           slack-webhook: ${{ secrets.SLACK_WEBHOOK_TEAM_PRODUCT_SNAPSHOTS_NOTIFICATIONS }}
 
   # It appears that a workflow cache generated in a Github hosted runner is
-  # not available on a self-hosted runner. This step is only there to make the 
-  # docker artifact available to the self-hosted runner. This is in a dedicated job, 
+  # not available on a self-hosted runner. This step is only there to make the
+  # docker artifact available to the self-hosted runner. This is in a dedicated job,
   # instead of a step, to allow the code-sign action to start earlier.
   expose-docker-artifacts:
     runs-on: ubuntu-latest
-    needs: build  
+    needs: build
     steps:
       - name: Save/Restore build artifacts from cache
         uses: actions/cache@v3
@@ -234,7 +234,7 @@ jobs:
 
   code-sign:
     runs-on: ubuntu-latest
-    needs: [vars, build]
+    needs: [ vars, build ]
     steps:
       - uses: actions/checkout@v2
       - name: Save/Restore build artifacts from cache
@@ -249,7 +249,7 @@ jobs:
       - uses: jahia/jahia-modules-action/code-signer@v2
         with:
           ssh-private-key: ${{ secrets.GH_SSH_PRIVATE_KEY_JAHIACI }}
-          installer_dir: "${{ github.workspace }}/jahia-installer-package/target" 
+          installer_dir: "${{ github.workspace }}/jahia-installer-package/target"
           file_pattern: "Jahia-*Distribution*"
           codesigntool_url: ${{ secrets.CODESIGNTOOL_SANDBOX_URL }}
           credential_id: ${{ secrets.CREDENTIAL_ID }}
@@ -269,7 +269,7 @@ jobs:
 
   integration-tests:
     name: Integration Tests (Standalone)
-    needs: [expose-docker-artifacts, build]
+    needs: [ expose-docker-artifacts, build ]
     runs-on: self-hosted
     timeout-minutes: 45
     steps:
@@ -284,7 +284,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: jahia-docker-artifacts
-      - name: Load docker image 
+      - name: Load docker image
         shell: bash
         run: |
           docker load -i image.tar
@@ -323,7 +323,7 @@ jobs:
 
   sonar:
     runs-on: ubuntu-latest
-    needs: [vars, build]
+    needs: [ vars, build ]
     steps:
       - uses: actions/checkout@v2
       - name: Get branch name
@@ -352,16 +352,16 @@ jobs:
           mvn -s .github/maven.settings.xml sonar:sonar -Dsonar.pullrequest.branch=${{ steps.branch-name.outputs.current_branch }} \
           -Dsonar.pullrequest.key=${{ github.run_id }} \
           -Dsonar.pullrequest.base=${{ needs.vars.outputs.target_branch }} \
-          -Dsonar.pullrequest.github.repository=${{ github.event.repository.name }}          
+          -Dsonar.pullrequest.github.repository=${{ github.event.repository.name }}
       - name: Sonar analysis
         if: ${{ github.event_name != 'pull_request' }}
         shell: bash
         env:
-          DEPENDENCY_CHECK_SETTINGS: -DfailOnError=false -DskipProvidedScope=true -DskipTestScope=false 
-            -DretireJsAnalyzerEnabled=false -DnodeAnalyzerEnabled=false -Dformats=HTML,JSON 
-            -Dsonar.dependencyCheck.jsonReportPath=target/dependency-check-report.json 
-            -Dsonar.dependencyCheck.htmlReportPath=target/dependency-check-report.html 
-            -DdataDirectory=/home/circleci/.owasp/dependency-check-data 
+          DEPENDENCY_CHECK_SETTINGS: -DfailOnError=false -DskipProvidedScope=true -DskipTestScope=false
+            -DretireJsAnalyzerEnabled=false -DnodeAnalyzerEnabled=false -Dformats=HTML,JSON
+            -Dsonar.dependencyCheck.jsonReportPath=target/dependency-check-report.json
+            -Dsonar.dependencyCheck.htmlReportPath=target/dependency-check-report.html
+            -DdataDirectory=/home/circleci/.owasp/dependency-check-data
             -DsuppressionFile=.circleci/owasp-suppressions.xml
         run: |
           if [[ "${{ steps.branch-name.outputs.current_branch }}" == "master" ]];
@@ -372,10 +372,10 @@ jobs:
             mvn -s .github/maven.settings.xml dependency-check:aggregate sonar:sonar \
                 -Dsonar.branch.name=$CIRCLE_BRANCH $DEPENDENCY_CHECK_SETTINGS
           fi
-    
+
   trigger-jahia-ee:
     runs-on: ubuntu-latest
-    needs: [integration-tests, sonar, build]
+    needs: [ integration-tests, sonar, build ]
     steps:
       - name: Call Jahia-ee
         id: trigger-step
@@ -389,6 +389,6 @@ jobs:
       - name: Get results of Jahia-ee
         if: always()
         shell: bash
-        run: | 
+        run: |
           echo "jahia-ee Workflow conclusion -> ${{ steps.trigger-step.outputs.workflow-conclusion }}"
           echo "::notice title=Jahia-ee workflow::The following workflow has been executed: ${{ steps.trigger-step.outputs.workflow-url }} its conclusion was: ${{ steps.trigger-step.outputs.workflow-conclusion }}"
