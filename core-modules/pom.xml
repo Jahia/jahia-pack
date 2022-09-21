@@ -123,7 +123,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>content-editor</artifactId>
-            <version>4.0.0</version>
+            <version>3.4.2-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
