@@ -196,7 +196,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>dx-base-demo-templates</artifactId>
-            <version>3.1.0</version>
+            <version>3.2.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
 
