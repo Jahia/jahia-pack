@@ -1,7 +1,7 @@
 name: Full CI Workflow
 
 env:
-  PARENT_IMAGE_TAG: "current"
+  PARENT_IMAGE_TAG: "none"
   TARGET_BRANCH: ""
 
 on:
@@ -17,8 +17,8 @@ on:
   workflow_dispatch:
     inputs:
       parent_image_tag:
-        description: 'Tag used by the parent build'
-        default: 'current'
+        description: "Tag used by the parent build, 'none' indicates the build has not been triggered from another repository"
+        default: 'none'
       target_branch:
         description: 'Target branch for the build step'
         default: ''
@@ -99,7 +99,7 @@ jobs:
         run: |
           echo "Parent tag: ${{ needs.vars.outputs.parent_image_tag }}"
           echo "Jahia Version: `cat jahia.version`"
-          if [ "${{ needs.vars.outputs.parent_image_tag }}" = "current" ]; then
+          if [ "${{ needs.vars.outputs.parent_image_tag }}" = "none" ]; then
             cp jahia.version parent.tag
             if [ "${{ github.event_name }}" != "pull_request" ]; then
               cp jahia.version image.tag
@@ -174,11 +174,11 @@ jobs:
         run: docker save -o image.tar jahia/jahia-opencore-dev:${{steps.tags.outputs.image_tag}}
 
       - name: Copy artifacts
-        if: ${{ needs.vars.outputs.parent_image_tag == 'current' }}
+        if: ${{ needs.vars.outputs.parent_image_tag == 'none' }}
         shell: bash
         run: |
           mkdir -p ${{ github.workspace }}/artifacts/
-          if [ "current" = "${{ needs.vars.outputs.parent_image_tag }}"]; then
+          if [ "none" = "${{ needs.vars.outputs.parent_image_tag }}"]; then
             cp ${{ github.workspace }}/jahia-installer-package/target/*.jar ${{ github.workspace }}/artifacts/
             cp ${{ github.workspace }}/jahia-installer-package/target/*.exe ${{ github.workspace }}/artifacts/
             cp ${{ github.workspace }}/jahia-installer-package/target/*db-scripts.zip ${{ github.workspace }}/artifacts/
@@ -261,7 +261,7 @@ jobs:
           name: signed-installers
           path: /tmp/signed-installers
       - uses: jahia/jahia-modules-action/slack-jahia@v2
-        if: ${{ failure() && needs.vars.outputs.parent_image_tag == 'current'}}
+        if: ${{ failure() && needs.vars.outputs.parent_image_tag == 'none'}}
         with:
           job-event: "fail"
           skip-docker: true
