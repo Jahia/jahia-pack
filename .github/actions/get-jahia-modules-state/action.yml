@@ -1,0 +1,61 @@
+name: Get state of Jahia modules
+description: Check latest commit of all packaged Jahia modules
+
+inputs:
+  github_token:
+    description: 'Github token'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Save/Restore dependencies from cache
+      uses: actions/cache@v3
+      with:
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        path: |
+          ~/.m2
+
+    - name: Check latest commits in Core and Additional modules
+      shell: bash
+      run: |
+        mvn -s ./.github/maven.settings.xml dependency:list -DforceStdout -DincludeGroupIds=org.jahia.modules -DoutputFile=deps-jahia.txt --no-transfer-progress
+        declare -A repo_exceptions=( ['bootstrap3-components']='bootstrap3' ['bootstrap3-core']='bootstrap3' ['dx-base-demo-components']='jahia-base-demo-components' ['dx-base-demo-core']='jahia-base-demo-core' ['dx-base-demo-templates']='jahia-base-demo-templates' ['external-provider-vfs']='external-provider' ['external-provider-modules']='external-provider' ['graphql-dxm-provider']='graphql-core' ['ldap']='ldap-provider')
+        grep -Eiv "(^$|.*SNAPSHOT|The following files)" core-modules/deps-jahia.txt > modules.txt || true
+        grep -Eiv "(^$|.*SNAPSHOT|The following files)" additional-modules/deps-jahia.txt >> modules.txt || true
+        if [[ $(wc -l <modules.txt) -gt 0  ]]; then
+          sed -i -r 's/\s+org\.jahia\.modules:([-\.a-zA-Z0-9]+):[a-z]+:([0-9\.]+[a-z0-9\-]*):[a-z]+/\1/g' modules.txt
+          declare -a versionModules
+          mapfile -t versionModules < modules.txt
+          for module in "${versionModules[@]}"
+          do
+            if [[ -v repo_exceptions["${module}"] ]]; then
+              moduleName="${repo_exceptions[${module}]}"
+              echo "${module} replaced by ${moduleName} in the GitHub queries"
+            else
+              moduleName="${module}"
+            fi
+            defaultBranch=$(curl -sS -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ inputs.github_token }}" https://api.github.com/repos/Jahia/${moduleName} | jq -r '.default_branch')
+            commitMsg=$(curl -sS -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ inputs.github_token }}" https://api.github.com/repos/Jahia/${moduleName}/commits/${defaultBranch} | jq -r '.commit.message' | head -n 1)
+            if [[ $commitMsg == *"[maven-release-plugin]"*  || $commitMsg == *"Updated signature"* ]]; then
+              echo "Nothing new in '$module'" >> modules-with-no-changes.txt
+            else
+              echo "Changes detected since last release in '${module}' (branch: ${defaultBranch})" >> modules-with-changes.txt
+              echo "Commit message: ${commitMsg}" >> modules-with-changes.txt
+              echo "https://github.com/Jahia/${moduleName}/commits/${defaultBranch}" >> modules-with-changes.txt
+              echo "---" >> modules-with-changes.txt
+            fi
+          done
+        else
+          echo "No Jahia modules found in core and additional modules POM"
+        fi
+        echo "-----------------------------------------------------------------------"
+        echo "| Jahia Pack - State of core and additional modules (not in SNAPSHOT) |"
+        echo "-----------------------------------------------------------------------"
+        echo "Modules without changes:"
+        echo "------------------------"
+        cat modules-with-no-changes.txt
+        echo "   "
+        echo "Modules with changes:"
+        echo "---------------------"
+        cat modules-with-changes.txt

@@ -1,0 +1,13 @@
+name: Jahia modules state
+
+on:
+  workflow_dispatch:
+
+jobs:
+  get-jahia-modules-state:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/get-jahia-modules-state
+        with:
+          github_token: ${{ secrets.GH_API_TOKEN }}
