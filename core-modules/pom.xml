@@ -48,7 +48,7 @@
     <parent>
         <groupId>org.jahia.packages</groupId>
         <artifactId>jahia-packages-parent</artifactId>
-        <version>8.2.0.0-SNAPSHOT</version>
+        <version>8.1.4.0-SNAPSHOT</version>
         <relativePath />
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -151,7 +151,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>content-editor</artifactId>
-            <version>4.2.0-SNAPSHOT</version>
+            <version>3.5.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
