@@ -2,13 +2,13 @@
 <xfragment>
     <pack name="jahia" id="core" preselected="yes" required="yes">
         <description/>
-            
+        
         <!-- JDBC Drivers -->
         <fileset dir="../artifacts/jdbc-drivers" targetdir="$INSTALL_PATH/tomcat/lib" condition="cnd.db.dbms.derby_embedded">
             <include name="derby-*.jar"/>
         </fileset>
         <fileset dir="../artifacts/jdbc-drivers" targetdir="$INSTALL_PATH/tomcat/lib" condition="cnd.db.dbms.mysql">
-            <include name="mysql-connector-java-*.jar"/>
+            <include name="mysql-connector-j-*.jar"/>
         </fileset>
         <fileset dir="../artifacts/jdbc-drivers" targetdir="$INSTALL_PATH/tomcat/lib" condition="cnd.db.dbms.postgresql">
             <include name="postgresql-*.jar"/>
@@ -16,12 +16,12 @@
         <fileset dir="../artifacts/jdbc-drivers" targetdir="$INSTALL_PATH/tomcat/lib" condition="cnd.db.dbms.mariadb">
             <include name="mariadb-java-client-*.jar"/>
         </fileset>
-
+        
         <!-- Shared libraries -->
         <fileset dir="../artifacts/shared-libraries" targetdir="$INSTALL_PATH/tomcat/lib"/>
         
         <!-- Jahia -->
-        <fileset dir="../licenses" targetdir="$INSTALL_PATH/licenses" override="true" />
+        <fileset dir="../licenses" targetdir="$INSTALL_PATH/licenses" override="true"/>
         <fileset dir="../links" targetdir="$INSTALL_PATH/docs" override="true">
             <exclude name="HowToInstall.URL"/>
             <exclude name="Open*"/>
@@ -42,7 +42,7 @@
         <parsable targetfile="$INSTALL_PATH/logs/install.properties" type="javaprop"/>
         <parsable targetfile="$INSTALL_PATH/docs/HowToInstall.URL" condition="!cnd.pack.tomcat"/>
         <executable targetfile="$INSTALL_PATH/bin/openUrl.sh" os="unix"/>
-
+        
         <!-- Module management REST API tools -->
         <fileset dir="../tools" targetdir="$INSTALL_PATH/tools"/>
         <parsable targetfile="$INSTALL_PATH/tools/setupBundleApi.sh" type="shell"/>

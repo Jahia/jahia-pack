@@ -17,34 +17,34 @@
     <variables>
         <variable name="product.name" value="${product.name}"/>
         <variable name="product.version" value="${product.version}"/>
-
+        
         <!-- default values for DB driver -->
         <variable name="def.db.driver.mysql" value="com.mysql.jdbc.Driver"/>
         <variable name="def.db.driver.postgresql" value="org.postgresql.Driver"/>
         <variable name="def.db.driver.mariadb" value="org.mariadb.jdbc.Driver"/>
-
-        <variable name="def.db.url.mysql" value="jdbc:mysql://localhost/jahia?useUnicode=true&amp;characterEncoding=UTF-8&amp;useServerPrepStmts=false"/>
+        
+        <variable name="def.db.url.mysql" value="jdbc:mysql://localhost/jahia?characterEncoding=UTF-8"/>
         <variable name="def.db.url.postgresql" value="jdbc:postgresql://localhost:5432/jahia"/>
         <variable name="def.db.url.mariadb" value="jdbc:mariadb://localhost/jahia?useUnicode=true&amp;characterEncoding=UTF-8&amp;useServerPrepStmts=false"/>
-
+        
         <variable name="superUser.username" value="root"/>
-
+        
         <variable name="TargetPanel.noWhitespaces" value="true"/>
-
+        
         <variable name="TargetPanel.dir.mac" value="$APPLICATIONS_DEFAULT_ROOT/${product.fullname}"/>
         <variable name="TargetPanel.dir.macosx" value="$APPLICATIONS_DEFAULT_ROOT/${product.fullname}"/>
         <variable name="TargetPanel.dir.unix" value="$APPLICATIONS_DEFAULT_ROOT/${product.fullname}"/>
         <variable name="TargetPanel.dir.windows" value="C:\${product.fullname}"/>
-
+        
         <variable name="afterInstall.startTomcat" value="true"/>
         <variable name="jahia.war.contextName" value=""/>
         <variable name="developmentMode" value="true"/>
-
+        
         <!-- DM -->
         <variable name="dmConfig.officePath" value=""/>
         <variable name="dmConfig.imagemagickPath" value=""/>
         <variable name="dmConfig.imageService" value="ImageJAndJava2DImageService"/>
-
+        
         <variable name="driver.mariadb.download.central" value="http://central.maven.org/maven2/org/mariadb/jdbc/mariadb-java-client/${driver.mariadb.version}"/>
     </variables>
     <dynamicvariables>
@@ -55,17 +55,17 @@
         <variable name="jahia.war.target.path" value="$INSTALL_PATH/tomcat/webapps/${jahia.war.target.dir.name}"/>
         <variable name="jahia.tomcat.pack.selected" value="true" condition="cnd.pack.tomcat"/>
         <variable name="jahia.tomcat.pack.selected" value="false" condition="!cnd.pack.tomcat"/>
-
+        
         <variable name="operatingMode" value="development" condition="cnd.operatingMode.development"/>
         <variable name="operatingMode" value="production" condition="!cnd.operatingMode.development"/>
-
+        
         <variable name="server.type" value="tomcat"/>
-
+        
         <variable name="tomcat.httpPort" value="8080" condition="cnd.installation.type.express|!cnd.pack.tomcat"/>
         <variable name="tomcat.sslPort" value="8443" condition="cnd.installation.type.express|!cnd.pack.tomcat"/>
         <variable name="tomcat.ajpPort" value="8009" condition="cnd.installation.type.express|!cnd.pack.tomcat"/>
         <variable name="tomcat.serverPort" value="8005" condition="cnd.installation.type.express|!cnd.pack.tomcat"/>
-
+        
         <!-- embedded Derby defaults -->
         <variable name="dbSettings.dbms.type" value="derby_embedded" condition="cnd.installation.type.express|cnd.db.mode.embedded"/>
         <variable name="dbSettings.dbms.createTables" value="true" condition="cnd.db.dbms.derby_embedded"/>
@@ -73,63 +73,63 @@
         <variable name="dbSettings.connection.url" value="jdbc:derby:directory:jahia;create=true" condition="cnd.db.dbms.derby_embedded"/>
         <variable name="dbSettings.connection.username" value="" condition="cnd.db.dbms.derby_embedded"/>
         <variable name="dbSettings.connection.password" value="" condition="cnd.db.dbms.derby_embedded"/>
-
+        
         <variable name="superUser.firstname" value="" condition="cnd.installation.type.express"/>
         <variable name="superUser.lastname" value="" condition="cnd.installation.type.express"/>
         <variable name="superUser.email" value="" condition="cnd.installation.type.express"/>
         <variable name="superUser.preferredLang" value="${LOCALE_IDENTIFIER}" condition="cnd.installation.type.express|!cnd.superUser.preferredLang.set"/>
-
+        
         <!-- DB drivers for standalone DBMSs -->
-        <variable name="dbSettings.connection.driver" value="${dbSettings.connection.driver.mysql}" condition="cnd.db.dbms.mysql" />
-        <variable name="dbSettings.connection.driver" value="${dbSettings.connection.driver.postgresql}" condition="cnd.db.dbms.postgresql" />
-        <variable name="dbSettings.connection.driver" value="${dbSettings.connection.driver.mariadb}" condition="cnd.db.dbms.mariadb" />
-
+        <variable name="dbSettings.connection.driver" value="${dbSettings.connection.driver.mysql}" condition="cnd.db.dbms.mysql"/>
+        <variable name="dbSettings.connection.driver" value="${dbSettings.connection.driver.postgresql}" condition="cnd.db.dbms.postgresql"/>
+        <variable name="dbSettings.connection.driver" value="${dbSettings.connection.driver.mariadb}" condition="cnd.db.dbms.mariadb"/>
+        
         <!-- DB URLs for standalone DBMSs -->
-        <variable name="dbSettings.connection.url" value="${dbSettings.connection.url.mysql}" condition="cnd.db.dbms.mysql" />
-        <variable name="dbSettings.connection.url" value="${dbSettings.connection.url.postgresql}" condition="cnd.db.dbms.postgresql" />
-        <variable name="dbSettings.connection.url" value="${dbSettings.connection.url.mariadb}" condition="cnd.db.dbms.mariadb" />
-
-		<!-- Use data store by default -->
+        <variable name="dbSettings.connection.url" value="${dbSettings.connection.url.mysql}" condition="cnd.db.dbms.mysql"/>
+        <variable name="dbSettings.connection.url" value="${dbSettings.connection.url.postgresql}" condition="cnd.db.dbms.postgresql"/>
+        <variable name="dbSettings.connection.url" value="${dbSettings.connection.url.mariadb}" condition="cnd.db.dbms.mariadb"/>
+        
+        <!-- Use data store by default -->
         <!-- Store binary data on filesystem by default -->
         <variable name="dbSettings.dbms.storeFilesInDB" value="false" condition="cnd.db.dbms.derby_embedded"/>
-
+        
         <!-- mail settings -->
         <variable name="mailSettings.administrator" value="" condition="cnd.installation.type.express"/>
         <variable name="mailSettings.from" value="" condition="cnd.installation.type.express"/>
         <variable name="mailSettings.server" value="" condition="cnd.installation.type.express"/>
-
+        
         <variable name="afterInstall.startTomcat" value="false" condition="!cnd.pack.tomcat"/>
-
+        
         <!-- Externalization of configuration and data -->
-        <variable name="externalizedConfigTargetPath" value="$INSTALL_PATH${FILE_SEPARATOR}digital-factory-config" condition="cnd.installation.type.express" />
-        <variable name="defaultExternalizedConfigTargetPath" value="$INSTALL_PATH${FILE_SEPARATOR}digital-factory-config" />
-        <variable name="jahiaVarDiskPath" value="${jahiaWebAppRoot}/../../../digital-factory-data" condition="cnd.installation.type.express" />
+        <variable name="externalizedConfigTargetPath" value="$INSTALL_PATH${FILE_SEPARATOR}digital-factory-config" condition="cnd.installation.type.express"/>
+        <variable name="defaultExternalizedConfigTargetPath" value="$INSTALL_PATH${FILE_SEPARATOR}digital-factory-config"/>
+        <variable name="jahiaVarDiskPath" value="${jahiaWebAppRoot}/../../../digital-factory-data" condition="cnd.installation.type.express"/>
         <variable name="defaultDataDir" value="$INSTALL_PATH${FILE_SEPARATOR}digital-factory-data"/>
-        <variable name="data.dir" value="$INSTALL_PATH${FILE_SEPARATOR}digital-factory-data" condition="cnd.installation.type.express" />
-        <variable name="jahiaVarDiskPath" value="${data.dir}" condition="cnd.installation.type.advanced+!cnd.data.dir.relative" />
-        <variable name="tomcat.common.loader" value="${catalina.home}/../digital-factory-config" condition="cnd.installation.type.express" />
-        <variable name="tomcat.common.loader" value="${externalizedConfigTargetPathNormalized}" condition="cnd.installation.type.advanced+!cnd.config.dir.relative" />
-        <variable name="derby.home.win" value="%CATALINA_HOME%\..\digital-factory-data\dbdata" condition="cnd.installation.type.express" />
-        <variable name="derby.home.win" value="${data.dir}\dbdata" condition="cnd.installation.type.advanced+!cnd.data.dir.relative" />
-        <variable name="derby.home.unix" value="$CATALINA_HOME/../digital-factory-data/dbdata" condition="cnd.installation.type.express" />
-        <variable name="derby.home.unix" value="${data.dir}/dbdata" condition="cnd.installation.type.advanced+!cnd.data.dir.relative" />
-
+        <variable name="data.dir" value="$INSTALL_PATH${FILE_SEPARATOR}digital-factory-data" condition="cnd.installation.type.express"/>
+        <variable name="jahiaVarDiskPath" value="${data.dir}" condition="cnd.installation.type.advanced+!cnd.data.dir.relative"/>
+        <variable name="tomcat.common.loader" value="${catalina.home}/../digital-factory-config" condition="cnd.installation.type.express"/>
+        <variable name="tomcat.common.loader" value="${externalizedConfigTargetPathNormalized}" condition="cnd.installation.type.advanced+!cnd.config.dir.relative"/>
+        <variable name="derby.home.win" value="%CATALINA_HOME%\..\digital-factory-data\dbdata" condition="cnd.installation.type.express"/>
+        <variable name="derby.home.win" value="${data.dir}\dbdata" condition="cnd.installation.type.advanced+!cnd.data.dir.relative"/>
+        <variable name="derby.home.unix" value="$CATALINA_HOME/../digital-factory-data/dbdata" condition="cnd.installation.type.express"/>
+        <variable name="derby.home.unix" value="${data.dir}/dbdata" condition="cnd.installation.type.advanced+!cnd.data.dir.relative"/>
+        
         <!-- DM -->
         <variable name="dmConfig.officePath.provided" value="true" condition="!cnd.dm.officePath.empty"/>
         <variable name="dmConfig.officePath.provided" value="false" condition="cnd.dm.officePath.empty"/>
         <variable name="dmConfig.imageService" value="ImageMagickImageService" condition="!cnd.dm.imagemagickPath.empty"/>
         <variable name="dmConfig.imageService" value="ImageJAndJava2DImageService" condition="cnd.dm.imagemagickPath.empty"/>
-
+        
         <!-- Studio tools -->
         <variable name="studioToolSettings.gitPath" value="git" condition="cnd.installation.type.express|!cnd.operatingMode.development"/>
         <variable name="studioToolSettings.mvnPath" value="mvn" condition="cnd.installation.type.express|!cnd.operatingMode.development"/>
         <variable name="studioToolSettings.svnPath" value="svn" condition="cnd.installation.type.express|!cnd.operatingMode.development"/>
-
+        
         <variable name="defaultLanguageCode" value="en" condition="cnd.installation.type.express"/>
-
+        
         <variable name="karaf.remoteShell.port" value="8101" condition="cnd.installation.type.express"/>
     </dynamicvariables>
-
+    
     <conditions>
         <condition type="variable" id="cnd.installation.type.express">
             <name>installation.type</name>
@@ -139,11 +139,11 @@
             <name>installation.type</name>
             <value>advanced</value>
         </condition>
-
+        
         <condition type="packselection" id="cnd.pack.tomcat">
             <packid>tomcat</packid>
         </condition>
-
+        
         <condition type="variable" id="cnd.db.mode.standalone">
             <name>dbSettings.mode</name>
             <value>standalone</value>
@@ -168,7 +168,7 @@
             <name>dbSettings.dbms.type</name>
             <value>mariadb</value>
         </condition>
-
+        
         <condition type="variable" id="cnd.start.tomcat">
             <name>afterInstall.startTomcat</name>
             <value>true</value>
@@ -192,23 +192,23 @@
             <name>externalizedConfigActivated</name>
             <value>true</value>
         </condition>
-
+        
         <condition type="or" id="cnd.show.process.panel">
             <condition type="ref" refid="cnd.start.tomcat"/>
             <condition type="ref" refid="cnd.view.howtoinstall"/>
         </condition>
-
+        
         <condition type="org.jahia.izpack.EmptyVariableCondition" id="cnd.dm.officePath.empty">
             <variable>dmConfig.officePath</variable>
         </condition>
         <condition type="org.jahia.izpack.EmptyVariableCondition" id="cnd.dm.imagemagickPath.empty">
             <variable>dmConfig.imagemagickPath</variable>
         </condition>
-
+        
         <condition type="com.izforge.izpack.rules.VariableExistenceCondition" id="cnd.superUser.preferredLang.set">
             <variable>superUser.preferredLang</variable>
         </condition>
-
+        
         <condition type="variable" id="cnd.data.dir.relative">
             <!-- this variable is set by the ExternalizedConfigPanelAction in case the data directory
                  is under the installation path and the paths are set by that action to relative ones -->
@@ -227,10 +227,10 @@
             <os family="windows"/>
             <os family="unix"/>
             <os family="mac"/>
-
+            
             <param name="nimbusBlueGrey" value="0xffffff"/>
             <param name="control" value="0xffffff"/>
-
+            
             <param name="FormattedTextField.background" value="0xe9ecf2"/>
             <param name="PasswordField.background" value="0xe9ecf2"/>
             <param name="ComboBox.background" value="0xe9ecf2"/>
@@ -264,32 +264,32 @@
         <res id="installer.langsel.img" src="../images/language-selection.png"/>
         <res id="customicons.xml" src="customicons.xml"/>
         <res id="installer.window.icon" src="../images/jahia.png"/>
-
+        
         <res id="LicencePanel.licence" parse="no" src="../licenses/license.txt"/>
-
-		<res id="AntActionsSpec.xml" src="AntActionsSpec.xml" />
+        
+        <res id="AntActionsSpec.xml" src="AntActionsSpec.xml"/>
         <res id="AntBuildFile" src="build-jahia.xml"/>
-
+        
         <res id="ProcessPanel.Spec.xml" src="ProcessPanel.Spec.xml"/>
-
+        
         <res id="shortcutSpec.xml" src="windows-shortcuts.xml"/>
         <res id="Unix_shortcutSpec.xml" src="unix-shortcuts.xml"/>
-
-        <res id="Heading.image" src="../images/logo-jahia-200x80-white.png" />
-
+        
+        <res id="Heading.image" src="../images/logo-jahia-200x80-white.png"/>
+        
         <res id="userInputSpec.xml" src="userInputSpec.xml"/>
-        <res id="userInputLang.xml_eng" src="i18n/userInputLang.eng.xml" />
-        <res id="userInputLang.xml_fra" src="i18n/userInputLang.fra.xml" />
-        <res id="userInputLang.xml_deu" src="i18n/userInputLang.deu.xml" />
-
+        <res id="userInputLang.xml_eng" src="i18n/userInputLang.eng.xml"/>
+        <res id="userInputLang.xml_fra" src="i18n/userInputLang.fra.xml"/>
+        <res id="userInputLang.xml_deu" src="i18n/userInputLang.deu.xml"/>
+        
         <res id="packsLang.xml_eng" src="i18n/packsLang.eng.xml"/>
         <res id="packsLang.xml_fra" src="i18n/packsLang.fra.xml"/>
         <res id="packsLang.xml_deu" src="i18n/packsLang.deu.xml"/>
-
+        
         <res id="CustomLangpack.xml_eng" src="i18n/customLang.eng.xml"/>
         <res id="CustomLangpack.xml_fra" src="i18n/customLang.fra.xml"/>
         <res id="CustomLangpack.xml_deu" src="i18n/customLang.deu.xml"/>
-
+        
         <res id="CustomActionsLang.xml_eng" src="i18n/customLang.eng.xml"/>
         <res id="CustomActionsLang.xml_fra" src="i18n/customLang.fra.xml"/>
         <res id="CustomActionsLang.xml_deu" src="i18n/customLang.deu.xml"/>
@@ -303,7 +303,7 @@
         <panel classname="UserInputPanel" condition="cnd.installation.type.advanced" id="dbMode"/>
         <panel classname="UserInputPanel" condition="cnd.installation.type.advanced+cnd.db.mode.standalone" id="dbType"/>
         <panel classname="UserInputPanel" condition="cnd.installation.type.advanced+cnd.db.mode.standalone" id="dbSettings">
-            <validator classname="org.jahia.izpack.DbConnectionValidator" />
+            <validator classname="org.jahia.izpack.DbConnectionValidator"/>
         </panel>
         <panel classname="UserInputPanel" id="appServer" condition="cnd.installation.type.advanced"/>
         <panel classname="UserInputPanel" id="superUser"/>
@@ -319,7 +319,7 @@
                 <action stage="preconstruct" classname="org.jahia.izpack.ExternalToolsPanelAction"/>
             </actions>
         </panel>
-        <panel classname="UserInputPanel" id="additionalSettings" condition="cnd.installation.type.advanced" />
+        <panel classname="UserInputPanel" id="additionalSettings" condition="cnd.installation.type.advanced"/>
         <panel classname="UserInputPanel" id="externalizedConfig" condition="cnd.installation.type.advanced">
             <actions>
                 <action stage="postvalidate" classname="org.jahia.izpack.ExternalizedConfigPanelAction"/>
@@ -327,9 +327,9 @@
         </panel>
         <panel classname="SummaryPanel"/>
         <panel classname="ExtendedInstallPanel">
-        	<actions>
-        		<action stage="preactivate" classname="org.jahia.izpack.LockPrevButtonPanelAction"/>
-        	</actions>
+            <actions>
+                <action stage="preactivate" classname="org.jahia.izpack.LockPrevButtonPanelAction"/>
+            </actions>
         </panel>
         <panel classname="ShortcutPanel" id="shortcutPanel">
             <actions>
@@ -337,14 +337,14 @@
             </actions>
         </panel>
         <panel classname="UserInputPanel" id="afterInstall" condition="izpack.windowsinstall">
-        	<actions>
-        		<action stage="preactivate" classname="org.jahia.izpack.LockPrevButtonPanelAction"/>
-        	</actions>
+            <actions>
+                <action stage="preactivate" classname="org.jahia.izpack.LockPrevButtonPanelAction"/>
+            </actions>
         </panel>
         <panel classname="ProcessPanel" condition="izpack.windowsinstall+cnd.show.process.panel"/>
         <panel classname="FinishPanel"/>
     </panels>
-
+    
     <native name="ShellLink_x64.dll" type="izpack">
         <os arch="amd64"/>
         <os arch="ia64"/>
@@ -358,23 +358,23 @@
         <os arch="i686"/>
         <os arch="x86"/>
     </native>
-
+    
     <listeners>
-    	<listener installer="ProgressBarInstallerListener"/>
+        <listener installer="ProgressBarInstallerListener"/>
         <listener installer="SummaryLoggerInstallerListener"/>
-	    <listener installer="AntActionInstallerListener"/>
+        <listener installer="AntActionInstallerListener"/>
     </listeners>
-
+    
     <packs>
         <xi:include href="pack-jahia.xml"/>
-
+        
         <pack name="tomcat" id="tomcat" preselected="yes" required="no">
             <description/>
             <fileset dir="../links" targetdir="$INSTALL_PATH" override="true">
                 <include name="Open*"/>
             </fileset>
-            <fileset dir="../artifacts/apache-tomcat-${jahia.tomcat.version}" targetdir="$INSTALL_PATH/tomcat" override="true" />
-            <fileset dir="../tomcat" targetdir="$INSTALL_PATH/tomcat" override="true" />
+            <fileset dir="../artifacts/apache-tomcat-${jahia.tomcat.version}" targetdir="$INSTALL_PATH/tomcat" override="true"/>
+            <fileset dir="../tomcat" targetdir="$INSTALL_PATH/tomcat" override="true"/>
             <fileset dir="../scripts" targetdir="$INSTALL_PATH" override="true">
                 <include name="st*"/>
             </fileset>
@@ -386,38 +386,38 @@
             <executable targetfile="$INSTALL_PATH/start.sh"/>
             <executable targetfile="$INSTALL_PATH/stop.bat"/>
             <executable targetfile="$INSTALL_PATH/stop.sh"/>
-
+            
             <parsable targetfile="$INSTALL_PATH/tomcat/bin/setenv.bat" type="shell"/>
             <parsable targetfile="$INSTALL_PATH/tomcat/bin/setenv.sh" type="shell"/>
-
+            
             <parsable targetfile="$INSTALL_PATH/OpenHome.URL"/>
             <parsable targetfile="$INSTALL_PATH/OpenAdministration.URL"/>
-
+            
             <parsable targetfile="$INSTALL_PATH/tomcat/conf/server.xml"/>
             <parsable targetfile="$INSTALL_PATH/tomcat/conf/catalina.properties" type="shell"/>
-
-            <executable targetfile="$INSTALL_PATH/tomcat/bin/catalina.sh" />
-            <executable targetfile="$INSTALL_PATH/tomcat/bin/configtest.sh" />
-            <executable targetfile="$INSTALL_PATH/tomcat/bin/daemon.sh" />
-            <executable targetfile="$INSTALL_PATH/tomcat/bin/digest.sh" />
-            <executable targetfile="$INSTALL_PATH/tomcat/bin/setclasspath.sh" />
-            <executable targetfile="$INSTALL_PATH/tomcat/bin/setenv.sh" />
-            <executable targetfile="$INSTALL_PATH/tomcat/bin/shutdown.sh" />
-            <executable targetfile="$INSTALL_PATH/tomcat/bin/startup.sh" />
-            <executable targetfile="$INSTALL_PATH/tomcat/bin/tool-wrapper.sh" />
-            <executable targetfile="$INSTALL_PATH/tomcat/bin/version.sh" />
-
-            <executable targetfile="$INSTALL_PATH/start.sh" />
-            <executable targetfile="$INSTALL_PATH/stop.sh" />
+            
+            <executable targetfile="$INSTALL_PATH/tomcat/bin/catalina.sh"/>
+            <executable targetfile="$INSTALL_PATH/tomcat/bin/configtest.sh"/>
+            <executable targetfile="$INSTALL_PATH/tomcat/bin/daemon.sh"/>
+            <executable targetfile="$INSTALL_PATH/tomcat/bin/digest.sh"/>
+            <executable targetfile="$INSTALL_PATH/tomcat/bin/setclasspath.sh"/>
+            <executable targetfile="$INSTALL_PATH/tomcat/bin/setenv.sh"/>
+            <executable targetfile="$INSTALL_PATH/tomcat/bin/shutdown.sh"/>
+            <executable targetfile="$INSTALL_PATH/tomcat/bin/startup.sh"/>
+            <executable targetfile="$INSTALL_PATH/tomcat/bin/tool-wrapper.sh"/>
+            <executable targetfile="$INSTALL_PATH/tomcat/bin/version.sh"/>
+            
+            <executable targetfile="$INSTALL_PATH/start.sh"/>
+            <executable targetfile="$INSTALL_PATH/stop.sh"/>
         </pack>
     </packs>
-
-	<jar src="../artifacts/ant.jar" />
-	<jar src="../artifacts/ant-launcher.jar" />
-
-	<jar src="../dependency/mysql-connector-java.jar" />
-	<jar src="../dependency/postgresql.jar" />
-    <jar src="../dependency/mariadb-java-client.jar" />
-
-	<jar src="../dependency/jahia-installer-lib.jar" />
+    
+    <jar src="../artifacts/ant.jar"/>
+    <jar src="../artifacts/ant-launcher.jar"/>
+    
+    <jar src="../dependency/mysql-connector-j.jar"/>
+    <jar src="../dependency/postgresql.jar"/>
+    <jar src="../dependency/mariadb-java-client.jar"/>
+    
+    <jar src="../dependency/jahia-installer-lib.jar"/>
 </installation>
