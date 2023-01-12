@@ -302,7 +302,7 @@
             <!-- New Vanity URL dashboard -->
             <groupId>org.jahia.modules</groupId>
             <artifactId>site-settings-seo</artifactId>
-            <version>3.5.0</version>
+            <version>3.6.0-SNAPSHOT</version>
             <type>jar</type>
             <scope>runtime</scope>
         </dependency>
