@@ -232,41 +232,6 @@ jobs:
             image.tar
             image.tag
 
-  code-sign:
-    runs-on: ubuntu-latest
-    needs: [ vars, build ]
-    steps:
-      - uses: actions/checkout@v2
-      - name: Save/Restore build artifacts from cache
-        uses: actions/cache@v3
-        with:
-          key: run-${{ github.run_id }}
-          path: |
-            jahia-installer-package/target/Jahia-*Distribution*
-            ${{ github.workspace }}/artifacts/*
-            image.tar
-            image.tag
-      - uses: jahia/jahia-modules-action/code-signer@v2
-        with:
-          ssh-private-key: ${{ secrets.GH_SSH_PRIVATE_KEY_JAHIACI }}
-          installer_dir: "${{ github.workspace }}/jahia-installer-package/target"
-          file_pattern: "Jahia-*Distribution*"
-          codesigntool_url: ${{ secrets.CODESIGNTOOL_SANDBOX_URL }}
-          credential_id: ${{ secrets.CREDENTIAL_ID }}
-          signer_username: ${{ secrets.SIGNER_USERNAME }}
-          signer_password: ${{ secrets.SIGNER_PASSWORD }}
-          totp_secret: ${{ secrets.TOTP_SECRET }}
-      - uses: actions/upload-artifact@v3
-        with:
-          name: signed-installers
-          path: /tmp/signed-installers
-      - uses: jahia/jahia-modules-action/slack-jahia@v2
-        if: ${{ failure() && needs.vars.outputs.parent_image_tag == 'none'}}
-        with:
-          job-event: "fail"
-          skip-docker: true
-          slack-webhook: ${{ secrets.SLACK_WEBHOOK_TEAM_PRODUCT_SNAPSHOTS_NOTIFICATIONS }}
-
   integration-tests:
     name: Integration Tests (Standalone)
     needs: [ expose-docker-artifacts, build ]
