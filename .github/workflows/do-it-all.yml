@@ -162,12 +162,17 @@ jobs:
             -Dparent.tag=${{steps.tags.outputs.parent_tag}} \
             -Dimage.tag=${{steps.tags.outputs.image_tag}} \
             clean install \
-            -Pdocker,installer,windows-installer
+            -Pinstaller,windows-installer
       - name: Push PR Docker image
         # This is only done on PR, as master is pushed with mvn deploy in "Deploy artifacts to server repository"
         if: ${{ github.event_name == 'pull_request' }}
         shell: bash
-        run: docker push jahia/jahia-opencore-dev:${{steps.tags.outputs.image_tag}}
+        run: |
+          cd docker-jahia/
+          mvn -U -ntp -s ../.github/maven.settings.xml -e \
+            -Dparent.tag=${{steps.tags.outputs.parent_tag}} \
+            -Dimage.tag=${{steps.tags.outputs.image_tag}} \
+            deploy
 
       - name: Store docker image
         shell: bash
