@@ -143,7 +143,7 @@ jobs:
                 -Dimage.tag=`cat image.tag` \
                 clean deploy \
                 -Pdocker,installer,windows-installer
-          elif
+          else
             mvn -U -ntp -s .github/maven.settings.xml -U -e \
               -Dparent.tag=`cat parent.tag` \
               -Dimage.tag=`cat image.tag` \
