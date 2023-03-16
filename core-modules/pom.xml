@@ -151,7 +151,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>content-editor</artifactId>
-            <version>3.5.0</version>
+            <version>4.2.3</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
