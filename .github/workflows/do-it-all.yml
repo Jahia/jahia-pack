@@ -142,14 +142,14 @@ jobs:
                 -Dparent.tag=`cat parent.tag` \
                 -Dimage.tag=`cat image.tag` \
                 clean deploy \
-                -Pdocker,installer,windows-installer
+                -Pdocker,docker-plugin,installer,windows-installer
           else
             mvn -U -ntp -s .github/maven.settings.xml -U -e \
               -Dparent.tag=`cat parent.tag` \
               -Dimage.tag=`cat image.tag` \
               -Dimage.alias=`echo "latest,${{ env.PARAM_VERSION_MAJOR }}.${{ env.PARAM_VERSION_MINOR}}.${{ env.PARAM_VERSION_HF}}${{ env.PARAM_VERSION_CLASSIFIER}},${{ env.PARAM_VERSION_MAJOR }}.${{ env.PARAM_VERSION_MINOR}}${{ env.PARAM_VERSION_CLASSIFIER}},${{ env.PARAM_VERSION_MAJOR }}${{ env.PARAM_VERSION_CLASSIFIER}}"` \
               clean deploy \
-              -Pdocker,installer,windows-installer
+              -Pdocker,docker-plugin,installer,windows-installer
           fi
       - name: Build graalvm image
         shell: bash
