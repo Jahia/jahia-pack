@@ -48,7 +48,7 @@
     <parent>
         <groupId>org.jahia.server</groupId>
         <artifactId>jahia-pack-root</artifactId>
-        <version>8.1.4.0</version>
+        <version>8.1.4.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jahia-installer-package</artifactId>
@@ -254,7 +254,7 @@
                                     <name>product.version.nosnapshot</name>
                                     <value>${project.version}</value>
                                     <regex>-.*</regex>
-                                    <replacement />
+                                    <replacement/>
                                     <failIfNoMatch>false</failIfNoMatch>
                                 </configuration>
                             </execution>
@@ -270,15 +270,15 @@
                                 <configuration>
                                     <target>
                                         <path id="launch4j_classpath">
-                                            <pathelement location="${project.build.directory}/${launch4j.run.dir}/launch4j.jar" />
+                                            <pathelement location="${project.build.directory}/${launch4j.run.dir}/launch4j.jar"/>
                                         </path>
-                                        <chmod dir="${project.build.directory}/${launch4j.run.dir}/bin" perm="755" includes="**" />
-                                        <taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpathref="launch4j_classpath" />
+                                        <chmod dir="${project.build.directory}/${launch4j.run.dir}/bin" perm="755" includes="**"/>
+                                        <taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpathref="launch4j_classpath"/>
                                         <launch4j>
                                             <config outfile="${project.build.directory}/${installer.filename}.exe" jarPath="${project.build.directory}/${installer.filename}.jar" dontWrapJar="false" headerType="gui" priority="normal" downloadUrl="http://java.com/download" supportUrl="http://www.jahia.com" stayAlive="false" icon="${project.build.directory}/images/jahia.ico">
-                                                <jre minVersion="1.8.0" />
-                                                <splash file="${project.build.directory}/images/splash.bmp" waitForWindow="true" timeout="60" timeoutErr="true" />
-                                                <versionInfo fileVersion="${product.version.nosnapshot}" txtFileVersion="${product.version}" fileDescription="${product.name} - Community Distribution - Windows Installer" copyright="Copyright 2002-${year} ${jahia.manifest.vendor.name}" productVersion="${product.version.nosnapshot}" txtProductVersion="${product.version}" productName="${product.name} - Community Distribution" companyName="${jahia.manifest.vendor.name}" internalName="Jahia-CommunityDistribution" originalFilename="Jahia-CommunityDistribution.exe" />
+                                                <jre minVersion="1.8.0"/>
+                                                <splash file="${project.build.directory}/images/splash.bmp" waitForWindow="true" timeout="60" timeoutErr="true"/>
+                                                <versionInfo fileVersion="${product.version.nosnapshot}" txtFileVersion="${product.version}" fileDescription="${product.name} - Community Distribution - Windows Installer" copyright="Copyright 2002-${year} ${jahia.manifest.vendor.name}" productVersion="${product.version.nosnapshot}" txtProductVersion="${product.version}" productName="${product.name} - Community Distribution" companyName="${jahia.manifest.vendor.name}" internalName="Jahia-CommunityDistribution" originalFilename="Jahia-CommunityDistribution.exe"/>
                                             </config>
                                         </launch4j>
                                     </target>
@@ -518,8 +518,8 @@
                         </goals>
                         <configuration>
                             <target>
-                                <loadfile property="buildNumber-ce" srcFile="${project.build.directory}/marker/META-INF/jahia-impl-marker.txt" />
-                                <echo message="installer.filename=${product.fullname}-r${buildNumber-ce}" file="${project.build.directory}/version.properties" />
+                                <loadfile property="buildNumber-ce" srcFile="${project.build.directory}/marker/META-INF/jahia-impl-marker.txt"/>
+                                <echo message="installer.filename=${product.fullname}-r${buildNumber-ce}" file="${project.build.directory}/version.properties"/>
                             </target>
                         </configuration>
                     </execution>
@@ -529,36 +529,36 @@
                         <configuration>
                             <target>
                                 <java classname="org.jahia.izpack.ResourcesConverter">
-                                    <arg value="izpack.i18n.packsLang" />
+                                    <arg value="izpack.i18n.packsLang"/>
                                     <!--
                                     <arg value="en,fr,de,it,pt,es" />
                                     -->
-                                    <arg value="en,fr,de" />
-                                    <arg value="${project.build.directory}/izpack/i18n" />
+                                    <arg value="en,fr,de"/>
+                                    <arg value="${project.build.directory}/izpack/i18n"/>
                                     <classpath>
-                                        <path refid="maven.dependency.classpath" />
+                                        <path refid="maven.dependency.classpath"/>
                                     </classpath>
                                 </java>
                                 <java classname="org.jahia.izpack.ResourcesConverter">
-                                    <arg value="izpack.i18n.userInputLang" />
+                                    <arg value="izpack.i18n.userInputLang"/>
                                     <!--
                                     <arg value="en,fr,de,it,pt,es" />
                                     -->
-                                    <arg value="en,fr,de" />
-                                    <arg value="${project.build.directory}/izpack/i18n" />
+                                    <arg value="en,fr,de"/>
+                                    <arg value="${project.build.directory}/izpack/i18n"/>
                                     <classpath>
-                                        <path refid="maven.dependency.classpath" />
+                                        <path refid="maven.dependency.classpath"/>
                                     </classpath>
                                 </java>
                                 <java classname="org.jahia.izpack.ResourcesConverter">
-                                    <arg value="izpack.i18n.customLang" />
+                                    <arg value="izpack.i18n.customLang"/>
                                     <!--
                                     <arg value="en,fr,de,it,pt,es" />
                                     -->
-                                    <arg value="en,fr,de" />
-                                    <arg value="${project.build.directory}/izpack/i18n" />
+                                    <arg value="en,fr,de"/>
+                                    <arg value="${project.build.directory}/izpack/i18n"/>
                                     <classpath>
-                                        <path refid="maven.dependency.classpath" />
+                                        <path refid="maven.dependency.classpath"/>
                                     </classpath>
                                 </java>
                             </target>

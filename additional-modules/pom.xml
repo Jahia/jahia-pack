@@ -47,7 +47,7 @@
     <parent>
         <groupId>org.jahia.packages</groupId>
         <artifactId>jahia-packages-parent</artifactId>
-        <version>8.1.4.0</version>
+        <version>8.1.4.0-SNAPSHOT</version>
         <relativePath />
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -196,7 +196,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>dx-base-demo-templates</artifactId>
-            <version>3.3.0</version>
+            <version>3.3.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
 
@@ -209,8 +209,4 @@
             <scope>runtime</scope>
         </dependency>
     </dependencies>
-
-  <scm>
-    <tag>JAHIA_8_1_4_0</tag>
-  </scm>
 </project>
