@@ -181,7 +181,8 @@ jobs:
           mvn -U -ntp -s ../.github/maven.settings.xml -e \
             -Dparent.tag=${{steps.tags.outputs.parent_tag}} \
             -Dimage.tag=${{steps.tags.outputs.image_tag}} \
-            deploy
+            deploy \
+            -Pdocker-plugin
 
       - name: Store docker image
         shell: bash
