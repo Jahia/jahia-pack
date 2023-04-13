@@ -147,7 +147,16 @@ jobs:
           echo "OUTPUT: image_tag = ${{steps.tags.outputs.image_tag}}"
           echo "OUTPUT: parent_tag = ${{steps.tags.outputs.parent_tag}}"
 
-      # Series of steps only executed when pushing to master or to one of the maintenance branches
+      - name: mvn clean deploy
+        if: ${{ github.event_name != 'pull_request' }}
+        shell: bash
+        run: |
+          cd jahia-pack-repo
+          mvn -U -ntp -s .github/maven.settings.xml -U -e \
+              -Dparent.tag=`cat parent.tag` \
+              -Dimage.tag=`cat image.tag` \
+              clean deploy \
+              -Pdocker,docker-plugin,installer,windows-installer
       - uses: jahia/jahia-modules-action/docker-tags@v2
         if: ${{ github.event_name != 'pull_request' }}
         with:
@@ -155,26 +164,7 @@ jobs:
           docker_password: ${{ secrets.DOCKERHUB_PASSWORD }}
           version: ${{steps.tags.outputs.parent_tag}}
           repo: "jahia-opencore-dev"
-          dry-run: true
-      - name: mvn clean deploy
-        if: ${{ github.event_name != 'pull_request' }}
-        shell: bash
-        run: |
-          cd jahia-pack-repo
-          if [[ "${{ env.PARAM_VERSION_CLASSIFIER_SUFFIX }}" != "" ]]; then
-            mvn -U -ntp -s .github/maven.settings.xml -U -e \
-                -Dparent.tag=`cat parent.tag` \
-                -Dimage.tag=`cat image.tag` \
-                clean deploy \
-                -Pdocker,docker-plugin,installer,windows-installer
-          else
-            mvn -U -ntp -s .github/maven.settings.xml -U -e \
-              -Dparent.tag=`cat parent.tag` \
-              -Dimage.tag=`cat image.tag` \
-              -Dimage.alias=`echo "latest,${{ env.PARAM_VERSION_MAJOR }}.${{ env.PARAM_VERSION_MINOR}}.${{ env.PARAM_VERSION_HF}}${{ env.PARAM_VERSION_CLASSIFIER}},${{ env.PARAM_VERSION_MAJOR }}.${{ env.PARAM_VERSION_MINOR}}${{ env.PARAM_VERSION_CLASSIFIER}},${{ env.PARAM_VERSION_MAJOR }}${{ env.PARAM_VERSION_CLASSIFIER}}"` \
-              clean deploy \
-              -Pdocker,docker-plugin,installer,windows-installer
-          fi
+          dry-run: false
       - name: Build graalvm image
         shell: bash
         if: ${{ github.event_name == 'push' }}
