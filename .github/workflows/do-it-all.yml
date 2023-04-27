@@ -368,12 +368,12 @@ jobs:
         if: ${{ github.event_name != 'pull_request' }}
         shell: bash
         env:
-          DEPENDENCY_CHECK_SETTINGS: -DfailOnError=false -DskipProvidedScope=true -DskipTestScope=false
-            -DretireJsAnalyzerEnabled=false -DnodeAnalyzerEnabled=false -Dformats=HTML,JSON
+          DEPENDENCY_CHECK_SETTINGS: -DfailOnError=false -DskipProvidedScope=true -DskipTestScope=true -DskipSystemScope=true
+            -DnodeAnalyzerEnabled=false -DassemblyAnalyzerEnabled=false -Dformats=HTML,JSON
             -Dsonar.dependencyCheck.jsonReportPath=target/dependency-check-report.json
             -Dsonar.dependencyCheck.htmlReportPath=target/dependency-check-report.html
-            -DdataDirectory=/home/circleci/.owasp/dependency-check-data
-            -DsuppressionFile=.circleci/owasp-suppressions.xml
+            -DdataDirectory=~/.owasp/dependency-check-data
+            -DsuppressionFile=.github/owasp-suppressions.xml
         run: |
           cd jahia-pack-repo/
           if [[ "${{ steps.branch-name.outputs.current_branch }}" == "master" ]];
