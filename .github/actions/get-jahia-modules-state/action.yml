@@ -54,8 +54,12 @@ runs:
         echo "-----------------------------------------------------------------------"
         echo "Modules without changes:"
         echo "------------------------"
-        cat modules-with-no-changes.txt
+        if [[ -e modules-with-no-changes.txt ]]; then
+          cat modules-with-no-changes.txt
+        fi
         echo "   "
         echo "Modules with changes:"
         echo "---------------------"
-        cat modules-with-changes.txt
+        if [[ -e modules-with-changes.txt ]]; then
+          cat modules-with-changes.txt
+        fi
