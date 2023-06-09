@@ -48,13 +48,13 @@
     <parent>
         <groupId>org.jahia</groupId>
         <artifactId>jahia-parent</artifactId>
-        <version>8.1.6.0</version>
+        <version>8.1.7.0-SNAPSHOT</version>
         <relativePath>../jahia-root/jahia-parent/pom.xml</relativePath>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jahia-pack-root</artifactId>
-    <version>8.1.6.0</version>
+    <version>8.1.7.0-SNAPSHOT</version>
     <name>Jahia Package Project Root</name>
     <groupId>org.jahia.server</groupId>
     <packaging>pom</packaging>
@@ -64,7 +64,7 @@
         <connection>scm:git:git@github.com:Jahia/jahia-pack-private.git</connection>
         <developerConnection>scm:git:git@github.com:Jahia/jahia-pack-private.git</developerConnection>
         <url>https://github.com/Jahia/jahia-pack-private</url>
-        <tag>JAHIA_8_1_6_0</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <repositories>
