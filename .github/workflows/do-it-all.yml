@@ -18,20 +18,16 @@ on:
     inputs:
       parent_image_tag:
         description: "Tag used by the parent build, 'none' indicates the build has not been triggered from another repository"
-        default: 'none'
       target_branch:
         description: 'Target branch for the build step'
-        default: ''
   workflow_call:
     inputs:
       parent_image_tag:
         description: "Tag used by the parent build, 'none' indicates the build has not been triggered from another repository"
         type: string
-        default: 'none'
       target_branch:
         description: 'Target branch for the build step'
         type: string
-        default: ''
       workflows-ref:
         description: "ref of the centralized workflows repo that was specified in 'jobs.<name>.uses'"
         required: true
@@ -50,9 +46,9 @@ jobs:
       - name: Set environment variables from either input parameters or default env
         shell: bash
         run: |
-          INPUT_PARENT_IMAGE_TAG=${{ github.event.inputs.parent_image_tag }}
+          INPUT_PARENT_IMAGE_TAG=${{ inputs.parent_image_tag }}
           echo "ENV_PARENT_IMAGE_TAG=${INPUT_PARENT_IMAGE_TAG:-${{ env.PARENT_IMAGE_TAG }}}" >> $GITHUB_ENV
-          INPUT_TARGET_BRANCH=${{ github.event.inputs.target_branch }}
+          INPUT_TARGET_BRANCH=${{ inputs.target_branch }}
           echo "ENV_TARGET_BRANCH=${INPUT_TARGET_BRANCH:-${{ env.TARGET_BRANCH }}}" >> $GITHUB_ENV
       - id: vars
         name: Set output variables
@@ -75,10 +71,11 @@ jobs:
       jahia_version: ${{ steps.tags.outputs.jahia_version }}
       image_tag: ${{ steps.tags.outputs.image_tag }}
       parent_tag: ${{ steps.tags.outputs.parent_tag }}
+      current_branch: ${{ steps.tags.outputs.current_branch }}
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: ${{ inputs.workflows-ref }}
+          ref: ${{ needs.vars.outputs.target_branch }}
           repository: Jahia/jahia-pack-private
           path: jahia-pack-repo
           token: ${{ secrets.GH_API_TOKEN }}
@@ -138,9 +135,13 @@ jobs:
         name: Set Output variables
         run: |
           cd jahia-pack-repo
-          echo "::set-output name=jahia_version::`cat jahia.version`"
-          echo "::set-output name=image_tag::`cat image.tag`"
-          echo "::set-output name=parent_tag::`cat parent.tag`"
+          jahia_version=$(cat jahia.version)
+          echo "jahia_version=${jahia_version}" >> $GITHUB_OUTPUT
+          image_tag=$(cat image.tag)
+          echo "image_tag=${image_tag}" >> $GITHUB_OUTPUT
+          parent_tag=$(cat parent.tag)
+          echo "parent_tag=${parent_tag}" >> $GITHUB_OUTPUT
+          echo "current_branch=${{ steps.branch-name.outputs.current_branch}}" >> $GITHUB_OUTPUT
       - name: Display Output variables
         run: |
           echo "OUTPUT: jahia_version = ${{steps.tags.outputs.jahia_version}}"
