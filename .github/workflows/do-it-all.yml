@@ -166,17 +166,6 @@ jobs:
           version: ${{steps.tags.outputs.parent_tag}}
           repo: "jahia-opencore-dev"
           dry-run: false
-      - name: Build graalvm image
-        shell: bash
-        if: ${{ github.event_name == 'push' }}
-        run: |
-          cd jahia-pack-repo/docker-jahia/
-          mvn -U -ntp -s ../.github/maven.settings.xml -e \
-            -Dparent.tag=${{steps.tags.outputs.parent_tag}}-graalvm \
-            -Dimage.tag=${{steps.tags.outputs.image_tag}}-graalvm \
-            deploy \
-            -Pdocker-plugin \
-            -Dbamboo.buildNumber=${{ github.run_id }}
 
       # Series of steps only executed when in a PR
       - name: mvn clean install
