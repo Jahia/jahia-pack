@@ -386,30 +386,8 @@ jobs:
                 -Dsonar.branch.name=$CIRCLE_BRANCH $DEPENDENCY_CHECK_SETTINGS
           fi
 
-  prepare-jahia-ee-trigger:
-    runs-on: ubuntu-latest
-    outputs:
-      remote_branch: ${{ steps.exports.outputs.remote_branch }}
-    steps:
-      - name: Get branch name
-        id: branch-name
-        uses: tj-actions/branch-names@v6
-      - name: Preparing variables for remote branch
-        id: exports
-        shell: bash
-        run: |
-          # If we are in a PR, we use master for the remote branch
-          # If we are not in a PR, we use the current branch for the remote branch
-          if [[ "${{ github.event.pull_request.head.ref }}" == "" ]]; then
-            echo "Currently NOT in a PR (${{ github.event.pull_request.head.ref }}), using current branch: ${{ steps.branch-name.outputs.current_branch }} as remote branch"
-            echo "remote_branch=${{ steps.branch-name.outputs.current_branch }}" >> $GITHUB_OUTPUT
-          else
-            echo "Currently in a PR with head: ${{ github.event.pull_request.head.ref }}, using master as remote branch"
-            echo "remote_branch=master" >> $GITHUB_OUTPUT
-          fi
-
   call-workflow-jahia-ee:
-    needs: [ build, prepare-jahia-ee-trigger ]
+    needs: [ build ]
     uses: Jahia/jahia-ee/.github/workflows/do-it-all.yml@master
     if: ${{ github.event_name != 'pull_request' }}
     secrets: inherit
