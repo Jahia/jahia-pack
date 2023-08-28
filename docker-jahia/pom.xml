@@ -2,7 +2,7 @@
     <parent>
         <groupId>org.jahia.server</groupId>
         <artifactId>docker-distribution-parent</artifactId>
-        <version>8.1.6.1-SNAPSHOT</version>
+        <version>8.1.6.1</version>
         <relativePath />
     </parent>
     <artifactId>docker-jahia</artifactId>
@@ -39,4 +39,8 @@
             <type>yaml</type>
         </dependency>
     </dependencies>
+
+  <scm>
+    <tag>JAHIA_8_1_6_1</tag>
+  </scm>
 </project>
