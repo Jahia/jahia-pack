@@ -72,6 +72,7 @@ jobs:
       image_tag: ${{ steps.tags.outputs.image_tag }}
       parent_tag: ${{ steps.tags.outputs.parent_tag }}
       current_branch: ${{ steps.tags.outputs.current_branch }}
+      triggered_by: ${{ steps.tags.outputs.triggered_by }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -125,12 +126,15 @@ jobs:
             else
               echo `cat jahia.version`-"${{ steps.branch-name.outputs.current_branch }}" > image.tag
             fi
+            echo "Jahia/jahia-pack-private" > triggered_by.repo
           else
             echo "${{ needs.vars.outputs.parent_image_tag }}" > parent.tag
             cp parent.tag image.tag
+            echo "Jahia/jahia-private" > triggered_by.repo
           fi
           echo "Parent tag: `cat parent.tag`"
           echo "Image tag: `cat image.tag`"
+          echo "Triggered by repo: `cat triggered_by.repo`"
       - id: tags
         name: Set Output variables
         run: |
@@ -141,12 +145,15 @@ jobs:
           echo "image_tag=${image_tag}" >> $GITHUB_OUTPUT
           parent_tag=$(cat parent.tag)
           echo "parent_tag=${parent_tag}" >> $GITHUB_OUTPUT
+          triggered_by=$(cat triggered_by.repo)
+          echo "triggered_by=${triggered_by}" >> $GITHUB_OUTPUT
           echo "current_branch=${{ steps.branch-name.outputs.current_branch}}" >> $GITHUB_OUTPUT
       - name: Display Output variables
         run: |
           echo "OUTPUT: jahia_version = ${{steps.tags.outputs.jahia_version}}"
           echo "OUTPUT: image_tag = ${{steps.tags.outputs.image_tag}}"
           echo "OUTPUT: parent_tag = ${{steps.tags.outputs.parent_tag}}"
+          echo "OUTPUT: triggered_by = ${{steps.tags.outputs.triggered_by}}"
 
       - name: mvn clean deploy
         if: ${{ github.event_name != 'pull_request' }}
@@ -382,6 +389,7 @@ jobs:
     with:
       parent_image_tag: ${{ needs.build.outputs.image_tag }}
       target_branch: master
+      triggered_by: ${{ needs.build.outputs.triggered_by }}
       workflows-ref: master
 # If there are changes in jahia-ee, you need to specify the branch
 # Only do this for testing purposes, do not merge!
