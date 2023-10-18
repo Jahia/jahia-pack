@@ -385,13 +385,10 @@ jobs:
   call-workflow-jahia-ee:
     needs: [ build ]
     uses: Jahia/jahia-ee/.github/workflows/do-it-all.yml@master
+    if: ${{ github.event_name != 'pull_request' }}
     secrets: inherit
     with:
       parent_image_tag: ${{ needs.build.outputs.image_tag }}
-      target_branch: master
+      target_branch: ${{ github.ref_name }}
       triggered_by: ${{ needs.build.outputs.triggered_by }}
-      workflows-ref: master
-# If there are changes in jahia-ee, you need to specify the branch
-# Only do this for testing purposes, do not merge!
-#      target_branch: ${{ needs.build.outputs.current_branch }}
-#      workflows-ref: ${{ needs.build.outputs.current_branch }}
+      workflows-ref:  ${{ github.ref_name }}
