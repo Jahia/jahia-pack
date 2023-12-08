@@ -24,3 +24,4 @@ CATALINA_OPTS="$CATALINA_OPTS -Dkaraf.handle.sigterm=false"
 CATALINA_OPTS="$CATALINA_OPTS -Dlog4j2.formatMsgNoLookups=true"
 export CATALINA_OPTS
 export CATALINA_PID=$CATALINA_HOME/temp/tomcat.pid
+export JDK_JAVA_OPTIONS="$JDK_JAVA_OPTIONS --add-opens=java.base/java.net=ALL-UNNAMED"
