@@ -43,8 +43,9 @@
         please contact the sales department at sales@jahia.com.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <parent>
         <groupId>org.jahia.packages</groupId>
         <artifactId>jahia-packages-parent</artifactId>
@@ -55,11 +56,11 @@
     <artifactId>jahia-core-modules</artifactId>
     <name>Jahia Core Modules Package</name>
     <packaging>pom</packaging>
-    
+
     <properties>
         <package.sources.skip>true</package.sources.skip>
     </properties>
-    
+
     <repositories>
         <repository>
             <id>jahia-public</id>
@@ -74,18 +75,12 @@
             </snapshots>
         </repository>
     </repositories>
-    
+
     <dependencies>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>assets</artifactId>
             <version>8.1.0-SNAPSHOT</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jahia.modules</groupId>
-            <artifactId>channels</artifactId>
-            <version>8.0.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
