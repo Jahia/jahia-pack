@@ -115,6 +115,7 @@
     -->
 
     <!-- Define an AJP 1.3 Connector on port ${tomcat.ajpPort} -->
+    <!--
     <Connector protocol="AJP/1.3"
                port="${tomcat.ajpPort}"
                connectionTimeout="20000"
@@ -122,11 +123,6 @@
                redirectPort="${tomcat.sslPort}"
                maxThreads="300"
                secretRequired="false" />
-    <!--
-    <Connector protocol="AJP/1.3"
-               address="::1"
-               port="${tomcat.ajpPort}"
-               redirectPort="${tomcat.sslPort}" />
     -->
 
 
