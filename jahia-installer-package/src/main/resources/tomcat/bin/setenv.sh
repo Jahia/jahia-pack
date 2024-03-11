@@ -18,7 +18,21 @@ fi
 
 echo "Using JVM options: -Xms$JAHIA_JAVA_XMS -Xmx$JAHIA_JAVA_XMX $JAHIA_JAVA_OPTS"
 
-CATALINA_OPTS="$CATALINA_OPTS -server -Xms$JAHIA_JAVA_XMS -Xmx$JAHIA_JAVA_XMX -Djava.awt.headless=true -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintConcurrentLocks -Djava.net.preferIPv4Stack=true -Djavax.el.class-resolution.disableOnLowerCase=true $JAHIA_JAVA_OPTS"
+CATALINA_OPTS="$CATALINA_OPTS -server -Xms$JAHIA_JAVA_XMS -Xmx$JAHIA_JAVA_XMX -Djava.awt.headless=true -verbose:gc -Djava.net.preferIPv4Stack=true -Djavax.el.class-resolution.disableOnLowerCase=true"
+
+# GC setup
+CATALINA_OPTS="$CATALINA_OPTS -XX:+UseG1GC -XX:+DisableExplicitGC -XX:+UseStringDeduplication -XX:MaxTenuringThreshold=7"
+CATALINA_OPTS="$CATALINA_OPTS -XX:+ParallelRefProcEnabled -XshowSettings:vm -XX:+UnlockDiagnosticVMOptions "
+CATALINA_OPTS="$CATALINA_OPTS -XX:GuaranteedSafepointInterval=0 -XX:-UseBiasedLocking -XX:+UseCountedLoopSafepoints -XX:LoopStripMiningIter=100"
+CATALINA_OPTS="$CATALINA_OPTS -XX:+SafepointTimeout -XX:SafepointTimeoutDelay=1000"
+
+# Log/debug info
+CATALINA_OPTS="$CATALINA_OPTS -Xlog:gc*,gc+ref=debug,gc+heap=debug,gc+age=trace:file=gc-%p-%t.log:tags,uptime,time,level:filecount=10,filesize=20m"
+CATALINA_OPTS="$CATALINA_OPTS -Xlog:os+container=debug,pagesize=debug:file=os-container-pagesize-%p-%t.log:tags,uptime,time,level:filecount=10,filesize=20m"
+CATALINA_OPTS="$CATALINA_OPTS -Xlog:safepoint*:file=safepoints-%p-%t.log:tags,uptime,time,level:filecount=10,filesize=20m"
+CATALINA_OPTS="$CATALINA_OPTS -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintConcurrentLocks"
+CATALINA_OPTS="$CATALINA_OPTS $JAHIA_JAVA_OPTS"
+
 CATALINA_OPTS="$CATALINA_OPTS -Dderby.system.home=%{derby.home.unix}"
 CATALINA_OPTS="$CATALINA_OPTS -Dkaraf.handle.sigterm=false"
 CATALINA_OPTS="$CATALINA_OPTS -Dlog4j2.formatMsgNoLookups=true"
