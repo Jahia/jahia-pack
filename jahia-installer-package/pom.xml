@@ -469,7 +469,7 @@
                                     <outputDirectory>
                                         ${project.build.directory}/artifacts/jahia-data/patches/provisioning
                                     </outputDirectory>
-                                    <destFileName>3.1-jahia-additional-modules.contextInitialized.yaml</destFileName>
+                                    <destFileName>3.1-jahia-additional-modules.yaml</destFileName>
                                 </artifactItem>
                             </artifactItems>
                             <stripVersion>true</stripVersion>
