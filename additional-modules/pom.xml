@@ -97,7 +97,7 @@
         <dependency>
             <groupId>org.jahia.modules.npm</groupId>
             <artifactId>luxe-jahia-demo</artifactId>
-            <version>0.1.0-SNAPSHOT</version>
+            <version>0.1.0</version>
             <type>tgz</type>
         </dependency>
         <dependency>
