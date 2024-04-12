@@ -43,14 +43,13 @@
         please contact the sales department at sales@jahia.com.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
         <groupId>org.jahia.packages</groupId>
         <artifactId>jahia-packages-parent</artifactId>
-        <version>8.2.0.0-SNAPSHOT</version>
-        <relativePath/>
+        <version>8.2.0.0</version>
+        <relativePath />
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jahia-core-modules</artifactId>
@@ -80,31 +79,31 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>assets</artifactId>
-            <version>8.1.0-SNAPSHOT</version>
+            <version>8.1.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>ckeditor</artifactId>
-            <version>4.21.0-jahia8-7-SNAPSHOT</version>
+            <version>4.21.0-jahia8-7</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>jahia-ui-root</artifactId>
-            <version>1.9.0-SNAPSHOT</version>
+            <version>1.9.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>jahia-administration</artifactId>
-            <version>1.9.0-SNAPSHOT</version>
+            <version>1.9.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>jahia-user-entries</artifactId>
-            <version>1.6.0-SNAPSHOT</version>
+            <version>1.6.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -116,13 +115,13 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>jahia-dashboard</artifactId>
-            <version>1.9.0-SNAPSHOT</version>
+            <version>1.9.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>jahia-dashboard-docs</artifactId>
-            <version>1.3.0-SNAPSHOT</version>
+            <version>1.3.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -134,25 +133,25 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>jcontent</artifactId>
-            <version>3.0.0-SNAPSHOT</version>
+            <version>3.0.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>contentRetrieval</artifactId>
-            <version>8.2.0-SNAPSHOT</version>
+            <version>8.2.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>default</artifactId>
-            <version>8.7.0-SNAPSHOT</version>
+            <version>8.7.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>app-shell</artifactId>
-            <version>3.1.0-SNAPSHOT</version>
+            <version>3.1.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -164,25 +163,25 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>external-provider</artifactId>
-            <version>4.7.0-SNAPSHOT</version>
+            <version>4.7.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>external-provider-modules</artifactId>
-            <version>4.7.0-SNAPSHOT</version>
+            <version>4.7.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>external-provider-users-groups</artifactId>
-            <version>2.4.0-SNAPSHOT</version>
+            <version>2.4.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>external-provider-vfs</artifactId>
-            <version>4.7.0-SNAPSHOT</version>
+            <version>4.7.0</version>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
@@ -193,13 +192,13 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>graphql-dxm-provider</artifactId>
-            <version>3.0.0-SNAPSHOT</version>
+            <version>3.0.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>security-filter-tools</artifactId>
-            <version>2.5.0-SNAPSHOT</version>
+            <version>2.5.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -212,7 +211,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>jquery</artifactId>
-            <version>8.2.0-SNAPSHOT</version>
+            <version>8.2.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -224,7 +223,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>module-manager</artifactId>
-            <version>2.9.0-SNAPSHOT</version>
+            <version>2.9.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -236,7 +235,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>rolesmanager</artifactId>
-            <version>8.6.0-SNAPSHOT</version>
+            <version>8.6.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -248,19 +247,19 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>seo</artifactId>
-            <version>8.2.0-SNAPSHOT</version>
+            <version>8.2.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>serverSettings</artifactId>
-            <version>9.8.0-SNAPSHOT</version>
+            <version>9.8.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>siteSettings</artifactId>
-            <version>8.8.0-SNAPSHOT</version>
+            <version>8.8.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -273,7 +272,7 @@
             <!-- New Vanity URL dashboard -->
             <groupId>org.jahia.modules</groupId>
             <artifactId>site-settings-seo</artifactId>
-            <version>5.0.0-SNAPSHOT</version>
+            <version>5.0.0</version>
             <type>jar</type>
             <scope>runtime</scope>
         </dependency>
@@ -286,25 +285,25 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>tasks</artifactId>
-            <version>8.2.0-SNAPSHOT</version>
+            <version>8.2.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>templates-system</artifactId>
-            <version>9.1.0-SNAPSHOT</version>
+            <version>9.1.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>tools</artifactId>
-            <version>5.0.0-SNAPSHOT</version>
+            <version>5.0.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>userDashboard</artifactId>
-            <version>8.6.0-SNAPSHOT</version>
+            <version>8.6.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -322,35 +321,39 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>jahia-csrf-guard</artifactId>
-            <version>4.0.0-SNAPSHOT</version>
+            <version>4.0.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>ldap</artifactId>
-            <version>4.7.0-SNAPSHOT</version>
+            <version>4.7.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>personal-api-tokens</artifactId>
-            <version>1.5.0-SNAPSHOT</version>
+            <version>1.5.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>server-availability-manager</artifactId>
-            <version>3.1.0-SNAPSHOT</version>
+            <version>3.1.0</version>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>npm-modules-engine</artifactId>
-            <version>0.1.0-SNAPSHOT</version>
+            <version>0.1.0</version>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>legacy-default-components</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
+
+  <scm>
+    <tag>JAHIA_8_2_0_0</tag>
+  </scm>
 </project>
