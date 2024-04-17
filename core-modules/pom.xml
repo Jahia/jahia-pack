@@ -98,7 +98,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>jahia-administration</artifactId>
-            <version>1.9.0</version>
+            <version>1.9.1</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -134,7 +134,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>jcontent</artifactId>
-            <version>3.0.0</version>
+            <version>3.0.1-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -328,7 +328,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>ldap</artifactId>
-            <version>4.7.0</version>
+            <version>4.7.1</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
