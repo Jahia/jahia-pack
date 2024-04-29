@@ -345,7 +345,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>npm-modules-engine</artifactId>
-            <version>0.2.0-SNAPSHOT</version>
+            <version>0.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
