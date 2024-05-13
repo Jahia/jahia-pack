@@ -85,13 +85,13 @@
         <dependency>
             <groupId>org.jahia.modules.npm</groupId>
             <artifactId>luxe-jahia-demo</artifactId>
-            <version>0.1.0</version>
+            <version>0.2.0</version>
             <type>tgz</type>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>luxe-prepackaged-website</artifactId>
-            <version>0.1.0</version>
+            <version>0.2.0</version>
         </dependency>
     </dependencies>
 </project>
