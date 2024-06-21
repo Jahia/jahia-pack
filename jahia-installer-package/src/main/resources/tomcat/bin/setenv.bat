@@ -29,6 +29,15 @@ set CATALINA_OPTS=%CATALINA_OPTS% -Xlog:gc*,gc+ref=debug,gc+heap=debug,gc+age=tr
 set CATALINA_OPTS=%CATALINA_OPTS% -Xlog:os+container=debug,pagesize=debug:file=os-container-pagesize-%%p-%%t.log:tags,uptime,time,level:filecount=10,filesize=20m
 set CATALINA_OPTS=%CATALINA_OPTS% -Xlog:safepoint*:file=safepoints-%%p-%%t.log:tags,uptime,time,level:filecount=10,filesize=20m
 set CATALINA_OPTS=%CATALINA_OPTS% -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintConcurrentLocks
+
+:: Set JVM modules access for hazelcast
+set CATALINA_OPTS=%CATALINA_OPTS% --add-modules java.se
+set CATALINA_OPTS=%CATALINA_OPTS% --add-exports java.base/jdk.internal.ref=ALL-UNNAMED
+set CATALINA_OPTS=%CATALINA_OPTS% --add-opens java.base/java.lang=ALL-UNNAMED
+set CATALINA_OPTS=%CATALINA_OPTS% --add-opens java.base/java.nio=ALL-UNNAMED
+set CATALINA_OPTS=%CATALINA_OPTS% --add-opens java.base/sun.nio.ch=ALL-UNNAMED
+set CATALINA_OPTS=%CATALINA_OPTS% --add-opens java.management/sun.management=ALL-UNNAMED
+set CATALINA_OPTS=%CATALINA_OPTS% --add-opens jdk.management/com.sun.management.internal=ALL-UNNAMED
 set CATALINA_OPTS=%CATALINA_OPTS% %JAHIA_JAVA_OPTS%
 
 set CATALINA_OPTS=%CATALINA_OPTS% -Dderby.system.home="%{derby.home.win}"
