@@ -256,7 +256,7 @@ jobs:
             jahia-pack-repo/image.tag
       - uses: actions/upload-artifact@v4
         with:
-          name: jahia-docker-artifacts
+          name: jahia-pack-docker-artifacts
           retention-days: 1
           path: |
             jahia-pack-repo/image.tar
@@ -283,7 +283,7 @@ jobs:
           token: ${{ secrets.GH_API_TOKEN }}
       - uses: actions/download-artifact@v4
         with:
-          name: jahia-docker-artifacts
+          name: jahia-pack-docker-artifacts
       - name: Load docker image
         shell: bash
         run: |
@@ -321,7 +321,7 @@ jobs:
           incident_google_client_email: ${{ secrets.INCIDENT_GOOGLE_CLIENT_EMAIL }}
           incident_google_api_key_base64: ${{ secrets.INCIDENT_GOOGLE_PRIVATE_KEY_BASE64 }}
           zencrepes_secret: ${{ secrets.ZENCREPES_WEBHOOK_SECRET }}
-          build_artifacts: jahia-docker-artifacts
+          build_artifacts: jahia-pack-docker-artifacts
 
   sonar:
     runs-on: ubuntu-latest
