@@ -10,7 +10,7 @@ runs:
   using: "composite"
   steps:
     - name: Save/Restore dependencies from cache
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         path: |

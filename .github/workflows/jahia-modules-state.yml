@@ -7,7 +7,7 @@ jobs:
   get-jahia-modules-state:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/get-jahia-modules-state
         with:
           github_token: ${{ secrets.GH_API_TOKEN }}
