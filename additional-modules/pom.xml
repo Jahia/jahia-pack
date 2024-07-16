@@ -79,7 +79,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>richtext-ckeditor5</artifactId>
-            <version>0.1.0</version>
+            <version>0.3.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
