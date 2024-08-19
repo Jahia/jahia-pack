@@ -98,7 +98,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>jahia-administration</artifactId>
-            <version>1.10.0-SNAPSHOT</version>
+            <version>1.9.1</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -116,7 +116,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>jahia-dashboard</artifactId>
-            <version>1.10.0-SNAPSHOT</version>
+            <version>1.9.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
