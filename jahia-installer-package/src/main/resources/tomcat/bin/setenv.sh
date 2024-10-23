@@ -22,5 +22,10 @@ CATALINA_OPTS="$CATALINA_OPTS -server -Xms$JAHIA_JAVA_XMS -Xmx$JAHIA_JAVA_XMX -D
 CATALINA_OPTS="$CATALINA_OPTS -Dderby.system.home=%{derby.home.unix}"
 CATALINA_OPTS="$CATALINA_OPTS -Dkaraf.handle.sigterm=false"
 CATALINA_OPTS="$CATALINA_OPTS -Dlog4j2.formatMsgNoLookups=true"
+
+
+# Disable recycling of facade objects (Tomcat will create new facade object for each request.)
+CATALINA_OPTS="$CATALINA_OPTS -Dorg.apache.catalina.connector.RECYCLE_FACADES=false"
+
 export CATALINA_OPTS
 export CATALINA_PID=$CATALINA_HOME/temp/tomcat.pid
