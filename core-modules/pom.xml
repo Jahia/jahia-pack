@@ -116,7 +116,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>jahia-dashboard</artifactId>
-            <version>1.10.0</version>
+            <version>1.11.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
