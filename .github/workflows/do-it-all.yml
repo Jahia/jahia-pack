@@ -296,7 +296,7 @@ jobs:
           echo "JAHIA_IMAGE=${JAHIA_IMAGE}" >> $GITHUB_ENV
       - uses: jahia/jahia-modules-action/integration-tests@v2
         with:
-          module_id: jahia-ui-root
+          module_id: jahia-pack-private
           testrail_project: Jahia
           tests_manifest: provisioning-manifest-build.yml
           tests_path: jahia-pack-repo/docker-tests/
