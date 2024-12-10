@@ -42,7 +42,6 @@
 		<propertyfile file="${install.path}/logs/install.properties">
 			<entry key="databasePassword" value="***"/>
 			<entry key="jahiaRootPassword" value="***"/>
-			<entry key="jahiaToolManagerPassword" value="***"/>
 			<entry key="mailServer" value="***"/>
 		</propertyfile>
 	</target>
