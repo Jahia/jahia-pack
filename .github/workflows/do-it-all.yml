@@ -74,6 +74,9 @@ jobs:
       current_branch: ${{ steps.tags.outputs.current_branch }}
       triggered_by: ${{ steps.tags.outputs.triggered_by }}
     steps:
+      - name: Set JDK 11
+        run: |
+          echo "JAVA_HOME=$JAVA_HOME_11_X64" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
         with:
           ref: ${{ needs.vars.outputs.target_branch }}
