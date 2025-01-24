@@ -80,7 +80,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>assets</artifactId>
-            <version>8.2.0-SNAPSHOT</version>
+            <version>8.2.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
