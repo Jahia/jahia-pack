@@ -98,7 +98,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>jahia-administration</artifactId>
-            <version>1.10.0</version>
+            <version>1.11.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
