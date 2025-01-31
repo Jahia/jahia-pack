@@ -116,13 +116,13 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>jahia-dashboard</artifactId>
-            <version>1.11.0-SNAPSHOT</version>
+            <version>1.11.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>jahia-dashboard-docs</artifactId>
-            <version>1.4.0-SNAPSHOT</version>
+            <version>1.4.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
