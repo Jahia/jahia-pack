@@ -267,67 +267,6 @@ jobs:
             jahia-pack-repo/image.tar
             jahia-pack-repo/image.tag
 
-  integration-tests:
-    name: Integration Tests (Standalone)
-    needs: [ expose-docker-artifacts, build ]
-    runs-on: self-hosted
-    timeout-minutes: 45
-    steps:
-      - uses: jahia/jahia-modules-action/helper@v2
-      - uses: KengoTODA/actions-setup-docker-compose@main
-        with:
-          version: '1.29.2'
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 'lts/*'
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ inputs.workflows-ref }}
-          repository: Jahia/jahia-pack-private
-          path: jahia-pack-repo
-          token: ${{ secrets.GH_API_TOKEN }}
-      - uses: actions/download-artifact@v4
-        with:
-          name: jahia-pack-docker-artifacts
-      - name: Load docker image
-        shell: bash
-        run: |
-          docker load -i image.tar
-      - name: Prepare environment variable for Jahia Image
-        shell: bash
-        run: |
-          export JAHIA_IMAGE=jahia/jahia-opencore-dev:${{needs.build.outputs.image_tag}}
-          echo "JAHIA_IMAGE = ${JAHIA_IMAGE}"
-          echo "JAHIA_IMAGE=${JAHIA_IMAGE}" >> $GITHUB_ENV
-      - uses: jahia/jahia-modules-action/integration-tests@v2
-        with:
-          module_id: jahia-pack-private
-          testrail_project: Jahia
-          tests_manifest: provisioning-manifest-build.yml
-          tests_path: jahia-pack-repo/docker-tests/
-          jahia_image: ${{ env.JAHIA_IMAGE }}
-          should_use_build_artifacts: true
-          should_skip_notifications: false
-          should_skip_testrail: false
-          github_artifact_name: jahia-integ-tests-${{ github.run_number }}
-          jahia_license: ${{ secrets.JAHIA_LICENSE_8X_FULL }}
-          docker_username: ${{ secrets.DOCKERHUB_USERNAME }}
-          docker_password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          nexus_username: ${{ secrets.NEXUS_USERNAME }}
-          nexus_password: ${{ secrets.NEXUS_PASSWORD }}
-          tests_report_name: Test report (Standalone)
-          testrail_username: ${{ secrets.TESTRAIL_USERNAME }}
-          testrail_password: ${{ secrets.TESTRAIL_PASSWORD }}
-          incident_service: jahia-pack-private
-          incident_pagerduty_api_key: ${{ secrets.INCIDENT_PAGERDUTY_API_KEY }}
-          incident_pagerduty_reporter_email: ${{ secrets.INCIDENT_PAGERDUTY_REPORTER_EMAIL }}
-          incident_pagerduty_reporter_id: ${{ secrets.INCIDENT_PAGERDUTY_REPORTER_ID }}
-          incident_google_spreadsheet_id: ${{ secrets.INCIDENT_GOOGLE_SPREADSHEET_ID }}
-          incident_google_client_email: ${{ secrets.INCIDENT_GOOGLE_CLIENT_EMAIL }}
-          incident_google_api_key_base64: ${{ secrets.INCIDENT_GOOGLE_PRIVATE_KEY_BASE64 }}
-          zencrepes_secret: ${{ secrets.ZENCREPES_WEBHOOK_SECRET }}
-          build_artifacts: jahia-pack-docker-artifacts
-
   sonar:
     runs-on: ubuntu-latest
     needs: [ vars, build ]

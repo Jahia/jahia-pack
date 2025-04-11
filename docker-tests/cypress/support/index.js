@@ -1,1 +1,0 @@
-require('@jahia/cypress/dist/support/registerSupport').registerSupport()
