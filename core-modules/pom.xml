@@ -152,7 +152,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>app-shell</artifactId>
-            <version>3.3.0</version>
+            <version>3.4.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
