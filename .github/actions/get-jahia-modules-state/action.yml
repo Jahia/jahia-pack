@@ -20,7 +20,7 @@ runs:
       shell: bash
       run: |
         mvn -s ./.github/maven.settings.xml dependency:list -DforceStdout -DincludeGroupIds=org.jahia.modules -DoutputFile=deps-jahia.txt --no-transfer-progress
-        declare -A repo_exceptions=( ['bootstrap3-components']='bootstrap3' ['bootstrap3-core']='bootstrap3' ['dx-base-demo-components']='jahia-base-demo-components' ['dx-base-demo-core']='jahia-base-demo-core' ['dx-base-demo-templates']='jahia-base-demo-templates' ['external-provider-vfs']='external-provider' ['external-provider-modules']='external-provider' ['graphql-dxm-provider']='graphql-core' ['ldap']='ldap-provider')
+        declare -A repo_exceptions=( ['bootstrap3-components']='bootstrap3' ['bootstrap3-core']='bootstrap3' ['dx-base-demo-components']='jahia-base-demo-components' ['dx-base-demo-core']='jahia-base-demo-core' ['dx-base-demo-templates']='jahia-base-demo-templates' ['external-provider-modules']='external-provider' ['graphql-dxm-provider']='graphql-core' ['ldap']='ldap-provider')
         grep -Eiv "(^$|.*SNAPSHOT|The following files)" core-modules/deps-jahia.txt > modules.txt || true
         grep -Eiv "(^$|.*SNAPSHOT|The following files)" additional-modules/deps-jahia.txt >> modules.txt || true
         if [[ $(wc -l <modules.txt) -gt 0  ]]; then
