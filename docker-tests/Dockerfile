@@ -1,6 +1,6 @@
-FROM cypress/base:16.5.0
+FROM cypress/base:16
 
-RUN apt-get update && apt-get install -y jq
+RUN apt-get update && apt-get install -y jq curl
 
 RUN adduser --disabled-password jahians
 
@@ -16,6 +16,6 @@ RUN CI=true yarn install
 
 COPY --chown=jahians:jahians . /home/jahians
 
-RUN CI=true /home/jahians/node_modules/.bin/cypress install
+RUN CI=true npx cypress install
 
 CMD ["/bin/bash", "-c", "/home/jahians/env.run.sh"]
