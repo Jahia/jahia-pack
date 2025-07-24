@@ -47,12 +47,12 @@
     <parent>
         <groupId>org.jahia.packages</groupId>
         <artifactId>jahia-packages-parent</artifactId>
-        <version>8.2.2.0-SNAPSHOT</version>
+        <version>8.2.2.0</version>
         <relativePath />
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jahia-additional-modules</artifactId>
-  <version>8.2.2.0-SNAPSHOT</version>
+  <version>8.2.2.0</version>
     <name>Jahia Additional Modules Package</name>
     <packaging>pom</packaging>
 
@@ -88,4 +88,8 @@
             <version>0.2.0</version>
         </dependency>
     </dependencies>
+
+  <scm>
+    <tag>JAHIA_8_2_2_0</tag>
+  </scm>
 </project>
