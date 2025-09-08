@@ -334,7 +334,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>personal-api-tokens</artifactId>
-            <version>1.6.0-SNAPSHOT</version>
+            <version>1.6.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
