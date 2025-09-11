@@ -109,6 +109,11 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Store project version
         shell: bash
         run: |
@@ -170,14 +175,19 @@ jobs:
               -Dimage.tag=`cat image.tag` \
               clean deploy \
               -Pdocker,docker-plugin,installer,windows-installer
-      - uses: jahia/jahia-modules-action/docker-tags@v2
+      - name: Generate Docker shorthand tags
+        uses: fgerthoffert/actions-docker-shorthand-tags@main
         if: ${{ github.event_name != 'pull_request' }}
         with:
-          docker_username: ${{ secrets.DOCKERHUB_USERNAME }}
-          docker_password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          version: ${{steps.tags.outputs.parent_tag}}
-          repo: "jahia-opencore-dev"
-          dry-run: false
+          src_registry: github
+          src_repository: jahia/jahia-opencore-dev
+          src_username: ${{ github.actor }}
+          src_secret: ${{ secrets.GITHUB_TOKEN }}
+          dst_registry: github
+          dst_repository: jahia/jahia-opencore-dev
+          dst_username: ${{ github.actor }}
+          dst_secret: ${{ secrets.GITHUB_TOKEN }}
+          dry_run: false
 
       # Series of steps only executed when in a PR
       - name: mvn clean install
@@ -206,7 +216,7 @@ jobs:
         shell: bash
         run: |
           docker images ls
-          docker save -o jahia-pack-repo/image.tar jahia/jahia-opencore-dev:${{steps.tags.outputs.image_tag}}
+          docker save -o jahia-pack-repo/image.tar ghcr.io/jahia/jahia-opencore-dev:${{steps.tags.outputs.image_tag}}
 
       - name: Copy artifacts
         if: ${{ needs.vars.outputs.parent_image_tag == 'none' }}
