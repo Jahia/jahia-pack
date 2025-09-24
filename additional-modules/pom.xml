@@ -86,13 +86,13 @@
         <dependency>
             <groupId>org.jahia.modules.javascript</groupId>
             <artifactId>luxe-jahia-demo</artifactId>
-            <version>0.9.0-SNAPSHOT</version>
+            <version>0.10.0-SNAPSHOT</version>
             <type>tgz</type>
         </dependency>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>luxe-prepackaged-website</artifactId>
-            <version>0.9.0-SNAPSHOT</version>
+            <version>0.10.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>
