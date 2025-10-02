@@ -20,8 +20,8 @@ set CATALINA_OPTS=%CATALINA_OPTS% -Dsun.io.useCanonCaches=false -server -Xms%JAH
 
 :: GC settings
 set CATALINA_OPTS=%CATALINA_OPTS% -XX:+UseG1GC -XX:+DisableExplicitGC -XX:+UseStringDeduplication -XX:MaxTenuringThreshold=7
-set CATALINA_OPTS=%CATALINA_OPTS% -XX:+ParallelRefProcEnabled -XshowSettings:vm -XX:+UnlockDiagnosticVMOptions 
-set CATALINA_OPTS=%CATALINA_OPTS% -XX:GuaranteedSafepointInterval=0 -XX:-UseBiasedLocking -XX:+UseCountedLoopSafepoints -XX:LoopStripMiningIter=100
+set CATALINA_OPTS=%CATALINA_OPTS% -XX:+ParallelRefProcEnabled -XshowSettings:vm -XX:+UnlockDiagnosticVMOptions
+set CATALINA_OPTS=%CATALINA_OPTS% -XX:GuaranteedSafepointInterval=0 -XX:+UseCountedLoopSafepoints -XX:LoopStripMiningIter=100
 set CATALINA_OPTS=%CATALINA_OPTS% -XX:+SafepointTimeout -XX:SafepointTimeoutDelay=1000
 
 :: Log/debug info
@@ -41,7 +41,7 @@ set CATALINA_OPTS=%CATALINA_OPTS% -Djavax.xml.validation.SchemaFactory:http://ww
 set CATALINA_OPTS=%CATALINA_OPTS% -Dorg.apache.catalina.connector.RECYCLE_FACADES=false
 
 :: Module system flags better use JDK_JAVA_OPTIONS (processed at JVM startup)
-:: Set JVM modules access for some modules specific to Jahia/Karaf/GraalVM/etc...
+:: Set JVM modules access for some modules specific to Jahia/Karaf/etc...
 set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-modules=java.se
 set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-opens=java.base/jdk.internal.loader=ALL-UNNAMED
 set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-opens=java.base/java.net=ALL-UNNAMED
@@ -51,13 +51,19 @@ set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-opens=java.base/sun.nio.ch=ALL-UNN
 set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-opens=java.management/sun.management=ALL-UNNAMED
 set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-opens=jdk.management/com.sun.management.internal=ALL-UNNAMED
 set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=java.base/jdk.internal.ref=ALL-UNNAMED
-set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=org.graalvm.truffle/com.oracle.truffle.api.nodes=ALL-UNNAMED
-set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=org.graalvm.truffle/com.oracle.truffle.api.instrumentation=ALL-UNNAMED
-set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=org.graalvm.truffle/com.oracle.truffle.api.dsl=ALL-UNNAMED
-set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=org.graalvm.truffle/com.oracle.truffle.api=ALL-UNNAMED
-set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=org.graalvm.truffle/com.oracle.truffle.api.exception=ALL-UNNAMED
-set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=org.graalvm.truffle/com.oracle.truffle.api.frame=ALL-UNNAMED
-set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=org.graalvm.truffle/com.oracle.truffle.api.object=ALL-UNNAMED
-set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=org.graalvm.truffle/com.oracle.truffle.api.interop=ALL-UNNAMED
-set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=org.graalvm.truffle/com.oracle.truffle.api.strings=ALL-UNNAMED
-set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=org.graalvm.truffle/com.oracle.truffle.api.library=ALL-UNNAMED
+
+:: GraalVM specific variables, to be set only when GraalVM JDK is used
+if /I "%GRAALVM%"=="true" (
+    set CATALINA_OPTS=%CATALINA_OPTS% -XX:-UseBiasedLocking
+    set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=org.graalvm.truffle/com.oracle.truffle.api.nodes=ALL-UNNAMED
+    set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=org.graalvm.truffle/com.oracle.truffle.api.instrumentation=ALL-UNNAMED
+    set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=org.graalvm.truffle/com.oracle.truffle.api.dsl=ALL-UNNAMED
+    set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=org.graalvm.truffle/com.oracle.truffle.api=ALL-UNNAMED
+    set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=org.graalvm.truffle/com.oracle.truffle.api.exception=ALL-UNNAMED
+    set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=org.graalvm.truffle/com.oracle.truffle.api.frame=ALL-UNNAMED
+    set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=org.graalvm.truffle/com.oracle.truffle.api.object=ALL-UNNAMED
+    set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=org.graalvm.truffle/com.oracle.truffle.api.interop=ALL-UNNAMED
+    set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=org.graalvm.truffle/com.oracle.truffle.api.strings=ALL-UNNAMED
+    set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=org.graalvm.truffle/com.oracle.truffle.api.library=ALL-UNNAMED
+)
+del "%JAVA_VENDOR_VERSION_FILE%" 2>nul
