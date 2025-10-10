@@ -76,13 +76,12 @@
     </repositories>
 
     <dependencies>
-        <!-- Uncomment the following dependencies when we have a stable release version of the CKEditor 5
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>richtext-ckeditor5</artifactId>
-            <version>0.1.0</version>
+            <version>1.0.0-beta-1</version>
             <scope>runtime</scope>
-        </dependency>-->
+        </dependency>
         <dependency>
             <groupId>org.jahia.modules.javascript</groupId>
             <artifactId>luxe-jahia-demo</artifactId>
