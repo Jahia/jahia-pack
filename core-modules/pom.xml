@@ -128,7 +128,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>jahia-repository-explorer</artifactId>
-            <version>1.5.0</version>
+            <version>1.6.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -334,7 +334,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>personal-api-tokens</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
