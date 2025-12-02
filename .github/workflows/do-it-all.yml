@@ -327,7 +327,7 @@ jobs:
             -Dsonar.dependencyCheck.jsonReportPath=target/dependency-check-report.json
             -Dsonar.dependencyCheck.htmlReportPath=target/dependency-check-report.html
             -DdataDirectory=~/.owasp/dependency-check-data
-            -DsuppressionFile=https://raw.githubusercontent.com/Jahia/jahia/master/.owasp/suppressions.xml,.owasp/custom-suppressions.xml
+            -DsuppressionFiles=https://raw.githubusercontent.com/Jahia/jahia/master/.owasp/suppressions.xml,.owasp/custom-suppressions.xml
         run: |
           cd jahia-pack-repo/
           if [[ "${{ steps.branch-name.outputs.current_branch }}" == "master" ]];
