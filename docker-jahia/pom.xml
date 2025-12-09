@@ -13,6 +13,7 @@
     <properties>
         <!-- this should be :       <image.repo>jahia</image.repo>-->
         <image.repo>jahia-opencore</image.repo>
+        <base.image.repo>jahia-core</base.image.repo>
     </properties>
 
     <repositories>
