@@ -86,7 +86,7 @@
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>ckeditor</artifactId>
-            <version>4.21.0-jahia8-8-SNAPSHOT</version>
+            <version>4.21.0-jahia8-8</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
