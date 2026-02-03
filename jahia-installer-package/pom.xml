@@ -409,17 +409,6 @@
                                     <outputDirectory>${project.build.directory}/artifacts/jdbc-drivers</outputDirectory>
                                     <excludes>META-INF/**</excludes>
                                 </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.jahia.server</groupId>
-                                    <artifactId>shared-libraries</artifactId>
-                                    <version>${project.version}</version>
-                                    <classifier>all</classifier>
-                                    <type>zip</type>
-                                    <overWrite>false</overWrite>
-                                    <outputDirectory>${project.build.directory}/artifacts/shared-libraries
-                                    </outputDirectory>
-                                    <excludes>META-INF/**</excludes>
-                                </artifactItem>
                             </artifactItems>
                         </configuration>
                     </execution>
