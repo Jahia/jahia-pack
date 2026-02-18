@@ -66,4 +66,3 @@ if /I "%GRAALVM%"=="true" (
     set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=org.graalvm.truffle/com.oracle.truffle.api.strings=ALL-UNNAMED
     set JDK_JAVA_OPTIONS=%JDK_JAVA_OPTIONS% --add-exports=org.graalvm.truffle/com.oracle.truffle.api.library=ALL-UNNAMED
 )
-del "%JAVA_VENDOR_VERSION_FILE%" 2>nul
