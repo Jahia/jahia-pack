@@ -10,7 +10,7 @@ runs:
   using: "composite"
   steps:
     - name: Save/Restore dependencies from cache
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         path: |
@@ -24,7 +24,7 @@ runs:
         grep -Eiv "(^$|.*SNAPSHOT|The following files)" core-modules/deps-jahia.txt > modules.txt || true
         grep -Eiv "(^$|.*SNAPSHOT|The following files)" additional-modules/deps-jahia.txt >> modules.txt || true
         if [[ $(wc -l <modules.txt) -gt 0  ]]; then
-          sed -i -r 's/\s+org\.jahia\.modules:([-\.a-zA-Z0-9]+):[a-z]+:([0-9\.]+[a-z0-9\-]*):[a-z]+/\1/g' modules.txt
+          sed -i -r 's/\s+org\.jahia\.modules.*:([-\.a-zA-Z0-9]+):[a-z]+:([0-9\.]+[a-z0-9\-]*):[a-z]+/\1/g' modules.txt
           declare -a versionModules
           mapfile -t versionModules < modules.txt
           for module in "${versionModules[@]}"
