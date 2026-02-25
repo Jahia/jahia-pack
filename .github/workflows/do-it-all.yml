@@ -95,7 +95,6 @@ jobs:
         with:
           key: run-${{ github.run_id }}
           path: |
-            jahia-pack-repo/jahia-installer-package/target/Jahia-*Distribution*
             ${{ github.workspace }}/jahia-pack-repo/artifacts/*
             jahia-pack-repo/image.tar
             jahia-pack-repo/image.tag
@@ -174,7 +173,7 @@ jobs:
               -Dparent.tag=`cat parent.tag` \
               -Dimage.tag=`cat image.tag` \
               clean deploy \
-              -Pdocker,docker-plugin,installer,windows-installer
+              -Pdocker,docker-plugin,installer
       - name: Generate Docker shorthand tags
         uses: fgerthoffert/actions-docker-shorthand-tags@main
         if: ${{ github.event_name != 'pull_request' }}
@@ -200,7 +199,7 @@ jobs:
             -Dparent.tag=${{steps.tags.outputs.parent_tag}} \
             -Dimage.tag=${{steps.tags.outputs.image_tag}} \
             clean install \
-            -Pinstaller,windows-installer
+            -Pinstaller
       - name: Push PR Docker image
         # This is only done on PR, as master is pushed with mvn deploy in "Deploy artifacts to server repository"
         if: ${{ github.event_name == 'pull_request' }}
@@ -218,33 +217,6 @@ jobs:
         run: |
           docker images ls
           docker save -o jahia-pack-repo/image.tar ghcr.io/jahia/jahia-opencore-dev:${{steps.tags.outputs.image_tag}}
-
-      - name: Copy artifacts
-        if: ${{ needs.vars.outputs.parent_image_tag == 'none' }}
-        shell: bash
-        run: |
-          mkdir -p ${{ github.workspace }}/jahia-pack-repo/artifacts/
-          if [ "none" = "${{ needs.vars.outputs.parent_image_tag }}"]; then
-            cp ${{ github.workspace }}/jahia-pack-repo/jahia-installer-package/target/*.jar ${{ github.workspace }}/artifacts/
-            cp ${{ github.workspace }}/jahia-pack-repo/jahia-installer-package/target/*.exe ${{ github.workspace }}/artifacts/
-            cp ${{ github.workspace }}/jahia-pack-repo/jahia-installer-package/target/*db-scripts.zip ${{ github.workspace }}/artifacts/
-          fi
-
-      - name: Display size of the folders to be persisted (for space optimization)
-        shell: bash
-        run: |
-          echo "Size of jahia-installer-package/target/"
-          du -h -d 1 jahia-pack-repo/jahia-installer-package/target/
-          echo "Size of ./"
-          du -h -d 1 ./
-
-      - name: Display content of the folders to be persisted in workspace
-        shell: bash
-        run: |
-          echo "Listing of jahia-installer-package/target/"
-          ls -lah jahia-pack-repo/jahia-installer-package/target/
-          echo "Listing of ./"
-          ls -lah ./
 
       - uses: jahia/jahia-modules-action/slack-jahia@v2
         if: ${{ failure() }}
@@ -266,7 +238,6 @@ jobs:
         with:
           key: run-${{ github.run_id }}
           path: |
-            jahia-pack-repo/jahia-installer-package/target/Jahia-*Distribution*
             ${{ github.workspace }}/jahia-pack-repo/artifacts/*
             jahia-pack-repo/image.tar
             jahia-pack-repo/image.tag
@@ -296,7 +267,6 @@ jobs:
         with:
           key: run-${{ github.run_id }}
           path: |
-            jahia-pack-repo/jahia-installer-package/target/Jahia-*Distribution*
             ${{ github.workspace }}/jahia-pack-repo/artifacts/*
             jahia-pack-repo/image.tar
             jahia-pack-repo/image.tag

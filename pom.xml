@@ -102,12 +102,6 @@
 
     <profiles>
         <profile>
-            <id>installer</id>
-            <modules>
-                <module>jahia-installer-package</module>
-            </modules>
-        </profile>
-        <profile>
             <id>docker</id>
             <modules>
                 <module>docker-jahia</module>
