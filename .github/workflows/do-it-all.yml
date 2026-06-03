@@ -11,7 +11,7 @@ on:
     - cron: '0 4,10,16 * * 1-5'
   push:
     branches:
-      - master
+      - main
       - 'feature-.*'
       - 'JAHIA-[0-9]-[0-9]-[0-9]-X-BRANCH'
   workflow_dispatch:
@@ -201,7 +201,7 @@ jobs:
             clean install \
             -Pinstaller
       - name: Push PR Docker image
-        # This is only done on PR, as master is pushed with mvn deploy in "Deploy artifacts to server repository"
+        # This is only done on PR, as main is pushed with mvn deploy in "Deploy artifacts to server repository"
         if: ${{ github.event_name == 'pull_request' }}
         shell: bash
         run: |
@@ -326,7 +326,7 @@ jobs:
             -DdataDirectory=${OWASP_DATA_DIR} \
             -DnvdDatafeedUrl=${NVD_DATAFEED_URL} \
             -DknownExploitedUrl=${CISA_KEV_URL} \
-            -DsuppressionFiles=https://raw.githubusercontent.com/Jahia/jahia/master/.owasp/suppressions.xml,.owasp/custom-suppressions.xml"
+            -DsuppressionFiles=https://raw.githubusercontent.com/Jahia/jahia/main/.owasp/suppressions.xml,.owasp/custom-suppressions.xml"
 
           if [[ -n "${NVD_API_KEY:-}" ]]; then
             DEPENDENCY_CHECK_SETTINGS+=" -DnvdApiKeyEnvironmentVariable=NVD_API_KEY"
@@ -344,7 +344,7 @@ jobs:
             -Dsonar.dependencyCheck.jsonReportPath=target/dependency-check-report.json \
             -Dsonar.dependencyCheck.htmlReportPath=target/dependency-check-report.html"
 
-          if [[ "${{ steps.branch-name.outputs.current_branch }}" == "master" ]];
+          if [[ "${{ steps.branch-name.outputs.current_branch }}" == "main" ]];
           then
             mvn -s .github/maven.settings.xml dependency-check:aggregate sonar:sonar \
                 $DEPENDENCY_CHECK_SETTINGS \
@@ -358,7 +358,7 @@ jobs:
 
   call-workflow-jahia-ee:
     needs: [ build ]
-    uses: Jahia/jahia-ee/.github/workflows/do-it-all.yml@master
+    uses: Jahia/jahia-ee/.github/workflows/do-it-all.yml@main
     if: ${{ github.event_name != 'pull_request' }}
     secrets: inherit
     with:
