@@ -74,6 +74,13 @@ jobs:
       current_branch: ${{ steps.tags.outputs.current_branch }}
       triggered_by: ${{ steps.tags.outputs.triggered_by }}
     steps:
+      - uses: jahia/jahia-modules-action/slack-jahia@v2
+        if: ${{ github.event_name == 'schedule' || github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
+        with:
+          job-event: "started"
+          skip-docker: false
+          slack-webhook: ${{ secrets.SLACK_WEBHOOK_TEAM_PRODUCT_SNAPSHOTS_NOTIFICATIONS }}
+    
       - name: Set up JDK 11
         uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
         with:
@@ -217,13 +224,6 @@ jobs:
         run: |
           docker images ls
           docker save -o jahia-pack-repo/image.tar ghcr.io/jahia/jahia-opencore-dev:${{steps.tags.outputs.image_tag}}
-
-      - uses: jahia/jahia-modules-action/slack-jahia@v2
-        if: ${{ failure() }}
-        with:
-          job-event: "fail"
-          skip-docker: true
-          slack-webhook: ${{ secrets.SLACK_WEBHOOK_TEAM_PRODUCT_SNAPSHOTS_NOTIFICATIONS }}
 
   # It appears that a workflow cache generated in a Github hosted runner is
   # not available on a self-hosted runner. This step is only there to make the
