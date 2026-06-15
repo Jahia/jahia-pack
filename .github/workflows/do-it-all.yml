@@ -78,7 +78,7 @@ jobs:
         if: ${{ (github.event_name == 'schedule' || github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.repository == 'Jahia/jahia-pack-private' }}
         with:
           job-event: "started"
-          skip-docker: false
+          skip-docker: true
           slack-webhook: ${{ secrets.SLACK_WEBHOOK_TEAM_PRODUCT_SNAPSHOTS_NOTIFICATIONS }}
     
       - name: Set up JDK 11
